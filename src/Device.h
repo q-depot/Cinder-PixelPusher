@@ -7,19 +7,14 @@ public:
 	Device( DeviceHeader header ) : mDeviceHeader(header) {}
 
 	std::string getMacAddress()		{ return mDeviceHeader.getMacAddressString(); }
-	InetAddress getIp()				{ return mDeviceHeader.IpAddress; }
-	DeviceType getDeviceType()		{ return mDeviceHeader.DeviceType; }
-	int getProtocolVersion()		{ return mDeviceHeader.ProtocolVersion; }
-	int getVendorId()				{ return mDeviceHeader.VendorId; }
-	int getProductId()				{ return mDeviceHeader.ProductId; }
-	int getHardwareRevision()		{ return mDeviceHeader.HardwareRevision; }
-	int getSoftwareRevision()		{ return mDeviceHeader.SoftwareRevision; }
-	long getLinkSpeed()				{ return mDeviceHeader.LinkSpeed; }
-
-  	// std::string toString() {
-   //  	return "Mac: " + mDeviceHeader.GetMacAddressString() + ", IP: "
-   //      getHostAddress() + " Firmware revision: "+getSoftwareRevision(); 
-   //  }
+	std::string getIp()				{ return mDeviceHeader.getIpAddressString(); }
+	DeviceType getDeviceType()		{ return mDeviceHeader.getDeviceType(); }
+	uint32_t getProtocolVersion()	{ return mDeviceHeader.getProtocolVersion(); }
+	uint32_t getVendorId()			{ return mDeviceHeader.getVendorId(); }
+	uint32_t getProductId()			{ return mDeviceHeader.getProductId(); }
+	uint32_t getHardwareRevision()	{ return mDeviceHeader.getHardwareRevision(); }
+	uint32_t getSoftwareRevision()	{ return mDeviceHeader.getSoftwareRevision(); }
+	uint64_t getLinkSpeed()         { return mDeviceHeader.getLinkSpeed(); }
 
 private:
 

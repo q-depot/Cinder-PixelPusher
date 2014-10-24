@@ -13,12 +13,19 @@
    * int16_t my_port;
    */
 
+#pragma once
+#include "Device.h"
+#include "Pixel.h"
+#include "PusherCommand.h"
 
-class PixelPusher : public DeviceImpl {
+class PixelPusher;
+typedef std::shared_ptr<PixelPusher> PixelPusherRef;
+
+class PixelPusher : public Device {
 
 public:
-
-void setStripValues(int stripNumber, Pixel[] pixels) {
+/*
+void setStripValues(int stripNumber, Pixel[] pixels ) {
     synchronized (stripLock) {
       if (strips == null) {
         doDeferredStripCreation();
@@ -26,7 +33,8 @@ void setStripValues(int stripNumber, Pixel[] pixels) {
       this.strips.get(stripNumber).setPixels(pixels);
     }
   }
-
+*/
+    /*
   PixelPusher(byte[] packet, DeviceHeader header) : Device(header) {
 
       mArtnetUniverse = 0;
@@ -88,7 +96,7 @@ void setStripValues(int stripNumber, Pixel[] pixels) {
         stripFlags[i]=0;
     }
     
-    
+    */
     /*
      * We have some entries that come after the per-strip flag array.
      * We represent these as longs so that the entire range of a uint may be preserved;
@@ -99,6 +107,7 @@ void setStripValues(int stripNumber, Pixel[] pixels) {
      * uint32_t power_domain;      // power domain of this pusher
      */
     
+    /*
     if (packet.length > 30+stripFlagSize && super.getSoftwareRevision() > 116) {
       setPusherFlags(ByteUtils.unsignedIntToLong(Arrays.copyOfRange(packet, 32+stripFlagSize, 36+stripFlagSize)));
       segments = ByteUtils.unsignedIntToLong(Arrays.copyOfRange(packet, 36+stripFlagSize, 40+stripFlagSize));
@@ -106,29 +115,30 @@ void setStripValues(int stripNumber, Pixel[] pixels) {
     }
   }
 
-
+*/
 
 
 
 
     int getPort() 
     {
-      if (my_port > 0)
-        return my_port;
+        if ( mPort > 0)
+          return my_port;
 
-      return 9897;
+        return 9897;
     }
 
-    void setPort(int my_port) {
-    this.my_port = my_port;
-  }
+    void setPort( int port ) {
+        mPort = port ;
+    }
 
-  void sendCommand(PusherCommand pc) {
-    commandQueue.add(pc);
-  }
+    void sendCommand( PusherCommand pc )
+    {
+        commandQueue.push_back( pc );
+    }
   
 
-
+/*
   int getNumberOfStrips() {
     synchronized (stripLock) {
       if (strips == null) {
@@ -137,8 +147,9 @@ void setStripValues(int stripNumber, Pixel[] pixels) {
       return strips.size();
     }
   }
-
-  List<Strip> getStrips() {
+*/
+    
+    std::vectot<Strip> getStrips() {
     // Devices that are members of a multicast group,
     // but which are not the primary member of that group,
     // do not return strips.
@@ -471,45 +482,48 @@ private:
    * All access (including iteration) and mutation must be performed
    * while holding stripLock
    */
-  private vector<Strip> strips;
-  private final Object stripLock = new Object();
-  long extraDelayMsec = 0;
-  boolean autothrottle = false;
+private:
+    
+  std::vector<Strip>    mStrips;
+  // private final Object stripLock = new Object();
+  uint64_t              extraDelayMsec = 0;
+  bool                  autothrottle = false;
   
-  boolean multicast = false;
-  boolean multicastPrimary = false;
+  bool multicast = false;
+  bool multicastPrimary = false;
   
   /**
    * Queue for commands using the new majik strip protocol.
    */
   
-  ArrayBlockingQueue<PusherCommand> commandQueue;
+  std::vector<PusherCommand> commandQueue;
   
-  int mArtnetUniverse;
-  int mArtnetChannel;
-  int mPort;
-  int mStripsAttached;
-  int mPixelsPerStrip;
+  int         mArtnetUniverse;
+  int         mArtnetChannel;
+  int         mPort;
+  int         mStripsAttached;
+  int         mPixelsPerStrip;
 
 
-  bool mTouchedStrips;
-  int mMaxStripsPerPacket;
-  long mUpdatePeriod;
-  long mPowerTotal;
-  long mDeltaSequence;
-  int mControllerOrdinal;
-  int mGroupOrdinal;
-  bool mUseAntiLog;
+  bool        mTouchedStrips;
+  int         mMaxStripsPerPacket;
+  uint64_t    mUpdatePeriod;
+  uint64_t    mPowerTotal;
+  uint64_t    mDeltaSequence;
+  int         mControllerOrdinal;
+  int         mGroupOrdinal;
+  bool        mUseAntiLog;
   std::string mFilename;
-  bool mAmRecording;
-  bool mIsBusy;
-  bytem[] mStripFlags;
-  long mPusherFlags;
-  long mSegments;
-  long mPowerDomain;
-  int mLastUniverse;
+  bool        mAmRecording;
+  bool        mIsBusy;
+  bytem[]     mStripFlags;
+  uint64_t    mPusherFlags;
+  uint64_t    mSegments;
+  uint64_t    mPowerDomain;
+  int         mLastUniverse;
 
-  synchronized void doDeferredStripCreation() {
+//  synchronized
+    void doDeferredStripCreation() {
     synchronized (stripLock) {
       this.strips = new CopyOnWriteArrayList<Strip>();
       for (int stripNo = 0; stripNo < stripsAttached; stripNo++) {

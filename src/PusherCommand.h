@@ -12,7 +12,7 @@ class PusherCommand {
 
 public:
 
-  PusherCommand(byte command) {
+  PusherCommand( unsigned char command) {
     mCommand = command;
   }
   
@@ -133,34 +133,30 @@ public:
     return returnVal;
   }
 
-
-
-
   public:
     
-    byte command;
   
-    const byte RESET = 0x01;
-    const byte GLOBALBRIGHTNESS_SET = 0x02;
-    const byte WIFI_CONFIGURE = 0x03;
-    const byte LED_CONFIGURE = 0x04;
-    const byte STRIP_LPD8806 = 0;
-    const byte STRIP_WS2801 = 1;
-    const byte STRIP_WS2811 = 2;
-    const byte STRIP_APA102 = 3;
+    const unsigned char RESET = 0x01;
+    const unsigned char GLOBALBRIGHTNESS_SET = 0x02;
+    const unsigned char WIFI_CONFIGURE = 0x03;
+    const unsigned char LED_CONFIGURE = 0x04;
+    const unsigned char STRIP_LPD8806 = 0;
+    const unsigned char STRIP_WS2801 = 1;
+    const unsigned char STRIP_WS2811 = 2;
+    const unsigned char STRIP_APA102 = 3;
     
-    const byte ORDER_RGB = 0;
-    const byte ORDER_RBG = 1;
-    const byte ORDER_GBR = 2;
-    const byte ORDER_GRB = 3;
-    const byte ORDER_BGR = 4;
-    const byte ORDER_BRG = 5;
+    const unsigned char ORDER_RGB = 0;
+    const unsigned char ORDER_RBG = 1;
+    const unsigned char ORDER_GBR = 2;
+    const unsigned char ORDER_GRB = 3;
+    const unsigned char ORDER_BGR = 4;
+    const unsigned char ORDER_BRG = 5;
 
   private:
 
-  const byte pp_command_magic[] = 
-    { (byte) 0x40, (byte) 0x09, (byte) 0x2d, (byte) 0xa6, (byte) 0x15, (byte) 0xa5, (byte) 0xdd, (byte) 0xe5,
-      (byte) 0x6a, (byte) 0x9d, (byte)0x4d, (byte)0x5a, (byte) 0xcf, (byte) 0x09,(byte) 0xaf,(byte) 0x50  };
+    unsigned char mCommand;
+    
+    const unsigned char pp_command_magic[] = { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09,0xaf,0x50 };
 
     short   mParameter;
     String  mSsid;

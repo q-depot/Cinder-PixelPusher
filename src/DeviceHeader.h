@@ -14,87 +14,71 @@
 enum DeviceType {
   ETHERDREAM, 
   LUMIABRIDGE, 
-  PIXELPUSHER;
-}
+  PIXELPUSHER
+};
 
-
+#include <stdexcept>
 
 class DeviceHeader {
   
   public:
 
-    DeviceHeader(byte[] packet) {
+    DeviceHeader( char *packet, int packetLength ) {
 
-      if (packet.length < headerLength)
-        throw new IllegalArgumentException();
+      if ( packetLength < headerLength )
+        throw std::invalid_argument("...");
 
-    byte[] headerPkt = Arrays.copyOfRange(packet, 0, headerLength);
+        memcpy( &mMacAddress[0],    &packet[0], 6);            // MAC
+        memcpy( &mIpAddress[0],     &packet[6], 4 );             // IP
 
-    this.MacAddress = Arrays.copyOfRange(headerPkt, 0, 6);
-    try {
-      this.IpAddress = InetAddress.getByAddress(Arrays.copyOfRange(headerPkt,
-          6, 10));
-    } catch (UnknownHostException e) {
-      throw new IllegalArgumentException();
+        mDeviceType         = (DeviceType)packet[10];
+        mProtocolVersion    = packet[11];
+        
+        memcpy( &mVendorId,             &packet[12], 2 );
+        memcpy( &mProductId,            &packet[14], 2 );
+        memcpy( &mHardwareRevision,     &packet[16], 2 );
+        memcpy( &mSoftwareRevision,     &packet[18], 2 );
+        memcpy( &mLinkSpeed,            &packet[20], 4 );
+        memcpy( &mPacketRemainder[0],   &packet[headerLength], packetLength - headerLength );
+  }
+
+    std::string getMacAddressString()
+    {
+        char buffer [24];
+        sprintf(buffer, "%02dx:%02dx:%02dx:%02dx:%02dx:%02dx", mMacAddress[0], mMacAddress[1], mMacAddress[2], mMacAddress[3], mMacAddress[4], mMacAddress[5] );
+        return buffer;
     }
-    this.DeviceType = com.heroicrobot.dropbit.discovery.DeviceType
-        .fromInteger(ByteUtils.unsignedCharToInt(new byte[] { headerPkt[10] }));
-    this.ProtocolVersion = ByteUtils
-        .unsignedCharToInt(new byte[] { headerPkt[11] });
-    this.VendorId = ByteUtils.unsignedShortToInt(Arrays.copyOfRange(headerPkt,
-        12, 14));
-    this.ProductId = ByteUtils.unsignedShortToInt(Arrays.copyOfRange(headerPkt,
-        14, 16));
-    this.HardwareRevision = ByteUtils.unsignedShortToInt(Arrays.copyOfRange(
-        headerPkt, 16, 18));
-    this.SoftwareRevision = ByteUtils.unsignedShortToInt(Arrays.copyOfRange(
-        headerPkt, 18, 20));
-    this.LinkSpeed = ByteUtils.unsignedIntToLong(Arrays.copyOfRange(headerPkt,
-        20, 24));
-    this.PacketRemainder = Arrays.copyOfRange(packet, headerLength,
-        packet.length);
-  }
+    
+    std::string getIpAddressString()
+    {
+        std::string str =   std::to_string(mIpAddress[0]) + "." +
+                            std::to_string(mIpAddress[1]) + "." +
+                            std::to_string(mIpAddress[2]) + "." +
+                            std::to_string(mIpAddress[3]);
+        return str;
+    }
+    
+    DeviceType  getDeviceType()         { return mDeviceType; }
+    uint32_t    getProtocolVersion()    { return mProtocolVersion; }
+    uint32_t    getVendorId()           { return mVendorId; }
+    uint32_t    getProductId()          { return mProductId; }
+    uint32_t    getHardwareRevision()   { return mHardwareRevision; }
+    uint32_t    getSoftwareRevision()   { return mSoftwareRevision; }
+    uint64_t    getLinkSpeed()          { return mLinkSpeed; }
+    
+    
+  private:
 
-
-std::string GetMacAddressString() {
-    StringBuffer buffer = new StringBuffer();
-    Formatter formatter = new Formatter(buffer, Locale.US);
-    formatter.format("%02x:%02x:%02x:%02x:%02x:%02x", this.MacAddress[0],
-        this.MacAddress[1], this.MacAddress[2], this.MacAddress[3],
-        this.MacAddress[4], this.MacAddress[5]);
-    String macAddrString = formatter.toString();
-    formatter.close();
-    return macAddrString;
-  }
-
-
-    std::string toString() {
-      StringBuffer outBuf = new StringBuffer();
-      outBuf.append(this.DeviceType.name());
-      outBuf.append(": MAC(" + this.GetMacAddressString() + "), ");
-      outBuf.append("IP(" + this.IpAddress.toString() + "), ");
-      outBuf.append("Protocol Ver(" + this.ProtocolVersion + "), ");
-      outBuf.append("Vendor ID(" + this.VendorId + "), ");
-      outBuf.append("Product ID(" + this.ProductId + "), ");
-      outBuf.append("HW Rev(" + this.HardwareRevision + "), ");
-      outBuf.append("SW Rev(" + this.SoftwareRevision + "), ");
-      outBuf.append("Link Spd(" + this.LinkSpeed + "), ");
-      return outBuf.toString();
-  }
-
-
-  public:
-
-    byte[]        MacAddress;
-    InetAddress   IpAddress;
-    DeviceType    DeviceType;
-    int           ProtocolVersion;
-    int           VendorId;
-    int           ProductId;
-    int           HardwareRevision;
-    int           SoftwareRevision;
-    long          LinkSpeed;
-    byte[]        PacketRemainder;
+    char            mMacAddress[6];
+    char            mIpAddress[4];
+    DeviceType      mDeviceType;
+    uint32_t        mProtocolVersion;
+    uint32_t        mVendorId;
+    uint32_t        mProductId;
+    uint32_t        mHardwareRevision;
+    uint32_t        mSoftwareRevision;
+    uint64_t        mLinkSpeed;
+    char            mPacketRemainder[1000];             // double check this length!!!! <<<<<<<<<<<<<<<<<<<<<<<<
 
     private:
 
