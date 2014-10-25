@@ -1,4 +1,5 @@
- /*  const uint8_t pp_command_magic[16] = 
+
+/*  const uint8_t pp_command_magic[16] =
   *   { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09, 0xaf, 0x50  };
   *
   * #define COMMAND_RESET                0x01
@@ -7,172 +8,192 @@
   * #define COMMAND_LED_CONFIGURE        0x04
   */
 
+#pragma once
+#include <algorithm>
+
+#define PP_CMD_MAGIC_SIZE 16
 
 class PusherCommand {
 
 public:
-
-  PusherCommand( unsigned char command) {
-    mCommand = command;
-  }
-  
-  PusherCommand(byte command, short parameter) {
-    mCommand    = command;
-    mParameter  = parameter;
-  }
-  
-  PusherCommand(byte command, String ssid, String key, String security) {
-    mCommand  = command;
-    mSsid     = ssid;
-    mKey      = key;
-    if (security.toLowerCase().compareTo("none") == 0) 
-      mSecurity = 0;
-    if (security.toLowerCase().compareTo("wep") == 0) 
-      mSecurity = 1;
-    if (security.toLowerCase().compareTo("wpa") == 0) 
-      mSecurity = 2;
-    if (security.toLowerCase().compareTo("wpa2") == 0) 
-      mSecurity = 3;
-  }
-  
-  PusherCommand(byte command, int numStrips, int stripLength, byte[] stripType, byte[] colourOrder) 
-  {
-      PusherCommand( command, numStrips, stripLength, stripType, colourOrder, 0, 0, 0, 0 );
-  }
-  
-  PusherCommand(byte command, int numStrips, int stripLength, byte[] stripType, byte[] colourOrder, short group, short controller) 
-  {
-    PusherCommand( command, numStrips, stripLength, stripType, colourOrder, group, controller, 0, 0 );
-  }
-  
-  PusherCommand(byte command, int numStrips, int stripLength, byte[] stripType, byte[] colourOrder, short group, short controller, 
-                       short artnet_universe, short artnet_channel) 
-  {
-    mCommand        = command;
-    mNumStrips      = numStrips;
-    mStripLength    = stripLength;
-    mStripType      = Arrays.copyOf(stripType, 8);
-    mColourOrder    = Arrays.copyOf(colourOrder, 8);
-    mGroup          = group;
-    mController     = controller;
-    mArtnetChannel  = artnet_channel;
-    mArtnetUniverse = artnet_universe;
-  }
-  
-  byte [] generateBytes() 
-  {
-    byte[] returnVal= null;
-
-    if (command == RESET) 
+    
+    enum PusherCmd {
+        RESET                   = 0x01,
+        GLOBALBRIGHTNESS_SET    = 0x02,
+        WIFI_CONFIGURE          = 0x03,
+        LED_CONFIGURE           = 0x04,
+        STRIP_LPD8806           = 0,
+        STRIP_WS2801            = 1,
+        STRIP_WS2811            = 2,
+        STRIP_APA102            = 3,
+        ORDER_RGB               = 0,
+        ORDER_RBG               = 1,
+        ORDER_GBR               = 2,
+        ORDER_GRB               = 3,
+        ORDER_BGR               = 4,
+        ORDER_BRG               = 5
+    };
+    
+    PusherCommand( PusherCmd command)
     {
-      returnVal = Arrays.copyOf(pp_command_magic, pp_command_magic.length+1);
-      returnVal[pp_command_magic.length] = RESET;
-    } 
-    else if (command == GLOBALBRIGHTNESS_SET) {
-      returnVal = Arrays.copyOf(pp_command_magic, pp_command_magic.length+3);
-      returnVal[pp_command_magic.length] = GLOBALBRIGHTNESS_SET;
-      returnVal[pp_command_magic.length+1] = (byte) (parameter & 0xff);
-      returnVal[pp_command_magic.length+1] = (byte) ((parameter>>8) & 0xff);
-    } 
-    else if (command == WIFI_CONFIGURE) {
-      byte[] ssidBytes = ssid.getBytes();
-      byte[] keyBytes = key.getBytes();
-      int bufLength = 0;
-      bufLength += (pp_command_magic.length) + 1; /* length of command */
-      bufLength += 1; // length of key type
-      bufLength += ssidBytes.length + 1; // ssid plus null terminator
-      bufLength += keyBytes.length + 1;  // key plus null terminator
-      
-      returnVal = Arrays.copyOf(pp_command_magic, bufLength);
-      
-      returnVal[pp_command_magic.length] = command;
-      
-      for (int i=0; i<ssidBytes.length; i++ )
-        returnVal[pp_command_magic.length+ 1 + i] 
-            = ssidBytes[i];
-      
-      for (int i=0; i<keyBytes.length; i++ )
-        returnVal[pp_command_magic.length+ 1 + ssidBytes.length + 1 + i] 
-            = keyBytes[i];
-      
-      returnVal[pp_command_magic.length+ 1 + keyBytes.length + 1 + ssidBytes.length + 1] = security;
-    } else if (command == LED_CONFIGURE) {
-      returnVal = Arrays.copyOf(pp_command_magic, pp_command_magic.length+33); // two ints, eight bytes, eight bytes, plus command, plus group and controller
-                                                                               // plus artnet universe and channel
-      returnVal[pp_command_magic.length] = LED_CONFIGURE;
-
-      returnVal[pp_command_magic.length+1+0] = (byte) (num_strips & 0xFF);   
-      returnVal[pp_command_magic.length+1+1] = (byte) ((num_strips >> 8) & 0xFF);   
-      returnVal[pp_command_magic.length+1+2] = (byte) ((num_strips >> 16) & 0xFF);   
-      returnVal[pp_command_magic.length+1+3] = (byte) ((num_strips >> 24) & 0xFF);
-      
-      returnVal[pp_command_magic.length+5+0] = (byte) (strip_length & 0xFF);   
-      returnVal[pp_command_magic.length+5+1] = (byte) ((strip_length >> 8) & 0xFF);   
-      returnVal[pp_command_magic.length+5+2] = (byte) ((strip_length >> 16) & 0xFF);   
-      returnVal[pp_command_magic.length+5+3] = (byte) ((strip_length >> 24) & 0xFF); 
-      
-      for (int i = pp_command_magic.length+9; i< pp_command_magic.length+17; i++)
-        returnVal[i] = strip_type[i-(pp_command_magic.length+9)];
-      for (int i = pp_command_magic.length+17; i< pp_command_magic.length+25; i++)
-        returnVal[i] = colour_order[i-(pp_command_magic.length+17)];
-      
-      returnVal[pp_command_magic.length+25+0] = (byte) (group & 0xFF);   
-      returnVal[pp_command_magic.length+25+1] = (byte) ((group >> 8) & 0xFF);
-      
-      returnVal[pp_command_magic.length+27+0] = (byte) (controller & 0xFF);   
-      returnVal[pp_command_magic.length+27+1] = (byte) ((controller >> 8) & 0xFF);
-      
-      returnVal[pp_command_magic.length+29+0] = (byte) (artnet_universe & 0xFF);   
-      returnVal[pp_command_magic.length+29+1] = (byte) ((artnet_universe >> 8) & 0xFF);
-      
-      returnVal[pp_command_magic.length+31+0] = (byte) (artnet_channel & 0xFF);   
-      returnVal[pp_command_magic.length+31+1] = (byte) ((artnet_channel >> 8) & 0xFF);
-    
-      
-    } // end if(command)
-    return returnVal;
-  }
-
-  public:
-    
+        mCommand = command;
+    }
   
-    const unsigned char RESET = 0x01;
-    const unsigned char GLOBALBRIGHTNESS_SET = 0x02;
-    const unsigned char WIFI_CONFIGURE = 0x03;
-    const unsigned char LED_CONFIGURE = 0x04;
-    const unsigned char STRIP_LPD8806 = 0;
-    const unsigned char STRIP_WS2801 = 1;
-    const unsigned char STRIP_WS2811 = 2;
-    const unsigned char STRIP_APA102 = 3;
+    PusherCommand( PusherCmd command, short parameter)
+    {
+        mCommand    = command;
+        mParameter  = parameter;
+    }
+  
+    PusherCommand( PusherCmd command, std::string ssid, std::string key, std::string security )
+    {
+        mCommand  = command;
+        mSsid     = ssid;
+        mKey      = key;
+        
+        std::transform( security.begin(), security.end(), security.begin(), ::tolower );
+        
+        if (security == "none" )        mSecurity = 0;
+        else if (security == "wep" )    mSecurity = 1;
+        else if (security == "wpa" )    mSecurity = 2;
+        else if (security == "wpa2" )   mSecurity = 3;
+    }
+  
+    PusherCommand( PusherCmd command, int numStrips, int stripLength, std::string stripType, std::string colourOrder)
+    {
+        PusherCommand( command, numStrips, stripLength, stripType, colourOrder, 0, 0, 0, 0 );
+    }
+  
+    PusherCommand( PusherCmd command, int numStrips, int stripLength, std::string stripType, std::string colourOrder, int group, int controller)
+    {
+        PusherCommand( command, numStrips, stripLength, stripType, colourOrder, group, controller, 0, 0 );
+    }
+  
+    PusherCommand( PusherCmd command, int numStrips, int stripLength, std::string stripType, std::string colourOrder, int group, int controller, int artnet_universe, int artnet_channel )
+    {
+        mCommand        = command;
+        mNumStrips      = numStrips;
+        mStripLength    = stripLength;
+        mStripType      = stripType;
+        mColourOrder    = colourOrder;
+        mGroup          = group;
+        mController     = controller;
+        mArtnetChannel  = artnet_channel;
+        mArtnetUniverse = artnet_universe;
+    }
     
-    const unsigned char ORDER_RGB = 0;
-    const unsigned char ORDER_RBG = 1;
-    const unsigned char ORDER_GBR = 2;
-    const unsigned char ORDER_GRB = 3;
-    const unsigned char ORDER_BGR = 4;
-    const unsigned char ORDER_BRG = 5;
+    
+    ~PusherCommand() {}
+    
+    
+    // TODO: TEST THIS!!!!! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    std::vector<unsigned char> generateBytes()
+    {
+        std::vector<unsigned char> cmd;
+
+        if ( mCommand == RESET )
+        {
+            cmd.resize( PP_CMD_MAGIC_SIZE + 1 );
+            std::memcpy( &cmd[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
+            cmd[PP_CMD_MAGIC_SIZE] = RESET;
+        }
+    
+        else if ( mCommand == GLOBALBRIGHTNESS_SET)
+        {
+            cmd.resize( PP_CMD_MAGIC_SIZE + 3 );
+            std::memcpy( &cmd[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
+            cmd[PP_CMD_MAGIC_SIZE] = GLOBALBRIGHTNESS_SET;
+            cmd[PP_CMD_MAGIC_SIZE] = (unsigned char) ( mParameter & 0xff);
+            cmd[PP_CMD_MAGIC_SIZE] = (unsigned char) ( ( mParameter >> 8 ) & 0xff );
+        }
+    
+        else if ( mCommand == WIFI_CONFIGURE )
+        {
+            int bufLength = 0;
+            bufLength += ( PP_CMD_MAGIC_SIZE ) + 1;   // length of command
+            bufLength += 1;                           // length of key type
+            bufLength += mSsid.length() + 1;          // ssid plus null terminator
+            bufLength += mKey.length() + 1;           // key plus null terminator
+          
+            cmd.resize( bufLength );
+            std::memcpy( &cmd[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
+      
+            cmd[ PP_CMD_MAGIC_SIZE ] = mCommand;
+          
+            // TODO: use just 1 damn counter! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            for ( int i=0; i < mSsid.length(); i++ )
+                cmd[ PP_CMD_MAGIC_SIZE + 1 + i] = (unsigned char)mSsid[i];
+          
+            for ( int i=0; i < mKey.length(); i++ )
+                cmd[ PP_CMD_MAGIC_SIZE + 1 + mSsid.length() + 1 + i ] = (unsigned char)mKey[i];
+          
+          
+            cmd[ PP_CMD_MAGIC_SIZE + 1 + mKey.length() + 1 + mSsid.length() + 1 ] = mSecurity;
+        }
+    
+        else if ( mCommand == LED_CONFIGURE )
+        {
+            // two ints, eight unsigned chars, eight unsigned chars, plus command, plus group and controller
+            // plus artnet universe and channel
+            cmd.resize( PP_CMD_MAGIC_SIZE + 33 );
+            std::memcpy( &cmd[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
+
+            cmd[ PP_CMD_MAGIC_SIZE ] = LED_CONFIGURE;
+          
+            cmd[ PP_CMD_MAGIC_SIZE + 1 + 0 ] = (unsigned char) (  mNumStrips & 0xFF );
+            cmd[ PP_CMD_MAGIC_SIZE + 1 + 1 ] = (unsigned char) (( mNumStrips >> 8 ) & 0xFF );
+            cmd[ PP_CMD_MAGIC_SIZE + 1 + 2 ] = (unsigned char) (( mNumStrips >> 16 ) & 0xFF );
+            cmd[ PP_CMD_MAGIC_SIZE + 1 + 3 ] = (unsigned char) (( mNumStrips >> 24 ) & 0xFF );
+          
+            cmd[ PP_CMD_MAGIC_SIZE + 5 + 0 ] = (unsigned char) (  mStripLength & 0xFF );
+            cmd[ PP_CMD_MAGIC_SIZE + 5 + 1 ] = (unsigned char) (( mStripLength >> 8 ) & 0xFF );
+            cmd[ PP_CMD_MAGIC_SIZE + 5 + 2 ] = (unsigned char) (( mStripLength >> 16 ) & 0xFF );
+            cmd[ PP_CMD_MAGIC_SIZE + 5 + 3 ] = (unsigned char) (( mStripLength >> 24 ) & 0xFF );
+
+            for (int i = PP_CMD_MAGIC_SIZE + 9; i< PP_CMD_MAGIC_SIZE + 17; i++)
+                cmd[i] = (unsigned char)mStripType[ i - ( PP_CMD_MAGIC_SIZE + 9 ) ];
+          
+            for (int i = PP_CMD_MAGIC_SIZE + 17; i< PP_CMD_MAGIC_SIZE + 25; i++)
+                cmd[i] = (unsigned char)mColourOrder[ i - ( PP_CMD_MAGIC_SIZE + 17 ) ];
+          
+         
+            cmd[ PP_CMD_MAGIC_SIZE + 25 + 0 ] = (unsigned char) (  mGroup & 0xFF );
+            cmd[ PP_CMD_MAGIC_SIZE + 25 + 1 ] = (unsigned char) (( mGroup >> 8) & 0xFF );
+          
+            cmd[ PP_CMD_MAGIC_SIZE + 27 + 0 ] = (unsigned char) (  mController & 0xFF );
+            cmd[ PP_CMD_MAGIC_SIZE + 27 + 1 ] = (unsigned char) (( mController >> 8 ) & 0xFF );
+          
+            cmd[ PP_CMD_MAGIC_SIZE + 29 + 0 ] = (unsigned char) (  mArtnetUniverse & 0xFF );
+            cmd[ PP_CMD_MAGIC_SIZE + 29 + 1 ] = (unsigned char) (( mArtnetUniverse >> 8) & 0xFF );
+          
+            cmd[ PP_CMD_MAGIC_SIZE + 31 + 0 ] = (unsigned char) (  mArtnetChannel & 0xFF );
+            cmd[ PP_CMD_MAGIC_SIZE + 31 + 1 ] = (unsigned char) (( mArtnetChannel >> 8 ) & 0xFF );
+        }
+        
+        return cmd;
+    }
+
 
   private:
 
-    unsigned char mCommand;
+    const unsigned char pp_cmd_magic[PP_CMD_MAGIC_SIZE] = { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09, 0xaf, 0x50 };
     
-    const unsigned char pp_command_magic[] = { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09,0xaf,0x50 };
-
-    short   mParameter;
-    String  mSsid;
-    String  mKey;
-    byte    mSecurity;
+    PusherCmd       mCommand;
+    int             mParameter;
+    std::string     mSsid;
+    std::string     mKey;
+    unsigned char   mSecurity;
   
-    int     mNumStrips;
-    int     mStripLength;
-    byte[]  mStripType;
-    byte[]  mColourOrder;
+    int             mNumStrips;
+    int             mStripLength;
+    std::string     mStripType;
+    std::string     mColourOrder;
 
-    short   mGroup;
-    short   mController;
+    int             mGroup;
+    int             mController;
   
-    short   mArtnetUniverse;
-    short   mArtnetChannel;
+    int             mArtnetUniverse;
+    int             mArtnetChannel;
   
 /*  enum Security {
     NONE = 0,

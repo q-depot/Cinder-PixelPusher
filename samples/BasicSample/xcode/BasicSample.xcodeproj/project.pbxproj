@@ -13,6 +13,8 @@
 		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
 		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		01DF91FFF1C34B0C84FD5AC9 /* BasicSampleApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788A5B45C29F4938B7C2582D /* BasicSampleApp.cpp */; };
+		10AFC49319FBD37A0095569E /* PixelPusher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10AFC49119FBD37A0095569E /* PixelPusher.cpp */; };
+		10AFC49419FBD37A0095569E /* Strip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10AFC49219FBD37A0095569E /* Strip.cpp */; };
 		10F1C73119F654D20068665A /* CardThread.java in Sources */ = {isa = PBXBuildFile; fileRef = 10F1C71C19F654D20068665A /* CardThread.java */; };
 		10F1C73219F654D20068665A /* SceneThread.java in Sources */ = {isa = PBXBuildFile; fileRef = 10F1C72319F654D20068665A /* SceneThread.java */; };
 		10F1C73319F654D20068665A /* Strip.h in Sources */ = {isa = PBXBuildFile; fileRef = 10F1C72419F654D20068665A /* Strip.h */; };
@@ -29,8 +31,9 @@
 		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		10AFC49119FBD37A0095569E /* PixelPusher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelPusher.cpp; sourceTree = "<group>"; };
+		10AFC49219FBD37A0095569E /* Strip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Strip.cpp; sourceTree = "<group>"; };
 		10F1C71C19F654D20068665A /* CardThread.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CardThread.java; sourceTree = "<group>"; };
-		10F1C71D19F654D20068665A /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
 		10F1C71E19F654D20068665A /* DeviceHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceHeader.h; sourceTree = "<group>"; };
 		10F1C71F19F654D20068665A /* Pixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pixel.h; sourceTree = "<group>"; };
 		10F1C72019F654D20068665A /* PixelPusher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelPusher.h; sourceTree = "<group>"; };
@@ -122,14 +125,15 @@
 			isa = PBXGroup;
 			children = (
 				10F1C71C19F654D20068665A /* CardThread.java */,
-				10F1C71D19F654D20068665A /* Device.h */,
 				10F1C71E19F654D20068665A /* DeviceHeader.h */,
 				10F1C71F19F654D20068665A /* Pixel.h */,
-				10F1C72019F654D20068665A /* PixelPusher.h */,
 				10F1C72119F654D20068665A /* PusherCommand.h */,
 				10F1C72219F654D20068665A /* PusherGroup.h */,
+				10F1C72019F654D20068665A /* PixelPusher.h */,
+				10AFC49119FBD37A0095569E /* PixelPusher.cpp */,
 				10F1C72319F654D20068665A /* SceneThread.java */,
 				10F1C72419F654D20068665A /* Strip.h */,
+				10AFC49219FBD37A0095569E /* Strip.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -247,7 +251,9 @@
 			files = (
 				10F1C73119F654D20068665A /* CardThread.java in Sources */,
 				10F1C73319F654D20068665A /* Strip.h in Sources */,
+				10AFC49419FBD37A0095569E /* Strip.cpp in Sources */,
 				01DF91FFF1C34B0C84FD5AC9 /* BasicSampleApp.cpp in Sources */,
+				10AFC49319FBD37A0095569E /* PixelPusher.cpp in Sources */,
 				10F1C73219F654D20068665A /* SceneThread.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

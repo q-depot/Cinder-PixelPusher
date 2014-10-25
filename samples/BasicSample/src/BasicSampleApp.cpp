@@ -11,7 +11,7 @@ using namespace std;
 class BasicSampleApp : public AppNative {
   public:
 	void setup();
-	void mouseDown( MouseEvent event );	
+	void mouseDown( MouseEvent event );
 	void update();
 	void draw();
 };

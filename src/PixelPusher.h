@@ -14,16 +14,35 @@
    */
 
 #pragma once
-#include "Device.h"
-#include "Pixel.h"
+//#include "Device.h"
 #include "PusherCommand.h"
+#include "DeviceHeader.h"
+#include <boost/enable_shared_from_this.hpp>
+
+
+class Strip;
+typedef std::shared_ptr<Strip> StripRef;
 
 class PixelPusher;
 typedef std::shared_ptr<PixelPusher> PixelPusherRef;
 
-class PixelPusher : public Device {
-
+class PixelPusher : public std::enable_shared_from_this<PixelPusher> {
+    
+private:
+    
+    const int ACCEPTABLE_LOWEST_SW_REV  = 121;
+    const int SFLAG_RGBOW               = 1;
+    const int SFLAG_WIDEPIXELS          = (1<<1);
+    const int SFLAG_LOGARITHMIC         = (1<<2);
+    const int SFLAG_MOTION              = (1<<3);
+    const int SFLAG_NOTIDEMPOTENT       = (1<<4);
+    
+    const int PFLAG_PROTECTED           = (1<<0);
+    const int PFLAG_FIXEDSIZE           = (1<<1);
+    
+    
 public:
+    
 /*
 void setStripValues(int stripNumber, Pixel[] pixels ) {
     synchronized (stripLock) {
@@ -34,108 +53,35 @@ void setStripValues(int stripNumber, Pixel[] pixels ) {
     }
   }
 */
-    /*
-  PixelPusher(byte[] packet, DeviceHeader header) : Device(header) {
-
-      mArtnetUniverse = 0;
-      mArtnetChannel = 0;
-      mPort = 9798;
-      mStripsAttached = 0;
-      mPixelsPerStrip = 0;
-
     
-    commandQueue = new ArrayBlockingQueue<PusherCommand>(3);
+    PixelPusher( unsigned char *packet, int packetSize, DeviceHeader header );
     
-    if (super.getSoftwareRevision() < ACCEPTABLE_LOWEST_SW_REV) {
-       System.err.println("WARNING!  This PixelPusher Library requires firmware revision "+ACCEPTABLE_LOWEST_SW_REV/100.0);
-       System.err.println("WARNING!  This PixelPusher is using "+super.getSoftwareRevision()/100.0);
-       System.err.println("WARNING!  This is not expected to work.  Please update your PixelPusher.");
-    }
-    if (packet.length < 28) {
-      throw new IllegalArgumentException();
-    }
-    setPusherFlags(0);
-    segments=0;
-    powerDomain=0;
+    ~PixelPusher() {}
     
-    stripsAttached = ByteUtils.unsignedCharToInt(Arrays.copyOfRange(packet, 0, 1));
-    pixelsPerStrip = ByteUtils.unsignedShortToInt(Arrays.copyOfRange(packet, 2, 4));
-    maxStripsPerPacket = ByteUtils.unsignedCharToInt(Arrays.copyOfRange(packet, 1, 2));
-
-    updatePeriod = ByteUtils
-        .unsignedIntToLong(Arrays.copyOfRange(packet, 4, 8));
-    powerTotal = ByteUtils.unsignedIntToLong(Arrays.copyOfRange(packet, 8, 12));
-    deltaSequence = ByteUtils.unsignedIntToLong(Arrays.copyOfRange(packet, 12, 16));
-    controllerOrdinal = (int) ByteUtils.unsignedIntToLong(Arrays.copyOfRange(packet, 16, 20));
-    groupOrdinal = (int) ByteUtils.unsignedIntToLong(Arrays.copyOfRange(packet, 20, 24));
-
-    artnet_universe = (int) ByteUtils.unsignedShortToInt(Arrays.copyOfRange(packet, 24, 26));
-    artnet_channel = (int) ByteUtils.unsignedShortToInt(Arrays.copyOfRange(packet, 26, 28));
-    amRecording = false;
-    setPusherFlags(0);
-
-    if (packet.length > 28 && super.getSoftwareRevision() > 100) {
-      my_port = (int) ByteUtils.unsignedShortToInt(Arrays.copyOfRange(packet, 28, 30));
-    } else {
-      my_port = 9798;
-    }
-    // A minor complication here.  The PixelPusher firmware generates announce packets from
-    // a static structure, so the size of stripFlags is always 8;  even if there are fewer
-    // strips configured.  So we have a wart. - jls.
-    
-    
-    int stripFlagSize = 8;
-    if (stripsAttached>8)
-        stripFlagSize = stripsAttached;
-    
-    if (packet.length > 30 && super.getSoftwareRevision() > 108) {
-      stripFlags = Arrays.copyOfRange(packet, 30, 30+stripFlagSize);
-    } else {
-      stripFlags = new byte[stripFlagSize];
-      for (int i=0; i<stripFlagSize; i++)
-        stripFlags[i]=0;
-    }
-    
-    */
-    /*
-     * We have some entries that come after the per-strip flag array.
-     * We represent these as longs so that the entire range of a uint may be preserved;
-     * why on earth Java doesn't have unsigned ints I have no idea. - jls
-     * 
-     * uint32_t pusher_flags;      // flags for the whole pusher
-     * uint32_t segments;          // number of segments in each strip
-     * uint32_t power_domain;      // power domain of this pusher
-     */
-    
-    /*
-    if (packet.length > 30+stripFlagSize && super.getSoftwareRevision() > 116) {
-      setPusherFlags(ByteUtils.unsignedIntToLong(Arrays.copyOfRange(packet, 32+stripFlagSize, 36+stripFlagSize)));
-      segments = ByteUtils.unsignedIntToLong(Arrays.copyOfRange(packet, 36+stripFlagSize, 40+stripFlagSize));
-      powerDomain = ByteUtils.unsignedIntToLong(Arrays.copyOfRange(packet, 40+stripFlagSize, 44+stripFlagSize));
-    }
-  }
-
-*/
-
-
-
-
-    int getPort() 
+    uint16_t getPort()
     {
-        if ( mPort > 0)
-          return my_port;
+        if ( mPort > 0 )
+          return mPort;
 
         return 9897;
     }
 
-    void setPort( int port ) {
-        mPort = port ;
-    }
+    void setPort( uint16_t port ) { mPort = port ; }
 
-    void sendCommand( PusherCommand pc )
-    {
-        commandQueue.push_back( pc );
-    }
+    std::string getMacAddress()		{ return mDeviceHeader.getMacAddressString(); }
+	std::string getIp()				{ return mDeviceHeader.getIpAddressString(); }
+	DeviceType getDeviceType()		{ return mDeviceHeader.getDeviceType(); }
+	uint32_t getProtocolVersion()	{ return mDeviceHeader.getProtocolVersion(); }
+	uint32_t getVendorId()			{ return mDeviceHeader.getVendorId(); }
+	uint32_t getProductId()			{ return mDeviceHeader.getProductId(); }
+	uint32_t getHardwareRevision()	{ return mDeviceHeader.getHardwareRevision(); }
+	uint32_t getSoftwareRevision()	{ return mDeviceHeader.getSoftwareRevision(); }
+	uint64_t getLinkSpeed()         { return mDeviceHeader.getLinkSpeed(); }
+    
+//    void sendCommand( PusherCommand pc )
+//    {
+//        commandQueue.push_back( pc );
+//    }
   
 
 /*
@@ -149,417 +95,219 @@ void setStripValues(int stripNumber, Pixel[] pixels ) {
   }
 */
     
-    std::vectot<Strip> getStrips() {
-    // Devices that are members of a multicast group,
-    // but which are not the primary member of that group,
-    // do not return strips.
-    if (multicast) {
-      if (!multicastPrimary) {
-        return new ArrayList<Strip>();
-      }
-    }
-    synchronized (stripLock) {
-      if (strips == null) {
-        doDeferredStripCreation();
-      }
-      // Ensure callers can't modify the returned list
-      return Collections.unmodifiableList(strips);
-    }
-  }
-
-  int getArtnetUniverse() {
-    return artnet_universe;
-  }
-
-  int getArtnetChannel() {
-    return artnet_channel;
-  }
-
-  Strip getStrip(int stripNumber) {
-    if (stripNumber > stripsAttached)
-       return null;
-    synchronized (stripLock) {
-      if (strips == null) {
-        doDeferredStripCreation();
-      }
-      return this.strips.get(stripNumber);
-    }
-  }
-
-  void setAutoThrottle(boolean state) {
-    autothrottle = state;
-   // System.err.println("Setting autothrottle on card "+controllerOrdinal+" in group "+groupOrdinal+" to "+
-   //     (autothrottle?"ON":"OFF"));
-  }
-
-
-  int getMaxStripsPerPacket() {
-    return maxStripsPerPacket;
-  }
-
-
-  int getPixelsPerStrip() {
-    return pixelsPerStrip;
-  }
-
-  long getPusherFlags() {
-    return pusherFlags;
-  }
-
-  void setPusherFlags(long pusherFlags) {
-    this.pusherFlags = pusherFlags;
-  }
-
-
-  long getUpdatePeriod() {
-    return updatePeriod;
-  }
-
-  /**
-   * @return the powerTotal
-   */
-  long getPowerTotal() {
-    return powerTotal;
-  }
-
-  long getDeltaSequence() {
-    return deltaSequence;
-  }
-  void increaseExtraDelay(long i) {
-    if (autothrottle) {
-      extraDelayMsec += i;
-      System.err.println("Group "+groupOrdinal+" card "+controllerOrdinal+" extra delay now "+extraDelayMsec);
-    } else {
-      System.err.println("Group "+groupOrdinal+" card "+controllerOrdinal+" would increase delay, but autothrottle is disabled.");
-    }
-  }
-
-  void decreaseExtraDelay(long i) {
-    extraDelayMsec -= i;
-    if (extraDelayMsec < 0)
-       extraDelayMsec = 0;
-  }
-  long getExtraDelay() {
-    if (autothrottle)
-      return extraDelayMsec;
-    else
-      return 0;
-  }
-  void setExtraDelay(long i) {
-    extraDelayMsec = i;
-  }
-  int getControllerOrdinal() {
-      return controllerOrdinal;
-  }
-
-  int getGroupOrdinal() {
-    return groupOrdinal;
-  }
-
-  std::tring toString() {
-    return super.toString() + " # Strips(" + getNumberOfStrips()
-        + ") Max Strips Per Packet(" + maxStripsPerPacket
-        + ") PixelsPerStrip (" + getPixelsPerStrip() +") Update Period ("
-        + updatePeriod + ") Power Total (" + powerTotal + ") Delta Sequence ( "
-        + deltaSequence + ") Group (" +groupOrdinal +") Controller ("
-        + controllerOrdinal + " ) + Port ("+my_port+") Art-Net Universe ("
-        +artnet_universe+") Art-Net Channel ("+artnet_channel+")" 
-        + " Strip flags "+formattedStripFlags()+" Pusher Flags ("+ getPusherFlags()
-        +") Segments (" + segments +") Power Domain ("+ powerDomain + ")" 
-        + (multicast?" Multicast ":" Unicast ") + (multicastPrimary?"Primary":"Stooge");
-  }
-
-  public void updateVariables(PixelPusher device) {
-    this.deltaSequence = device.deltaSequence;
-    this.maxStripsPerPacket = device.maxStripsPerPacket;
-    this.powerTotal = device.powerTotal;
-    this.updatePeriod = device.updatePeriod;
-  }
-  
-  public void copyHeader(PixelPusher device) {
-    this.controllerOrdinal = device.controllerOrdinal;
-    this.deltaSequence = device.deltaSequence;
-    this.groupOrdinal = device.groupOrdinal;
-    this.maxStripsPerPacket = device.maxStripsPerPacket;
-
-    this.powerTotal = device.powerTotal;
-    this.updatePeriod = device.updatePeriod;
-    this.artnet_channel = device.artnet_channel;
-    this.artnet_universe = device.artnet_universe;
-    this.my_port = device.my_port;
-    this.filename = device.filename;
-    this.amRecording = device.amRecording;
+    std::vector<StripRef> getStrips();
     
-    this.setPusherFlags(device.getPusherFlags());
-    this.powerDomain = device.powerDomain;
+    uint16_t getArtnetUniverse()   { return mArtnetUniverse; }
+    uint16_t getArtnetChannel()    { return mArtnetChannel; }
 
-    synchronized (stripLock) {
-      // if the number of strips we have doesn't match,
-      // we'll need to make a fresh set.
-      if (this.stripsAttached != device.stripsAttached) {
-        this.strips = null;
-        this.stripsAttached = device.stripsAttached;
-      }
-      // likewise, if the length of each strip differs,
-      // we will need to make a new set.
-      if (this.pixelsPerStrip != device.pixelsPerStrip) {
-        this.pixelsPerStrip = device.pixelsPerStrip;
-        this.strips = null;
-      }
-      // and it's the same for segments
-      if (this.segments != device.segments) {
-        this.segments = device.segments;
-        this.strips = null;
-      }
-      if (this.strips != null)
-        for (Strip s: this.strips)
-          s.setPusher(this);   
-    }    
-  }
+    StripRef getStrip( int stripNumber );
+    
+    void setAutoThrottle( bool state ) { mAutothrottle = state; }
 
-  @Override
-  public int compareTo(PixelPusher comp) {
-    int group0 = this.getGroupOrdinal();
-    int group1 = ((PixelPusher) comp).getGroupOrdinal();
-    if (group0 != group1) {
-      if (group0 < group1)
-        return -1;
-      return 1;
-    }
-    int ord0 = this.getControllerOrdinal();
-    int ord1 = ((PixelPusher) comp).getControllerOrdinal();
-    if (ord0 != ord1) {
-      if (ord0 < ord1)
-        return -1;
-      return 1;
+    int getMaxStripsPerPacket() { return mMaxStripsPerPacket; }
+
+    int getPixelsPerStrip() { return mPixelsPerStrip; }
+
+    uint64_t getPusherFlags() { return mPusherFlags; }
+
+    void setPusherFlags( uint64_t pusherFlags ) { mPusherFlags = pusherFlags; }
+    
+    uint64_t getUpdatePeriod()  { return mUpdatePeriod; }
+    uint64_t getPowerTotal()    { return mPowerTotal; }
+    uint64_t getDeltaSequence() { return mDeltaSequence; }
+        
+    void increaseExtraDelay( uint64_t i )
+    {
+        if ( mAutothrottle )
+        {
+            mExtraDelayMsec += i;
+            ci::app::console() << "Group " << mGroupOrdinal << " card " << mControllerOrdinal << " extra delay now " << mExtraDelayMsec << std::endl;
+        }
+        else
+            ci::app::console() << "Group " << mGroupOrdinal << " card " << mControllerOrdinal << " would increase delay, but autothrottle is disabled." << std::endl;
     }
 
-    return this.getMacAddress().compareTo(((DeviceImpl) comp).getMacAddress());
-  }
-
-  public void setAntiLog(boolean antiLog) {
-    useAntiLog = antiLog;
-    synchronized (stripLock) {
-      if (strips == null) {
-        doDeferredStripCreation();
-        for (Strip strip: this.strips)
-          strip.useAntiLog(useAntiLog);
-      }
+    void decreaseExtraDelay( uint64_t i )
+    {
+        mExtraDelayMsec = std::max( (uint64_t)0, mExtraDelayMsec - i );
     }
-  }
+    
+    uint64_t getExtraDelay()
+    {
+        if ( mAutothrottle )
+            return mExtraDelayMsec;
+        else
+            return 0;
+    }
+    
+    void setExtraDelay( uint64_t i ) { mExtraDelayMsec = i; }
+    
+    uint64_t getControllerOrdinal() { return mControllerOrdinal; }
+    uint64_t getGroupOrdinal() { return mGroupOrdinal; }
 
-  public void startRecording(String filename) {
-        amRecording = true;
-        setFilename(filename);
-  }
+    void updateVariables(PixelPusher device);
+        
+    void copyHeader(PixelPusher device);
 
-  public String getFilename() {
-    return filename;
-  }
+//
+//  int compareTo(PixelPusher comp) {
+//    int group0 = this.getGroupOrdinal();
+//    int group1 = ((PixelPusher) comp).getGroupOrdinal();
+//    if (group0 != group1) {
+//      if (group0 < group1)
+//        return -1;
+//      return 1;
+//    }
+//    int ord0 = this.getControllerOrdinal();
+//    int ord1 = ((PixelPusher) comp).getControllerOrdinal();
+//    if (ord0 != ord1) {
+//      if (ord0 < ord1)
+//        return -1;
+//      return 1;
+//    }
+//
+//    return this.getMacAddress().compareTo(((DeviceImpl) comp).getMacAddress());
+//  }
 
-  public void setFilename(String filename) {
-    this.filename = filename;
-  }
+    void setAntiLog( bool antiLog );
 
-  public boolean isAmRecording() {
-    return amRecording;
-  }
+    void startRecording( std::string filename )
+    {
+        mAmRecording = true;
+        setFilename( filename );
+    }
 
-  public void setAmRecording(boolean amRecording) {
-    this.amRecording = amRecording;
-  }
+    std::string getFilename() { return mFilename; }
 
-  public synchronized void makeBusy() {
-    isBusy = true;
-  }
+    void setFilename( std::string filename) { mFilename = filename; }
+    
+    bool isAmRecording() { return mAmRecording; }
 
-  public synchronized void clearBusy() {
-    isBusy = false;
-  }
+    void setAmRecording( bool amRecording ) { mAmRecording = amRecording; }
 
-  public synchronized boolean isBusy() {
-    return isBusy;
-  }
+    void makeBusy() { mIsBusy = true; }
 
-  public boolean hasTouchedStrips() {
-    if (touchedStrips)
-      return true;
+    void clearBusy() { mIsBusy = false; }
 
-    touchedStrips = false;
-    return false;
-  }
+    bool isBusy() { return mIsBusy; }
+
+    bool hasTouchedStrips() { return mTouchedStrips; }
   
-  public void markUntouched() {
-    touchedStrips = false;
-  }
+    void markUntouched() {  mTouchedStrips = false; }
   
-  public void markTouched() {
-    touchedStrips = true;
-  }
+    void markTouched() { mTouchedStrips = true; }
   
-  public List<Strip> getTouchedStrips() {
-    synchronized (stripLock) {
-      if (strips == null) {
-        doDeferredStripCreation();
-      }
-      List<Strip>touchedStrips = new CopyOnWriteArrayList<Strip>(strips);
-      for (Strip strip: strips)
-        if (!strip.isTouched())
-          touchedStrips.remove(strip);
+    std::vector<StripRef> getTouchedStrips();
+        
+    uint64_t getPowerDomain() { return mPowerDomain; }
 
-      return touchedStrips;
+    void shutDown()
+    {
+        clearBusy();
     }
-  }
 
-  public long getPowerDomain() {
-    return powerDomain;
-  }
+    bool isMulticast() { return mMulticast; }
 
-  public void shutDown() {
-    synchronized (stripLock) {
-      clearBusy();
-    }
-  }
+    bool isMulticastPrimary() { return mMulticastPrimary; }
 
-  public boolean isMulticast() {
-    return multicast;
-  }
+    void setMulticastPrimary( bool b ) { mMulticastPrimary = b; }
 
-  public boolean isMulticastPrimary() {
-    return multicastPrimary;
-  }
+    void setMulticast( bool b ) { mMulticast = b; }
 
-  public void setMulticastPrimary(boolean b) {
-    multicastPrimary = b;
-  }
+    void setLastUniverse(int universe) { mLastUniverse = universe; }
 
-  public void setMulticast(boolean b) {
-    multicast = b;
-  }
-
-  public void setLastUniverse(int universe) {
-    this.lastUniverse = universe; 
-  }
-
-  public int getLastUniverse() {
-    return this.lastUniverse;
-  }
+    int getLastUniverse() { return mLastUniverse; }
+    
 private:
 
-  bool hasRGBOW() {
-    synchronized (stripLock) {
-      if (strips != null) {
-        for (Strip strip: this.strips)
-          if (strip.getRGBOW())
-            return true;        
-      }
-    }
-    return false;
-  }
+        bool hasRGBOW();
+        std::string formattedStripFlags() ;
 
-  std::string formattedStripFlags() {
-    StringBuffer s = new StringBuffer();
+      /**
+       * All access (including iteration) and mutation must be performed
+       * while holding stripLock
+       */
     
-    for (int i = 0; i<stripsAttached; i++)
-      s.append("["+stripFlags[i]+"]");
-    return new String(s);
-  }
-  
+        void createStrips();
+        /*
+     //  synchronized
+     void doDeferredStripCreation() {
+     synchronized (stripLock) {
+     this.strips = new CopyOnWriteArrayList<Strip>();
+     for (int stripNo = 0; stripNo < stripsAttached; stripNo++) {
+     this.strips.add(new Strip(this, stripNo, pixelsPerStrip));
+     }
+     for (Strip strip: this.strips) {
+     if ((stripFlags[strip.getStripNumber()] & SFLAG_LOGARITHMIC) != 0) {
+     strip.useAntiLog(false);
+     } else {
+     strip.useAntiLog(useAntiLog);
+     }
+     if ((stripFlags[strip.getStripNumber()] & SFLAG_MOTION) != 0) {
+     strip.setMotion(true);
+     } else {
+     strip.setMotion(false);
+     }
+     if ((stripFlags[strip.getStripNumber()] & SFLAG_NOTIDEMPOTENT) != 0) {
+     strip.setNotIdempotent(true);
+     } else {
+     strip.setNotIdempotent(false);
+     }
+     strip.setRGBOW((stripFlags[strip.getStripNumber()] & SFLAG_RGBOW) == 1);
+     }
+     touchedStrips = false;
+     }
+     }
+     */
 
 private:
-
-  const int ACCEPTABLE_LOWEST_SW_REV  = 121;
-  const int SFLAG_RGBOW               = 1;
-  const int SFLAG_WIDEPIXELS          = (1<<1);
-  const int SFLAG_LOGARITHMIC         = (1<<2);
-  const int SFLAG_MOTION              = (1<<3);
-  const int SFLAG_NOTIDEMPOTENT       = (1<<4);
-  
-  const int PFLAG_PROTECTED           = (1<<0);
-  const int PFLAG_FIXEDSIZE           = (1<<1);
-
-  /**
-   * All access (including iteration) and mutation must be performed
-   * while holding stripLock
-   */
-private:
     
-  std::vector<Strip>    mStrips;
-  // private final Object stripLock = new Object();
-  uint64_t              extraDelayMsec = 0;
-  bool                  autothrottle = false;
+      // private final Object stripLock = new Object();
+      
+      // TODO: use smart pointer <<<<<<<<<<<<<<<<<<<
+      std::vector<StripRef> mStrips;
+      uint64_t              mExtraDelayMsec;
+      bool                  mAutothrottle;
   
-  bool multicast = false;
-  bool multicastPrimary = false;
+      bool                  mMulticast;
+      bool                  mMulticastPrimary;
   
   /**
    * Queue for commands using the new majik strip protocol.
    */
   
-  std::vector<PusherCommand> commandQueue;
+      std::vector<PusherCommand> mCommandQueue;
   
-  int         mArtnetUniverse;
-  int         mArtnetChannel;
-  int         mPort;
-  int         mStripsAttached;
-  int         mPixelsPerStrip;
+    uint8_t       	mStripsAttached;
+    uint8_t         mMaxStripsPerPacket;
+    uint16_t        mPixelsPerStrip;
 
+    uint64_t        mUpdatePeriod;
+    uint64_t        mPowerTotal;
+    uint64_t        mDeltaSequence;
+    uint64_t        mControllerOrdinal;
+    uint64_t        mGroupOrdinal;
+    
+    uint16_t        mArtnetUniverse;
+    uint16_t        mArtnetChannel;
 
-  bool        mTouchedStrips;
-  int         mMaxStripsPerPacket;
-  uint64_t    mUpdatePeriod;
-  uint64_t    mPowerTotal;
-  uint64_t    mDeltaSequence;
-  int         mControllerOrdinal;
-  int         mGroupOrdinal;
-  bool        mUseAntiLog;
-  std::string mFilename;
-  bool        mAmRecording;
-  bool        mIsBusy;
-  bytem[]     mStripFlags;
-  uint64_t    mPusherFlags;
-  uint64_t    mSegments;
-  uint64_t    mPowerDomain;
-  int         mLastUniverse;
+    
+    uint16_t        mPort;
+    
+    bool            mTouchedStrips;
+    bool            mUseAntiLog;
+    std::string     mFilename;
+    bool            mAmRecording;
+    bool            mIsBusy;
+    uint64_t        mPusherFlags;
+    uint64_t        mSegments;
+    uint64_t    	mPowerDomain;
+    int             mLastUniverse;
+    
+    std::vector<int8_t>    mStripFlags;
+    
+	DeviceHeader	mDeviceHeader;
 
-//  synchronized
-    void doDeferredStripCreation() {
-    synchronized (stripLock) {
-      this.strips = new CopyOnWriteArrayList<Strip>();
-      for (int stripNo = 0; stripNo < stripsAttached; stripNo++) {
-        this.strips.add(new Strip(this, stripNo, pixelsPerStrip));
-      }
-      for (Strip strip: this.strips) {
-        if ((stripFlags[strip.getStripNumber()] & SFLAG_LOGARITHMIC) != 0) {
-          strip.useAntiLog(false);
-        } else {
-          strip.useAntiLog(useAntiLog);
-        }
-        if ((stripFlags[strip.getStripNumber()] & SFLAG_MOTION) != 0) {
-          strip.setMotion(true);
-        } else {
-          strip.setMotion(false);
-        }
-        if ((stripFlags[strip.getStripNumber()] & SFLAG_NOTIDEMPOTENT) != 0) {
-          strip.setNotIdempotent(true);
-        } else {
-          strip.setNotIdempotent(false);
-        }
-        strip.setRGBOW((stripFlags[strip.getStripNumber()] & SFLAG_RGBOW) == 1);
-      }
-      touchedStrips = false;
-    }
-  }
-  
-
-  
-  // int hashCode() {
-  //   final int prime = 31;
-  //   int result = 1;
-  //   result = prime * result + getPixelsPerStrip();
-  //   result = prime * result + getNumberOfStrips();
-  //   return result;
-  // }
 /*
   public boolean equals(Object obj) {
 
@@ -629,4 +377,4 @@ private:
   }
 */
   
-}
+};

@@ -1,0 +1,286 @@
+TBasicSample
+v6
+r1
+cCheck dependencies
+cProcessInfoPlistFile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Info.plist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/Info.plist
+cCpResource /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/resources/CinderApp.icns build/Debug/BasicSample.app/Contents/Resources/CinderApp.icns
+cProcessPCH++ /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch.pch BasicSample_Prefix.pch normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip-FBDB90F404DC4C7A.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/SDKSettings.plist
+c0000000053C90B12000000000000044C
+t1405684498
+s1100
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/CoreServices/SystemVersion.plist
+c0000000053C90B1200000000000001DE
+t1405684498
+s478
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/resources/CinderApp.icns
+c00000000544AA27A0000000000070375
+t1414177402
+s459637
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp
+c00000000544B83160000000000000232
+t1414234902
+s562
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/BasicSample_Prefix.pch
+c00000000544AA27A000000000000012D
+t1414177402
+s301
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/Info.plist
+c00000000544AA27A0000000000000462
+t1414177402
+s1122
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o
+t2
+s0
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o
+t2
+s0
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip-FBDB90F404DC4C7A.o
+t2
+s0
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Info.plist
+t2
+s0
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/PkgInfo
+t2
+s0
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Resources/CinderApp.icns
+t2
+s0
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp
+c00000000544BA9EB0000000000001FB9
+t1414244843
+s8121
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp
+c00000000544BAAF70000000000000FAD
+t1414245111
+s4013
+
+N/var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch.pch
+t1414244869
+s67083092
+
+CBuild AST from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp
+r0
+
+CBuild AST from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp
+r0
+
+CBuild AST from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp
+r0
+
+CCheck dependencies
+r0
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies522b54b1e2fbb941^c11e5bb1e2fbb941^-436"warning: no rule to process file '/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/CardThread.java' of type sourcecode.java for architecture i386warning: no rule to process file '/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h' of type sourcecode.c.h for architecture i386warning: no rule to process file '/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/SceneThread.java' of type sourcecode.java for architecture i3863(21%IDEActivityLogMessage2@147"Warning: no rule to process file '/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/CardThread.java' of type sourcecode.java for architecture i386-435937969#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@138"Warning: no rule to process file '/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h' of type sourcecode.c.h for architecture i386-435937969#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@148"Warning: no rule to process file '/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/SceneThread.java' of type sourcecode.java for architecture i386-435937969#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--0#1#1#--18"Check dependencies36"FFED173E-98C1-46D3-AE57-48242C9A2215-
+
+CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s435937969.361680
+e435937970.446940
+r1
+xCompileC
+xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o
+x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp
+d/Users/Q/Code/Cinder/include/cinder/app/AppNative.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection97"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp243"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler47ad5cb1e2fbb941^ba6a72b2e2fbb941^---0#0#1#-19%DVTDocumentLocation2@96"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp0000000000000000^3407"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o36"B7A92A88-3A7D-403C-A0F2-84E2CB2BC2A9-
+b05DD2627-CB08-4CB3-A24A-18D097A8D0E4
+
+CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s435937969.361970
+e435937970.144438
+r0
+xCompileC
+xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o
+x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherCommand.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h
+d/Users/Q/Code/Cinder/boost/boost/enable_shared_from_this.hpp
+d/Users/Q/Code/Cinder/boost/boost/smart_ptr/enable_shared_from_this.hpp
+d/Users/Q/Code/Cinder/boost/boost/assert.hpp
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:21:14: error: constructor for 'PixelPusher' must explicitly initialize the member 'mDeviceHeader' which does not have a default constructor
+oPixelPusher::PixelPusher( unsigned char *packet, int packetSize, DeviceHeader header )
+o             ^
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:17:
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h:307:15: note: member is declared here
+o        DeviceHeader    mDeviceHeader;
+o                        ^
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:17:
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h:19:
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h:22:7: note: 'DeviceHeader' declared here
+oclass DeviceHeader {
+o      ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:23:25: error: object of type 'DeviceHeader' cannot be assigned because its copy assignment operator is implicitly deleted
+o    mDeviceHeader       = header;
+o                        ^
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:17:
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h:19:
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h:85:15: note: copy assignment operator of 'DeviceHeader' is implicitly deleted because field 'headerLength' is of const-qualified type 'const int'
+o    const int headerLength = 24;
+o              ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:195:36: error: no viable conversion from 'PixelPusher *' to 'PixelPusherRef' (aka 'shared_ptr<PixelPusher>')
+o            mStrips[k]->setPusher( this );
+o                                   ^~~~
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:1:
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/BasicSample_Prefix.pch:6:
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../../include/cinder/Cinder.h:113:
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3761:23: note: candidate constructor not viable: no known conversion from 'PixelPusher *' to 'nullptr_t' for 1st argument
+o    _LIBCPP_CONSTEXPR shared_ptr(nullptr_t) _NOEXCEPT;
+o                      ^
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3786:5: note: candidate constructor not viable: no known conversion from 'PixelPusher *' to 'const std::__1::shared_ptr<PixelPusher> &' for 1st argument
+o    shared_ptr(const shared_ptr& __r) _NOEXCEPT;
+o    ^
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3792:5: note: candidate constructor not viable: no known conversion from 'PixelPusher *' to 'std::__1::shared_ptr<PixelPusher> &&' for 1st argument
+o    shared_ptr(shared_ptr&& __r) _NOEXCEPT;
+o    ^
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3788:9: note: candidate template ignored: could not match 'shared_ptr<type-parameter-0-0>' against 'PixelPusher *'
+o        shared_ptr(const shared_ptr<_Yp>& __r,
+o        ^
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3793:25: note: candidate template ignored: could not match 'shared_ptr<type-parameter-0-0>' against 'PixelPusher *'
+o    template<class _Yp> shared_ptr(shared_ptr<_Yp>&& __r,
+o                        ^
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3806:9: note: candidate template ignored: could not match 'auto_ptr<type-parameter-0-0>' against 'PixelPusher *'
+o        shared_ptr(auto_ptr<_Yp>&& __r);
+o        ^
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3824:8: note: candidate template ignored: could not match 'unique_ptr<type-parameter-0-0, type-parameter-0-1>' against 'PixelPusher *'
+o       shared_ptr(unique_ptr<_Yp, _Dp>&&,
+o       ^
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3833:8: note: candidate template ignored: could not match 'unique_ptr<type-parameter-0-0, type-parameter-0-1>' against 'PixelPusher *'
+o       shared_ptr(unique_ptr<_Yp, _Dp>&&,
+o       ^
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:18:
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:104:36: note: passing argument to parameter 'pixelPusher' here
+o    void setPusher( PixelPusherRef pixelPusher ) { mPusher = pixelPusher; }
+o                                   ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:256:22: error: no matching function for call to 'create'
+o        StripRef s = Strip::create( this, k, mPixelsPerStrip );
+o                     ^~~~~~~~~~~~~
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:18:
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:22:21: note: candidate function not viable: no known conversion from 'PixelPusher *' to 'PixelPusherRef' (aka 'shared_ptr<PixelPusher>') for 1st argument
+o    static StripRef create( PixelPusherRef pusher, int stripNumber, int length)
+o                    ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:17:21: note: candidate function not viable: requires 4 arguments, but 3 were provided
+o    static StripRef create( PixelPusherRef pusher, int stripNumber, int length, bool antiLog )
+o                    ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:259:13: error: use of undeclared identifier 'strip'
+o            strip->useAntiLog(false);
+o            ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:261:13: error: use of undeclared identifier 'strip'
+o            strip->useAntiLog( mUseAntiLog );
+o            ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:264:13: error: use of undeclared identifier 'strip'
+o            strip->setMotion(true);
+o            ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:266:13: error: use of undeclared identifier 'strip'
+o            strip->setMotion(false);
+o            ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:269:13: error: use of undeclared identifier 'strip'
+o            strip->setNotIdempotent(true);
+o            ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:271:13: error: use of undeclared identifier 'strip'
+o            strip->setNotIdempotent(false);
+o            ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:273:9: error: use of undeclared identifier 'strip'
+o        strip->setRGBOW( ( mStripFlags[k] & SFLAG_RGBOW ) == 1 );
+o        ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:275:28: error: use of undeclared identifier 'strip'
+o        mStrips.push_back( strip );
+o                           ^
+o12 errors generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp217"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler1fbe5cb1e2fbb941^7ff924b2e2fbb941^-7236"/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:21:14: error: constructor for 'PixelPusher' must explicitly initialize the member 'mDeviceHeader' which does not have a default constructorPixelPusher::PixelPusher( unsigned char *packet, int packetSize, DeviceHeader header )             ^In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:17:/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h:307:15: note: member is declared here        DeviceHeader    mDeviceHeader;                        ^In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:17:In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h:19:/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h:22:7: note: 'DeviceHeader' declared hereclass DeviceHeader {      ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:23:25: error: object of type 'DeviceHeader' cannot be assigned because its copy assignment operator is implicitly deleted    mDeviceHeader       = header;                        ^In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:17:In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h:19:/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h:85:15: note: copy assignment operator of 'DeviceHeader' is implicitly deleted because field 'headerLength' is of const-qualified type 'const int'    const int headerLength = 24;              ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:195:36: error: no viable conversion from 'PixelPusher *' to 'PixelPusherRef' (aka 'shared_ptr<PixelPusher>')            mStrips[k]->setPusher( this );                                   ^~~~In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:1:In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/BasicSample_Prefix.pch:6:In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../../include/cinder/Cinder.h:113:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3761:23: note: candidate constructor not viable: no known conversion from 'PixelPusher *' to 'nullptr_t' for 1st argument    _LIBCPP_CONSTEXPR shared_ptr(nullptr_t) _NOEXCEPT;                      ^/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3786:5: note: candidate constructor not viable: no known conversion from 'PixelPusher *' to 'const std::__1::shared_ptr<PixelPusher> &' for 1st argument    shared_ptr(const shared_ptr& __r) _NOEXCEPT;    ^/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3792:5: note: candidate constructor not viable: no known conversion from 'PixelPusher *' to 'std::__1::shared_ptr<PixelPusher> &&' for 1st argument    shared_ptr(shared_ptr&& __r) _NOEXCEPT;    ^/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3788:9: note: candidate template ignored: could not match 'shared_ptr<type-parameter-0-0>' against 'PixelPusher *'        shared_ptr(const shared_ptr<_Yp>& __r,        ^/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3793:25: note: candidate template ignored: could not match 'shared_ptr<type-parameter-0-0>' against 'PixelPusher *'    template<class _Yp> shared_ptr(shared_ptr<_Yp>&& __r,                        ^/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3806:9: note: candidate template ignored: could not match 'auto_ptr<type-parameter-0-0>' against 'PixelPusher *'        shared_ptr(auto_ptr<_Yp>&& __r);        ^/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3824:8: note: candidate template ignored: could not match 'unique_ptr<type-parameter-0-0, type-parameter-0-1>' against 'PixelPusher *'       shared_ptr(unique_ptr<_Yp, _Dp>&&,       ^/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1/memory:3833:8: note: candidate template ignored: could not match 'unique_ptr<type-parameter-0-0, type-parameter-0-1>' against 'PixelPusher *'       shared_ptr(unique_ptr<_Yp, _Dp>&&,       ^In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:18:/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:104:36: note: passing argument to parameter 'pixelPusher' here    void setPusher( PixelPusherRef pixelPusher ) { mPusher = pixelPusher; }                                   ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:256:22: error: no matching function for call to 'create'        StripRef s = Strip::create( this, k, mPixelsPerStrip );                     ^~~~~~~~~~~~~In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:18:/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:22:21: note: candidate function not viable: no known conversion from 'PixelPusher *' to 'PixelPusherRef' (aka 'shared_ptr<PixelPusher>') for 1st argument    static StripRef create( PixelPusherRef pusher, int stripNumber, int length)                    ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:17:21: note: candidate function not viable: requires 4 arguments, but 3 were provided    static StripRef create( PixelPusherRef pusher, int stripNumber, int length, bool antiLog )                    ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:259:13: error: use of undeclared identifier 'strip'            strip->useAntiLog(false);            ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:261:13: error: use of undeclared identifier 'strip'            strip->useAntiLog( mUseAntiLog );            ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:264:13: error: use of undeclared identifier 'strip'            strip->setMotion(true);            ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:266:13: error: use of undeclared identifier 'strip'            strip->setMotion(false);            ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:269:13: error: use of undeclared identifier 'strip'            strip->setNotIdempotent(true);            ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:271:13: error: use of undeclared identifier 'strip'            strip->setNotIdempotent(false);            ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:273:9: error: use of undeclared identifier 'strip'        strip->setRGBOW( ( mStripFlags[k] & SFLAG_RGBOW ) == 1 );        ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp:275:28: error: use of undeclared identifier 'strip'        mStrips.push_back( strip );                           ^12 errors generated.-0#0#1#-19%DVTDocumentLocation2@73"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp0000000000000000^3349"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o36"E9F3B020-2BF7-4421-8B06-43F6F8E4923B-
+b05DD2627-CB08-4CB3-A24A-18D097A8D0E4
+
+CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip-FBDB90F404DC4C7A.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s435937969.361461
+e435937970.043616
+r0
+xCompileC
+xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip-FBDB90F404DC4C7A.o
+x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherCommand.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h
+d/Users/Q/Code/Cinder/boost/boost/enable_shared_from_this.hpp
+d/Users/Q/Code/Cinder/boost/boost/smart_ptr/enable_shared_from_this.hpp
+d/Users/Q/Code/Cinder/boost/boost/assert.hpp
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp:75:20: error: object of type 'Pixel' cannot be assigned because its copy assignment operator is implicitly deleted
+o        mPixels[k] = pixels[k];
+o                   ^
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp:3:
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:4:
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h:117:19: note: copy assignment operator of 'Pixel' is implicitly deleted because field 'sLinearExp' is of const-qualified type 'const uint8_t [256]'
+o    const uint8_t sLinearExp[256] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+o                  ^
+o1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection68"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp222"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip-FBDB90F404DC4C7A.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler98a25cb1e2fbb941^4a260bb2e2fbb941^-785"/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp:75:20: error: object of type 'Pixel' cannot be assigned because its copy assignment operator is implicitly deleted        mPixels[k] = pixels[k];                   ^In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp:3:In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:4:/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h:117:19: note: copy assignment operator of 'Pixel' is implicitly deleted because field 'sLinearExp' is of const-qualified type 'const uint8_t [256]'    const uint8_t sLinearExp[256] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,                  ^1 error generated.1(36%IDEClangDiagnosticActivityLogMessage2@100"Object of type 'Pixel' cannot be assigned because its copy assignment operator is implicitly deleted-435937970#18446744073709551615#0#1(2@133"Copy assignment operator of 'Pixel' is implicitly deleted because field 'sLinearExp' is of const-qualified type 'const uint8_t [256]'-435937970#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@65"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h0000000000000000^116#18#116#18#2502#0#14"Semantic Issue--2#27"com.apple.dt.IDE.diagnostic3@67"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp0000000000000000^74#19#74#19#1642#0#14"Semantic Issue--0#0#1#-19%DVTDocumentLocation4@67"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp0000000000000000^3381"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip-FBDB90F404DC4C7A.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip-FBDB90F404DC4C7A.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip-FBDB90F404DC4C7A.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip-FBDB90F404DC4C7A.o36"4D30D581-6135-40CF-83C3-4B8937330F59-
+b05DD2627-CB08-4CB3-A24A-18D097A8D0E4
+
+CCpResource /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/resources/CinderApp.icns build/Debug/BasicSample.app/Contents/Resources/CinderApp.icns
+s435937969.359650
+e435937969.360785
+r1
+xCpResource
+x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/resources/CinderApp.icns
+xbuild/Debug/BasicSample.app/Contents/Resources/CinderApp.icns
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection66"Copy build/Debug/BasicSample.app/Contents/Resources/CinderApp.icns164"CpResource /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/resources/CinderApp.icns build/Debug/BasicSample.app/Contents/Resources/CinderApp.icnsac1e5cb1e2fbb941^fa615cb1e2fbb941^---0#0#1#-19%DVTDocumentLocation2@141"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Resources/CinderApp.icns0034ec8ddcffdf42^569"CpResource /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/resources/CinderApp.icns build/Debug/BasicSample.app/Contents/Resources/CinderApp.icns    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/resources/CinderApp.icns /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Resources36"6AD05847-42EE-4D7A-82BF-4EC480B4FFED-
+b05DD2627-CB08-4CB3-A24A-18D097A8D0E4
+
+CLd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample normal i386
+r0
+
+CProcessInfoPlistFile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Info.plist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/Info.plist
+s435937969.357775
+e435937969.359289
+r1
+xProcessInfoPlistFile
+x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Info.plist
+x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/Info.plist
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection91"Process /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/Info.plist79"ProcessInfoPlistFile build/Debug/BasicSample.app/Contents/Info.plist Info.plist04aa5bb1e2fbb941^651b5cb1e2fbb941^---0#0#1#-19%DVTDocumentLocation2@90"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/Info.plist0000000000000000^565"ProcessInfoPlistFile build/Debug/BasicSample.app/Contents/Info.plist Info.plist    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    builtin-infoPlistUtility /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/Info.plist -genpkginfo /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Info.plist36"173BD783-751D-45CC-84A2-41839F30CBB7-
+b05DD2627-CB08-4CB3-A24A-18D097A8D0E4
+
+CProcessPCH++ /Users/Q/Library/Developer/Xcode/DerivedData/BasicSample-dniwxvztwbrkfadojmzxjobjtmun/Index/PrecompiledHeaders/BasicSample_Prefix-coptgtezhntkdxcyxspyznyymrdy_ast/BasicSample_Prefix.pch.pch BasicSample_Prefix.pch normal i386 c++ com.apple.compilers.llvm.clang.1_0.astbuilder
+r0
+
+CProcessPCH++ /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch.pch BasicSample_Prefix.pch normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+r0
+
+CTouch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app
+r0
+
