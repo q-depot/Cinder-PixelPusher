@@ -23,13 +23,13 @@ class DeviceHeader {
   
   public:
 
-    DeviceHeader( char *packet, int packetLength ) {
+    DeviceHeader( uint8_t *packet, int packetLength ) {
 
       if ( packetLength < headerLength )
         throw std::invalid_argument("...");
 
-        memcpy( &mMacAddress[0],    &packet[0], 6);            // MAC
-        memcpy( &mIpAddress[0],     &packet[6], 4 );             // IP
+        memcpy( &mMacAddress[0],    &packet[0], 6);             // MAC
+        memcpy( &mIpAddress[0],     &packet[6], 4 );            // IP
 
         mDeviceType         = (DeviceType)packet[10];
         mProtocolVersion    = packet[11];
@@ -39,13 +39,23 @@ class DeviceHeader {
         memcpy( &mHardwareRevision,     &packet[16], 2 );
         memcpy( &mSoftwareRevision,     &packet[18], 2 );
         memcpy( &mLinkSpeed,            &packet[20], 4 );
-        memcpy( &mPacketRemainder[0],   &packet[headerLength], packetLength - headerLength );
-  }
-
+        
+        mPacketRemainderSize    = packetLength - headerLength;
+        mPacketRemainder        = new uint8_t[mPacketRemainderSize];
+        memcpy( &mPacketRemainder[0],   &packet[headerLength], mPacketRemainderSize );
+    }
+    
+    
+    ~DeviceHeader()
+    {
+        delete[] mPacketRemainder;
+    }
+    
+    
     std::string getMacAddressString()
     {
         char buffer [24];
-        sprintf(buffer, "%02dx:%02dx:%02dx:%02dx:%02dx:%02dx", mMacAddress[0], mMacAddress[1], mMacAddress[2], mMacAddress[3], mMacAddress[4], mMacAddress[5] );
+        sprintf(buffer, "%02X:%02X:%02X:%02X:%02X:%02X", mMacAddress[0], mMacAddress[1], mMacAddress[2], mMacAddress[3], mMacAddress[4], mMacAddress[5] );
         return buffer;
     }
     
@@ -58,6 +68,9 @@ class DeviceHeader {
         return str;
     }
     
+    uint8_t         *getPacketReminder() { return mPacketRemainder; }
+    int             getPacketReminderSize() { return mPacketRemainderSize; }
+    
     DeviceType  getDeviceType()         { return mDeviceType; }
     uint32_t    getProtocolVersion()    { return mProtocolVersion; }
     uint32_t    getVendorId()           { return mVendorId; }
@@ -69,18 +82,19 @@ class DeviceHeader {
     
   private:
 
-    char            mMacAddress[6];
-    char            mIpAddress[4];
+    uint8_t         mMacAddress[6];
+    uint8_t         mIpAddress[4];
     DeviceType      mDeviceType;
-    uint32_t        mProtocolVersion;
-    uint32_t        mVendorId;
-    uint32_t        mProductId;
-    uint32_t        mHardwareRevision;
-    uint32_t        mSoftwareRevision;
-    uint64_t        mLinkSpeed;
-    char            mPacketRemainder[1000];             // double check this length!!!! <<<<<<<<<<<<<<<<<<<<<<<<
-
-    private:
+    uint8_t         mProtocolVersion;
+    uint16_t        mVendorId;
+    uint16_t        mProductId;
+    uint16_t        mHardwareRevision;
+    uint16_t        mSoftwareRevision;
+    uint32_t        mLinkSpeed;
+    uint8_t         *mPacketRemainder;
+    int             mPacketRemainderSize;
+    
+private:
 
     const int headerLength = 24;
 

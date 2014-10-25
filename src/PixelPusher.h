@@ -54,7 +54,7 @@ void setStripValues(int stripNumber, Pixel[] pixels ) {
   }
 */
     
-    PixelPusher( unsigned char *packet, int packetSize, DeviceHeader header );
+    PixelPusher( DeviceHeader header );
     
     ~PixelPusher() {}
     
@@ -265,28 +265,28 @@ private:
       // private final Object stripLock = new Object();
       
       // TODO: use smart pointer <<<<<<<<<<<<<<<<<<<
-      std::vector<StripRef> mStrips;
-      uint64_t              mExtraDelayMsec;
-      bool                  mAutothrottle;
+    std::vector<StripRef> mStrips;
+    uint64_t              mExtraDelayMsec;
+    bool                  mAutothrottle;
   
-      bool                  mMulticast;
-      bool                  mMulticastPrimary;
+    bool                  mMulticast;
+    bool                  mMulticastPrimary;
   
   /**
    * Queue for commands using the new majik strip protocol.
    */
   
-      std::vector<PusherCommand> mCommandQueue;
+    std::vector<PusherCommand> mCommandQueue;
   
     uint8_t       	mStripsAttached;
     uint8_t         mMaxStripsPerPacket;
     uint16_t        mPixelsPerStrip;
 
-    uint64_t        mUpdatePeriod;
-    uint64_t        mPowerTotal;
-    uint64_t        mDeltaSequence;
-    uint64_t        mControllerOrdinal;
-    uint64_t        mGroupOrdinal;
+    uint32_t        mUpdatePeriod;
+    uint32_t        mPowerTotal;
+    uint32_t        mDeltaSequence;
+    uint32_t        mControllerOrdinal;
+    uint32_t        mGroupOrdinal;
     
     uint16_t        mArtnetUniverse;
     uint16_t        mArtnetChannel;
@@ -299,15 +299,16 @@ private:
     std::string     mFilename;
     bool            mAmRecording;
     bool            mIsBusy;
-    uint64_t        mPusherFlags;
-    uint64_t        mSegments;
-    uint64_t    	mPowerDomain;
+    uint32_t        mPusherFlags;
+    uint32_t        mSegments;
+    uint32_t    	mPowerDomain;
     int             mLastUniverse;
     
     std::vector<int8_t>    mStripFlags;
     
 	DeviceHeader	mDeviceHeader;
 
+    
 /*
   public boolean equals(Object obj) {
 

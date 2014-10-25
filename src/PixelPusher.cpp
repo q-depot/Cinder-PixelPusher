@@ -18,7 +18,7 @@
 #include "Strip.h"
 
 
-PixelPusher::PixelPusher( unsigned char *packet, int packetSize, DeviceHeader header ) : mDeviceHeader(header)
+PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
 {
     mArtnetUniverse   	= 0;
     mArtnetChannel    	= 0;
@@ -48,11 +48,13 @@ PixelPusher::PixelPusher( unsigned char *packet, int packetSize, DeviceHeader he
         ci::app::console() << "WARNING!  This PixelPusher is using " << std::to_string( swRev / 100.0 ) << std::endl;
         ci::app::console() << "WARNING!  This is not expected to work.  Please update your PixelPusher." << std::endl;
     }
-  
+    
+    uint8_t *packet     = mDeviceHeader.getPacketReminder();
+    int     packetSize  = mDeviceHeader.getPacketReminderSize();
+    
     if ( packetSize < 28 )
         throw std::invalid_argument("Packet size < 28");
   
-    
     memcpy( &mStripsAttached,       &packet[0],     1 );
     memcpy( &mMaxStripsPerPacket,   &packet[1],     1 );
     memcpy( &mPixelsPerStrip,       &packet[2],     2 );

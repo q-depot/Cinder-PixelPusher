@@ -1,89 +1,103 @@
 
-public class CardThread extends Thread {
 
 
+#include "CardThread.h"
+#include "PixelPusher.h"
 
-public:
 
-
-  CardThread(PixelPusher pusher, DeviceRegistry dr) {
-    super("CardThread for PixelPusher "+pusher.getMacAddress());
-    this.pusher = pusher;
-    this.pusherPort = pusher.getPort();
-    this.lastWorkTime = System.nanoTime();
-
-    this.registry = dr;
-    try {
-      this.udpsocket = new DatagramSocket();
-    } catch (SocketException se) {
-      System.err.println("SocketException: " + se.getMessage());
-    }
-    maxPacketSize = 4 +  ((1 + 3 * pusher.getPixelsPerStrip()) * pusher.getMaxStripsPerPacket());
-    this.packet = new byte[maxPacketSize];
-    this.cardAddress = pusher.getIp();
-    this.packetNumber = 0;
-    this.cancel = false;
-    this.fileIsOpen = false;
-    if (pusher.getUpdatePeriod() > 100 && pusher.getUpdatePeriod() < 1000000)
-      this.threadSleepMsec = (pusher.getUpdatePeriod() / 1000) + 1;
-  }
-
-  public void setExtraDelay(long msec) {
-    threadExtraDelayMsec = msec;
-  }
-  public boolean controls(PixelPusher test) {
-    return test.equals(this.pusher);
-  }
-
-  public int getBandwidthEstimate() {
-    return (int) bandwidthEstimate;
-  }
-
-  @Override
-  public void run() {
-    while (!cancel) {
-      if (pusher.isMulticast()) {
-        if (!pusher.isMulticastPrimary()) {
-          try {
-           Thread.sleep(1000);
-          } catch (InterruptedException ie) {
-            // we don't care.
-          }
-          continue; // we just sleep until we're primary
-        }
-      }
+CardThread( PixelPusherRef pusher, DeviceRegistry dr )
+{
+    mThreadSleepMsec        = 4;
+    mThreadExtraDelayMsec   = 0;
+    mBandwidthEstimate      = 0;
+    mMaxPacketSize          = 1460;
+    mIsTerminated           = false;;
       
-      int bytesSent;
-      long startTime = System.nanoTime();
-      // check to see if we're supposed to be recording.
-      if (pusher.isAmRecording()) {
-        if (!fileIsOpen) {
-          try {
-            recordFile = new FileOutputStream(new File(pusher.getFilename()));
-            fileIsOpen = true;
-            firstSendTime = System.nanoTime();
-          } catch (Exception e) {
-            System.err.println("Failed to open recording file "+pusher.getFilename());
-            pusher.setAmRecording(false);
-          }
+//    super("CardThread for PixelPusher "+pusher.getMacAddress());
+    
+    mPusher         = pusher;
+    mPusherPort     = mPusher->getPort();
+    mPastWorkTime   = ci::app::getElapsedSeconds();
+    mRegistry       = dr;
+    
+//    try {
+//      this.udpsocket = new DatagramSocket();
+//    } catch (SocketException se) {
+//      System.err.println("SocketException: " + se.getMessage());
+//    }
+    
+    
+    mMaxPacketSize  = 4 +  ( ( 1 + 3 * mPusher->getPixelsPerStrip() ) * mPusher->getMaxStripsPerPacket() );
+    mPacket         = new uint8_t[mMaxPacketSize];
+    mCardAddress    = mPusher->getIp();
+    mPacketNumber   = 0;
+    mCancel         = false;
+    mFileIsOpen     = false;
+
+    if ( mPusher->getUpdatePeriod() > 100 && mPusher->getUpdatePeriod() < 1000000 )
+        mThreadSleepMsec = ( mPusher->getUpdatePeriod() / 1000 ) + 1;
+}
+
+
+CardThread::~CardThread()
+{
+    delete mPacket;
+}
+
+
+void CardThread::run()
+{
+    while ( !mCancel )
+    {
+        if ( mPusher->isMulticast() )
+        {
+            if ( !mPusher->isMulticastPrimary() )
+            {
+                ci::sleep(1000);
+                continue;           // we just sleep until we're primary
+            }
         }
-      }
-      bytesSent = sendPacketToPusher(pusher);
+        
       
-      int requestedStripsPerPacket = pusher.getMaxStripsPerPacket();
-      int stripPerPacket = Math.min(requestedStripsPerPacket, pusher.stripsAttached);
+        int         bytesSent;
+        uint64_t    startTime = ci::app::getElapsedSeconds() * 1000000000; // in nano seconds
+        
+        // check to see if we're supposed to be recording.
+        if ( mPusher->isAmRecording())
+        {
+            if ( !mFileIsOpen )
+            {
+                try
+                {
+                    recordFile      = new FileOutputStream(new File( mPusher->getFilename()));
+                    mFileIsOpen     = true;
+                    firstSendTime   = ci::app::getElapsedSeconds() * 1000000000; // in nano seconds
+                }
+                catch ( Exception e )
+                {
+                    ci::app::console() << "Failed to open recording file " << mPusher->getFilename() << std:endl;
+                    mPusher->setAmRecording(false);
+                }
+            }
+        }
+        
+        
+        bytesSent = sendPacketToPusher( mPusher );
+      
+        int requestedStripsPerPacket  = mPusher->getMaxStripsPerPacket();
+        int stripPerPacket            = std::min( requestedStripsPerPacket, mPusher->stripsAttached );
       
       if (bytesSent == 0) {
         try {
           long estimatedSleep = (System.nanoTime() - lastWorkTime)/1000000;
           estimatedSleep = Math.min(estimatedSleep, ((1000/registry.getFrameLimit()) 
-                                      / (pusher.stripsAttached / stripPerPacket)));
+                                      / (mPusher->stripsAttached / stripPerPacket)));
           
           Thread.sleep(estimatedSleep);
         } catch (InterruptedException e) {
           // Don't care if we get interrupted.
         }
-      }
+        }
       else {
         lastWorkTime = System.nanoTime();
       }
@@ -92,77 +106,91 @@ public:
       if (duration > 0)
         bandwidthEstimate = bytesSent / duration;
     }
-    terminated = true;
-  }
+    
+    mIsTerminated = true;
+}
 
-  public void shutDown() {
-    pusher.shutDown();
-    if (fileIsOpen)
-      try {
-        pusher.setAmRecording(false);
-        fileIsOpen = false;
-        recordFile.close();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    this.cancel = true;
-    while (!terminated) {
-      try {
-        Thread.sleep(10);
-      } catch (InterruptedException e) {
-        System.err.println("Interrupted terminating CardThread "+pusher.getMacAddress());
-        e.printStackTrace();
-      }
+
+void CardThread::shutDown()
+{
+    mPusher->shutDown();
+    
+    if ( mFileIsOpen )
+    {
+        try {
+            mPusher->setAmRecording(false);
+            mFileIsOpen = false;
+            recordFile.close();
+        }
+        catch ( Exception e )
+        {
+           ci::app::console() << e.what() << std::endl;
+        }
     }
-  }
+    
+    mCancel = true;
+    
+    while ( !mIsTerminated )
+    {
+        try
+        {
+            ci::sleep( 10 );
+        }
+        catch ( Exception e )
+        {
+            ci::app::console() << "Interrupted terminating CardThread " << mPusher->getMacAddress() << std::endl;
+            ci::app::console() << e.what() << std::endl;
+        }
+    }
+}
 
-  
 
-  public boolean hasTouchedStrips() {
-    List<Strip> allStrips = new CopyOnWriteArrayList<Strip>(pusher.getStrips());
-    for (Strip strip: allStrips)
-        if (strip.isTouched())
-          return true;
+bool CardThread::hasTouchedStrips()
+{
+    std::vector<StripRef> strips = mPusher->getStrips();
+    for( size_t k=0; k < strips.size(); k++ )
+        if ( strips[k]->isTouched() )
+            return true;
+
     return false;
-  }
+}
 
-  public void setAntiLog(boolean antiLog) {
+
+void sCardThread::etAntiLog( bool antiLog )
+{
     useAntiLog = antiLog;
-    for (Strip strip: pusher.getStrips())
-       strip.useAntiLog(useAntiLog);
-  }
+    for (Strip strip: mPusher->getStrips())
+        strip.useAntiLog(useAntiLog);
+}
 
 
+int CardThread::sendPacketToPusher( PixelPusher pusher )
+{
+    int         packetLength;
+    uint64_t    totalDelay;
+    bool        payload;
+    int         stripsInDatagram;
+    int         totalLength = 0;
+    double      powerScale  = registry.getPowerScale();
 
+    
+    std::vector<StripRef> remainingStrips;
 
+    if ( !mPusher->hasTouchedStrips() )
+    {
+        // System.out.println("Yielding because no touched strips.");
+        if ( mPusher->commandQueue.isEmpty() )
+            return 0;
+    }
 
-  private:
+    if ( mPusher->isBusy() )
+    {
+    // System.out.println("Yielding because pusher is busy.");
+    return 0;
+    }
 
-    int sendPacketToPusher(PixelPusher pusher) {
-      int packetLength;
-      int totalLength = 0;
-      long totalDelay;
-      boolean payload;
-      double powerScale;
-      int stripsInDatagram;
-
-      powerScale = registry.getPowerScale();
-
-      List<Strip> remainingStrips;
-
-      if (!pusher.hasTouchedStrips()) {
-        //System.out.println("Yielding because no touched strips.");
-        if (pusher.commandQueue.isEmpty())
-          return 0;
-      }
-
-      if (pusher.isBusy()) {
-        //System.out.println("Yielding because pusher is busy.");
-        return 0;
-      }
-
-      pusher.makeBusy();
-      //System.out.println("Making pusher busy.");
+    mPusher->makeBusy();
+    // System.out.println("Making pusher busy.");
 
       remainingStrips = new CopyOnWriteArrayList<Strip>(pusher.getStrips());
       stripsInDatagram = 0;
