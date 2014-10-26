@@ -9,47 +9,21 @@
 
 CardThread::CardThread( PixelPusherRef pusher, boost::asio::io_service& ioService )//, DeviceRegistry dr ) : mRegistry(dr)
 {
-//    mThreadSleepMsec        = 4;
     mThreadExtraDelayMsec   = 0;
 //    mBandwidthEstimate      = 0;
-//    mMaxPacketSize          = 1460;
-//    mIsTerminated           = false;;
     
     mPusher         = pusher;
-//    mPusherPort     = mPusher->getPort();
 //    mLastWorkTime   = ci::app::getElapsedSeconds();
-//    mRegistry       = dr;
-    
-//    try {
-//      this.udpsocket = new DatagramSocket();
-//    } catch (SocketException se) {
-//      System.err.println("SocketException: " + se.getMessage());
-//    }
-    
+
     
     int maxPacketSize  = 4 +  ( ( 1 + 3 * mPusher->getPixelsPerStrip() ) * mPusher->getMaxStripsPerPacket() );
-//    mPacket         = new uint8_t[mMaxPacketSize];
     mPacketBuffer       = ci::Buffer( maxPacketSize );
     
-//    mCardAddress    = mPusher->getIp();
     mPacketNumber   = 0;
-//    mCancel         = false;
-//    mFileIsOpen     = false;
 
-    // Initialize a client by passing a boost::asio::io_service to it.
-	// ci::App already has one that it polls on update, so we'll use that.
-	// You can use your own io_service, but you will have to manage it
-	// manually (i.e., call poll(), poll_one(), run(), etc).
-	mClient = UdpClient::create( ioService );
-    
-	// Add callbacks to work with the client asynchronously.
-	// Note that you can use lambdas.
+    mClient = UdpClient::create( ioService );
 	mClient->connectConnectEventHandler( &CardThread::onConnect, this );
 	mClient->connectErrorEventHandler( &CardThread::onError, this );
-//	mClient->connectResolveEventHandler( [ & ]()
-//                                        {
-//                                            mText.push_back( "Endpoint resolved" );
-//                                        } );
     
     mClient->connect( mPusher->getIp(), mPusher->getPort() );
     
@@ -63,64 +37,13 @@ CardThread::CardThread( PixelPusherRef pusher, boost::asio::io_service& ioServic
 void CardThread::shutDown()
 {
     mPusher->shutDown();
-    
-    /*
-    if ( mFileIsOpen )
-    {
-        try {
-            mPusher->setAmRecording(false);
-            mFileIsOpen = false;
-            recordFile.close();
-        }
-        catch ( Exception e )
-        {
-           ci::app::console() << e.what() << std::endl;
-        }
-    }
-    */
-//    
-//    mCancel = true;
-//    
-//    while ( !mIsTerminated )
-//    {
-//        try
-//        {
-//            ci::sleep( 10 );
-//        }
-//        catch ( Exception e )
-//        {
-//            ci::app::console() << "Interrupted terminating CardThread " << mPusher->getMacAddress() << std::endl;
-//            ci::app::console() << e.what() << std::endl;
-//        }
-//    }
 }
-
-
-//bool CardThread::hasTouchedStrips()
-//{
-//    std::vector<StripRef> strips = mPusher->getStrips();
-//    for( size_t k=0; k < strips.size(); k++ )
-//        if ( strips[k]->isTouched() )
-//            return true;
-//
-//    return false;
-//}
-
-
-//void CardThread::getAntiLog( bool antiLog )
-//{
-//    UseAntiLog = antiLog;
-//    for (Strip strip: mPusher->getStrips())
-//        strip.useAntiLog(useAntiLog);
-//}
 
 
 void CardThread::onConnect( UdpSessionRef session )
 {
     ci::app::console() << "CardThread Connected" << std::endl;
     
-	// Get the session from the argument and set callbacks.
-	// Note that you can use lambdas.
 	mSession = session;
 	mSession->connectErrorEventHandler( &CardThread::onError, this );
 }
@@ -153,8 +76,6 @@ void CardThread::sendPacketToPusher()
     {
         if ( mSession && mSession->getSocket()->is_open() )
         {
-//            int     totalLength = 0;
-            
             // IF no commands queue AND no touched strips RETURN
             
             touchedStrips = mPusher->getTouchedStrips();
@@ -286,7 +207,3 @@ void CardThread::sendPacketToPusher()
     ci::app::console() << "CardThread::sendPacketToPusher() thread exited!" << std::endl;
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////

@@ -111,7 +111,6 @@ public:
     
     uint8_t getStripsAttached() { return mStripsAttached; }
     
-    
     void increaseExtraDelay( uint64_t i )
     {
         if ( mAutothrottle )
@@ -168,10 +167,6 @@ public:
     bool isBusy() { return mIsBusy; }
 
     bool hasTouchedStrips();
-  
-//    void markUntouched() {  mTouchedStrips = false; }
-  
-//    void markTouched() { mTouchedStrips = true; }
   
     std::vector<StripRef> getTouchedStrips();
         
