@@ -546,9 +546,9 @@ t1414327589
 s459637
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp
-c00000000544D3025000000000000167F
-t1414344741
-s5759
+c00000000544D450C0000000000001843
+t1414350092
+s6211
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/Info.plist
 c00000000544CED250000000000000462
@@ -561,7 +561,7 @@ t1414327589
 s301
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app
-t1414344721
+t1414349837
 s102
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app/Contents/Info.plist
@@ -569,8 +569,8 @@ t1414327973
 s1496
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app/Contents/MacOS/TestSendData
-t1414344744
-s5286708
+t1414350095
+s5298204
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app/Contents/PkgInfo
 t1414327973
@@ -614,8 +614,8 @@ t1414328336
 s1909
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.o
-t1414344743
-s2543344
+t1414350094
+s2609652
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/UdpClient.o
 t1414328340
@@ -6861,7 +6861,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesdeaeb3a567fdb941^6ec2b5a567fdb941^---0#1#1#--18"Check dependencies36"B6790712-FEE3-499C-A493-C86BE0ADBD44-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesbb0a998c7cfdb941^5055998c7cfdb941^---0#1#1#--18"Check dependencies36"66352F5A-246A-415A-BE75-260F8E3EFBD0-
 
 CCompileC build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/ClientInterface.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s436021136.718522
@@ -9481,8 +9481,8 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection66"Compile
 b6E55AE89-68F0-4F5B-82D6-379CE7F43837
 
 CCompileC build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s436037541.718349
-e436037543.928016
+s436042892.613945
+e436042894.894940
 r1
 xCompileC
 xbuild/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.o
@@ -9944,8 +9944,12 @@ d/Users/Q/Code/Cinder/boost/boost/asio/write_at.hpp
 d/Users/Q/Code/Cinder/boost/boost/asio/impl/write_at.hpp
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpSession.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/SessionInterface.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection99"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp248"CompileC build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler1bf6b7a567fdb941^c992eda767fdb941^---0#0#1#-19%DVTDocumentLocation2@98"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp0000000000000000^3453"CompileC build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/TestSendData-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/TestSendData-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/TestSendData-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/TestSendData-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/TestSendData_Prefix-eelcmfbmfwpponfjwwmagvgeiqnr/TestSendData_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.o36"EF94A84D-CAAB-45D5-9615-E81125F00AF1-
-b8622939C-6912-4CA2-BBDB-1BDC9474222F
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp:81:9: warning: unused variable 'code' [-Wunused-variable]
+o    int code = event.getCode();
+o        ^
+o1 warning generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection99"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp248"CompileC build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler9b3c9d8c7cfdb941^001ae58e7cfdb941^-213"/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp:81:9: warning: unused variable 'code' [-Wunused-variable]    int code = event.getCode();        ^1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@22"Unused variable 'code'-436042894#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@98"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp0000000000000000^80#8#80#8#2627#0#19"Unused Entity Issue--0#0#1#-19%DVTDocumentLocation4@98"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp0000000000000000^3453"CompileC build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/TestSendData-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/TestSendData-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/TestSendData-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/TestSendData-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/TestSendData_Prefix-eelcmfbmfwpponfjwwmagvgeiqnr/TestSendData_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/src/TestSendDataApp.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendDataApp.o36"0842845C-2E70-4774-914F-3A6B64A1C1F6-
+bF3BBE0A6-47E3-4344-87D3-88BA02D3F6C8
 
 CCompileC build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/UdpClient.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s436021136.719402
@@ -11660,8 +11664,8 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection67"Copy bu
 b07577A4F-C06E-423D-941C-FF302B1C2472
 
 CLd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app/Contents/MacOS/TestSendData normal i386
-s436037543.930595
-e436037544.754115
+s436042894.897928
+e436042895.720808
 r1
 xLd
 x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app/Contents/MacOS/TestSendData
@@ -11696,8 +11700,6 @@ d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/
 d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.osx.a
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework/AppKit
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreData.framework/CoreData
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib
@@ -11730,6 +11732,8 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunc.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunwind.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libxpc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework/Foundation
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib
@@ -11756,8 +11760,8 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection135"Link /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app/Contents/MacOS/TestSendData71"Ld build/Debug/TestSendData.app/Contents/MacOS/TestSendData normal i3865647eea767fdb941^560ec1a867fdb941^---0#0#1#--1362"Ld build/Debug/TestSendData.app/Contents/MacOS/TestSendData normal i386    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode    export MACOSX_DEPLOYMENT_TARGET=10.7    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug -filelist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendData.LinkFileList -mmacosx-version-min=10.7 -dead_strip ../../../../../lib/libcinder_d.a -stdlib=libc++ -framework Cocoa -framework OpenGL -framework CoreVideo -framework QTKit -framework Accelerate -framework AudioToolbox -framework AudioUnit -framework CoreAudio -Xlinker -dependency_info -Xlinker /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendData_dependency_info.dat -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app/Contents/MacOS/TestSendData36"EC78A42C-4C31-4B05-9730-208B6E0BFB6E-
-b8622939C-6912-4CA2-BBDB-1BDC9474222F
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection135"Link /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app/Contents/MacOS/TestSendData71"Ld build/Debug/TestSendData.app/Contents/MacOS/TestSendData normal i38679eae58e7cfdb941^7787b88f7cfdb941^---0#0#1#--1362"Ld build/Debug/TestSendData.app/Contents/MacOS/TestSendData normal i386    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode    export MACOSX_DEPLOYMENT_TARGET=10.7    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug -filelist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendData.LinkFileList -mmacosx-version-min=10.7 -dead_strip ../../../../../lib/libcinder_d.a -stdlib=libc++ -framework Cocoa -framework OpenGL -framework CoreVideo -framework QTKit -framework Accelerate -framework AudioToolbox -framework AudioUnit -framework CoreAudio -Xlinker -dependency_info -Xlinker /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/TestSendData.build/Debug/TestSendData.build/Objects-normal/i386/TestSendData_dependency_info.dat -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app/Contents/MacOS/TestSendData36"EA3EB832-290D-41BE-9260-BFBACB237C1E-
+bF3BBE0A6-47E3-4344-87D3-88BA02D3F6C8
 
 CProcessInfoPlistFile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app/Contents/Info.plist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/Info.plist
 s436020773.694864
@@ -12588,11 +12592,11 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection34"Precomp
 b07577A4F-C06E-423D-941C-FF302B1C2472
 
 CTouch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app
-s436037544.754923
-e436037544.757803
+s436042895.721674
+e436042895.724517
 r1
 xTouch
 x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"Touch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app34"Touch build/Debug/TestSendData.app6a4bc1a867fdb941^93ffc1a867fdb941^---0#0#1#--241"Touch build/Debug/TestSendData.app    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode    /usr/bin/touch -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app36"3EEDA5F9-F100-4007-99C8-7A86AD2EE592-
-b8622939C-6912-4CA2-BBDB-1BDC9474222F
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"Touch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app34"Touch build/Debug/TestSendData.app47c8b88f7cfdb941^577ab98f7cfdb941^---0#0#1#--241"Touch build/Debug/TestSendData.app    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode    /usr/bin/touch -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestSendData/xcode/build/Debug/TestSendData.app36"DD49A288-408D-4EC5-9C99-CB34495CF690-
+bF3BBE0A6-47E3-4344-87D3-88BA02D3F6C8
 

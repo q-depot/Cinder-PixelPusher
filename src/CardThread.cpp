@@ -4,6 +4,8 @@
 #include "cinder/Utilities.h"
 //#include <thread>
 
+// TODO: why do i need an extra class only to thread the output ?!?!?!!
+
 
 CardThread::CardThread( PixelPusherRef pusher, boost::asio::io_service& ioService )//, DeviceRegistry dr ) : mRegistry(dr)
 {
