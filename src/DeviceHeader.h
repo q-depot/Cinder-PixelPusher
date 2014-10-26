@@ -19,14 +19,16 @@ enum DeviceType {
 
 #include <stdexcept>
 
+#define PP_HEADER_LENGTH 24
+
 class DeviceHeader {
   
   public:
 
-    DeviceHeader( uint8_t *packet, int packetLength ) {
-
-      if ( packetLength < headerLength )
-        throw std::invalid_argument("...");
+    DeviceHeader( uint8_t *packet, int packetLength )
+    {
+        if ( packetLength < PP_HEADER_LENGTH )
+            throw std::invalid_argument("...");
 
         memcpy( &mMacAddress[0],    &packet[0], 6);             // MAC
         memcpy( &mIpAddress[0],     &packet[6], 4 );            // IP
@@ -40,15 +42,15 @@ class DeviceHeader {
         memcpy( &mSoftwareRevision,     &packet[18], 2 );
         memcpy( &mLinkSpeed,            &packet[20], 4 );
         
-        mPacketRemainderSize    = packetLength - headerLength;
+        mPacketRemainderSize    = packetLength - PP_HEADER_LENGTH;
         mPacketRemainder        = new uint8_t[mPacketRemainderSize];
-        memcpy( &mPacketRemainder[0],   &packet[headerLength], mPacketRemainderSize );
+        memcpy( &mPacketRemainder[0],   &packet[PP_HEADER_LENGTH], mPacketRemainderSize );
     }
     
     
     ~DeviceHeader()
     {
-        delete[] mPacketRemainder;
+//            delete[] mPacketRemainder;
     }
     
     
@@ -68,8 +70,8 @@ class DeviceHeader {
         return str;
     }
     
-    uint8_t         *getPacketReminder() { return mPacketRemainder; }
-    int             getPacketReminderSize() { return mPacketRemainderSize; }
+    uint8_t     *getPacketReminder() { return mPacketRemainder; }
+    int         getPacketReminderSize() { return mPacketRemainderSize; }
     
     DeviceType  getDeviceType()         { return mDeviceType; }
     uint32_t    getProtocolVersion()    { return mProtocolVersion; }
@@ -79,6 +81,7 @@ class DeviceHeader {
     uint32_t    getSoftwareRevision()   { return mSoftwareRevision; }
     uint64_t    getLinkSpeed()          { return mLinkSpeed; }
     
+    bool        isMulticast()           { return ( mIpAddress[0] >= 224 && mIpAddress[0] <= 239 ); }
     
   private:
 
@@ -96,6 +99,83 @@ class DeviceHeader {
     
 private:
 
-    const int headerLength = 24;
-
 };
+
+
+/*
+ typedef struct pixel _PACKED_ {
+ uint8_t red;
+ uint8_t green;
+ uint8_t blue;
+ } pixel_t;
+ 
+ // the packet goes like:
+ 
+ uint32_t sequence_number;  // monotonically ascends, per-pusher.
+ while (packet_not_full_up) {
+ uint8_t strip_number;
+ pixel_t strip_data[NUMBER_OF_PIXELS];  // you must fill at least one entire strip.
+ }
+ 
+ Here's a C header for the discovery packet as of firmware 1.5:
+ 
+
+typedef enum DeviceType { ETHERDREAM = 0,
+    LUMIABRIDGE = 1,
+    PIXELPUSHER = 2 } DeviceType;
+
+typedef struct PixelPusher {
+    uint8_t  strips_attached;
+    uint8_t  max_strips_per_packet;
+    uint16_t pixels_per_strip;  // uint16_t used to make alignment work
+    uint32_t update_period; // in microseconds
+    uint32_t power_total;   // in PWM units
+    uint32_t delta_sequence;  // difference between received and expected sequence numbers
+    int32_t controller_ordinal; // ordering number for this controller.
+    int32_t group_ordinal;      // group number for this controller.
+    uint16_t artnet_universe;   // configured artnet starting point for this controller
+    uint16_t artnet_channel;
+    uint16_t my_port;
+} PixelPusher;
+
+typedef struct LumiaBridge {
+    // placekeeper
+} LumiaBridge;
+
+typedef struct EtherDream {
+    uint16_t buffer_capacity;
+    uint32_t max_point_rate;
+    uint8_t light_engine_state;
+    uint8_t playback_state;
+    uint8_t source;     //   0 = network
+    uint16_t light_engine_flags;
+    uint16_t playback_flags;
+    uint16_t source_flags;
+    uint16_t buffer_fullness;
+    uint32_t point_rate;                // current point playback rate
+    uint32_t point_count;           //  # points played
+} EtherDream;
+
+typedef union {
+    PixelPusher pixelpusher;
+    LumiaBridge lumiabridge;
+    EtherDream etherdream;
+} Particulars;
+
+typedef struct DiscoveryPacketHeader {
+    uint8_t mac_address[6];
+    uint8_t ip_address[4];  // network byte order
+    uint8_t device_type;
+    uint8_t protocol_version; // for the device, not the discovery
+    uint16_t vendor_id;
+    uint16_t product_id;
+    uint16_t hw_revision;
+    uint16_t sw_revision;
+    uint32_t link_speed;    // in bits per second
+} DiscoveryPacketHeader;
+
+typedef struct DiscoveryPacket {
+    DiscoveryPacketHeader header;
+    Particulars p;
+} DiscoveryPacket;
+*/

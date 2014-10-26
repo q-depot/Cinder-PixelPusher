@@ -1,24 +1,22 @@
 
 
-
 #include "CardThread.h"
-#include "PixelPusher.h"
+#include "cinder/Utilities.h"
+//#include <thread>
 
 
-CardThread( PixelPusherRef pusher, DeviceRegistry dr )
+CardThread::CardThread( PixelPusherRef pusher, boost::asio::io_service& ioService )//, DeviceRegistry dr ) : mRegistry(dr)
 {
-    mThreadSleepMsec        = 4;
+//    mThreadSleepMsec        = 4;
     mThreadExtraDelayMsec   = 0;
-    mBandwidthEstimate      = 0;
-    mMaxPacketSize          = 1460;
-    mIsTerminated           = false;;
-      
-//    super("CardThread for PixelPusher "+pusher.getMacAddress());
+//    mBandwidthEstimate      = 0;
+//    mMaxPacketSize          = 1460;
+//    mIsTerminated           = false;;
     
     mPusher         = pusher;
-    mPusherPort     = mPusher->getPort();
-    mPastWorkTime   = ci::app::getElapsedSeconds();
-    mRegistry       = dr;
+//    mPusherPort     = mPusher->getPort();
+//    mLastWorkTime   = ci::app::getElapsedSeconds();
+//    mRegistry       = dr;
     
 //    try {
 //      this.udpsocket = new DatagramSocket();
@@ -27,87 +25,36 @@ CardThread( PixelPusherRef pusher, DeviceRegistry dr )
 //    }
     
     
-    mMaxPacketSize  = 4 +  ( ( 1 + 3 * mPusher->getPixelsPerStrip() ) * mPusher->getMaxStripsPerPacket() );
-    mPacket         = new uint8_t[mMaxPacketSize];
-    mCardAddress    = mPusher->getIp();
+    int maxPacketSize  = 4 +  ( ( 1 + 3 * mPusher->getPixelsPerStrip() ) * mPusher->getMaxStripsPerPacket() );
+//    mPacket         = new uint8_t[mMaxPacketSize];
+    mPacketBuffer       = ci::Buffer( maxPacketSize );
+    
+//    mCardAddress    = mPusher->getIp();
     mPacketNumber   = 0;
-    mCancel         = false;
-    mFileIsOpen     = false;
+//    mCancel         = false;
+//    mFileIsOpen     = false;
 
+    // Initialize a client by passing a boost::asio::io_service to it.
+	// ci::App already has one that it polls on update, so we'll use that.
+	// You can use your own io_service, but you will have to manage it
+	// manually (i.e., call poll(), poll_one(), run(), etc).
+	mClient = UdpClient::create( ioService );
+    
+	// Add callbacks to work with the client asynchronously.
+	// Note that you can use lambdas.
+	mClient->connectConnectEventHandler( &CardThread::onConnect, this );
+	mClient->connectErrorEventHandler( &CardThread::onError, this );
+//	mClient->connectResolveEventHandler( [ & ]()
+//                                        {
+//                                            mText.push_back( "Endpoint resolved" );
+//                                        } );
+    
+    mClient->connect( mPusher->getIp(), mPusher->getPort() );
+    
     if ( mPusher->getUpdatePeriod() > 100 && mPusher->getUpdatePeriod() < 1000000 )
         mThreadSleepMsec = ( mPusher->getUpdatePeriod() / 1000 ) + 1;
-}
-
-
-CardThread::~CardThread()
-{
-    delete mPacket;
-}
-
-
-void CardThread::run()
-{
-    while ( !mCancel )
-    {
-        if ( mPusher->isMulticast() )
-        {
-            if ( !mPusher->isMulticastPrimary() )
-            {
-                ci::sleep(1000);
-                continue;           // we just sleep until we're primary
-            }
-        }
-        
-      
-        int         bytesSent;
-        uint64_t    startTime = ci::app::getElapsedSeconds() * 1000000000; // in nano seconds
-        
-        // check to see if we're supposed to be recording.
-        if ( mPusher->isAmRecording())
-        {
-            if ( !mFileIsOpen )
-            {
-                try
-                {
-                    recordFile      = new FileOutputStream(new File( mPusher->getFilename()));
-                    mFileIsOpen     = true;
-                    firstSendTime   = ci::app::getElapsedSeconds() * 1000000000; // in nano seconds
-                }
-                catch ( Exception e )
-                {
-                    ci::app::console() << "Failed to open recording file " << mPusher->getFilename() << std:endl;
-                    mPusher->setAmRecording(false);
-                }
-            }
-        }
-        
-        
-        bytesSent = sendPacketToPusher( mPusher );
-      
-        int requestedStripsPerPacket  = mPusher->getMaxStripsPerPacket();
-        int stripPerPacket            = std::min( requestedStripsPerPacket, mPusher->stripsAttached );
-      
-      if (bytesSent == 0) {
-        try {
-          long estimatedSleep = (System.nanoTime() - lastWorkTime)/1000000;
-          estimatedSleep = Math.min(estimatedSleep, ((1000/registry.getFrameLimit()) 
-                                      / (mPusher->stripsAttached / stripPerPacket)));
-          
-          Thread.sleep(estimatedSleep);
-        } catch (InterruptedException e) {
-          // Don't care if we get interrupted.
-        }
-        }
-      else {
-        lastWorkTime = System.nanoTime();
-      }
-      long endTime = System.nanoTime();
-      long duration = ((endTime - startTime) / 1000000);
-      if (duration > 0)
-        bandwidthEstimate = bytesSent / duration;
-    }
     
-    mIsTerminated = true;
+    mSendDataThread = std::thread( &CardThread::sendPacketToPusher, this );
 }
 
 
@@ -115,6 +62,7 @@ void CardThread::shutDown()
 {
     mPusher->shutDown();
     
+    /*
     if ( mFileIsOpen )
     {
         try {
@@ -127,246 +75,216 @@ void CardThread::shutDown()
            ci::app::console() << e.what() << std::endl;
         }
     }
+    */
+//    
+//    mCancel = true;
+//    
+//    while ( !mIsTerminated )
+//    {
+//        try
+//        {
+//            ci::sleep( 10 );
+//        }
+//        catch ( Exception e )
+//        {
+//            ci::app::console() << "Interrupted terminating CardThread " << mPusher->getMacAddress() << std::endl;
+//            ci::app::console() << e.what() << std::endl;
+//        }
+//    }
+}
+
+
+//bool CardThread::hasTouchedStrips()
+//{
+//    std::vector<StripRef> strips = mPusher->getStrips();
+//    for( size_t k=0; k < strips.size(); k++ )
+//        if ( strips[k]->isTouched() )
+//            return true;
+//
+//    return false;
+//}
+
+
+//void CardThread::getAntiLog( bool antiLog )
+//{
+//    UseAntiLog = antiLog;
+//    for (Strip strip: mPusher->getStrips())
+//        strip.useAntiLog(useAntiLog);
+//}
+
+
+void CardThread::onConnect( UdpSessionRef session )
+{
+    ci::app::console() << "CardThread Connected" << std::endl;
     
-    mCancel = true;
+	// Get the session from the argument and set callbacks.
+	// Note that you can use lambdas.
+	mSession = session;
+	mSession->connectErrorEventHandler( &CardThread::onError, this );
+}
+
+void CardThread::onError( std::string err, size_t bytesTransferred )
+{
+    ci::app::console() << "CardThread ERROR: " << err << std::endl;
+}
+
+
+void CardThread::sendPacketToPusher()
+{
+    mRunThread = true;
     
-    while ( !mIsTerminated )
+    StripRef                strip;
+    std::vector<StripRef>   touchedStrips;
+    std::vector<PixelRef>   pixels;
+    int                     packetLength;
+    int                     maxStripsPerPacket;
+    int                     stripPerPacket;
+    size_t                  stripDataSize;
+    long                    totalDelay;
+    bool                    payload;
+    int                     stripIdx;
+    uint8_t                 *packetData = (uint8_t*)mPacketBuffer.getData();
+    uint8_t                 *stripData;
+    
+    
+	while( mRunThread )
     {
-        try
+        if ( mSession && mSession->getSocket()->is_open() )
         {
-            ci::sleep( 10 );
-        }
-        catch ( Exception e )
-        {
-            ci::app::console() << "Interrupted terminating CardThread " << mPusher->getMacAddress() << std::endl;
-            ci::app::console() << e.what() << std::endl;
-        }
-    }
-}
-
-
-bool CardThread::hasTouchedStrips()
-{
-    std::vector<StripRef> strips = mPusher->getStrips();
-    for( size_t k=0; k < strips.size(); k++ )
-        if ( strips[k]->isTouched() )
-            return true;
-
-    return false;
-}
-
-
-void sCardThread::etAntiLog( bool antiLog )
-{
-    useAntiLog = antiLog;
-    for (Strip strip: mPusher->getStrips())
-        strip.useAntiLog(useAntiLog);
-}
-
-
-int CardThread::sendPacketToPusher( PixelPusher pusher )
-{
-    int         packetLength;
-    uint64_t    totalDelay;
-    bool        payload;
-    int         stripsInDatagram;
-    int         totalLength = 0;
-    double      powerScale  = registry.getPowerScale();
-
-    
-    std::vector<StripRef> remainingStrips;
-
-    if ( !mPusher->hasTouchedStrips() )
-    {
-        // System.out.println("Yielding because no touched strips.");
-        if ( mPusher->commandQueue.isEmpty() )
-            return 0;
-    }
-
-    if ( mPusher->isBusy() )
-    {
-    // System.out.println("Yielding because pusher is busy.");
-    return 0;
-    }
-
-    mPusher->makeBusy();
-    // System.out.println("Making pusher busy.");
-
-      remainingStrips = new CopyOnWriteArrayList<Strip>(pusher.getStrips());
-      stripsInDatagram = 0;
-
-      int requestedStripsPerPacket = pusher.getMaxStripsPerPacket();
-      int stripPerPacket = Math.min(requestedStripsPerPacket, pusher.stripsAttached);
-
-      while (!remainingStrips.isEmpty()) {
-        packetLength = 0;
-        payload = false;
-        if (pusher.getUpdatePeriod() > 1000) {
-          this.threadSleepMsec = (pusher.getUpdatePeriod() / 1000) + 1;
-        } else {
-          // Shoot for the framelimit.
-          this.threadSleepMsec = ((1000/registry.getFrameLimit()) / (pusher.stripsAttached / stripPerPacket));
-        }
-
-        // Handle errant delay calculation in the firmware.
-        if (pusher.getUpdatePeriod() > 100000)
-          this.threadSleepMsec = (16 / (pusher.stripsAttached / stripPerPacket));
-
-        totalDelay = threadSleepMsec + threadExtraDelayMsec + pusher.getExtraDelay();
-
-        byte[] packetNumberArray = ByteUtils.unsignedIntToByteArray(packetNumber, true);
-        for(int i = 0; i < packetNumberArray.length; i++) {
-          this.packet[packetLength++] = packetNumberArray[i];
-        }
-
-        // first check to see if we have an outstanding command.
-
-        boolean commandSent;
-
-        if (!(pusher.commandQueue.isEmpty())) {
-          commandSent = true;
-          System.out.println("Pusher "+pusher.getMacAddress()+" has a PusherCommand outstanding.");
-          PusherCommand pc = pusher.commandQueue.remove();
-          byte[] commandBytes= pc.generateBytes();
-
-          packetLength = 0;
-          packetNumberArray = ByteUtils.unsignedIntToByteArray(packetNumber, true);
-          for(int j = 0; j < packetNumberArray.length; j++) {
-            this.packet[packetLength++] = packetNumberArray[j];
-          }
-          for(int j = 0; j < commandBytes.length; j++) {
-            this.packet[packetLength++] = commandBytes[j];
-          }
-          // We need fixed size datagrams for the Photon, because the cc3000 sucks.
-          if ((pusher.getPusherFlags() & pusher.PFLAG_FIXEDSIZE) != 0) {
-             packetLength = 4 + ((1 + 3 * pusher.getPixelsPerStrip()) * stripPerPacket);
-          }
-          packetNumber++;
-          udppacket = new DatagramPacket(packet, packetLength, cardAddress,
-              pusherPort);
-          try {
-            udpsocket.send(udppacket);
-          } catch (IOException ioe) {
-            System.err.println("IOException: " + ioe.getMessage());
-          }
-
-          totalLength += packetLength;
-          
-        } else {
-          commandSent = false;
-        }
-
-        if (!commandSent) {
-          int i;
-          // Now loop over remaining strips.
-          for (i = 0; i < stripPerPacket; i++) {
-            if (remainingStrips.isEmpty()) {
-              break;
-            }
-            Strip strip = remainingStrips.remove(0);
-            // Don't weed untouched strips if we are recording.
-            if (!fileIsOpen) {
-              if (!strip.isTouched() && ((pusher.getPusherFlags() & pusher.PFLAG_FIXEDSIZE) == 0))
-                continue;
-            }
-
-            stripsInDatagram++;
+//            int     totalLength = 0;
             
-            strip.setPowerScale(powerScale);
-            byte[] stripPacket;
+            // IF no commands queue AND no touched strips RETURN
             
-            if (!DeviceRegistry.useOverallBrightnessScale) {
-              stripPacket = strip.serialize();
-            } else {
-              stripPacket = strip.serialize(DeviceRegistry.getOverallBrightnessScale());
-            }
-            strip.setPushedAt(System.nanoTime());
-            strip.markClean();
-            this.packet[packetLength++] = (byte) strip.getStripNumber();
-            if (fileIsOpen) {
-              try {
-                // we need to make the pusher wait on playback the same length of time between strips as we wait between packets
-                // this number is in microseconds.
-                if (stripsInDatagram > 1) { // only write the delay for the first strip in a datagram.
-                  if ((System.nanoTime() - firstSendTime / 1000) < (25 * 60 * 1000000)) {
-                    recordFile.write(ByteUtils.unsignedIntToByteArray((int)0, true));
-                  } else {
-                    // write the timer reset magic - we do this into a sentence that would otherwise have no timing info
-                    recordFile.write(ByteUtils.unsignedIntToByteArray((int)0xdeadb33f, true));
-                    // and reset the timer
-                    firstSendTime = System.nanoTime();
-                  }
+            touchedStrips = mPusher->getTouchedStrips();
+            
+            maxStripsPerPacket  = mPusher->getMaxStripsPerPacket();
+            stripPerPacket      = std::min( (uint8_t)maxStripsPerPacket, mPusher->getStripsAttached() );
+            
+            if ( mPusher->getUpdatePeriod() > 1000 )
+                mThreadSleepMsec = ( mPusher->getUpdatePeriod() / 1000 ) + 1;
+            else                                                                                    // Shoot for the framelimit.
+                mThreadSleepMsec = ( ( 1000 / DeviceRegistry::getFrameLimit() ) / ( mPusher->getStripsAttached() / stripPerPacket ) );
+            
+            // Handle errant delay calculation in the firmware.
+            if ( mPusher->getUpdatePeriod() > 100000 )
+                mThreadSleepMsec = ( 16 / ( mPusher->getStripsAttached() / stripPerPacket ) );
+            
+            totalDelay = mThreadSleepMsec + mThreadExtraDelayMsec + mPusher->getExtraDelay();
+            
+            stripIdx = 0;
+            
+            // send packet
+            while( stripIdx < touchedStrips.size() )
+            {
+                packetLength    = 0;
+                payload         = false;
+                
+                // Packet number
+                packetData[packetLength++] = mPacketNumber & 0xFF;
+                packetData[packetLength++] = (mPacketNumber >> 8) & 0xFF;
+                packetData[packetLength++] = (mPacketNumber >> 16) & 0xFF;
+                packetData[packetLength++] = (mPacketNumber >> 24) & 0xFF;
+                
+                
+                // first check to see if we have an outstanding command.
+                
+                bool commandSent = false;
+                
+                // SEND COMMANDS FIRST
+                /*
+                if (!(mPusher->commandQueue.isEmpty())) {
+                    commandSent = true;
+                    System.out.println("Pusher "+mPusher->getMacAddress()+" has a PusherCommand outstanding.");
+                    PusherCommand pc = mPusher->commandQueue.remove();
+                    byte[] commandBytes= pc.generateBytes();
+                    
+                    packetLength = 0;
+                    packetNumberArray = ByteUtils.unsignedIntToByteArray(packetNumber, true);
+                    for(int j = 0; j < packetNumberArray.length; j++) {
+                        this.packet[packetLength++] = packetNumberArray[j];
+                    }
+                    for(int j = 0; j < commandBytes.length; j++) {
+                        this.packet[packetLength++] = commandBytes[j];
+                    }
+                    // We need fixed size datagrams for the Photon, because the cc3000 sucks.
+                    if ((mPusher->getPusherFlags() & mPusher->PFLAG_FIXEDSIZE) != 0) {
+                        packetLength = 4 + ((1 + 3 * mPusher->getPixelsPerStrip()) * stripPerPacket);
+                    }
+                    packetNumber++;
+                    udppacket = new DatagramPacket(packet, packetLength, cardAddress,
+                                                   pusherPort);
+                    try {
+                        udpsocket.send(udppacket);
+                    } catch (IOException ioe) {
+                        System.err.println("IOException: " + ioe.getMessage());
+                    }
+                    
+                    totalLength += packetLength;
+                    
                 } else {
-                  if (firstSendTime != 0) { // this is not the first send to this pusher, we know how long it's been
-                    recordFile.write(ByteUtils.unsignedIntToByteArray((int)((System.nanoTime() - firstSendTime) / 1000), true));
-                  } else { // fall back to the update period.
-                    recordFile.write(ByteUtils.unsignedIntToByteArray((int)pusher.getUpdatePeriod(), true));
-                  }
+                    commandSent = false;
                 }
-                recordFile.write((byte) strip.getStripNumber());
-                recordFile.write(stripPacket);
-              } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-              }
+                */
+                
+                if ( !commandSent )
+                {
+                    
+                    // Now loop over remaining strips.
+                    for ( int k = 0; k < stripPerPacket; k++ )
+                    {
+                        if ( stripIdx >= touchedStrips.size() )
+                            break;
+                        
+                        strip = touchedStrips[stripIdx++];
+                        
+                        
+                        // add strip number
+                        packetData[packetLength++] = strip->getStripNumber();
+                        
+                        // update pixels buffer
+                        strip->updatePixelsBuffer();
+                        
+                        stripData       = strip->getPixelsData();
+                        stripDataSize   = strip->getPixelsDataSize();
+                        
+                        
+                        // add pixels data
+                        memcpy( &packetData[packetLength], stripData, stripDataSize );
+                        packetLength += stripDataSize;
+                        
+                        
+                        // Don't weed untouched strips if we are recording.
+                        //    if (!fileIsOpen) {
+                        //        if (!strip.isTouched() && ((mPusher->getPusherFlags() & mPusher->PFLAG_FIXEDSIZE) == 0))
+                        //            continue;
+                        //    }
+                        
+                        payload = true;
+                    }
+                    
+                    if ( payload )
+                    {
+                        // send packet
+                        mSession->write( mPacketBuffer );
+                        mPacketNumber++;
+                        payload = false;
+                    }
+                }
             }
-            for (int j = 0; j < stripPacket.length; j++) {
-              this.packet[packetLength + j] = stripPacket[j];
-            }
-            packetLength += stripPacket.length;
-            payload = true;
-          }
-          if (payload) {
-            //System.out.println("Got a payload to send to "+cardAddress);
-            packetNumber++;
-            /* System.err.println(" Packet number array = length "+ packetLength +
-             *      " seq "+ packetNumber +" data " + String.format("%02x, %02x, %02x, %02x",
-             *          packetNumberArray[0], packetNumberArray[1], packetNumberArray[2], packetNumberArray[3]));
-             */
-            udppacket = new DatagramPacket(packet, packetLength, cardAddress,
-                pusherPort);
-            try {
-              udpsocket.send(udppacket);
-              //System.out.println("Sent it.");
-            } catch (IOException ioe) {
-              System.err.println("IOException: " + ioe.getMessage());
-            }
-          }
-          totalLength += packetLength;
+            std::this_thread::sleep_for( std::chrono::milliseconds( mThreadSleepMsec ) );
         }
-
-        packetLength = 0;
-        payload = false;
-        try {
-          Thread.sleep(totalDelay);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
+        else
+        {
+            ci::app::console() << "Session is not open!" << std::endl;
+            std::this_thread::sleep_for( std::chrono::milliseconds( mThreadSleepMsec ) );
         }
-      }
-      //System.out.println("Clearing busy.");
-      pusher.clearBusy();
-      return totalLength;
-  }
+        
+	}
+    
+    ci::app::console() << "CardThread::sendPacketToPusher() thread exited!" << std::endl;
+}
 
 
-
-  private long threadSleepMsec = 4;
-  private long threadExtraDelayMsec = 0;
-  private long bandwidthEstimate = 0;
-  private int maxPacketSize = 1460;
-  private PixelPusher pusher;
-  private byte[] packet;
-  private DatagramPacket udppacket;
-  private DatagramSocket udpsocket;
-  private boolean cancel;
-  private int pusherPort;
-  private InetAddress cardAddress;
-  private long packetNumber;
-  private DeviceRegistry registry;
-  private boolean useAntiLog;
-  private boolean fileIsOpen;
-  FileOutputStream recordFile;
-  private long lastWorkTime;
-  private long firstSendTime;
-  public boolean terminated=false;
-};
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////

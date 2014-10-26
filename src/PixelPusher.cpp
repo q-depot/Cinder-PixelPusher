@@ -13,9 +13,9 @@
    * int16_t my_port;
    */
 
-
 #include "PixelPusher.h"
 #include "Strip.h"
+#include "CardThread.h"
 
 
 PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
@@ -112,19 +112,41 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
 }
 
 
-std::vector<StripRef> PixelPusher::getStrips() {
+PixelPusher::~PixelPusher()
+{
+    // TODO: stop card thread!!! <<<<<<<<<<<
+}
+
+
+void PixelPusher::createCardThread( boost::asio::io_service& ioService )
+{
+    mCardThread = CardThread::create( shared_from_this(), ioService );
+}
+
+
+std::vector<StripRef> PixelPusher::getStrips()
+{
     // Devices that are members of a multicast group,
     // but which are not the primary member of that group,
     // do not return strips.
-    if ( mMulticast && !mMulticastPrimary)
+    if ( mMulticast && !mMulticastPrimary )
         return std::vector<StripRef>();
 
-    if ( mStrips.empty() )
+    if ( mStrips.empty() )      // TODO: create strips here doesn't make any fucking sense!
         createStrips();
 
     return mStrips;
     // Ensure callers can't modify the returned list
     // return Collections.unmodifiableList(strips);
+}
+
+
+size_t PixelPusher::getNumStrips()
+{
+    if ( mMulticast && !mMulticastPrimary )
+        return 0;
+    
+    return mStrips.size();
 }
 
 
@@ -141,54 +163,54 @@ StripRef PixelPusher::getStrip( int stripNumber )
 }
 
 
-void PixelPusher::updateVariables( PixelPusher device )
+void PixelPusher::updateVariables( PixelPusherRef device )
 {
-    mDeltaSequence      = device.mDeltaSequence;
-    mMaxStripsPerPacket = device.mMaxStripsPerPacket;
-    mPowerTotal         = device.mPowerTotal;
-    mUpdatePeriod       = device.mUpdatePeriod;
+    mDeltaSequence      = device->mDeltaSequence;
+    mMaxStripsPerPacket = device->mMaxStripsPerPacket;
+    mPowerTotal         = device->mPowerTotal;
+    mUpdatePeriod       = device->mUpdatePeriod;
 }
   
 
-void PixelPusher::copyHeader( PixelPusher device )
+void PixelPusher::copyHeader( PixelPusherRef device )
 {
-    mControllerOrdinal  = device.mControllerOrdinal;
-    mDeltaSequence      = device.mDeltaSequence;
-    mGroupOrdinal       = device.mGroupOrdinal;
-    mMaxStripsPerPacket = device.mMaxStripsPerPacket;
-    mPowerTotal         = device.mPowerTotal;
-    mUpdatePeriod       = device.mUpdatePeriod;
-    mArtnetChannel      = device.mArtnetChannel;
-    mArtnetUniverse     = device.mArtnetUniverse;
-    mPort               = device.mPort;
-    mFilename           = device.mFilename;
-    mAmRecording        = device.mAmRecording;
-    mPowerDomain        = device.mPowerDomain;
+    mControllerOrdinal  = device->mControllerOrdinal;
+    mDeltaSequence      = device->mDeltaSequence;
+    mGroupOrdinal       = device->mGroupOrdinal;
+    mMaxStripsPerPacket = device->mMaxStripsPerPacket;
+    mPowerTotal         = device->mPowerTotal;
+    mUpdatePeriod       = device->mUpdatePeriod;
+    mArtnetChannel      = device->mArtnetChannel;
+    mArtnetUniverse     = device->mArtnetUniverse;
+    mPort               = device->mPort;
+    mFilename           = device->mFilename;
+    mAmRecording        = device->mAmRecording;
+    mPowerDomain        = device->mPowerDomain;
     
-    setPusherFlags( device.getPusherFlags() );
+    setPusherFlags( device->getPusherFlags() );
     
     
     // if the number of strips we have doesn't match,
     // we'll need to make a fresh set.
-    if ( mStripsAttached != device.mStripsAttached )
+    if ( mStripsAttached != device->mStripsAttached )
     {
         mStrips.clear();
-        mStripsAttached = device.mStripsAttached;
+        mStripsAttached = device->mStripsAttached;
     }
     
     // likewise, if the length of each strip differs,
     // we will need to make a new set.
-    if ( mPixelsPerStrip != device.mPixelsPerStrip )
+    if ( mPixelsPerStrip != device->mPixelsPerStrip )
     {
         mStrips.clear();
-        mPixelsPerStrip = device.mPixelsPerStrip;
+        mPixelsPerStrip = device->mPixelsPerStrip;
     }
     
     // and it's the same for segments
-    if ( mSegments != device.mSegments )
+    if ( mSegments != device->mSegments )
     {
         mStrips.clear();
-        mSegments = device.mSegments;
+        mSegments = device->mSegments;
     }
     
     if ( !mStrips.empty() )
@@ -252,7 +274,7 @@ std::string PixelPusher::formattedStripFlags()
 
 void PixelPusher::createStrips()
 {
-    for( int k = 0; k < mStripsAttached; k++ )
+    for( uint8_t k = 0; k < mStripsAttached; k++ )
     {
         StripRef strip = Strip::create( shared_from_this(), k, mPixelsPerStrip );
 
@@ -280,3 +302,51 @@ void PixelPusher::createStrips()
     
 }
 
+
+bool PixelPusher::isEqual( PixelPusherRef otherDevice )
+{
+    // if it differs by less than half a msec, it has no effect on our timing
+    int updatePeriod = getUpdatePeriod() - otherDevice->getUpdatePeriod();     // update period is uint64_t
+    if ( std::abs( updatePeriod ) > 500 )
+        return false;
+    
+    // some fudging to cope with the fact that pushers don't know they have RGBOW
+    if ( ( hasRGBOW() & !otherDevice->hasRGBOW() ) && ( getPixelsPerStrip() != otherDevice->getPixelsPerStrip() / 3 ) )
+            return false;
+    
+    if ( ( !hasRGBOW() & otherDevice->hasRGBOW() ) && ( getPixelsPerStrip() / 3 != otherDevice->getPixelsPerStrip() ) )
+            return false;
+    
+    if ( ! ( hasRGBOW() || otherDevice->hasRGBOW() ) )
+        if (getPixelsPerStrip() != otherDevice->getPixelsPerStrip())
+            return false;
+    
+    if ( getNumberOfStrips() != otherDevice->getNumberOfStrips() )
+        return false;
+    
+    // handle the case where someone changed the config during library runtime
+    if ( mArtnetChannel != otherDevice->getArtnetChannel() || mArtnetUniverse != otherDevice->getArtnetUniverse() )
+        return false;
+    
+    // if the port's been changed, we need to update
+    if ( mPort != otherDevice->getPort() )
+        return false;
+    
+    // we should update every time the power total changes significantly
+    int powerTotal = mPowerTotal - otherDevice->getPowerTotal();     // power total is uint64_t
+    if ( std::abs( powerTotal ) > 10000 )
+        return false;
+    
+    // handle the case where our power domain changed
+    if ( mPowerDomain != otherDevice->getPowerDomain() )
+        return false;
+    
+    // ditto for number of segments and pusherFlags
+    if ( mSegments != otherDevice->getSegments() )
+        return false;
+    
+    if ( getPusherFlags() != otherDevice->getPusherFlags() )
+        return false;
+    
+    return true;
+}

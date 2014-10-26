@@ -21,10 +21,13 @@ class TestDiscoveryThreadApp : public AppNative {
 	void onReadComplete();
 	void onWrite( size_t bytesTransferred );
     
+    void keyDown( KeyEvent event );
+    
 	int32_t						mPort;
 	int32_t						mPortPrev;
 	UdpServerRef				mServer;
 	UdpSessionRef				mSession;
+    bool                        mDebugPacket;
 
 };
 
@@ -33,8 +36,8 @@ void TestDiscoveryThreadApp::setup()
 {
 	gl::enableAlphaBlending();
     
-	mPort		= 7331;
-	
+	mPort           = 7331;
+	mDebugPacket    = false;
 	// Initialize a server by passing a boost::asio::io_service to it.
 	// ci::App already has one that it polls on update, so we'll use that.
 	// You can use your own io_service, but you will have to manage it
@@ -49,6 +52,11 @@ void TestDiscoveryThreadApp::setup()
 	accept();
 }
 
+void TestDiscoveryThreadApp::keyDown( KeyEvent event )
+{
+    if ( event.getChar() == 'd' )
+        mDebugPacket = true;
+}
 
 void TestDiscoveryThreadApp::draw()
 {
@@ -108,7 +116,7 @@ void TestDiscoveryThreadApp::onRead( ci::Buffer buffer )
 	string response	= UdpSession::bufferToString( buffer );
     
     uint8_t *data = (uint8_t*)buffer.getData();
-
+    
     DeviceHeader    header  = DeviceHeader( data, buffer.getDataSize() );
     std::string     macAddr = header.getMacAddressString();
     
@@ -119,7 +127,34 @@ void TestDiscoveryThreadApp::onRead( ci::Buffer buffer )
         return;
     }
     
+//    PixelPuserRef p = PixelPush::create( header );
+    
+    uint8_t *reminder       = header.getPacketReminder();
+    int      reminderSize   = header.getPacketReminderSize();
+    
+    uint16_t port;
+    memcpy( &port, &reminder[28], 2 );
+    
+    uint8_t stripsAttached;
+    uint16_t pixelsPerStrip;
+    uint8_t stripsPerPacket;
+    
+    memcpy( &stripsAttached, &reminder[0],  1 );
+    memcpy( &stripsPerPacket, &reminder[1],  1 );
+    memcpy( &pixelsPerStrip, &reminder[2],  2 );
+    
+//    stripsAttached = ByteUtils.unsignedCharToInt(Arrays.copyOfRange(packet, 0, 1));
+//    pixelsPerStrip = ByteUtils.unsignedShortToInt(Arrays.copyOfRange(packet, 2, 4));
+//    maxStripsPerPacket = ByteUtils.unsignedCharToInt(Arrays.copyOfRange(packet, 1, 2));
+    
+    console() << "reminder size: "        << reminderSize << endl;
+    
     console() << "received "        << getElapsedSeconds() << endl;
+    
+    console() << "port: "               << (int)port << endl;
+    console() << "strips: "             << (int)stripsAttached << endl;
+    console() << "pixel per strip: "    << (int)pixelsPerStrip << endl;
+    console() << "max strips packet: "    << (int)stripsPerPacket << endl;
     
     console() << "ip: "             << header.getIpAddressString() << endl;
     console() << "mac: "            << header.getMacAddressString() << endl;
@@ -130,8 +165,36 @@ void TestDiscoveryThreadApp::onRead( ci::Buffer buffer )
     console() << "product id: "     << header.getProductId()<< endl;
     console() << "protocol ver: "   << header.getProtocolVersion() << endl;
     console() << "SW rev: "         << header.getSoftwareRevision() << endl;
+
     console() << endl;
     
+    if ( mDebugPacket )
+    {
+        uint8_t testBuff[2] = { 224, 1 };
+        uint16_t testNum;
+        memcpy( &testNum, &testBuff[0], 2 );
+        console() << "Test num: " << (int)testNum << endl << endl;
+        memcpy( &testNum, &reminder[2], 2 );
+        console() << "Test num: " << (int)testNum << endl << endl;
+//        console() << "rem: " << (int)testNum << endl << endl;
+        
+        
+        console() << endl;
+        console() << "-------------------------------------------" << endl;
+        console() << "PACKET: " <<  buffer.getDataSize() << endl;
+        for( int k=0; k < buffer.getDataSize(); k++ )
+            console() << (int)data[k] << " ";
+        console() << endl;
+        
+        console() << "REMINDER: " << reminderSize << endl;
+        for( int k=0; k < reminderSize; k++ )
+            console() << (int)reminder[k] << " ";
+        console() << endl;
+        
+        console() << "-------------------------------------------" << endl;
+        console() << endl << endl;
+        mDebugPacket = false;
+    }
 //    console() << getElapsedSeconds() << " READ: " << buffer.getDataSize() << endl;
 //    for( int k=0; k < buffer.getDataSize(); k++ )
 //        console() << to_string(data[k]) << " ";

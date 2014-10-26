@@ -1,7 +1,13 @@
 
 
+#ifndef PP_STRIP
+#define PP_STRIP
+
 #pragma once
 #include "Pixel.h"
+
+// TODO: why a strip should have a reference to the pusher??????
+
 
 class PixelPusher;
 typedef std::shared_ptr<PixelPusher> PixelPusherRef;
@@ -14,12 +20,12 @@ class Strip {
 
   public:
     
-    static StripRef create( PixelPusherRef pusher, int stripNumber, int length, bool antiLog )
+    static StripRef create( PixelPusherRef pusher, uint8_t stripNumber, int length, bool antiLog )
     {
         return StripRef( new Strip( pusher, stripNumber, length, antiLog ) );
     }
     
-    static StripRef create( PixelPusherRef pusher, int stripNumber, int length)
+    static StripRef create( PixelPusherRef pusher, uint8_t stripNumber, int length)
     {
         return StripRef( new Strip( pusher, stripNumber, length, false ) );
     }
@@ -38,7 +44,7 @@ class Strip {
 
     int getLength() { return mPixels.size(); }
 
-    void setPowerScale(double scale) { mPowerScale = scale; }
+//    void setPowerScale(double scale) { mPowerScale = scale; }
 
     std::string getMacAddress();
 
@@ -48,7 +54,7 @@ class Strip {
     // synchronized
     void markClean();
 
-    int getStripNumber() { return mStripNumber; }
+    uint8_t getStripNumber() { return mStripNumber; }
 
     int getStripIdentifier()
     {
@@ -68,74 +74,11 @@ class Strip {
     void setPixelWhite( uint8_t intensity, int position );
     void setPixel( int color, int position );
     void setPixel( Pixel pixel, int position );
-    
-    /*
-  public byte[] serialize() {
-    int i = 0;
-    if (isRGBOW) {
-      for (Pixel pixel : pixels) {
-        if (pixel == null)
-          pixel = new Pixel();
-        msg[i++] = (byte) (((double)(pixel.red & 0xff))   * powerScale);    // C
-        msg[i++] = (byte) (((double)(pixel.green & 0xff)) * powerScale);
-        msg[i++] = (byte) (((double)(pixel.blue & 0xff))  * powerScale);
-
-        msg[i++] = (byte) (((double)(pixel.orange & 0xff)) * powerScale);   // O
-        msg[i++] = (byte) (((double)(pixel.orange & 0xff)) * powerScale);
-        msg[i++] = (byte) (((double)(pixel.orange & 0xff)) * powerScale);
-
-        msg[i++] = (byte) (((double)(pixel.white & 0xff)) * powerScale);    // W
-        msg[i++] = (byte) (((double)(pixel.white & 0xff)) * powerScale);
-        msg[i++] = (byte) (((double)(pixel.white & 0xff)) * powerScale);
-      }
-    } else {
-      for (Pixel pixel : pixels) {
-        if (pixel == null)
-          pixel = new Pixel();
-        msg[i++] = (byte) ((double)((pixel.red & 0xff)) * powerScale);
-        msg[i++] = (byte) ((double)((pixel.green & 0xff)) * powerScale);
-        msg[i++] = (byte) ((double)((pixel.blue & 0xff)) * powerScale);
-      }
-    }
-    return msg;
-  }
-*/
-    
+  
     void useAntiLog( bool antiLog ) { mUseAntiLog = antiLog; }
 
     void setPusher( PixelPusherRef pixelPusher ) { mPusher = pixelPusher; }
     
-/*
-  byte[] serialize(double overallBrightnessScale) {
-    int i = 0;
-    if (isRGBOW) {
-      for (Pixel pixel : pixels) {
-        if (pixel == null)
-          pixel = new Pixel();
-        msg[i++] = (byte) ((double)(pixel.red & 0xff)  * powerScale * overallBrightnessScale);    // C
-        msg[i++] = (byte) ((double)(pixel.green & 0xff) * powerScale * overallBrightnessScale);
-        msg[i++] = (byte) ((double)(pixel.blue & 0xff)  * powerScale * overallBrightnessScale);
-
-        msg[i++] = (byte) ((double)(pixel.orange & 0xff) * powerScale * overallBrightnessScale);   // O
-        msg[i++] = (byte) ((double)(pixel.orange & 0xff) * powerScale * overallBrightnessScale);
-        msg[i++] = (byte) ((double)(pixel.orange & 0xff) * powerScale * overallBrightnessScale);
-
-        msg[i++] = (byte) ((double)(pixel.white & 0xff) * powerScale * overallBrightnessScale);    // W
-        msg[i++] = (byte) ((double)(pixel.white & 0xff) * powerScale * overallBrightnessScale);
-        msg[i++] = (byte) ((double)(pixel.white & 0xff) * powerScale * overallBrightnessScale);
-      }
-    } else {
-      for (Pixel pixel : pixels) {
-        if (pixel == null)
-          pixel = new Pixel();
-        msg[i++] = (byte) ((double)(pixel.red & 0xff) * powerScale * overallBrightnessScale);
-        msg[i++] = (byte) ((double)(pixel.green & 0xff) * powerScale * overallBrightnessScale);
-        msg[i++] = (byte) ((double)(pixel.blue & 0xff) * powerScale * overallBrightnessScale);
-      }
-    }
-    return msg;
-  }
-*/
     bool isMotion() { return mIsMotion; }
 
     void setMotion(bool isMotion) { mIsMotion = isMotion; }
@@ -148,25 +91,31 @@ class Strip {
 
     void setPushedAt(long pushedAt) { mPushedAt = pushedAt; }
 
-
+    std::vector<PixelRef>   getPixels() { return mPixels; }
+    
+    // use 3 methods instead returning the Buffer to avoid mem realloc
+    void    updatePixelsBuffer();
+    uint8_t *getPixelsData() { return (uint8_t*)mPixelsBuffer.getData(); }
+    size_t  getPixelsDataSize() { return mPixelsBuffer.getDataSize(); }
+    
 private:
     
-    Strip( PixelPusherRef pusher, int stripNumber, int length, bool antiLog );
+    Strip( PixelPusherRef pusher, uint8_t stripNumber, int length, bool antiLog );
     
   private:
 
-        std::vector<Pixel>  mPixels;
-        PixelPusherRef      mPusher;
-        long int            mPushedAt;
-        int                 mStripNumber;
-        bool                mTouched;
-        double          	mPowerScale;
-        bool            	mIsRGBOW;
-//        byte[]          	mMsg;
-        bool                mUseAntiLog;
-        bool            	mIsMotion;
-        bool            	mIsNotIdempotent;
-
+    std::vector<PixelRef>   mPixels;
+    PixelPusherRef          mPusher;
+    long int                mPushedAt;
+    uint8_t                 mStripNumber;
+    bool                    mTouched;
+//    double                  mPowerScale;
+    bool                    mIsRGBOW;
+    bool                    mUseAntiLog;
+    bool                    mIsMotion;
+    bool                    mIsNotIdempotent;
+    ci::Buffer              mPixelsBuffer;
+    
   // TODO: check this shit! already defined somewhere else? WTF is wrong with source code/developer?
     const uint8_t sLinearExp[256] = {  0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4,
         4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 10, 10, 10,
@@ -196,3 +145,5 @@ private:
 
 
 };
+
+#endif

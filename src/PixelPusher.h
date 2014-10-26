@@ -13,8 +13,11 @@
    * int16_t my_port;
    */
 
+#ifndef PP_DEVICE
+#define PP_DEVICE
+
 #pragma once
-//#include "Device.h"
+
 #include "PusherCommand.h"
 #include "DeviceHeader.h"
 #include <boost/enable_shared_from_this.hpp>
@@ -25,6 +28,10 @@ typedef std::shared_ptr<Strip> StripRef;
 
 class PixelPusher;
 typedef std::shared_ptr<PixelPusher> PixelPusherRef;
+
+class CardThread;
+typedef std::shared_ptr<CardThread> CardThreadRef;
+
 
 class PixelPusher : public std::enable_shared_from_this<PixelPusher> {
     
@@ -43,20 +50,14 @@ private:
     
 public:
     
-/*
-void setStripValues(int stripNumber, Pixel[] pixels ) {
-    synchronized (stripLock) {
-      if (strips == null) {
-        doDeferredStripCreation();
-      }
-      this.strips.get(stripNumber).setPixels(pixels);
+    static PixelPusherRef create( DeviceHeader header )
+    {
+        return PixelPusherRef( new PixelPusher( header ) );
     }
-  }
-*/
     
-    PixelPusher( DeviceHeader header );
+    ~PixelPusher();
     
-    ~PixelPusher() {}
+    void createCardThread( boost::asio::io_service& ioService );
     
     uint16_t getPort()
     {
@@ -68,34 +69,26 @@ void setStripValues(int stripNumber, Pixel[] pixels ) {
 
     void setPort( uint16_t port ) { mPort = port ; }
 
-    std::string getMacAddress()		{ return mDeviceHeader.getMacAddressString(); }
-	std::string getIp()				{ return mDeviceHeader.getIpAddressString(); }
-	DeviceType getDeviceType()		{ return mDeviceHeader.getDeviceType(); }
-	uint32_t getProtocolVersion()	{ return mDeviceHeader.getProtocolVersion(); }
-	uint32_t getVendorId()			{ return mDeviceHeader.getVendorId(); }
-	uint32_t getProductId()			{ return mDeviceHeader.getProductId(); }
-	uint32_t getHardwareRevision()	{ return mDeviceHeader.getHardwareRevision(); }
-	uint32_t getSoftwareRevision()	{ return mDeviceHeader.getSoftwareRevision(); }
-	uint64_t getLinkSpeed()         { return mDeviceHeader.getLinkSpeed(); }
+    std::string getMacAddress()         { return mDeviceHeader.getMacAddressString(); }
+	std::string getIp()                 { return mDeviceHeader.getIpAddressString(); }
+	DeviceType  getDeviceType()         { return mDeviceHeader.getDeviceType(); }
+	uint32_t 	getProtocolVersion()	{ return mDeviceHeader.getProtocolVersion(); }
+	uint32_t    getVendorId()			{ return mDeviceHeader.getVendorId(); }
+	uint32_t    getProductId()			{ return mDeviceHeader.getProductId(); }
+	uint32_t    getHardwareRevision()	{ return mDeviceHeader.getHardwareRevision(); }
+	uint32_t    getSoftwareRevision()	{ return mDeviceHeader.getSoftwareRevision(); }
+	uint64_t    getLinkSpeed()          { return mDeviceHeader.getLinkSpeed(); }
+    uint32_t    getSegments()           { return mSegments; }
+    int         getNumberOfStrips()     { return mStrips.size(); }
     
 //    void sendCommand( PusherCommand pc )
 //    {
 //        commandQueue.push_back( pc );
 //    }
   
-
-/*
-  int getNumberOfStrips() {
-    synchronized (stripLock) {
-      if (strips == null) {
-        doDeferredStripCreation();
-      }
-      return strips.size();
-    }
-  }
-*/
     
-    std::vector<StripRef> getStrips();
+    std::vector<StripRef>   getStrips();
+    size_t                  getNumStrips();
     
     uint16_t getArtnetUniverse()   { return mArtnetUniverse; }
     uint16_t getArtnetChannel()    { return mArtnetChannel; }
@@ -115,7 +108,10 @@ void setStripValues(int stripNumber, Pixel[] pixels ) {
     uint64_t getUpdatePeriod()  { return mUpdatePeriod; }
     uint64_t getPowerTotal()    { return mPowerTotal; }
     uint64_t getDeltaSequence() { return mDeltaSequence; }
-        
+    
+    uint8_t getStripsAttached() { return mStripsAttached; }
+    
+    
     void increaseExtraDelay( uint64_t i )
     {
         if ( mAutothrottle )
@@ -145,29 +141,9 @@ void setStripValues(int stripNumber, Pixel[] pixels ) {
     uint64_t getControllerOrdinal() { return mControllerOrdinal; }
     uint64_t getGroupOrdinal() { return mGroupOrdinal; }
 
-    void updateVariables(PixelPusher device);
+    void updateVariables( PixelPusherRef device );
         
-    void copyHeader(PixelPusher device);
-
-//
-//  int compareTo(PixelPusher comp) {
-//    int group0 = this.getGroupOrdinal();
-//    int group1 = ((PixelPusher) comp).getGroupOrdinal();
-//    if (group0 != group1) {
-//      if (group0 < group1)
-//        return -1;
-//      return 1;
-//    }
-//    int ord0 = this.getControllerOrdinal();
-//    int ord1 = ((PixelPusher) comp).getControllerOrdinal();
-//    if (ord0 != ord1) {
-//      if (ord0 < ord1)
-//        return -1;
-//      return 1;
-//    }
-//
-//    return this.getMacAddress().compareTo(((DeviceImpl) comp).getMacAddress());
-//  }
+    void copyHeader( PixelPusherRef device );
 
     void setAntiLog( bool antiLog );
 
@@ -218,53 +194,32 @@ void setStripValues(int stripNumber, Pixel[] pixels ) {
 
     int getLastUniverse() { return mLastUniverse; }
     
+    bool isEqual( PixelPusherRef otherDevice );
+    
+    bool isIpAddrMulticast()
+    {
+        return mDeviceHeader.isMulticast();
+    }
+    
 private:
+    
+    PixelPusher( DeviceHeader header );
+    
+    bool hasRGBOW();
+    
+    std::string formattedStripFlags() ;
 
-        bool hasRGBOW();
-        std::string formattedStripFlags() ;
-
-      /**
+    void createStrips();
+    
+    /**
        * All access (including iteration) and mutation must be performed
        * while holding stripLock
        */
     
-        void createStrips();
-        /*
-     //  synchronized
-     void doDeferredStripCreation() {
-     synchronized (stripLock) {
-     this.strips = new CopyOnWriteArrayList<Strip>();
-     for (int stripNo = 0; stripNo < stripsAttached; stripNo++) {
-     this.strips.add(new Strip(this, stripNo, pixelsPerStrip));
-     }
-     for (Strip strip: this.strips) {
-     if ((stripFlags[strip.getStripNumber()] & SFLAG_LOGARITHMIC) != 0) {
-     strip.useAntiLog(false);
-     } else {
-     strip.useAntiLog(useAntiLog);
-     }
-     if ((stripFlags[strip.getStripNumber()] & SFLAG_MOTION) != 0) {
-     strip.setMotion(true);
-     } else {
-     strip.setMotion(false);
-     }
-     if ((stripFlags[strip.getStripNumber()] & SFLAG_NOTIDEMPOTENT) != 0) {
-     strip.setNotIdempotent(true);
-     } else {
-     strip.setNotIdempotent(false);
-     }
-     strip.setRGBOW((stripFlags[strip.getStripNumber()] & SFLAG_RGBOW) == 1);
-     }
-     touchedStrips = false;
-     }
-     }
-     */
-
 private:
     
       // private final Object stripLock = new Object();
-      
-      // TODO: use smart pointer <<<<<<<<<<<<<<<<<<<
+    
     std::vector<StripRef> mStrips;
     uint64_t              mExtraDelayMsec;
     bool                  mAutothrottle;
@@ -272,9 +227,9 @@ private:
     bool                  mMulticast;
     bool                  mMulticastPrimary;
   
-  /**
-   * Queue for commands using the new majik strip protocol.
-   */
+    /**
+     * Queue for commands using the new majik strip protocol.
+     */
   
     std::vector<PusherCommand> mCommandQueue;
   
@@ -307,75 +262,8 @@ private:
     std::vector<int8_t>    mStripFlags;
     
 	DeviceHeader	mDeviceHeader;
+    CardThreadRef   mCardThread;
 
-    
-/*
-  public boolean equals(Object obj) {
-
-    // quick checks first.
-
-    // object handle identity
-    if (this == obj)
-      return true;
-
-    // if it's null, it's not the same as anything
-    // (and we can't compare its fields without a null pointer exception)
-    if (obj == null)
-      return false;
-
-    // if it's some different class, well then something is bad.
-    if (getClass() != obj.getClass())
-      return false;
-
-    // ok so it's the same class. in that case, let's make a reference...
-    PixelPusher other = (PixelPusher) obj;
-
-    // if it differs by less than half a msec, it has no effect on our timing
-    if (Math.abs(getUpdatePeriod() - other.getUpdatePeriod()) > 500)
-       return false;
-
-    // some fudging to cope with the fact that pushers don't know they have RGBOW
-    if (this.hasRGBOW() & !other.hasRGBOW()) {
-      if (getPixelsPerStrip() != other.getPixelsPerStrip() / 3)
-        return false;
-    }
-     if (!this.hasRGBOW() & other.hasRGBOW()) {
-      if (getPixelsPerStrip() / 3 != other.getPixelsPerStrip())
-        return false;
-    }
-    if (! (this.hasRGBOW() || other.hasRGBOW()))
-    if (getPixelsPerStrip() != other.getPixelsPerStrip())
-      return false;
-    if (getNumberOfStrips() != other.getNumberOfStrips())
-      return false;
-
-    // handle the case where someone changed the config during library runtime
-    if (this.artnet_channel != other.artnet_channel ||
-        this.artnet_universe != other.artnet_universe)
-       return false;
-
-    // if the port's been changed, we need to update
-    if (this.my_port != other.my_port)
-      return false;
-
-    // we should update every time the power total changes significantly
-    if (Math.abs(this.powerTotal - other.powerTotal) > 10000)
-      return false;
-
-    // handle the case where our power domain changed
-    if (this.powerDomain != other.powerDomain)
-      return false;
-    
-    // ditto for number of segments and pusherFlags
-    if (this.segments != other.segments)
-      return false;   
-    
-    if (this.getPusherFlags() != other.getPusherFlags())
-      return false;
-    
-    // if all those other things are the same, then we call it good.
-    return true;
-  }
-*/
-  
 };
+
+#endif

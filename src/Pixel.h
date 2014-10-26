@@ -1,31 +1,31 @@
 
+#ifndef PP_PIXEL
+#define PP_PIXEL
+
+class Pixel;
+typedef std::shared_ptr<Pixel> PixelRef;
+
 
 class Pixel {
-
+    
     friend class Strip;
+    friend class CardThread;
     
 public:
-
-    Pixel() {
-      mRed     = 0;
-      mGreen   = 0;
-      mBlue    = 0;
-      mOrange  = 0;
-      mWhite   = 0;
-    }
-
-    Pixel( uint8_t red, uint8_t green, uint8_t blue )
+    
+    static PixelRef create()
     {
-        Pixel( red, green, blue, 0, 0 );
+        return PixelRef( new Pixel() );
     }
-
-    Pixel( uint8_t red, uint8_t green, uint8_t blue, uint8_t orange, uint8_t white )
+    
+    static PixelRef create( uint8_t red, uint8_t green, uint8_t blue )
     {
-      mRed      = red;
-      mGreen    = green;
-      mBlue     = blue;
-      mOrange   = orange;
-      mWhite    = white;
+        return PixelRef( new Pixel( red, green, blue ) );
+    }
+    
+    static PixelRef create( uint8_t red, uint8_t green, uint8_t blue, uint8_t orange, uint8_t white )
+    {
+        return PixelRef( new Pixel( red, green, blue, orange, white ) );
     }
     
     ~Pixel() {}
@@ -94,6 +94,31 @@ public:
         mWhite  = pixel.mWhite;
       }
     }
+    
+private:
+    
+    Pixel() {
+        mRed     = 0;
+        mGreen   = 0;
+        mBlue    = 0;
+        mOrange  = 0;
+        mWhite   = 0;
+    }
+    
+    Pixel( uint8_t red, uint8_t green, uint8_t blue )
+    {
+        Pixel( red, green, blue, 0, 0 );
+    }
+    
+    Pixel( uint8_t red, uint8_t green, uint8_t blue, uint8_t orange, uint8_t white )
+    {
+        mRed      = red;
+        mGreen    = green;
+        mBlue     = blue;
+        mOrange   = orange;
+        mWhite    = white;
+    }
+
 
 private:
     
@@ -114,3 +139,5 @@ private:
       209, 214, 219, 224, 229, 234, 239, 244, 249, 255 };
 
 };
+
+#endif

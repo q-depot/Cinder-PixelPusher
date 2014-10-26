@@ -1,5 +1,11 @@
 
 
+#pragma once
+
+#include "PixelPusher.h"
+#include "Strip.h"
+
+
 class PusherGroup {
 
 public:
@@ -17,24 +23,22 @@ public:
   
     int size() { return mPushers.size(); }
 
-    std::std::vector<Strip> getStrips()
-    {
-        vector<Strip> strips;
-        for( size_t k=0; k < mPushers.size(); k++ )
-            strips.push_back( mPushers[k]->getStrips() );
-        return strips;
-    }
-
-    void removePusher( PixelPusherRef pusher )
-    {
-        for( size_t k=0; k < mPushers.size(); k++ )
-            if ( mPushers[k] == pusher )
-            {
-                mPushers.erase( mPushers.begin() + k );
-                return;
-            }
-    }
-
+//    std::vector<StripRef> getStrips()
+//    {
+//        std::vector<StripRef>  strips;
+//        std::vector<StripRef>  pusherStrips;
+//        
+//        for( size_t k=0; k < mPushers.size(); k++ )
+//        {
+//            pusherStrips = mPushers[k]->getStrips();
+//
+//            for( size_t i=0; i < pusherStrips.size(); i++ )
+//                strips.push_back( pusherStrips[i] );
+//        }
+//        
+//        return strips;
+//    }
+//    
     void addPusher( PixelPusherRef pusher ) { mPushers.push_back(pusher); }
   
 private:
