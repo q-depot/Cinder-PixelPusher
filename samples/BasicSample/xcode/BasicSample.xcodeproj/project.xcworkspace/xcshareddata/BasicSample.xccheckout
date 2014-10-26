@@ -10,6 +10,8 @@
 	<string>BasicSample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>475BF70DEAA7F4AEFFB560A82EF1F851CBD87E7F</key>
+		<string>github.com:BanTheRewind/Cinder-Asio.git</string>
 		<key>A0EC8390F899479E972485C75E200699F4DD2A4D</key>
 		<string>bitbucket.org:q_bit/cinder-pixelpusher.git</string>
 		<key>AD4B458D0D225ED63FAE0155615993B7D3ECE020</key>
@@ -19,6 +21,8 @@
 	<string>samples/BasicSample/xcode/BasicSample.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>475BF70DEAA7F4AEFFB560A82EF1F851CBD87E7F</key>
+		<string>../../../../../../Cinder-Asio</string>
 		<key>A0EC8390F899479E972485C75E200699F4DD2A4D</key>
 		<string>../../../../..</string>
 		<key>AD4B458D0D225ED63FAE0155615993B7D3ECE020</key>
@@ -39,6 +43,14 @@
 			<string>AD4B458D0D225ED63FAE0155615993B7D3ECE020</string>
 			<key>IDESourceControlWCCName</key>
 			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>475BF70DEAA7F4AEFFB560A82EF1F851CBD87E7F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Cinder-Asio</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
