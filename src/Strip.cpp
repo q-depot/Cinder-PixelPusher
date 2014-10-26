@@ -5,15 +5,14 @@
 #include "DeviceRegistry.h"
 
 
-Strip::Strip( PixelPusherRef pusher, uint8_t stripNumber, int length, bool antiLog )
+Strip::Strip( uint8_t stripNumber, int length, bool antiLog )
 {
     for ( int i = 0; i < length; i++ )
         mPixels.push_back( Pixel::create() );
 
-    mPusher       = pusher;
+//    mPusher       = pusher;
     mStripNumber  = stripNumber;
     mTouched      = false;
-//    mPowerScale   = 1.0;
     mIsRGBOW      = false;
     mUseAntiLog   = antiLog;
     mPixelsBuffer = ci::Buffer( mPixels.size() * 3 );
@@ -26,7 +25,7 @@ void Strip::setRGBOW( bool state )
         return;
     
     mTouched = true;
-    mPusher->markTouched();
+//    mPusher->markTouched();
     int length = mPixels.size();
 
     if ( mIsRGBOW )   // if we're already set to RGBOW mode
@@ -55,13 +54,16 @@ void Strip::setRGBOW( bool state )
 }
 
 
-std::string Strip::getMacAddress() { return mPusher->getMacAddress(); }
+//std::string Strip::getMacAddress()
+//{
+//    return mPusher->getMacAddress();
+//}
 
 
 void Strip::markClean()
 {
     mTouched = false;
-    mPusher->markUntouched();
+//    mPusher->markUntouched();
 }
 
 
@@ -74,107 +76,30 @@ void Strip::setPixels( std::vector<Pixel> pixels )
 
         mPixels[k]->setColor( pixels[k] );
     }
-
-    mTouched    = true;
-    mPushedAt   = 0;
-    mPusher->markTouched();
+    
+    markTouched();
 }
 
 
-void Strip::setPixelRed( uint8_t intensity, int position )
+void Strip::setPixelRGB( int position, uint8_t r, uint8_t g, uint8_t b )
 {
     if (position >= mPixels.size() )
         return;
     
-    if ( mUseAntiLog )
-        mPixels[position]->mRed = sLinearExp[intensity];
-    else
-        mPixels[position]->mRed = intensity;
-
-    mTouched    = true;
-    mPushedAt   = 0;
-    mPusher->markTouched();
+    mPixels[position]->setColorRGB( r, g, b, mUseAntiLog );
+    
+    markTouched();
 }
 
 
-void Strip::setPixelBlue( uint8_t intensity, int position )
+void Strip::setPixelRGBOW( int position, uint8_t r, uint8_t g, uint8_t b, uint8_t o, uint8_t w )
 {
     if (position >= mPixels.size() )
         return;
-
-    if ( mUseAntiLog )
-        mPixels[position]->mBlue = sLinearExp[intensity];
-    else
-        mPixels[position]->mBlue = intensity;
-
-    mTouched = true;
-    mPushedAt = 0;
-    mPusher->markTouched();
-}
-
-
-void Strip::setPixelGreen( uint8_t intensity, int position )
-{
-
-    if ( position >= mPixels.size() )
-        return;
     
-    if ( mUseAntiLog )
-        mPixels[position]->mGreen = sLinearExp[intensity];
-    else
-        mPixels[position]->mGreen = intensity;
-
-    mTouched    = true;
-    mPushedAt   = 0;
-    mPusher->markTouched();
-}
-
-
-void Strip::setPixelOrange( uint8_t intensity, int position )
-{
-    if ( position >= mPixels.size() )
-        return;
-
-    if ( mUseAntiLog )
-        mPixels[position]->mOrange = sLinearExp[intensity];
-    else
-        mPixels[position]->mOrange = intensity;
-
-    mTouched    = true;
-    mPushedAt   = 0;
-    mPusher->markTouched();
-}
-
-
-void Strip::setPixelWhite( uint8_t intensity, int position )
-{
-    if ( position >= mPixels.size() )
-        return;
-
-    if ( mUseAntiLog )
-        mPixels[position]->mWhite = sLinearExp[intensity];
-    else
-        mPixels[position]->mWhite = intensity;
+    mPixels[position]->setColorRGBOW( r, g, b, o, w, mUseAntiLog );
     
-    mTouched    = true;
-    mPushedAt   = 0;
-    mPusher->markTouched();
-}
-
-
-void Strip::setPixel( int color, int position )
-{
-    if (position >= mPixels.size() )
-        return;
-
-    if ( mUseAntiLog )
-        mPixels[position]->setColorAntilog(color);
-    else
-        mPixels[position]->setColor(color);
-
-    mTouched    = true;
-    mPushedAt   = 0;
-    mPusher->markTouched();
+    markTouched();
 }
 
 
@@ -183,16 +108,19 @@ void Strip::setPixel( Pixel pixel, int position )
     if ( position >= mPixels.size() )
         return;
 
-    if ( mUseAntiLog )
-        mPixels[position]->setColor(pixel, true);
-    else
-        mPixels[position]->setColor(pixel);
-
-    mTouched    = true;
-    mPushedAt   = 0;
-    mPusher->markTouched();
+    mPixels[position]->setColor( pixel, mUseAntiLog );
+    
+    markTouched();
 }
 
+
+void Strip::markTouched()
+{
+    
+    mTouched    = true;
+    mPushedAt   = 0;
+//    mPusher->markTouched();
+}
 
 
 void Strip::updatePixelsBuffer()

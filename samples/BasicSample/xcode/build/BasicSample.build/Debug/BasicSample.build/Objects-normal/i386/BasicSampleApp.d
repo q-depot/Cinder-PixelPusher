@@ -1,12 +1,12 @@
 dependencies: \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp \
   ../../../../../include/cinder/app/AppNative.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../src/Strip.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../src/Pixel.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../src/DeviceRegistry.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/UdpServer.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/ServerInterface.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/DispatcherInterface.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.h \
   ../../../../../boost/boost/asio.hpp \
   ../../../../../boost/boost/asio/async_result.hpp \
   ../../../../../boost/boost/asio/detail/config.hpp \
@@ -325,11 +325,11 @@ dependencies: \
   ../../../../../boost/boost/asio/windows/stream_handle_service.hpp \
   ../../../../../boost/boost/asio/write_at.hpp \
   ../../../../../boost/boost/asio/impl/write_at.hpp \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/UdpSession.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/SessionInterface.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../src/PusherGroup.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../src/PixelPusher.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../src/PusherCommand.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../src/DeviceHeader.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpSession.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/SessionInterface.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherCommand.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h \
   ../../../../../boost/boost/enable_shared_from_this.hpp \
   ../../../../../boost/boost/smart_ptr/enable_shared_from_this.hpp

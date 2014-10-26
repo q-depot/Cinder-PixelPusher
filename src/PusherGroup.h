@@ -21,7 +21,7 @@ public:
     
     std::vector<PixelPusherRef> getPushers() { return mPushers; }
   
-    int size() { return mPushers.size(); }
+    size_t getNumPushers() { return mPushers.size(); }
 
 //    std::vector<StripRef> getStrips()
 //    {

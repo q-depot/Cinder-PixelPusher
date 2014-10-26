@@ -213,9 +213,9 @@ void PixelPusher::copyHeader( PixelPusherRef device )
         mSegments = device->mSegments;
     }
     
-    if ( !mStrips.empty() )
-        for( size_t k=0; k < mStrips.size(); k++ )
-            mStrips[k]->setPusher( shared_from_this() );
+//    if ( !mStrips.empty() )
+//        for( size_t k=0; k < mStrips.size(); k++ )
+//            mStrips[k]->setPusher( shared_from_this() );
 }
 
 
@@ -276,7 +276,7 @@ void PixelPusher::createStrips()
 {
     for( uint8_t k = 0; k < mStripsAttached; k++ )
     {
-        StripRef strip = Strip::create( shared_from_this(), k, mPixelsPerStrip );
+        StripRef strip = Strip::create( k, mPixelsPerStrip );
 
         if ( ( mStripFlags[k] & SFLAG_LOGARITHMIC ) != 0 )
             strip->useAntiLog(false);
@@ -297,9 +297,6 @@ void PixelPusher::createStrips()
         
         mStrips.push_back( strip );
     }
-    
-    mTouchedStrips = false;
-    
 }
 
 
@@ -350,3 +347,14 @@ bool PixelPusher::isEqual( PixelPusherRef otherDevice )
     
     return true;
 }
+
+
+bool PixelPusher::hasTouchedStrips()
+{
+    for( size_t k=0; k < mStrips.size(); k++ )
+        if ( mStrips[k]->isTouched() )
+            return true;
+
+    return false;
+}
+

@@ -167,11 +167,11 @@ public:
 
     bool isBusy() { return mIsBusy; }
 
-    bool hasTouchedStrips() { return mTouchedStrips; }
+    bool hasTouchedStrips();
   
-    void markUntouched() {  mTouchedStrips = false; }
+//    void markUntouched() {  mTouchedStrips = false; }
   
-    void markTouched() { mTouchedStrips = true; }
+//    void markTouched() { mTouchedStrips = true; }
   
     std::vector<StripRef> getTouchedStrips();
         
@@ -249,8 +249,8 @@ private:
     
     uint16_t        mPort;
     
-    bool            mTouchedStrips;
-    bool            mUseAntiLog;
+//    bool            mTouchedStrips;
+    bool            mUseAntiLog;            // TODO: again this variable is every fucking where! DeviceRegistry should keep the global value!
     std::string     mFilename;
     bool            mAmRecording;
     bool            mIsBusy;

@@ -56,9 +56,7 @@ void BasicSampleApp::update()
                 if ( k == 0 )
                     col = Color( 0.2, 0.0, 0.0 );
                 
-                strips[k]->setPixelRed(     (uint8_t)( col.r * 255 ), i );
-                strips[k]->setPixelGreen(   (uint8_t)( col.g * 255 ), i );
-                strips[k]->setPixelBlue(    (uint8_t)( col.b * 255 ), i );
+                strips[k]->setPixelRGB( i, (uint8_t)( col.r * 255 ), (uint8_t)( col.g * 255 ), (uint8_t)( col.b * 255 ) );
                 
             }
         }

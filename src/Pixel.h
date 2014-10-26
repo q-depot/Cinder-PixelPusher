@@ -30,69 +30,68 @@ public:
     
     ~Pixel() {}
     
-    /*
-    Pixel( int color )
-    {
-        setColor(color);
-    }
-    */
-    
-//    Pixel( int color, bool useAntilog )
+//    void setColor( int color ) 
 //    {
-//        if (useAntilog)
-//            setColorAntilog(color);
-//        else
-//            setColor(color);
+//      mBlue   = color & 0xff;
+//      mGreen  = (color >> 8) & 0xff;
+//      mRed    = (color >> 16) & 0xff;
+//      mOrange = 0;
+//      mWhite  = 0;
 //    }
-//    
-    // Processing "color" objects only support the axes of red, green and blue.
-    void setColor( int color ) 
+
+
+    void setColor( Pixel pixel, bool useAntiLog = false )
     {
-      mBlue   = color & 0xff;
-      mGreen  = (color >> 8) & 0xff;
-      mRed    = (color >> 16) & 0xff;
-      mOrange = 0;
-      mWhite  = 0;
+        if (useAntiLog)
+        {
+            mRed    = sLinearExp[pixel.mRed];
+            mBlue   = sLinearExp[pixel.mBlue];
+            mGreen  = sLinearExp[pixel.mGreen];
+            mOrange = sLinearExp[pixel.mOrange];
+            mWhite  = sLinearExp[pixel.mWhite];
+        }
+        else
+        {
+            mRed    = pixel.mRed;
+            mBlue   = pixel.mBlue;
+            mGreen  = pixel.mGreen;
+            mOrange = pixel.mOrange;
+            mWhite  = pixel.mWhite;
+        }
     }
-
-
-    void setColorAntilog( int color )
+    
+    
+    void setColorRGB( uint8_t r, uint8_t g, uint8_t b, bool useAntiLog = false )
     {
-      mBlue   = sLinearExp[(int)(color & 0xff)];
-      mGreen  = sLinearExp[(int)((color >> 8) & 0xff)];
-      mRed    = sLinearExp[((int)(color >> 16) & 0xff)];
-      mOrange = 0;
-      mWhite  = 0;
+        if ( useAntiLog )
+        {
+            mRed     = sLinearExp[r];
+            mGreen   = sLinearExp[g];
+            mBlue    = sLinearExp[b];
+        }
+        else
+        {
+            mRed     = r;
+            mGreen   = g;
+            mBlue    = b;
+        }
     }
-
-
-    void setColor( Pixel pixel )
+    
+    
+    void setColorRGBOW( uint8_t r, uint8_t g, uint8_t b, uint8_t o, uint8_t w, bool useAntiLog = false )
     {
-      mRed      = pixel.mRed;
-      mBlue     = pixel.mBlue;
-      mGreen    = pixel.mGreen;
-      mOrange   = pixel.mOrange;
-      mWhite    = pixel.mWhite;
-    }
-
-    void setColor( Pixel pixel, bool useAntiLog )
-    {
-      if (useAntiLog)
-      {
-        mRed    = sLinearExp[pixel.mRed & 0xff];
-        mBlue   = sLinearExp[pixel.mBlue  & 0xff];
-        mGreen  = sLinearExp[pixel.mGreen & 0xff];
-        mOrange = sLinearExp[pixel.mOrange & 0xff];
-        mWhite  = sLinearExp[pixel.mWhite & 0xff];
-      }
-      else
-      {
-        mRed    = pixel.mRed;
-        mBlue   = pixel.mBlue;
-        mGreen  = pixel.mGreen;
-        mOrange = pixel.mOrange;
-        mWhite  = pixel.mWhite;
-      }
+        if ( useAntiLog )
+        {
+            mOrange  = sLinearExp[r];
+            mWhite   = sLinearExp[g];
+        }
+        else
+        {
+            mOrange  = sLinearExp[o];
+            mWhite   = sLinearExp[w];
+        }
+        
+        setColorRGB( r, g, b, useAntiLog );
     }
     
 private:

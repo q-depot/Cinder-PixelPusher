@@ -8,33 +8,28 @@
 
 // TODO: why a strip should have a reference to the pusher??????
 
-
-class PixelPusher;
-typedef std::shared_ptr<PixelPusher> PixelPusherRef;
+//class PixelPusher;
+//typedef std::shared_ptr<PixelPusher> PixelPusherRef;
 
 class Strip;
 typedef std::shared_ptr<Strip> StripRef;
 
+// TODO: anti log should be a global property part of the DeviceRegistry!!!!!!!!
 
 class Strip {
 
   public:
     
-    static StripRef create( PixelPusherRef pusher, uint8_t stripNumber, int length, bool antiLog )
+    static StripRef create( uint8_t stripNumber, int length, bool antiLog = false )
     {
-        return StripRef( new Strip( pusher, stripNumber, length, antiLog ) );
-    }
-    
-    static StripRef create( PixelPusherRef pusher, uint8_t stripNumber, int length)
-    {
-        return StripRef( new Strip( pusher, stripNumber, length, false ) );
+        return StripRef( new Strip( stripNumber, length, antiLog ) );
     }
     
     ~Strip() {}
     
-    PixelPusherRef getPusher() {
-        return mPusher;
-    }
+//    PixelPusherRef getPusher() {
+//        return mPusher;
+//    }
 
     // get the RGBOW state of the strip.
     bool getRGBOW() { return mIsRGBOW; }
@@ -46,7 +41,7 @@ class Strip {
 
 //    void setPowerScale(double scale) { mPowerScale = scale; }
 
-    std::string getMacAddress();
+//    std::string getMacAddress();
 
     // synchronized
     bool isTouched() { return mTouched; }
@@ -67,17 +62,14 @@ class Strip {
     ///////////////////
     // TODO: replace the setPixel RGB with something that makes sense!!!!!!!!!!!!!! <<<<<<<<<<<<<<<
     
-    void setPixelRed( uint8_t intensity, int position );
-    void setPixelBlue( uint8_t intensity, int position );
-    void setPixelGreen( uint8_t intensity, int position );
-    void setPixelOrange( uint8_t intensity, int position );
-    void setPixelWhite( uint8_t intensity, int position );
-    void setPixel( int color, int position );
+    void setPixelRGB( int position, uint8_t r, uint8_t g, uint8_t b );
+    void setPixelRGBOW( int position, uint8_t r, uint8_t g, uint8_t b, uint8_t o, uint8_t w );
+
     void setPixel( Pixel pixel, int position );
   
     void useAntiLog( bool antiLog ) { mUseAntiLog = antiLog; }
 
-    void setPusher( PixelPusherRef pixelPusher ) { mPusher = pixelPusher; }
+//    void setPusher( PixelPusherRef pixelPusher ) { mPusher = pixelPusher; }
     
     bool isMotion() { return mIsMotion; }
 
@@ -100,12 +92,14 @@ class Strip {
     
 private:
     
-    Strip( PixelPusherRef pusher, uint8_t stripNumber, int length, bool antiLog );
+    Strip( uint8_t stripNumber, int length, bool antiLog );
+    
+    void markTouched();
     
   private:
 
     std::vector<PixelRef>   mPixels;
-    PixelPusherRef          mPusher;
+//    PixelPusherRef          mPusher;
     long int                mPushedAt;
     uint8_t                 mStripNumber;
     bool                    mTouched;
