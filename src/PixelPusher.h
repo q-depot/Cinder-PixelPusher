@@ -21,6 +21,7 @@
 #include "PusherCommand.h"
 #include "DeviceHeader.h"
 #include <boost/enable_shared_from_this.hpp>
+#include "UdpClient.h"
 
 
 class Strip;
@@ -29,8 +30,8 @@ typedef std::shared_ptr<Strip> StripRef;
 class PixelPusher;
 typedef std::shared_ptr<PixelPusher> PixelPusherRef;
 
-class CardThread;
-typedef std::shared_ptr<CardThread> CardThreadRef;
+//class CardThread;
+//typedef std::shared_ptr<CardThread> CardThreadRef;
 
 
 class PixelPusher : public std::enable_shared_from_this<PixelPusher> {
@@ -172,10 +173,7 @@ public:
         
     uint64_t getPowerDomain() { return mPowerDomain; }
 
-    void shutDown()
-    {
-        clearBusy();
-    }
+    void shutDown() { clearBusy(); }
 
     bool isMulticast() { return mMulticast; }
 
@@ -206,10 +204,10 @@ private:
 
     void createStrips();
     
-    /**
-       * All access (including iteration) and mutation must be performed
-       * while holding stripLock
-       */
+    void sendPacketToPusher();
+    void onConnect( UdpSessionRef session );
+    void onError( std::string err, size_t bytesTransferred );
+    
     
 private:
     
@@ -257,8 +255,23 @@ private:
     std::vector<int8_t>    mStripFlags;
     
 	DeviceHeader	mDeviceHeader;
-    CardThreadRef   mCardThread;
+//    CardThreadRef   mCardThread;
 
+    // update Thread
+    UdpClientRef	mClient;
+    UdpSessionRef	mSession;
+    
+    
+    uint64_t        mThreadSleepMsec;
+    uint64_t        mThreadExtraDelayMsec;
+    //    uint64_t        mBandwidthEstimate;
+    
+    ci::Buffer      mPacketBuffer;
+    
+    std::thread     mSendDataThread;
+    bool            mRunThread;
+    uint64_t        mPacketNumber;
+    
 };
 
 #endif

@@ -13,7 +13,6 @@
 		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
 		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		01DF91FFF1C34B0C84FD5AC9 /* BasicSampleApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788A5B45C29F4938B7C2582D /* BasicSampleApp.cpp */; };
-		108F0E6F19FD95380034CAA7 /* CardThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 108F0DBD19FD95380034CAA7 /* CardThread.cpp */; };
 		108F0E7019FD95380034CAA7 /* DeviceRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 108F0DC119FD95380034CAA7 /* DeviceRegistry.cpp */; };
 		108F0E7119FD95380034CAA7 /* PixelPusher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 108F0DC419FD95380034CAA7 /* PixelPusher.cpp */; };
 		108F0E7319FD95380034CAA7 /* Strip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 108F0DC919FD95380034CAA7 /* Strip.cpp */; };
@@ -41,8 +40,6 @@
 		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		108F0DBD19FD95380034CAA7 /* CardThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CardThread.cpp; sourceTree = "<group>"; };
-		108F0DBE19FD95380034CAA7 /* CardThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardThread.h; sourceTree = "<group>"; };
 		108F0DC019FD95380034CAA7 /* DeviceHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceHeader.h; sourceTree = "<group>"; };
 		108F0DC119FD95380034CAA7 /* DeviceRegistry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DeviceRegistry.cpp; sourceTree = "<group>"; };
 		108F0DC219FD95380034CAA7 /* DeviceRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceRegistry.h; sourceTree = "<group>"; };
@@ -170,8 +167,6 @@
 		108F0DBC19FD95380034CAA7 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				108F0DBD19FD95380034CAA7 /* CardThread.cpp */,
-				108F0DBE19FD95380034CAA7 /* CardThread.h */,
 				108F0DC019FD95380034CAA7 /* DeviceHeader.h */,
 				108F0DC119FD95380034CAA7 /* DeviceRegistry.cpp */,
 				108F0DC219FD95380034CAA7 /* DeviceRegistry.h */,
@@ -356,7 +351,6 @@
 				10AD368F19FC0C8900EA5F9A /* TcpServer.cpp in Sources */,
 				01DF91FFF1C34B0C84FD5AC9 /* BasicSampleApp.cpp in Sources */,
 				108F0E7119FD95380034CAA7 /* PixelPusher.cpp in Sources */,
-				108F0E6F19FD95380034CAA7 /* CardThread.cpp in Sources */,
 				108F0E7019FD95380034CAA7 /* DeviceRegistry.cpp in Sources */,
 				10AD369219FC0C8900EA5F9A /* UdpServer.cpp in Sources */,
 				10AD369319FC0C8900EA5F9A /* UdpSession.cpp in Sources */,

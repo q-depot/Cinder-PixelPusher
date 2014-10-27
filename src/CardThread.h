@@ -28,8 +28,6 @@ public:
 //    bool controls(PixelPusher test) { return test.equals( mPusher); }
 
 //    int getBandwidthEstimate() { return mBandwidthEstimate; }
-
-    void run();
     
     void shutDown();
     
