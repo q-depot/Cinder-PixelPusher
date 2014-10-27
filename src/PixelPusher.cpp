@@ -102,7 +102,7 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
     if ( packetSize > 30 + stripFlagSize && swRev > 116 )
     {
         // set Pusher flags
-        uint64_t pusherFlags;
+        uint32_t pusherFlags;
         memcpy( &pusherFlags, &packet[32+stripFlagSize], 4 );
         setPusherFlags( pusherFlags );
         
@@ -297,7 +297,7 @@ void PixelPusher::createStrips()
 bool PixelPusher::isEqual( PixelPusherRef otherDevice )
 {
     // if it differs by less than half a msec, it has no effect on our timing
-    int updatePeriod = getUpdatePeriod() - otherDevice->getUpdatePeriod();     // update period is uint64_t
+    int updatePeriod = getUpdatePeriod() - otherDevice->getUpdatePeriod();     // update period is uint32_t
     if ( std::abs( updatePeriod ) > 500 )
         return false;
     
@@ -324,7 +324,7 @@ bool PixelPusher::isEqual( PixelPusherRef otherDevice )
         return false;
     
     // we should update every time the power total changes significantly
-    int powerTotal = mPowerTotal - otherDevice->getPowerTotal();     // power total is uint64_t
+    int powerTotal = mPowerTotal - otherDevice->getPowerTotal();     // power total is uint32_t
     if ( std::abs( powerTotal ) > 10000 )
         return false;
     
@@ -389,6 +389,7 @@ void PixelPusher::onConnect( UdpSessionRef session )
     mSession->connectErrorEventHandler( &PixelPusher::onError, this );
 }
 
+
 void PixelPusher::onError( std::string err, size_t bytesTransferred )
 {
     ci::app::console() << "PixelPusher Socket ERROR: " << err << std::endl;
@@ -417,13 +418,19 @@ void PixelPusher::sendPacketToPusher()
     {
         if ( mSession && mSession->getSocket()->is_open() )
         {
-            // IF no commands queue AND no touched strips RETURN
-            
             touchedStrips = getTouchedStrips();
             
+            // no commands or touched strips, nothing to do
+            if ( mCommandQueue.empty() && touchedStrips.empty() )
+            {
+                std::this_thread::sleep_for( std::chrono::milliseconds( mThreadSleepMsec ) );
+                continue;
+            }
+                
             maxStripsPerPacket  = getMaxStripsPerPacket();
             stripPerPacket      = std::min( (uint8_t)maxStripsPerPacket, getStripsAttached() );
             
+            // adjust thread speed
             if ( getUpdatePeriod() > 1000 )
                 mThreadSleepMsec = ( getUpdatePeriod() / 1000 ) + 1;
             else                                                                                    // Shoot for the framelimit.
@@ -437,104 +444,104 @@ void PixelPusher::sendPacketToPusher()
             
             stripIdx = 0;
             
-            // send packet
+            // first check to see if we have an outstanding command.
+            
+            bool commandSent = false;
+            
+            // SEND COMMANDS FIRST
+            /*
+             if (!(mPusher->commandQueue.isEmpty())) {
+             commandSent = true;
+             System.out.println("Pusher "+mPusher->getMacAddress()+" has a PusherCommand outstanding.");
+             PusherCommand pc = mPusher->commandQueue.remove();
+             byte[] commandBytes= pc.generateBytes();
+             
+             packetLength = 0;
+             
+             // Packet number
+             memcpy( &packetData[packetLength], &mPacketNumber, 4 );
+             packetLength += 4;
+             
+             for(int j = 0; j < commandBytes.length; j++) {
+             this.packet[packetLength++] = commandBytes[j];
+             }
+             // We need fixed size datagrams for the Photon, because the cc3000 sucks.
+             if ((mPusher->getPusherFlags() & mPusher->PFLAG_FIXEDSIZE) != 0) {
+             packetLength = 4 + ((1 + 3 * mPusher->getPixelsPerStrip()) * stripPerPacket);
+             }
+             packetNumber++;
+             udppacket = new DatagramPacket(packet, packetLength, cardAddress,
+             pusherPort);
+             try {
+             udpsocket.send(udppacket);
+             } catch (IOException ioe) {
+             System.err.println("IOException: " + ioe.getMessage());
+             }
+             
+             totalLength += packetLength;
+             
+             } else {
+             commandSent = false;
+             }
+             */
+            
+            
+            // send strip data
             while( stripIdx < touchedStrips.size() )
             {
                 packetLength    = 0;
                 payload         = false;
                 
                 // Packet number
-                packetData[packetLength++] = mPacketNumber & 0xFF;
-                packetData[packetLength++] = (mPacketNumber >> 8) & 0xFF;
-                packetData[packetLength++] = (mPacketNumber >> 16) & 0xFF;
-                packetData[packetLength++] = (mPacketNumber >> 24) & 0xFF;
+                memcpy( &packetData[packetLength], &mPacketNumber, 4 );
+                packetLength += 4;
                 
-                
-                // first check to see if we have an outstanding command.
-                
-                bool commandSent = false;
-                
-                // SEND COMMANDS FIRST
-                /*
-                 if (!(mPusher->commandQueue.isEmpty())) {
-                 commandSent = true;
-                 System.out.println("Pusher "+mPusher->getMacAddress()+" has a PusherCommand outstanding.");
-                 PusherCommand pc = mPusher->commandQueue.remove();
-                 byte[] commandBytes= pc.generateBytes();
-                 
-                 packetLength = 0;
-                 packetNumberArray = ByteUtils.unsignedIntToByteArray(packetNumber, true);
-                 for(int j = 0; j < packetNumberArray.length; j++) {
-                 this.packet[packetLength++] = packetNumberArray[j];
-                 }
-                 for(int j = 0; j < commandBytes.length; j++) {
-                 this.packet[packetLength++] = commandBytes[j];
-                 }
-                 // We need fixed size datagrams for the Photon, because the cc3000 sucks.
-                 if ((mPusher->getPusherFlags() & mPusher->PFLAG_FIXEDSIZE) != 0) {
-                 packetLength = 4 + ((1 + 3 * mPusher->getPixelsPerStrip()) * stripPerPacket);
-                 }
-                 packetNumber++;
-                 udppacket = new DatagramPacket(packet, packetLength, cardAddress,
-                 pusherPort);
-                 try {
-                 udpsocket.send(udppacket);
-                 } catch (IOException ioe) {
-                 System.err.println("IOException: " + ioe.getMessage());
-                 }
-                 
-                 totalLength += packetLength;
-                 
-                 } else {
-                 commandSent = false;
-                 }
-                 */
-                
-                if ( !commandSent )
+                // packetData[packetLength++] = mPacketNumber & 0xFF;
+                // packetData[packetLength++] = (mPacketNumber >> 8) & 0xFF;
+                // packetData[packetLength++] = (mPacketNumber >> 16) & 0xFF;
+                // packetData[packetLength++] = (mPacketNumber >> 24) & 0xFF;
+               
+                // Now loop over remaining strips.
+                for ( int k = 0; k < stripPerPacket; k++ )
                 {
+                    if ( stripIdx >= touchedStrips.size() )
+                        break;
                     
-                    // Now loop over remaining strips.
-                    for ( int k = 0; k < stripPerPacket; k++ )
-                    {
-                        if ( stripIdx >= touchedStrips.size() )
-                            break;
-                        
-                        strip = touchedStrips[stripIdx++];
-                        
-                        
-                        // add strip number
-                        packetData[packetLength++] = strip->getStripNumber();
-                        
-                        // update pixels buffer
-                        strip->updatePixelsBuffer();
-                        
-                        stripData       = strip->getPixelsData();
-                        stripDataSize   = strip->getPixelsDataSize();
-                        
-                        
-                        // add pixels data
-                        memcpy( &packetData[packetLength], stripData, stripDataSize );
-                        packetLength += stripDataSize;
-                        
-                        
-                        // Don't weed untouched strips if we are recording.
-                        //    if (!fileIsOpen) {
-                        //        if (!strip.isTouched() && ((mPusher->getPusherFlags() & mPusher->PFLAG_FIXEDSIZE) == 0))
-                        //            continue;
-                        //    }
-                        
-                        payload = true;
-                    }
+                    strip = touchedStrips[stripIdx++];
                     
-                    if ( payload )
-                    {
-                        // send packet
-                        mSession->write( mPacketBuffer );
-                        mPacketNumber++;
-                        payload = false;
-                    }
+                    
+                    // add strip number
+                    packetData[packetLength++] = strip->getStripNumber();
+                    
+                    // update pixels buffer
+                    strip->updatePixelsBuffer();
+                    
+                    stripData       = strip->getPixelsData();
+                    stripDataSize   = strip->getPixelsDataSize();
+                    
+                    
+                    // add pixels data
+                    memcpy( &packetData[packetLength], stripData, stripDataSize );
+                    packetLength += stripDataSize;
+                    
+                    // Don't weed untouched strips if we are recording.
+                    //    if (!fileIsOpen) {
+                    //        if (!strip.isTouched() && ((mPusher->getPusherFlags() & mPusher->PFLAG_FIXEDSIZE) == 0))
+                    //            continue;
+                    //    }
+                    
+                    payload = true;
+                }
+                
+                if ( payload )
+                {
+                    // send packet
+                    mSession->write( mPacketBuffer );
+                    mPacketNumber++;
+                    payload = false;
                 }
             }
+            
             std::this_thread::sleep_for( std::chrono::milliseconds( mThreadSleepMsec ) );
         }
         else

@@ -331,5 +331,7 @@ dependencies: \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h \
   ../../../../../boost/boost/enable_shared_from_this.hpp \
   ../../../../../boost/boost/smart_ptr/enable_shared_from_this.hpp \
+  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h

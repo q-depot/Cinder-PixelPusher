@@ -19,10 +19,12 @@ class BasicSampleApp : public AppNative {
     DeviceRegistryRef   mDeviceRegistry;
 };
 
+
 void BasicSampleApp::setup()
 {
     mDeviceRegistry = DeviceRegistry::create( io_service() );
 }
+
 
 void BasicSampleApp::mouseDown( MouseEvent event )
 {

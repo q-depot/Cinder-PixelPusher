@@ -1,4 +1,7 @@
 
+#ifndef PIXEL_PUSHER_DEVICE_REGISTRY
+#define PIXEL_PUSHER_DEVICE_REGISTRY
+
 #pragma once
 
 #include "UdpServer.h"
@@ -53,34 +56,32 @@ private:
 	UdpSessionRef   mSession;
     
 private:
-//    static Semaphore updateLock;
-//    DiscoveryListenerThread _dlt;
-//    
-    static double   OverallBrightnessScale;
-    static bool     UseOverallBrightnessScale;
-    static uint64_t TotalPower;
-    static uint64_t TotalPowerLimit;
-    static double   PowerScale;
-    static bool     AutoThrottle;
-    static bool     AntiLog;
-    static int      FrameLimit;
-    static bool     HasDiscoveryListener;
-    static bool     AlreadyExist;
+
+    static double       OverallBrightnessScale;
+    static bool         UseOverallBrightnessScale;
+    static uint32_t     TotalPower;
+    static uint32_t     TotalPowerLimit;
+    static double       PowerScale;
+    static bool         AutoThrottle;
+    static bool         AntiLog;
+    static int          FrameLimit;
+    static bool         HasDiscoveryListener;
+    static bool     	AlreadyExist;
     
 private:
     
     std::map<std::string, double>           mPusherLastSeenMap;
     std::map<std::string, PixelPusherRef>   mPusherMap;
     std::vector<PixelPusherRef>             mPushersSorted;
-    std::map<uint64_t, PusherGroup>         mGroupMap;
+    std::map<uint32_t, PusherGroup>         mGroupMap;
     boost::asio::io_service&                mIoService;
     
     
 //    boolean expiryEnabled = true;
 //    Timer expiryTimer;
-//    SceneThread sceneThread;
-//    TreeSet<PixelPusher> sortedPushers;
 //    public Boolean hasDeviceExpiryTask=false;
   
 };
 
+
+#endif

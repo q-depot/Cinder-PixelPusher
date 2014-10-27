@@ -1,15 +1,13 @@
 
-#ifndef PP_PIXEL
-#define PP_PIXEL
+#ifndef PIXEL_PUSHER_PIXEL
+#define PIXEL_PUSHER_PIXEL
 
 class Pixel;
 typedef std::shared_ptr<Pixel> PixelRef;
 
-
 class Pixel {
     
     friend class Strip;
-    friend class CardThread;
     
 public:
     
@@ -30,16 +28,6 @@ public:
     
     ~Pixel() {}
     
-//    void setColor( int color ) 
-//    {
-//      mBlue   = color & 0xff;
-//      mGreen  = (color >> 8) & 0xff;
-//      mRed    = (color >> 16) & 0xff;
-//      mOrange = 0;
-//      mWhite  = 0;
-//    }
-
-
     void setColor( Pixel pixel, bool useAntiLog = false )
     {
         if (useAntiLog)

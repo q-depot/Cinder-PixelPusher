@@ -11,6 +11,9 @@
    * uint32_t link_speed; // in bits per second
    */
 
+#ifndef PIXEL_PUSHER_DEVICE_HEADER
+#define PIXEL_PUSHER_DEVICE_HEADER
+
 enum DeviceType {
   ETHERDREAM, 
   LUMIABRIDGE, 
@@ -50,6 +53,7 @@ class DeviceHeader {
     
     ~DeviceHeader()
     {
+        // TODO: clean up!
 //            delete[] mPacketRemainder;
     }
     
@@ -79,7 +83,7 @@ class DeviceHeader {
     uint32_t    getProductId()          { return mProductId; }
     uint32_t    getHardwareRevision()   { return mHardwareRevision; }
     uint32_t    getSoftwareRevision()   { return mSoftwareRevision; }
-    uint64_t    getLinkSpeed()          { return mLinkSpeed; }
+    uint32_t    getLinkSpeed()          { return mLinkSpeed; }
     
     bool        isMulticast()           { return ( mIpAddress[0] >= 224 && mIpAddress[0] <= 239 ); }
     
@@ -179,3 +183,5 @@ typedef struct DiscoveryPacket {
     Particulars p;
 } DiscoveryPacket;
 */
+
+#endif

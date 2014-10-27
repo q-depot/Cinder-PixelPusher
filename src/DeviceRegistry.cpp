@@ -6,8 +6,8 @@
 
 double   DeviceRegistry::OverallBrightnessScale     = 1.0;
 bool     DeviceRegistry::UseOverallBrightnessScale  = false;
-uint64_t DeviceRegistry::TotalPower                 = 0;
-uint64_t DeviceRegistry::TotalPowerLimit            = -1;
+uint32_t DeviceRegistry::TotalPower                 = 0;
+uint32_t DeviceRegistry::TotalPowerLimit            = -1;
 double   DeviceRegistry::PowerScale                 = 1.0;
 bool     DeviceRegistry::AutoThrottle               = false;
 bool     DeviceRegistry::AntiLog                    = false;

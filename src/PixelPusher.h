@@ -13,8 +13,8 @@
    * int16_t my_port;
    */
 
-#ifndef PP_DEVICE
-#define PP_DEVICE
+#ifndef PIXEL_PUSHER_DEVICE
+#define PIXEL_PUSHER_DEVICE
 
 #pragma once
 
@@ -78,7 +78,7 @@ public:
 	uint32_t    getProductId()			{ return mDeviceHeader.getProductId(); }
 	uint32_t    getHardwareRevision()	{ return mDeviceHeader.getHardwareRevision(); }
 	uint32_t    getSoftwareRevision()	{ return mDeviceHeader.getSoftwareRevision(); }
-	uint64_t    getLinkSpeed()          { return mDeviceHeader.getLinkSpeed(); }
+	uint32_t    getLinkSpeed()          { return mDeviceHeader.getLinkSpeed(); }
     uint32_t    getSegments()           { return mSegments; }
     int         getNumberOfStrips()     { return mStrips.size(); }
     
@@ -102,17 +102,17 @@ public:
 
     int getPixelsPerStrip() { return mPixelsPerStrip; }
 
-    uint64_t getPusherFlags() { return mPusherFlags; }
+    uint32_t getPusherFlags() { return mPusherFlags; }
 
-    void setPusherFlags( uint64_t pusherFlags ) { mPusherFlags = pusherFlags; }
+    void setPusherFlags( uint32_t pusherFlags ) { mPusherFlags = pusherFlags; }
     
-    uint64_t getUpdatePeriod()  { return mUpdatePeriod; }
-    uint64_t getPowerTotal()    { return mPowerTotal; }
-    uint64_t getDeltaSequence() { return mDeltaSequence; }
+    uint32_t getUpdatePeriod()  { return mUpdatePeriod; }
+    uint32_t getPowerTotal()    { return mPowerTotal; }
+    uint32_t getDeltaSequence() { return mDeltaSequence; }
     
     uint8_t getStripsAttached() { return mStripsAttached; }
     
-    void increaseExtraDelay( uint64_t i )
+    void increaseExtraDelay( uint32_t i )
     {
         if ( mAutothrottle )
         {
@@ -123,12 +123,12 @@ public:
             ci::app::console() << "Group " << mGroupOrdinal << " card " << mControllerOrdinal << " would increase delay, but autothrottle is disabled." << std::endl;
     }
 
-    void decreaseExtraDelay( uint64_t i )
+    void decreaseExtraDelay( uint32_t i )
     {
-        mExtraDelayMsec = std::max( (uint64_t)0, mExtraDelayMsec - i );
+        mExtraDelayMsec = std::max( (uint32_t)0, mExtraDelayMsec - i );
     }
     
-    uint64_t getExtraDelay()
+    uint32_t getExtraDelay()
     {
         if ( mAutothrottle )
             return mExtraDelayMsec;
@@ -136,10 +136,10 @@ public:
             return 0;
     }
     
-    void setExtraDelay( uint64_t i ) { mExtraDelayMsec = i; }
+    void setExtraDelay( uint32_t i ) { mExtraDelayMsec = i; }
     
-    uint64_t getControllerOrdinal() { return mControllerOrdinal; }
-    uint64_t getGroupOrdinal() { return mGroupOrdinal; }
+    uint32_t getControllerOrdinal() { return mControllerOrdinal; }
+    uint32_t getGroupOrdinal() { return mGroupOrdinal; }
 
     void updateVariables( PixelPusherRef device );
         
@@ -171,7 +171,7 @@ public:
   
     std::vector<StripRef> getTouchedStrips();
         
-    uint64_t getPowerDomain() { return mPowerDomain; }
+    uint32_t getPowerDomain() { return mPowerDomain; }
 
     void shutDown() { clearBusy(); }
 
@@ -214,7 +214,7 @@ private:
       // private final Object stripLock = new Object();
     
     std::vector<StripRef> mStrips;
-    uint64_t              mExtraDelayMsec;
+    uint32_t              mExtraDelayMsec;
     bool                  mAutothrottle;
   
     bool                  mMulticast;
@@ -239,10 +239,8 @@ private:
     uint16_t        mArtnetUniverse;
     uint16_t        mArtnetChannel;
 
-    
     uint16_t        mPort;
     
-//    bool            mTouchedStrips;
     bool            mUseAntiLog;            // TODO: again this variable is every fucking where! DeviceRegistry should keep the global value!
     std::string     mFilename;
     bool            mAmRecording;
@@ -255,22 +253,21 @@ private:
     std::vector<int8_t>    mStripFlags;
     
 	DeviceHeader	mDeviceHeader;
-//    CardThreadRef   mCardThread;
 
     // update Thread
     UdpClientRef	mClient;
     UdpSessionRef	mSession;
     
     
-    uint64_t        mThreadSleepMsec;
-    uint64_t        mThreadExtraDelayMsec;
-    //    uint64_t        mBandwidthEstimate;
+    uint32_t        mThreadSleepMsec;
+    uint32_t        mThreadExtraDelayMsec;
+    //    uint32_t        mBandwidthEstimate;
     
     ci::Buffer      mPacketBuffer;
     
     std::thread     mSendDataThread;
     bool            mRunThread;
-    uint64_t        mPacketNumber;
+    uint32_t        mPacketNumber;
     
 };
 
