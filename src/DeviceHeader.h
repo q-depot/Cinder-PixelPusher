@@ -1,15 +1,3 @@
-  /**
-   * Device Header format:
-   * uint8_t mac_address[6];
-   * uint8_t ip_address[4];
-   * uint8_t device_type;
-   * uint8_t protocol_version; // for the device, not the discovery
-   * uint16_t vendor_id;
-   * uint16_t product_id;
-   * uint16_t hw_revision;
-   * uint16_t sw_revision;
-   * uint32_t link_speed; // in bits per second
-   */
 
 #ifndef PIXEL_PUSHER_DEVICE_HEADER
 #define PIXEL_PUSHER_DEVICE_HEADER
@@ -107,6 +95,20 @@ private:
 
 
 /*
+
+Device Header format:
+uint8_t mac_address[6];
+uint8_t ip_address[4];
+uint8_t device_type;
+uint8_t protocol_version; // for the device, not the discovery
+uint16_t vendor_id;
+uint16_t product_id;
+uint16_t hw_revision;
+uint16_t sw_revision;
+uint32_t link_speed; // in bits per second
+
+
+
  typedef struct pixel _PACKED_ {
  uint8_t red;
  uint8_t green;

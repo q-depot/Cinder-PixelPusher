@@ -16,73 +16,130 @@
 
 #define PP_CMD_MAGIC_SIZE 16
 
+class PusherCommand;
+typedef std::shared_ptr<PusherCommand> PusherCommandRef;
+
 class PusherCommand {
 
 public:
     
-    enum CmdType {
-        RESET                   = 0x01,
-        GLOBALBRIGHTNESS_SET    = 0x02,
-        WIFI_CONFIGURE          = 0x03,
-        LED_CONFIGURE           = 0x04,
-        STRIP_LPD8806           = 0,
-        STRIP_WS2801            = 1,
-        STRIP_WS2811            = 2,
-        STRIP_APA102            = 3,
-        ORDER_RGB               = 0,
-        ORDER_RBG               = 1,
-        ORDER_GBR               = 2,
-        ORDER_GRB               = 3,
-        ORDER_BGR               = 4,
-        ORDER_BRG               = 5
+    enum PusherCmdType {
+        RESET,
+        GLOBALBRIGHTNESS_SET,
+        WIFI_CONFIGURE,
+        LED_CONFIGURE,
     };
     
-    PusherCommand( CmdType command)
+    enum PusherStripType {
+        STRIP_LPD8806,
+        STRIP_WS2801,
+        STRIP_WS2811,
+        STRIP_APA102,
+    };
+    
+    enum PusherColorOrder {
+        ORDER_RGB,
+        ORDER_RBG,
+        ORDER_GBR,
+        ORDER_GRB,
+        ORDER_BGR,
+        ORDER_BRG
+    };
+    
+    enum PusherSecurity {
+        NONE,
+        WEP,
+        WPA,
+        WPA2
+    };
+    
+//    static createResetCmd()
+//    {
+////        ci::Buffer
+//    }
+//    
+//    PusherCommandBuffer {
+//        uint8_t *data;
+//        int     dataSize;
+//    }
+//
+    struct PusherCommandData {
+        std::shared_ptr<uint8_t>    data;
+        int                         dataSize;
+    };
+    
+    
+    static PusherCommandData createResetCmd()
+    {
+        int                         dataSize = PP_CMD_MAGIC_SIZE + 1;
+        std::shared_ptr<uint8_t>    data = std::shared_ptr<uint8_t>( new uint8_t[cmd.dataSize] );
+        
+        cmd.dataSize    = PP_CMD_MAGIC_SIZE + 1;
+        cmd.data        = std::shared_ptr<uint8_t>( new uint8_t[cmd.dataSize] );
+        
+        std::memcpy( &cmd.data.get()[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
+        cmd.data.get()[PP_CMD_MAGIC_SIZE] = RESET;
+        
+        return cmd;
+    }
+
+    
+    static PusherCommandData createResetCmd()
+    {
+        PusherCommandData cmd;
+        cmd.dataSize    = PP_CMD_MAGIC_SIZE + 1;
+        cmd.data        = new uint8_t[cmd.dataSize];
+        
+        std::memcpy( &cmd.data[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
+        cmd.data[PP_CMD_MAGIC_SIZE] = RESET;
+        
+        return cmd;
+    }
+
+    
+    PusherCommand( PusherCmdType command )
     {
         mCommand = command;
     }
   
-    PusherCommand( CmdType command, short parameter)
+    PusherCommand( PusherCmdType command, short parameter)
     {
         mCommand    = command;
         mParameter  = parameter;
     }
   
-    PusherCommand( CmdType command, std::string ssid, std::string key, std::string security )
+    PusherCommand( PusherCmdType command, std::string ssid, std::string key, PusherSecurity security )
     {
-        mCommand  = command;
-        mSsid     = ssid;
-        mKey      = key;
+        mCommand    = command;
+        mSsid       = ssid;
+        mKey        = key;
+        mSecurity   = (uint8_t)security;
+    }
+  
+    PusherCommand( PusherCmdType command, int32_t numStrips, int32_t stripLength,
+                   std::vector<PusherStripType> stripType, std::vector<PusherColorOrder> colorOrder,
+                   uint16_t group = 0, uint16_t controller = 0,
+                   uint16_t artnetUniverse = 0, uint16_t artnetCh = 0 )
+    {
+        if ( stripType.size() != 8 )
+            throw std::invalid_argument("Strip type vector size must be 8");
+            
+        if ( stripType.size() != 8 )
+            throw std::invalid_argument("Color order vector size must be 8");
         
-        std::transform( security.begin(), security.end(), security.begin(), ::tolower );
+        for( int k=0; k < 8; k++ )
+        {
+            mStripType[k]   = (uint8_t)stripType[k];
+            mColorOrder[k]  = (uint8_t)colorOrder[k];
+        }
         
-        if (security == "none" )        mSecurity = 0;
-        else if (security == "wep" )    mSecurity = 1;
-        else if (security == "wpa" )    mSecurity = 2;
-        else if (security == "wpa2" )   mSecurity = 3;
-    }
-  
-    PusherCommand( CmdType command, int numStrips, int stripLength, std::string stripType, std::string colourOrder)
-    {
-        PusherCommand( command, numStrips, stripLength, stripType, colourOrder, 0, 0, 0, 0 );
-    }
-  
-    PusherCommand( CmdType command, int numStrips, int stripLength, std::string stripType, std::string colourOrder, int group, int controller)
-    {
-        PusherCommand( command, numStrips, stripLength, stripType, colourOrder, group, controller, 0, 0 );
-    }
-  
-    PusherCommand( CmdType command, int numStrips, int stripLength, std::string stripType, std::string colourOrder, int group, int controller, int artnet_universe, int artnet_channel )
-    {
         mCommand        = command;
         mNumStrips      = numStrips;
         mStripLength    = stripLength;
-        mStripType      = stripType;
-        mColourOrder    = colourOrder;
         mGroup          = group;
         mController     = controller;
-        mArtnetChannel  = artnet_channel;
-        mArtnetUniverse = artnet_universe;
+        mArtnetChannel  = artnetCh;
+        mArtnetUniverse = artnetUniverse;
     }
     
     
@@ -143,34 +200,14 @@ public:
 
             cmd[ PP_CMD_MAGIC_SIZE ] = LED_CONFIGURE;
           
-            cmd[ PP_CMD_MAGIC_SIZE + 1 + 0 ] = (uint8_t) (  mNumStrips & 0xFF );
-            cmd[ PP_CMD_MAGIC_SIZE + 1 + 1 ] = (uint8_t) (( mNumStrips >> 8 ) & 0xFF );
-            cmd[ PP_CMD_MAGIC_SIZE + 1 + 2 ] = (uint8_t) (( mNumStrips >> 16 ) & 0xFF );
-            cmd[ PP_CMD_MAGIC_SIZE + 1 + 3 ] = (uint8_t) (( mNumStrips >> 24 ) & 0xFF );
-          
-            cmd[ PP_CMD_MAGIC_SIZE + 5 + 0 ] = (uint8_t) (  mStripLength & 0xFF );
-            cmd[ PP_CMD_MAGIC_SIZE + 5 + 1 ] = (uint8_t) (( mStripLength >> 8 ) & 0xFF );
-            cmd[ PP_CMD_MAGIC_SIZE + 5 + 2 ] = (uint8_t) (( mStripLength >> 16 ) & 0xFF );
-            cmd[ PP_CMD_MAGIC_SIZE + 5 + 3 ] = (uint8_t) (( mStripLength >> 24 ) & 0xFF );
-
-            for (int i = PP_CMD_MAGIC_SIZE + 9; i< PP_CMD_MAGIC_SIZE + 17; i++)
-                cmd[i] = (uint8_t)mStripType[ i - ( PP_CMD_MAGIC_SIZE + 9 ) ];
-          
-            for (int i = PP_CMD_MAGIC_SIZE + 17; i< PP_CMD_MAGIC_SIZE + 25; i++)
-                cmd[i] = (uint8_t)mColourOrder[ i - ( PP_CMD_MAGIC_SIZE + 17 ) ];
-          
-         
-            cmd[ PP_CMD_MAGIC_SIZE + 25 + 0 ] = (uint8_t) (  mGroup & 0xFF );
-            cmd[ PP_CMD_MAGIC_SIZE + 25 + 1 ] = (uint8_t) (( mGroup >> 8) & 0xFF );
-          
-            cmd[ PP_CMD_MAGIC_SIZE + 27 + 0 ] = (uint8_t) (  mController & 0xFF );
-            cmd[ PP_CMD_MAGIC_SIZE + 27 + 1 ] = (uint8_t) (( mController >> 8 ) & 0xFF );
-          
-            cmd[ PP_CMD_MAGIC_SIZE + 29 + 0 ] = (uint8_t) (  mArtnetUniverse & 0xFF );
-            cmd[ PP_CMD_MAGIC_SIZE + 29 + 1 ] = (uint8_t) (( mArtnetUniverse >> 8) & 0xFF );
-          
-            cmd[ PP_CMD_MAGIC_SIZE + 31 + 0 ] = (uint8_t) (  mArtnetChannel & 0xFF );
-            cmd[ PP_CMD_MAGIC_SIZE + 31 + 1 ] = (uint8_t) (( mArtnetChannel >> 8 ) & 0xFF );
+            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 1],    &mNumStrips,        4 );
+            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 5],    &mStripLength,      4 );
+            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 9],    &mStripType[0],     8 );
+            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 17],   &mColorOrder[0],    8 );
+            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 25],   &mGroup,            2 );
+            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 27],   &mController,       2 );
+            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 29],   &mArtnetUniverse,   2 );
+            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 31],   &mArtnetChannel,    2 );
         }
         
         return cmd;
@@ -178,36 +215,31 @@ public:
 
 
   private:
-
+    
+    PusherCommand( std::shared_ptr<uint8_t> data, int dataSize ) : mCmdData(data), mCmdDataSize(dataSize) {}
+    
+    
     const uint8_t pp_cmd_magic[PP_CMD_MAGIC_SIZE] = { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09, 0xaf, 0x50 };
     
-    CmdType         mCommand;
+    PusherCmdType   mCommand;
     int             mParameter;
     std::string     mSsid;
     std::string     mKey;
-    uint8_t   mSecurity;
+    uint8_t         mSecurity;
   
-    int             mNumStrips;
-    int             mStripLength;
-    std::string     mStripType;
-    std::string     mColourOrder;
+    int32_t         mNumStrips;
+    int32_t         mStripLength;
+    uint8_t         mStripType[8];
+    uint8_t         mColorOrder[8];
 
-    int             mGroup;
-    int             mController;
+    uint16_t        mGroup;
+    uint16_t        mController;
   
-    int             mArtnetUniverse;
-    int             mArtnetChannel;
-  
-/*  enum Security {
-    NONE = 0,
-    WEP  = 1,
-    WPA  = 2,
-    WPA2 = 3
- };
- 
- typedef enum ColourOrder {RGB=0, RBG=1, GBR=2, GRB=3, BGR=4, BRG=5} ColourOrder;
- 
-  */
+    uint16_t        mArtnetUniverse;
+    uint16_t        mArtnetChannel;
+    
+    std::shared_ptr<uint8_t>    mCmdData;
+    int                         mCmdDataSize;
 };
 
 #endif

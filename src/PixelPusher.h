@@ -82,10 +82,11 @@ public:
     uint32_t    getSegments()           { return mSegments; }
     int         getNumberOfStrips()     { return mStrips.size(); }
     
-//    void sendCommand( PusherCommand pc )
-//    {
-//        commandQueue.push_back( pc );
-//    }
+    
+    void sendCommand( PusherCommand pc )
+    {
+        mCommandQueue.push_back( pc );
+    }
   
     
     std::vector<StripRef>   getStrips();
