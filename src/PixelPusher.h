@@ -44,7 +44,6 @@ private:
     const int SFLAG_LOGARITHMIC         = (1<<2);
     const int SFLAG_MOTION              = (1<<3);
     const int SFLAG_NOTIDEMPOTENT       = (1<<4);
-    
     const int PFLAG_PROTECTED           = (1<<0);
     const int PFLAG_FIXEDSIZE           = (1<<1);
     
@@ -59,6 +58,7 @@ public:
     ~PixelPusher();
     
     void createCardThread( boost::asio::io_service& ioService );
+    void destroyCardThread();
     
     uint16_t getPort()
     {
@@ -80,24 +80,35 @@ public:
 	uint32_t    getSoftwareRevision()	{ return mDeviceHeader.getSoftwareRevision(); }
 	uint32_t    getLinkSpeed()          { return mDeviceHeader.getLinkSpeed(); }
     uint32_t    getSegments()           { return mSegments; }
-    int         getNumberOfStrips()     { return mStrips.size(); }
     
+    size_t      getNumStrips()
+    {
+        if ( mMulticast && !mMulticastPrimary )
+            return 0;
+        
+        return mStrips.size();
+    }
     
-    void sendCommand( PusherCommand pc )
+    bool        getAutoThrottle() { return mAutoThrottle; }
+    
+    uint32_t    getThreadSleepFor() { return mThreadSleepMsec; }
+    
+    uint32_t    getPacketNumber() { return mPacketNumber; }
+    
+    void sendCommand( PusherCommandRef pc )
     {
         mCommandQueue.push_back( pc );
     }
   
     
     std::vector<StripRef>   getStrips();
-    size_t                  getNumStrips();
     
     uint16_t getArtnetUniverse()   { return mArtnetUniverse; }
     uint16_t getArtnetChannel()    { return mArtnetChannel; }
 
     StripRef getStrip( int stripNumber );
     
-    void setAutoThrottle( bool state ) { mAutothrottle = state; }
+    void setAutoThrottle( bool state ) { mAutoThrottle = state; }
 
     int getMaxStripsPerPacket() { return mMaxStripsPerPacket; }
 
@@ -115,7 +126,7 @@ public:
     
     void increaseExtraDelay( uint32_t i )
     {
-        if ( mAutothrottle )
+        if ( mAutoThrottle )
         {
             mExtraDelayMsec += i;
             ci::app::console() << "Group " << mGroupOrdinal << " card " << mControllerOrdinal << " extra delay now " << mExtraDelayMsec << std::endl;
@@ -131,7 +142,7 @@ public:
     
     uint32_t getExtraDelay()
     {
-        if ( mAutothrottle )
+        if ( mAutoThrottle )
             return mExtraDelayMsec;
         else
             return 0;
@@ -148,33 +159,11 @@ public:
 
     void setAntiLog( bool antiLog );
 
-    void startRecording( std::string filename )
-    {
-        mAmRecording = true;
-        setFilename( filename );
-    }
-
-    std::string getFilename() { return mFilename; }
-
-    void setFilename( std::string filename) { mFilename = filename; }
-    
-    bool isAmRecording() { return mAmRecording; }
-
-    void setAmRecording( bool amRecording ) { mAmRecording = amRecording; }
-
-    void makeBusy() { mIsBusy = true; }
-
-    void clearBusy() { mIsBusy = false; }
-
-    bool isBusy() { return mIsBusy; }
-
     bool hasTouchedStrips();
   
     std::vector<StripRef> getTouchedStrips();
         
     uint32_t getPowerDomain() { return mPowerDomain; }
-
-    void shutDown() { clearBusy(); }
 
     bool isMulticast() { return mMulticast; }
 
@@ -194,6 +183,36 @@ public:
     {
         return mDeviceHeader.isMulticast();
     }
+    
+    // Commands
+    
+    void reset()
+    {
+        mCommandQueue.push_back( PusherCommand::createReset() );
+    }
+    
+    /*
+     void setGlobalBrightness( uint16_t brightness )
+     {
+     mCommandQueue.push_back( PusherCommand::createGlobalBrightness( brightness ) );
+     }
+     
+     void setWirelessConfig( std::string ssid, std::string key, PusherCommand::PusherSecurity security )
+     {
+     mCommandQueue.push_back( PusherCommand::createWirelessConfig( ssid, key, security ) );
+     }
+     
+     void setStripsConfig(  int32_t numStrips, int32_t stripLength,
+     std::vector<PusherCommand::PusherStripType> stripType, std::vector<PusherCommand::PusherColorOrder> colorOrder,
+     uint16_t group, uint16_t controller,
+     uint16_t artnetUniverse, uint16_t artnetChannel )
+     {
+     
+     mCommandQueue.push_back( PusherCommand::createStripsConfig( numStrips, stripLength, stripType, colorOrder,
+     group = 0, controller = 0,
+     artnetUniverse = 0, artnetChannel = 0 ) );
+     }
+     */
     
 private:
     
@@ -216,7 +235,7 @@ private:
     
     std::vector<StripRef> mStrips;
     uint32_t              mExtraDelayMsec;
-    bool                  mAutothrottle;
+    bool                  mAutoThrottle;
   
     bool                  mMulticast;
     bool                  mMulticastPrimary;
@@ -225,7 +244,7 @@ private:
      * Queue for commands using the new majik strip protocol.
      */
   
-    std::vector<PusherCommand> mCommandQueue;
+    std::vector<PusherCommandRef> mCommandQueue;
   
     uint8_t       	mStripsAttached;
     uint8_t         mMaxStripsPerPacket;
@@ -243,9 +262,6 @@ private:
     uint16_t        mPort;
     
     bool            mUseAntiLog;            // TODO: again this variable is every fucking where! DeviceRegistry should keep the global value!
-    std::string     mFilename;
-    bool            mAmRecording;
-    bool            mIsBusy;
     uint32_t        mPusherFlags;
     uint32_t        mSegments;
     uint32_t    	mPowerDomain;

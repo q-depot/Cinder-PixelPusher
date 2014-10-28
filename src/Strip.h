@@ -26,24 +26,14 @@ class Strip {
     }
     
     ~Strip() {}
-    
-//    PixelPusherRef getPusher() {
-//        return mPusher;
-//    }
 
-    // get the RGBOW state of the strip.
     bool getRGBOW() { return mIsRGBOW; }
-
-    // set the RGBOW state of the strip;  this function is idempotent.
     void setRGBOW( bool state );
 
     int getLength() { return mPixels.size(); }
 
 //    void setPowerScale(double scale) { mPowerScale = scale; }
 
-//    std::string getMacAddress();
-
-    // synchronized
     bool isTouched() { return mTouched; }
 
     // synchronized
@@ -64,12 +54,10 @@ class Strip {
     
     void setPixelRGB( int position, uint8_t r, uint8_t g, uint8_t b );
     void setPixelRGBOW( int position, uint8_t r, uint8_t g, uint8_t b, uint8_t o, uint8_t w );
-
     void setPixel( Pixel pixel, int position );
+    void setPixelsBlack();
   
     void useAntiLog( bool antiLog ) { mUseAntiLog = antiLog; }
-
-//    void setPusher( PixelPusherRef pixelPusher ) { mPusher = pixelPusher; }
     
     bool isMotion() { return mIsMotion; }
 

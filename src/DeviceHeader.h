@@ -34,22 +34,17 @@ class DeviceHeader {
         memcpy( &mLinkSpeed,            &packet[20], 4 );
         
         mPacketRemainderSize    = packetLength - PP_HEADER_LENGTH;
-        mPacketRemainder        = new uint8_t[mPacketRemainderSize];
-        memcpy( &mPacketRemainder[0],   &packet[PP_HEADER_LENGTH], mPacketRemainderSize );
+        mPacketRemainder        = std::shared_ptr<uint8_t>( new uint8_t[mPacketRemainderSize] );
+        memcpy( &mPacketRemainder.get()[0],   &packet[PP_HEADER_LENGTH], mPacketRemainderSize );
     }
     
     
-    ~DeviceHeader()
-    {
-        // TODO: clean up!
-//            delete[] mPacketRemainder;
-    }
-    
+    ~DeviceHeader() {}
     
     std::string getMacAddressString()
     {
         char buffer [24];
-        sprintf(buffer, "%02X:%02X:%02X:%02X:%02X:%02X", mMacAddress[0], mMacAddress[1], mMacAddress[2], mMacAddress[3], mMacAddress[4], mMacAddress[5] );
+        sprintf( buffer, "%02X:%02X:%02X:%02X:%02X:%02X", mMacAddress[0], mMacAddress[1], mMacAddress[2], mMacAddress[3], mMacAddress[4], mMacAddress[5] );
         return buffer;
     }
     
@@ -62,8 +57,8 @@ class DeviceHeader {
         return str;
     }
     
-    uint8_t     *getPacketReminder() { return mPacketRemainder; }
-    int         getPacketReminderSize() { return mPacketRemainderSize; }
+    std::shared_ptr<uint8_t>    getPacketReminder()     { return mPacketRemainder; }
+    int                         getPacketReminderSize() { return mPacketRemainderSize; }
     
     DeviceType  getDeviceType()         { return mDeviceType; }
     uint32_t    getProtocolVersion()    { return mProtocolVersion; }
@@ -86,8 +81,9 @@ class DeviceHeader {
     uint16_t        mHardwareRevision;
     uint16_t        mSoftwareRevision;
     uint32_t        mLinkSpeed;
-    uint8_t         *mPacketRemainder;
-    int             mPacketRemainderSize;
+    
+    std::shared_ptr<uint8_t>    mPacketRemainder;
+    int                         mPacketRemainderSize;
     
 private:
 

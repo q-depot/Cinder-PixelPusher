@@ -54,19 +54,6 @@ void Strip::setRGBOW( bool state )
 }
 
 
-//std::string Strip::getMacAddress()
-//{
-//    return mPusher->getMacAddress();
-//}
-
-
-void Strip::markClean()
-{
-    mTouched = false;
-//    mPusher->markUntouched();
-}
-
-
 void Strip::setPixels( std::vector<Pixel> pixels )
 {
     for( size_t k=0; k < pixels.size(); k++ )
@@ -114,12 +101,23 @@ void Strip::setPixel( Pixel pixel, int position )
 }
 
 
+void Strip::setPixelsBlack()
+{
+    for( size_t k=0; k < mPixels.size(); k++ )
+        mPixels[k]->setColorRGBOW( 0, 0, 0, 0, 0 );
+}
+
+
 void Strip::markTouched()
 {
-    
     mTouched    = true;
     mPushedAt   = 0;
-//    mPusher->markTouched();
+}
+
+
+void Strip::markClean()
+{
+    mTouched = false;
 }
 
 

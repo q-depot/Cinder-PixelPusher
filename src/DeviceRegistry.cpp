@@ -11,7 +11,7 @@ uint32_t DeviceRegistry::TotalPowerLimit            = -1;
 double   DeviceRegistry::PowerScale                 = 1.0;
 bool     DeviceRegistry::AutoThrottle               = false;
 bool     DeviceRegistry::AntiLog                    = false;
-int      DeviceRegistry::FrameLimit                 = 85;
+int      DeviceRegistry::FrameLimit                 = 60; // 85;
 bool     DeviceRegistry::HasDiscoveryListener       = false;
 bool     DeviceRegistry::AlreadyExist               = false;
 
@@ -115,13 +115,9 @@ void DeviceRegistry::onRead( ci::Buffer buffer )
     {
         PixelPusherRef thisDevice = mPusherMap[ macAddr ];
         
-//        if (!pusherMap.get(macAddr).equals(device)) { // we already saw it but it's changed.
         if ( !thisDevice->isEqual( device ) )
         {
             thisDevice->copyHeader( device );
-
-//            setChanged();
-//            notifyObservers(device);
         }
         else
         {
@@ -147,13 +143,14 @@ void DeviceRegistry::onRead( ci::Buffer buffer )
 
         PowerScale = ( TotalPower > TotalPowerLimit) ? ( TotalPowerLimit / TotalPower ) : 1.0;
     }
+    
+    // continue reading
+	mSession->read();
 }
 
     
 void DeviceRegistry::addNewPusher( PixelPusherRef pusher )
 {
-    ci::app::console() << "New device: " << pusher->getMacAddress() << " has group ordinal " << pusher->getGroupOrdinal() << std::endl;
-    
     mPusherMap[ pusher->getMacAddress() ] = pusher;
     
     mPushersSorted.push_back( pusher );
@@ -166,9 +163,6 @@ void DeviceRegistry::addNewPusher( PixelPusherRef pusher )
     {
         // we need to create a PusherGroup since it doesn't exist yet.
         PusherGroup pg = PusherGroup();
-
-        ci::app::console() << "Creating group and adding pusher to group " << pusher->getGroupOrdinal() << std::endl;
-
         pg.addPusher(pusher);
         mGroupMap[ pusher->getGroupOrdinal() ] = pg;
     }
@@ -193,7 +187,6 @@ void DeviceRegistry::addNewPusher( PixelPusherRef pusher )
     
     pusher->createCardThread( mIoService );
 }
-
 
 
 std::vector<PixelPusherRef> DeviceRegistry::getPushersByIp( std::string ip )

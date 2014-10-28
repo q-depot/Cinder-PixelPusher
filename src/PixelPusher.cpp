@@ -13,6 +13,7 @@
    * int16_t my_port;
    */
 
+#include "cinder/Utilities.h"
 #include "PixelPusher.h"
 #include "Strip.h"
 #include "DeviceRegistry.h"
@@ -27,18 +28,15 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
     mPixelsPerStrip     = 0;
   
     mExtraDelayMsec     = 0;
-    mAutothrottle       = false;
+    mAutoThrottle       = false;
   
     mMulticast          = false;
     mMulticastPrimary   = false;
     
     mSegments           = 0;
     mPowerDomain        = 0;
-    mAmRecording        = false;
     
     setPusherFlags(0);
-    
-//      commandQueue = new ArrayBlockingQueue<PusherCommand>(3);
     
     uint32_t swRev      = header.getSoftwareRevision();
     
@@ -49,26 +47,25 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
         ci::app::console() << "WARNING!  This is not expected to work.  Please update your PixelPusher." << std::endl;
     }
     
-    uint8_t *packet     = mDeviceHeader.getPacketReminder();
-    int     packetSize  = mDeviceHeader.getPacketReminderSize();
+    std::shared_ptr<uint8_t>    packet      = mDeviceHeader.getPacketReminder();
+    int                         packetSize  = mDeviceHeader.getPacketReminderSize();
     
     if ( packetSize < 28 )
         throw std::invalid_argument("Packet size < 28");
-  
-    memcpy( &mStripsAttached,       &packet[0],     1 );
-    memcpy( &mMaxStripsPerPacket,   &packet[1],     1 );
-    memcpy( &mPixelsPerStrip,       &packet[2],     2 );
-    memcpy( &mUpdatePeriod,         &packet[4],     4 );
-    memcpy( &mPowerTotal,           &packet[8],     4 );
-    memcpy( &mDeltaSequence,        &packet[12],    4 );
-    memcpy( &mControllerOrdinal,    &packet[16],    4 );
-    memcpy( &mGroupOrdinal,         &packet[20],    4 );
-    memcpy( &mArtnetUniverse,       &packet[24],    2 );
-    memcpy( &mArtnetChannel,        &packet[26],    2 );
     
-
+    memcpy( &mStripsAttached,       &packet.get()[0],   1 );
+    memcpy( &mMaxStripsPerPacket,   &packet.get()[1],   1 );
+    memcpy( &mPixelsPerStrip,       &packet.get()[2],   2 );
+    memcpy( &mUpdatePeriod,         &packet.get()[4],   4 );
+    memcpy( &mPowerTotal,           &packet.get()[8],   4 );
+    memcpy( &mDeltaSequence,        &packet.get()[12],  4 );
+    memcpy( &mControllerOrdinal,    &packet.get()[16],  4 );
+    memcpy( &mGroupOrdinal,         &packet.get()[20],  4 );
+    memcpy( &mArtnetUniverse,       &packet.get()[24],  2 );
+    memcpy( &mArtnetChannel,        &packet.get()[26],  2 );
+    
     if ( packetSize > 28 && swRev > 100)
-        memcpy( &mPort, &packet[28],    2 );
+        memcpy( &mPort, &packet.get()[28],    2 );
     else
         mPort = 9798;
     
@@ -83,7 +80,7 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
     mStripFlags.resize( stripFlagSize );
     
     if ( packetSize > 30 && swRev > 108 )
-        memcpy( &mStripFlags[0], &packet[30], stripFlagSize );
+        memcpy( &mStripFlags[0], &packet.get()[30], stripFlagSize );
 
     else
         for (int i=0; i<stripFlagSize; i++)
@@ -103,18 +100,23 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
     {
         // set Pusher flags
         uint32_t pusherFlags;
-        memcpy( &pusherFlags, &packet[32+stripFlagSize], 4 );
+        memcpy( &pusherFlags,   &packet.get()[32+stripFlagSize], 4 );
         setPusherFlags( pusherFlags );
         
-        memcpy( &mSegments,     &packet[36+stripFlagSize], 4 );
-        memcpy( &mPowerDomain,  &packet[40+stripFlagSize], 4 );
+        memcpy( &mSegments,     &packet.get()[36+stripFlagSize], 4 );
+        memcpy( &mPowerDomain,  &packet.get()[40+stripFlagSize], 4 );
     }
 }
 
 
 PixelPusher::~PixelPusher()
 {
-    // TODO: stop card thread!!! <<<<<<<<<<<
+    for( size_t k=0; k < mStrips.size(); k++ )
+        mStrips[k]->setPixelsBlack();
+    
+    ci::sleep( 200 );
+    
+    destroyCardThread();
 }
 
 
@@ -132,15 +134,6 @@ std::vector<StripRef> PixelPusher::getStrips()
     return mStrips;
     // Ensure callers can't modify the returned list
     // return Collections.unmodifiableList(strips);
-}
-
-
-size_t PixelPusher::getNumStrips()
-{
-    if ( mMulticast && !mMulticastPrimary )
-        return 0;
-    
-    return mStrips.size();
 }
 
 
@@ -177,12 +170,9 @@ void PixelPusher::copyHeader( PixelPusherRef device )
     mArtnetChannel      = device->mArtnetChannel;
     mArtnetUniverse     = device->mArtnetUniverse;
     mPort               = device->mPort;
-    mFilename           = device->mFilename;
-    mAmRecording        = device->mAmRecording;
     mPowerDomain        = device->mPowerDomain;
     
     setPusherFlags( device->getPusherFlags() );
-    
     
     // if the number of strips we have doesn't match,
     // we'll need to make a fresh set.
@@ -206,10 +196,6 @@ void PixelPusher::copyHeader( PixelPusherRef device )
         mStrips.clear();
         mSegments = device->mSegments;
     }
-    
-//    if ( !mStrips.empty() )
-//        for( size_t k=0; k < mStrips.size(); k++ )
-//            mStrips[k]->setPusher( shared_from_this() );
 }
 
 
@@ -312,7 +298,7 @@ bool PixelPusher::isEqual( PixelPusherRef otherDevice )
         if (getPixelsPerStrip() != otherDevice->getPixelsPerStrip())
             return false;
     
-    if ( getNumberOfStrips() != otherDevice->getNumberOfStrips() )
+    if ( getNumStrips() != otherDevice->getNumStrips() )
         return false;
     
     // handle the case where someone changed the config during library runtime
@@ -354,7 +340,6 @@ bool PixelPusher::hasTouchedStrips()
 
 
 // Thread stuff
-
 void PixelPusher::createCardThread( boost::asio::io_service& ioService )
 {
     mThreadExtraDelayMsec   = 0;
@@ -374,10 +359,18 @@ void PixelPusher::createCardThread( boost::asio::io_service& ioService )
     
     mClient->connect( getIp(), getPort() );
     
-    if ( getUpdatePeriod() > 100 && getUpdatePeriod() < 1000000 )
-        mThreadSleepMsec = ( getUpdatePeriod() / 1000 ) + 1;
+//    if ( getUpdatePeriod() > 100 && getUpdatePeriod() < 1000000 )
+//        mThreadSleepMsec = ( getUpdatePeriod() / 1000 ) + 1;
     
     mSendDataThread = std::thread( &PixelPusher::sendPacketToPusher, this );
+}
+
+
+void PixelPusher::destroyCardThread()
+{
+    mRunThread = false;
+    if ( mSendDataThread.joinable() )
+        mSendDataThread.join();
 }
 
 
@@ -398,7 +391,8 @@ void PixelPusher::onError( std::string err, size_t bytesTransferred )
 
 void PixelPusher::sendPacketToPusher()
 {
-    mRunThread = true;
+    mRunThread          = true;
+    mThreadSleepMsec    = 16;
     
     StripRef                strip;
     std::vector<StripRef>   touchedStrips;
@@ -412,7 +406,6 @@ void PixelPusher::sendPacketToPusher()
     int                     stripIdx;
     uint8_t                 *packetData = (uint8_t*)mPacketBuffer.getData();
     uint8_t                 *stripData;
-    
     
     while( mRunThread )
     {
@@ -431,75 +424,87 @@ void PixelPusher::sendPacketToPusher()
             stripPerPacket      = std::min( (uint8_t)maxStripsPerPacket, getStripsAttached() );
             
             // adjust thread speed
-            if ( getUpdatePeriod() > 1000 )
+            if ( false && getUpdatePeriod() > 1000 )
                 mThreadSleepMsec = ( getUpdatePeriod() / 1000 ) + 1;
             else                                                                                    // Shoot for the framelimit.
                 mThreadSleepMsec = ( ( 1000 / DeviceRegistry::getFrameLimit() ) / ( getStripsAttached() / stripPerPacket ) );
-            
+                                                                                                 
             // Handle errant delay calculation in the firmware.
             if ( getUpdatePeriod() > 100000 )
                 mThreadSleepMsec = ( 16 / ( getStripsAttached() / stripPerPacket ) );
             
+            
+            
+            
+            // TODO: not used!!!!!!!!!!!!!! <<<<<<<<<<<<<<<<<<<<<<
             totalDelay = mThreadSleepMsec + mThreadExtraDelayMsec + getExtraDelay();
             
-            stripIdx = 0;
+            
+            
             
             // first check to see if we have an outstanding command.
-            
-            bool commandSent = false;
-            
-            // SEND COMMANDS FIRST
-            /*
-             if (!(mPusher->commandQueue.isEmpty())) {
-             commandSent = true;
-             System.out.println("Pusher "+mPusher->getMacAddress()+" has a PusherCommand outstanding.");
-             PusherCommand pc = mPusher->commandQueue.remove();
-             byte[] commandBytes= pc.generateBytes();
-             
-             packetLength = 0;
-             
-             // Packet number
-             memcpy( &packetData[packetLength], &mPacketNumber, 4 );
-             packetLength += 4;
-             
-             for(int j = 0; j < commandBytes.length; j++) {
-             this.packet[packetLength++] = commandBytes[j];
-             }
-             // We need fixed size datagrams for the Photon, because the cc3000 sucks.
-             if ((mPusher->getPusherFlags() & mPusher->PFLAG_FIXEDSIZE) != 0) {
-             packetLength = 4 + ((1 + 3 * mPusher->getPixelsPerStrip()) * stripPerPacket);
-             }
-             packetNumber++;
-             udppacket = new DatagramPacket(packet, packetLength, cardAddress,
-             pusherPort);
-             try {
-             udpsocket.send(udppacket);
-             } catch (IOException ioe) {
-             System.err.println("IOException: " + ioe.getMessage());
-             }
-             
-             totalLength += packetLength;
-             
-             } else {
-             commandSent = false;
-             }
-             */
-            
+            if ( !mCommandQueue.empty() )
+            {
+                for( size_t k=0; k < mCommandQueue.size(); k++ )
+                {
+                    // cmd + packen_number(4) or 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * stripPerPacket )
+                    int packetLength;
+                    
+                    // We need fixed size datagrams for the Photon, because the cc3000 sucks.
+                    if ( ( getPusherFlags() & PFLAG_FIXEDSIZE ) != 0 )
+                        packetLength = 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * stripPerPacket );
+                    else
+                        packetLength = mCommandQueue[k]->mDataSize + 4;
+                    
+                    ci::Buffer  cmdPacket(packetLength);
+                    uint8_t     *cmdPacketData = (uint8_t*)cmdPacket.getData();
+                    
+                    // Packet number
+                    memcpy( &cmdPacketData[0], &mPacketNumber, 4 );
+                    
+                    // cmd data
+                    memcpy( &cmdPacketData[4], &mCommandQueue[k]->mData.get()[0], mCommandQueue[k]->mDataSize );
+                    
+                    // send packet
+                    mSession->write( cmdPacket );
+                    mPacketNumber++;
+                    
+                    ci::app::console() << "send command " << packetLength << " " << mCommandQueue[k]->mDataSize << std::endl;
+                    
+                    ci::app::console() << "COMMAND: " << std::endl;
+                    for( int j=0; j < mCommandQueue[k]->mDataSize; j++ )
+                    {
+                        ci::app::console() << (int)mCommandQueue[k]->mData.get()[j] << " ";
+                    }
+                    
+                    ci::app::console() << std::endl << "-------------------------" << std::endl;
+                    
+                    ci::app::console() << "PACKET: " << std::endl;
+                    for( int j=0; j < packetLength; j++ )
+                    {
+                        ci::app::console() << (int)cmdPacketData[j] << " ";
+                    }
+                    
+                    ci::app::console() << std::endl << std::endl;
+                }
+                
+                mCommandQueue.clear();
+                
+                std::this_thread::sleep_for( std::chrono::milliseconds( mThreadSleepMsec ) );
+                continue;
+            }
             
             // send strip data
+            stripIdx = 0;
+            
             while( stripIdx < touchedStrips.size() )
             {
                 packetLength    = 0;
                 payload         = false;
                 
                 // Packet number
-                memcpy( &packetData[packetLength], &mPacketNumber, 4 );
+                memcpy( &packetData[0], &mPacketNumber, 4 );
                 packetLength += 4;
-                
-                // packetData[packetLength++] = mPacketNumber & 0xFF;
-                // packetData[packetLength++] = (mPacketNumber >> 8) & 0xFF;
-                // packetData[packetLength++] = (mPacketNumber >> 16) & 0xFF;
-                // packetData[packetLength++] = (mPacketNumber >> 24) & 0xFF;
                
                 // Now loop over remaining strips.
                 for ( int k = 0; k < stripPerPacket; k++ )
@@ -508,7 +513,6 @@ void PixelPusher::sendPacketToPusher()
                         break;
                     
                     strip = touchedStrips[stripIdx++];
-                    
                     
                     // add strip number
                     packetData[packetLength++] = strip->getStripNumber();

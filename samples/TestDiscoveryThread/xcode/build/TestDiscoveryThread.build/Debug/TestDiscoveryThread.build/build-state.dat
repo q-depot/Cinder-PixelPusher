@@ -546,9 +546,9 @@ t1414253215
 s459637
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp
-c00000000544CFF90000000000000241E
-t1414332304
-s9246
+c00000000544FCABA0000000000002468
+t1414515386
+s9320
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/Info.plist
 c00000000544BCA9F0000000000000462
@@ -569,8 +569,8 @@ t1414253615
 s1517
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app/Contents/MacOS/TestDiscoveryThread
-t1414332307
-s3616132
+t1414515390
+s3618984
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app/Contents/PkgInfo
 t1414253615
@@ -614,8 +614,8 @@ t1414253615
 s2168
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.o
-t1414332307
-s2783144
+t1414515389
+s2809796
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/UdpClient.o
 t1414253621
@@ -634,9 +634,9 @@ t1414253622
 s904376
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h
-c00000000544CFC7B0000000000001584
-t1414331515
-s5508
+c00000000544FB5C200000000000015D3
+t1414510018
+s5587
 
 N/Users/Q/Code/Cinder/boost/boost/aligned_storage.hpp
 c00000000516298F100000000000010C9
@@ -6861,7 +6861,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesaa279f0046fdb941^32ffb80046fdb941^---0#1#1#--18"Check dependencies36"FB44634C-7BBB-4708-9DB1-8D4C86BEF36C-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciescf6abd3a0200ba41^1cecd93a0200ba41^---0#1#1#--18"Check dependencies36"D7D0880D-FE0B-4C2D-9897-80452B0BDA35-
 
 CCompileC build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/ClientInterface.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s435946418.241048
@@ -9481,8 +9481,8 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection66"Compile
 b27BECF13-AF8B-4993-A286-C4E0C89903FF
 
 CCompileC build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s436025104.813298
-e436025107.145049
+s436208186.868234
+e436208189.192394
 r1
 xCompileC
 xbuild/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.o
@@ -9817,8 +9817,8 @@ d/Users/Q/Code/Cinder/boost/boost/asio/impl/write_at.hpp
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpSession.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/SessionInterface.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection113"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp283"CompileC build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler1748d01037fdb941^ff21251337fdb941^---0#0#1#-19%DVTDocumentLocation2@112"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp0000000000000000^3775"CompileC build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/TestDiscoveryThread-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/TestDiscoveryThread-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/TestDiscoveryThread-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/TestDiscoveryThread-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/TestDiscoveryThread_Prefix-fpszgignnqnftobdaipbcztjypxe/TestDiscoveryThread_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.o36"60282866-18ED-4558-B332-2E582EB04E44-
-b668C35F7-A758-42D1-A72D-D7680D40308C
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection113"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp283"CompileC build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler5c55de3a0200ba41^dd40313d0200ba41^---0#0#1#-19%DVTDocumentLocation2@112"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp0000000000000000^3775"CompileC build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/TestDiscoveryThread-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/TestDiscoveryThread-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/TestDiscoveryThread-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/TestDiscoveryThread-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/TestDiscoveryThread_Prefix-fpszgignnqnftobdaipbcztjypxe/TestDiscoveryThread_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/src/TestDiscoveryThreadApp.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThreadApp.o36"91E90916-1AD5-4438-9CF2-CC24C0655AAF-
+b553C35AE-ADB9-4928-B61E-D50FE764A2FA
 
 CCompileC build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/UdpClient.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s435946418.241737
@@ -11518,8 +11518,8 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Copy bu
 b27BECF13-AF8B-4993-A286-C4E0C89903FF
 
 CLd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app/Contents/MacOS/TestDiscoveryThread normal i386
-s436025107.147612
-e436025107.958888
+s436208189.195045
+e436208190.021030
 r1
 xLd
 x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app/Contents/MacOS/TestDiscoveryThread
@@ -11552,13 +11552,11 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libSystem.dylib
 d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.eprintf.a
 d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.osx.a
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework/AppKit
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreData.framework/CoreData
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework/AppKit
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreData.framework/CoreData
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcache.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcommonCrypto.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcompiler_rt.dylib
@@ -11588,11 +11586,13 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunc.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunwind.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libxpc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework/Foundation
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLAPACK.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework/Foundation
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreText.framework/CoreText
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ImageIO.framework/ImageIO
@@ -11614,8 +11614,8 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection156"Link /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app/Contents/MacOS/TestDiscoveryThread85"Ld build/Debug/TestDiscoveryThread.app/Contents/MacOS/TestDiscoveryThread normal i3867cd6251337fdb941^147af51337fdb941^---0#0#1#--1474"Ld build/Debug/TestDiscoveryThread.app/Contents/MacOS/TestDiscoveryThread normal i386    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode    export MACOSX_DEPLOYMENT_TARGET=10.7    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug -filelist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThread.LinkFileList -mmacosx-version-min=10.7 -dead_strip ../../../../../lib/libcinder_d.a -stdlib=libc++ -framework Cocoa -framework OpenGL -framework CoreVideo -framework QTKit -framework Accelerate -framework AudioToolbox -framework AudioUnit -framework CoreAudio -Xlinker -dependency_info -Xlinker /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThread_dependency_info.dat -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app/Contents/MacOS/TestDiscoveryThread36"C39FA3CC-15F0-4E90-B27A-CF841C1C7E32-
-b668C35F7-A758-42D1-A72D-D7680D40308C
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection156"Link /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app/Contents/MacOS/TestDiscoveryThread85"Ld build/Debug/TestDiscoveryThread.app/Contents/MacOS/TestDiscoveryThread normal i38644fa313d0200ba41^f162053e0200ba41^---0#0#1#--1474"Ld build/Debug/TestDiscoveryThread.app/Contents/MacOS/TestDiscoveryThread normal i386    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode    export MACOSX_DEPLOYMENT_TARGET=10.7    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug -filelist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThread.LinkFileList -mmacosx-version-min=10.7 -dead_strip ../../../../../lib/libcinder_d.a -stdlib=libc++ -framework Cocoa -framework OpenGL -framework CoreVideo -framework QTKit -framework Accelerate -framework AudioToolbox -framework AudioUnit -framework CoreAudio -Xlinker -dependency_info -Xlinker /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/TestDiscoveryThread.build/Debug/TestDiscoveryThread.build/Objects-normal/i386/TestDiscoveryThread_dependency_info.dat -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app/Contents/MacOS/TestDiscoveryThread36"BAEED737-C4C8-418B-BB3B-8D50CABC05EE-
+b553C35AE-ADB9-4928-B61E-D50FE764A2FA
 
 CProcessInfoPlistFile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app/Contents/Info.plist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/Info.plist
 s435946415.054882
@@ -12446,11 +12446,11 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Precomp
 b27BECF13-AF8B-4993-A286-C4E0C89903FF
 
 CTouch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app
-s436025107.959737
-e436025107.962940
+s436208190.021861
+e436208190.024826
 r1
 xTouch
 x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection122"Touch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app41"Touch build/Debug/TestDiscoveryThread.app91baf51337fdb941^4d83f61337fdb941^---0#0#1#--269"Touch build/Debug/TestDiscoveryThread.app    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode    /usr/bin/touch -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app36"F391BF62-6FAA-4222-89DA-01E784CD96F4-
-b668C35F7-A758-42D1-A72D-D7680D40308C
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection122"Touch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app41"Touch build/Debug/TestDiscoveryThread.app55a1053e0200ba41^755b063e0200ba41^---0#0#1#--269"Touch build/Debug/TestDiscoveryThread.app    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode    /usr/bin/touch -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/TestDiscoveryThread/xcode/build/Debug/TestDiscoveryThread.app36"7B825EF5-8F94-4E55-9E4F-438E7FCA31D0-
+b553C35AE-ADB9-4928-B61E-D50FE764A2FA
 

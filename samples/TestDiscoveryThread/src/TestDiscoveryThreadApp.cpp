@@ -129,19 +129,19 @@ void TestDiscoveryThreadApp::onRead( ci::Buffer buffer )
     
 //    PixelPuserRef p = PixelPush::create( header );
     
-    uint8_t *reminder       = header.getPacketReminder();
-    int      reminderSize   = header.getPacketReminderSize();
+    std::shared_ptr<uint8_t>    reminder       = header.getPacketReminder();
+    int                         reminderSize   = header.getPacketReminderSize();
     
     uint16_t port;
-    memcpy( &port, &reminder[28], 2 );
+    memcpy( &port, &reminder.get()[28], 2 );
     
     uint8_t stripsAttached;
     uint16_t pixelsPerStrip;
     uint8_t stripsPerPacket;
     
-    memcpy( &stripsAttached, &reminder[0],  1 );
-    memcpy( &stripsPerPacket, &reminder[1],  1 );
-    memcpy( &pixelsPerStrip, &reminder[2],  2 );
+    memcpy( &stripsAttached, &reminder.get()[0],  1 );
+    memcpy( &stripsPerPacket, &reminder.get()[1],  1 );
+    memcpy( &pixelsPerStrip, &reminder.get()[2],  2 );
     
 //    stripsAttached = ByteUtils.unsignedCharToInt(Arrays.copyOfRange(packet, 0, 1));
 //    pixelsPerStrip = ByteUtils.unsignedShortToInt(Arrays.copyOfRange(packet, 2, 4));
@@ -174,7 +174,7 @@ void TestDiscoveryThreadApp::onRead( ci::Buffer buffer )
         uint16_t testNum;
         memcpy( &testNum, &testBuff[0], 2 );
         console() << "Test num: " << (int)testNum << endl << endl;
-        memcpy( &testNum, &reminder[2], 2 );
+        memcpy( &testNum, &reminder.get()[2], 2 );
         console() << "Test num: " << (int)testNum << endl << endl;
 //        console() << "rem: " << (int)testNum << endl << endl;
         
@@ -188,7 +188,7 @@ void TestDiscoveryThreadApp::onRead( ci::Buffer buffer )
         
         console() << "REMINDER: " << reminderSize << endl;
         for( int k=0; k < reminderSize; k++ )
-            console() << (int)reminder[k] << " ";
+            console() << (int)reminder.get()[k] << " ";
         console() << endl;
         
         console() << "-------------------------------------------" << endl;

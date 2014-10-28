@@ -8,9 +8,9 @@ dependencies: \
   ../../../../../boost/boost/enable_shared_from_this.hpp \
   ../../../../../boost/boost/smart_ptr/enable_shared_from_this.hpp \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../../boost/boost/assert.hpp \
-  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/UdpClient.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/ClientInterface.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/DispatcherInterface.h \
   ../../../../../boost/boost/asio.hpp \
   ../../../../../boost/boost/asio/async_result.hpp \
   ../../../../../boost/boost/asio/detail/config.hpp \
@@ -328,9 +328,9 @@ dependencies: \
   ../../../../../boost/boost/asio/windows/stream_handle_service.hpp \
   ../../../../../boost/boost/asio/write_at.hpp \
   ../../../../../boost/boost/asio/impl/write_at.hpp \
-  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpSession.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/SessionInterface.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/UdpSession.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/SessionInterface.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/UdpServer.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/ServerInterface.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h

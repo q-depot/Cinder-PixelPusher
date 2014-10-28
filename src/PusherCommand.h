@@ -14,20 +14,23 @@
 #pragma once
 #include <algorithm>
 
-#define PP_CMD_MAGIC_SIZE 16
+#define         PP_CMD_MAGIC_SIZE   16
+const uint8_t   PP_CMD_MAGIC[PP_CMD_MAGIC_SIZE] = { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09, 0xaf, 0x50 };
 
 class PusherCommand;
 typedef std::shared_ptr<PusherCommand> PusherCommandRef;
 
 class PusherCommand {
 
+    friend class PixelPusher;
+    
 public:
     
     enum PusherCmdType {
-        RESET,
-        GLOBALBRIGHTNESS_SET,
-        WIFI_CONFIGURE,
-        LED_CONFIGURE,
+        RESET                   = 1,
+        GLOBALBRIGHTNESS_SET    = 2,
+        WIFI_CONFIGURE          = 3,
+        LED_CONFIGURE           = 4,
     };
     
     enum PusherStripType {
@@ -53,193 +56,132 @@ public:
         WPA2
     };
     
-//    static createResetCmd()
-//    {
-////        ci::Buffer
-//    }
-//    
-//    PusherCommandBuffer {
-//        uint8_t *data;
-//        int     dataSize;
-//    }
-//
-    struct PusherCommandData {
-        std::shared_ptr<uint8_t>    data;
-        int                         dataSize;
-    };
     
+public:
     
-    static PusherCommandData createResetCmd()
+    static PusherCommandRef createReset()
     {
-        int                         dataSize = PP_CMD_MAGIC_SIZE + 1;
-        std::shared_ptr<uint8_t>    data = std::shared_ptr<uint8_t>( new uint8_t[cmd.dataSize] );
+        int                         dataSize    = PP_CMD_MAGIC_SIZE + 1;
+        std::shared_ptr<uint8_t>    data        = std::shared_ptr<uint8_t>( new uint8_t[dataSize] );
         
-        cmd.dataSize    = PP_CMD_MAGIC_SIZE + 1;
-        cmd.data        = std::shared_ptr<uint8_t>( new uint8_t[cmd.dataSize] );
+        std::memcpy( &data.get()[0], &PP_CMD_MAGIC[0], PP_CMD_MAGIC_SIZE );
         
-        std::memcpy( &cmd.data.get()[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
-        cmd.data.get()[PP_CMD_MAGIC_SIZE] = RESET;
+        data.get()[PP_CMD_MAGIC_SIZE] = (uint8_t)RESET;
         
-        return cmd;
+        ci::app::console() << "createReset: " << std::endl;
+        for( int j=0; j < dataSize; j++ )
+        {
+            ci::app::console() << (int)data.get()[j] << " ";
+        }
+        
+        ci::app::console() << std::endl;
+        
+        
+        return PusherCommandRef( new PusherCommand( data, dataSize ) );
+    }
+    
+
+     // NOT Support with PixelPusher, only with the PixelPusher Photon
+    static PusherCommandRef createGlobalBrightness( uint16_t brightness )
+    {
+        int                         dataSize    =  PP_CMD_MAGIC_SIZE + 3;
+        std::shared_ptr<uint8_t>    data        = std::shared_ptr<uint8_t>( new uint8_t[dataSize] );
+        
+        std::memcpy( &data.get()[0], &PP_CMD_MAGIC[0], PP_CMD_MAGIC_SIZE );
+        
+        data.get()[PP_CMD_MAGIC_SIZE]   = (uint8_t)GLOBALBRIGHTNESS_SET;
+        data.get()[PP_CMD_MAGIC_SIZE+1] = (uint8_t)( brightness & 0xff);
+        data.get()[PP_CMD_MAGIC_SIZE+2] = (uint8_t)( ( brightness >> 8 ) & 0xff );
+        
+        return PusherCommandRef( new PusherCommand( data, dataSize ) );
+    }
+    
+    /*
+    static PusherCommandRef createWirelessConfig( std::string ssid, std::string key, PusherSecurity security )
+    {
+        // cmd_magic(16) + cmd(1) + ssid_length(+null terminator) + key_length(+null terminator) + security_type(1)
+        int                         dataSize    = PP_CMD_MAGIC_SIZE + 1 + 1 + ssid.length() + 1 + key.length() + 1;;
+        std::shared_ptr<uint8_t>    data        = std::shared_ptr<uint8_t>( new uint8_t[dataSize] );
+        
+        // cmd magic
+        std::memcpy( &data.get()[0], &PP_CMD_MAGIC[0], PP_CMD_MAGIC_SIZE );
+        
+        // cmd
+        data.get()[ PP_CMD_MAGIC_SIZE ] = WIFI_CONFIGURE;
+        
+        int totalLength = PP_CMD_MAGIC_SIZE + 1;
+        
+        // Ssid
+        for ( int i=0; i < ssid.length(); i++ )
+            data.get()[totalLength++] = (uint8_t)ssid[i];
+        data.get()[totalLength++] = (uint8_t)0;             // null terminator
+        
+        // Key
+        for ( int i=0; i < key.length(); i++ )
+            data.get()[totalLength++] = (uint8_t)key[i];
+        data.get()[totalLength++] = (uint8_t)0;             // null terminator
+        
+        data.get()[totalLength] = (uint8_t)security;
+        
+        return PusherCommandRef( new PusherCommand( data, dataSize ) );
     }
 
     
-    static PusherCommandData createResetCmd()
+    static PusherCommandRef createStripsConfig( int32_t numStrips, int32_t stripLength,
+                                                std::vector<PusherStripType> stripType, std::vector<PusherColorOrder> colorOrder,
+                                                uint16_t group = 0, uint16_t controller = 0,
+                                                uint16_t artnetUniverse = 0, uint16_t artnetChannel = 0 )
     {
-        PusherCommandData cmd;
-        cmd.dataSize    = PP_CMD_MAGIC_SIZE + 1;
-        cmd.data        = new uint8_t[cmd.dataSize];
-        
-        std::memcpy( &cmd.data[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
-        cmd.data[PP_CMD_MAGIC_SIZE] = RESET;
-        
-        return cmd;
-    }
-
-    
-    PusherCommand( PusherCmdType command )
-    {
-        mCommand = command;
-    }
-  
-    PusherCommand( PusherCmdType command, short parameter)
-    {
-        mCommand    = command;
-        mParameter  = parameter;
-    }
-  
-    PusherCommand( PusherCmdType command, std::string ssid, std::string key, PusherSecurity security )
-    {
-        mCommand    = command;
-        mSsid       = ssid;
-        mKey        = key;
-        mSecurity   = (uint8_t)security;
-    }
-  
-    PusherCommand( PusherCmdType command, int32_t numStrips, int32_t stripLength,
-                   std::vector<PusherStripType> stripType, std::vector<PusherColorOrder> colorOrder,
-                   uint16_t group = 0, uint16_t controller = 0,
-                   uint16_t artnetUniverse = 0, uint16_t artnetCh = 0 )
-    {
+        // ensure we have 8 values for strip type and order
         if ( stripType.size() != 8 )
             throw std::invalid_argument("Strip type vector size must be 8");
-            
+        
         if ( stripType.size() != 8 )
             throw std::invalid_argument("Color order vector size must be 8");
         
+        // cmd_magic(16) + cmd(1) + num_strips(4) + strip_length(4) + strip_type(8) + color_order(8) + group(2) + controller(2) + artnet_univ(2) + artnet_ch(2)
+        int                         dataSize    =  PP_CMD_MAGIC_SIZE + 1 + 4 + 4 + 8 + 8 + 2 + 2 + 2 + 2;
+        std::shared_ptr<uint8_t>    data        = std::shared_ptr<uint8_t>( new uint8_t[dataSize] );
+        
+        // cmd magic
+        std::memcpy( &data.get()[0], &PP_CMD_MAGIC[0], PP_CMD_MAGIC_SIZE );
+        
+        // cmd
+        data.get()[ PP_CMD_MAGIC_SIZE ] = LED_CONFIGURE;
+        
+        // convert enum(32bit) to uint8_t
+        uint8_t stripType_t[8];
+        uint8_t colorOrder_t[8];
+        
         for( int k=0; k < 8; k++ )
         {
-            mStripType[k]   = (uint8_t)stripType[k];
-            mColorOrder[k]  = (uint8_t)colorOrder[k];
+            stripType_t[k]   = (uint8_t)stripType[k];
+            colorOrder_t[k]  = (uint8_t)colorOrder[k];
         }
         
-        mCommand        = command;
-        mNumStrips      = numStrips;
-        mStripLength    = stripLength;
-        mGroup          = group;
-        mController     = controller;
-        mArtnetChannel  = artnetCh;
-        mArtnetUniverse = artnetUniverse;
+        // paramrters
+        memcpy( &data.get()[PP_CMD_MAGIC_SIZE + 1],    &numStrips,          4 );
+        memcpy( &data.get()[PP_CMD_MAGIC_SIZE + 5],    &stripLength,        4 );
+        memcpy( &data.get()[PP_CMD_MAGIC_SIZE + 9],    &stripType_t[0],     8 );
+        memcpy( &data.get()[PP_CMD_MAGIC_SIZE + 17],   &colorOrder_t[0],    8 );
+        memcpy( &data.get()[PP_CMD_MAGIC_SIZE + 25],   &group,              2 );
+        memcpy( &data.get()[PP_CMD_MAGIC_SIZE + 27],   &controller,         2 );
+        memcpy( &data.get()[PP_CMD_MAGIC_SIZE + 29],   &artnetUniverse,     2 );
+        memcpy( &data.get()[PP_CMD_MAGIC_SIZE + 31],   &artnetChannel,      2 );
+        
+        return PusherCommandRef( new PusherCommand( data, dataSize ) );
     }
-    
+    */
     
     ~PusherCommand() {}
     
     
-    // TODO: TEST THIS!!!!! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    std::vector<uint8_t> generateBytes()
-    {
-        std::vector<uint8_t> cmd;
-
-        if ( mCommand == RESET )
-        {
-            cmd.resize( PP_CMD_MAGIC_SIZE + 1 );
-            std::memcpy( &cmd[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
-            cmd[PP_CMD_MAGIC_SIZE] = RESET;
-        }
+private:
     
-        else if ( mCommand == GLOBALBRIGHTNESS_SET)
-        {
-            cmd.resize( PP_CMD_MAGIC_SIZE + 3 );
-            std::memcpy( &cmd[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
-            cmd[PP_CMD_MAGIC_SIZE] = GLOBALBRIGHTNESS_SET;
-            cmd[PP_CMD_MAGIC_SIZE] = (uint8_t) ( mParameter & 0xff);
-            cmd[PP_CMD_MAGIC_SIZE] = (uint8_t) ( ( mParameter >> 8 ) & 0xff );
-        }
+    PusherCommand( std::shared_ptr<uint8_t> data, int dataSize ) : mData(data), mDataSize(dataSize) {}
     
-        else if ( mCommand == WIFI_CONFIGURE )
-        {
-            int bufLength = 0;
-            bufLength += ( PP_CMD_MAGIC_SIZE ) + 1;   // length of command
-            bufLength += 1;                           // length of key type
-            bufLength += mSsid.length() + 1;          // ssid plus null terminator
-            bufLength += mKey.length() + 1;           // key plus null terminator
-          
-            cmd.resize( bufLength );
-            std::memcpy( &cmd[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
-      
-            cmd[ PP_CMD_MAGIC_SIZE ] = mCommand;
-          
-            // TODO: use just 1 damn counter! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            for ( int i=0; i < mSsid.length(); i++ )
-                cmd[ PP_CMD_MAGIC_SIZE + 1 + i] = (uint8_t)mSsid[i];
-          
-            for ( int i=0; i < mKey.length(); i++ )
-                cmd[ PP_CMD_MAGIC_SIZE + 1 + mSsid.length() + 1 + i ] = (uint8_t)mKey[i];
-          
-          
-            cmd[ PP_CMD_MAGIC_SIZE + 1 + mKey.length() + 1 + mSsid.length() + 1 ] = mSecurity;
-        }
-    
-        else if ( mCommand == LED_CONFIGURE )
-        {
-            // two ints, eight uint8_t, eight uint8_t, plus command, plus group and controller
-            // plus artnet universe and channel
-            cmd.resize( PP_CMD_MAGIC_SIZE + 33 );
-            std::memcpy( &cmd[0], &pp_cmd_magic[0], PP_CMD_MAGIC_SIZE );
-
-            cmd[ PP_CMD_MAGIC_SIZE ] = LED_CONFIGURE;
-          
-            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 1],    &mNumStrips,        4 );
-            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 5],    &mStripLength,      4 );
-            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 9],    &mStripType[0],     8 );
-            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 17],   &mColorOrder[0],    8 );
-            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 25],   &mGroup,            2 );
-            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 27],   &mController,       2 );
-            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 29],   &mArtnetUniverse,   2 );
-            memcpy( &cmd[PP_CMD_MAGIC_SIZE + 31],   &mArtnetChannel,    2 );
-        }
-        
-        return cmd;
-    }
-
-
-  private:
-    
-    PusherCommand( std::shared_ptr<uint8_t> data, int dataSize ) : mCmdData(data), mCmdDataSize(dataSize) {}
-    
-    
-    const uint8_t pp_cmd_magic[PP_CMD_MAGIC_SIZE] = { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09, 0xaf, 0x50 };
-    
-    PusherCmdType   mCommand;
-    int             mParameter;
-    std::string     mSsid;
-    std::string     mKey;
-    uint8_t         mSecurity;
-  
-    int32_t         mNumStrips;
-    int32_t         mStripLength;
-    uint8_t         mStripType[8];
-    uint8_t         mColorOrder[8];
-
-    uint16_t        mGroup;
-    uint16_t        mController;
-  
-    uint16_t        mArtnetUniverse;
-    uint16_t        mArtnetChannel;
-    
-    std::shared_ptr<uint8_t>    mCmdData;
-    int                         mCmdDataSize;
+    std::shared_ptr<uint8_t>    mData;
+    int                         mDataSize;
 };
 
 #endif
