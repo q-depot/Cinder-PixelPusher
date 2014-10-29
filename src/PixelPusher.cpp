@@ -43,7 +43,7 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
     int                         packetSize  = mDeviceHeader.getPacketReminderSize();
     
     if ( packetSize < 28 )
-        throw std::invalid_argument("Packet size < 28");
+        throw std::invalid_argument( "Packet size < 28" );
     
     memcpy( &mStripsAttached,       &packet.get()[0],   1 );
     memcpy( &mMaxStripsPerPacket,   &packet.get()[1],   1 );
@@ -351,7 +351,7 @@ void PixelPusher::onConnect( UdpSessionRef session )
 
 void PixelPusher::onError( std::string err, size_t bytesTransferred )
 {
-    ci::app::console() << "PixelPusher Socket ERROR: " << err << std::endl;
+    ci::app::console() << "PixelPusher Socket error: " << err << std::endl;
 }
 
 
@@ -483,11 +483,9 @@ void PixelPusher::sendPacketToPusher()
             if ( mTerminateThreadAt > 0 && ci::app::getElapsedSeconds() > mTerminateThreadAt )
                 mRunThread = false;
         }
+        
         else
-        {
-//            ci::app::console() << "Session is not open!" << std::endl;
             std::this_thread::sleep_for( std::chrono::milliseconds( totalDelay * 5 ) );
-        }
         
     }
     
@@ -498,11 +496,6 @@ void PixelPusher::sendPacketToPusher()
 void PixelPusher::increaseExtraDelay( uint32_t i )
 {
     if ( PusherDiscoveryService::getAutoThrottle() )
-    {
         mExtraDelayMsec += i;
-        ci::app::console() << "Group " << mGroupId << " card " << mControllerId << " extra delay now " << mExtraDelayMsec << std::endl;
-    }
-    else
-        ci::app::console() << "Group " << mGroupId << " card " << mControllerId << " would increase delay, but autothrottle is disabled." << std::endl;
 }
 

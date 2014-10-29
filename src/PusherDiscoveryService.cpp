@@ -62,7 +62,7 @@ PusherDiscoveryService::PusherDiscoveryService( boost::asio::io_service& ioServi
     if ( mServer )
     {
         mServer->accept( (uint16_t)PP_DISCOVERY_SERVICE_PORT );
-        ci::app::console() << "Listening on port: " << PP_DISCOVERY_SERVICE_PORT << std::endl;
+        ci::app::console() << "PusherDiscoveryService Listening on port: " << PP_DISCOVERY_SERVICE_PORT << std::endl;
     }
     else
     {
@@ -245,7 +245,7 @@ void PusherDiscoveryService::updateGroups()
         {
             if ( !mPushers[k]->isAlive( timeNow ) )
             {
-                ci::app::console() << "Remove pusher: " << mPushers[k]->mLastPingAt << " " << timeNow << std::endl;
+                ci::app::console() << "PusherDiscoveryService remove pusher: " << mPushers[k]->mLastPingAt << " " << timeNow << std::endl;
                 
                 group = getGroupById( mPushers[k]->getGroupId() );
 
@@ -266,7 +266,7 @@ void PusherDiscoveryService::updateGroups()
             {
                 mGroups.erase( mGroups.begin() + k );
                 
-                ci::app::console() << "Remove group" << std::endl;
+                ci::app::console() << "PusherDiscoveryService remove group" << std::endl;
             }
             else
                 k++;
