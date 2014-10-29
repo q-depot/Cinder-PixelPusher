@@ -16,15 +16,11 @@
 #include "cinder/Utilities.h"
 #include "PixelPusher.h"
 #include "Strip.h"
-#include "DeviceRegistry.h"
+#include "PusherDiscoveryService.h"
 
 
 PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
 {
-    mRndId = ci::app::getElapsedFrames();
-    
-    
-    
     mArtnetUniverse   	= 0;
     mArtnetChannel    	= 0;
     mPort               = 9798;
@@ -39,6 +35,7 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
     
     mSegments           = 0;
     mPowerDomain        = 0;
+    mLastPingAt         = ci::app::getElapsedSeconds();
     
     setPusherFlags(0);
     
@@ -63,8 +60,8 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
     memcpy( &mUpdatePeriod,         &packet.get()[4],   4 );
     memcpy( &mPowerTotal,           &packet.get()[8],   4 );
     memcpy( &mDeltaSequence,        &packet.get()[12],  4 );
-    memcpy( &mControllerOrdinal,    &packet.get()[16],  4 );
-    memcpy( &mGroupOrdinal,         &packet.get()[20],  4 );
+    memcpy( &mControllerId,         &packet.get()[16],  4 );
+    memcpy( &mGroupId,              &packet.get()[20],  4 );
     memcpy( &mArtnetUniverse,       &packet.get()[24],  2 );
     memcpy( &mArtnetChannel,        &packet.get()[26],  2 );
     
@@ -166,9 +163,9 @@ void PixelPusher::updateVariables( PixelPusherRef device )
 
 void PixelPusher::copyHeader( PixelPusherRef device )
 {
-    mControllerOrdinal  = device->mControllerOrdinal;
+    mControllerId       = device->mControllerId;
     mDeltaSequence      = device->mDeltaSequence;
-    mGroupOrdinal       = device->mGroupOrdinal;
+    mGroupId            = device->mGroupId;
     mMaxStripsPerPacket = device->mMaxStripsPerPacket;
     mPowerTotal         = device->mPowerTotal;
     mUpdatePeriod       = device->mUpdatePeriod;
@@ -201,20 +198,6 @@ void PixelPusher::copyHeader( PixelPusherRef device )
         mStrips.clear();
         mSegments = device->mSegments;
     }
-}
-
-
-void PixelPusher::setAntiLog( bool antiLog )
-{
-    mUseAntiLog = antiLog;
-
-    if ( !mStrips.empty() )
-        return;
-    
-    createStrips();
-        
-    for( size_t k=0; k < mStrips.size(); k++ )
-        mStrips[k]->useAntiLog( mUseAntiLog );
 }
 
 
@@ -263,11 +246,6 @@ void PixelPusher::createStrips()
     {
         StripRef strip = Strip::create( k, mPixelsPerStrip );
 
-        if ( ( mStripFlags[k] & SFLAG_LOGARITHMIC ) != 0 )
-            strip->useAntiLog(false);
-        else
-            strip->useAntiLog( mUseAntiLog );
-        
         if ( ( mStripFlags[k] & SFLAG_MOTION ) != 0 )
             strip->setMotion(true);
         else
@@ -348,24 +326,14 @@ bool PixelPusher::hasTouchedStrips()
 void PixelPusher::createCardThread( boost::asio::io_service& ioService )
 {
     mThreadExtraDelayMsec   = 0;
-    //    mBandwidthEstimate      = 0;
-    
-    //    mLastWorkTime   = ci::app::getElapsedSeconds();
-    
-    
-    int maxPacketSize  = 4 +  ( ( 1 + 3 * getPixelsPerStrip() ) * getMaxStripsPerPacket() );
-    mPacketBuffer       = ci::Buffer( maxPacketSize );
-    
-    mPacketNumber   = 0;
+    int maxPacketSize       = 4 +  ( ( 1 + 3 * getPixelsPerStrip() ) * getMaxStripsPerPacket() );
+    mPacketBuffer           = ci::Buffer( maxPacketSize );
+    mPacketNumber           = 0;
     
     mClient = UdpClient::create( ioService );
     mClient->connectConnectEventHandler( &PixelPusher::onConnect, this );
     mClient->connectErrorEventHandler( &PixelPusher::onError, this );
-    
     mClient->connect( getIp(), getPort() );
-    
-//    if ( getUpdatePeriod() > 100 && getUpdatePeriod() < 1000000 )
-//        mThreadSleepMsec = ( getUpdatePeriod() / 1000 ) + 1;
     
     mSendDataThread = std::thread( &PixelPusher::sendPacketToPusher, this );
 }
@@ -383,7 +351,7 @@ void PixelPusher::destroyCardThread()
 
 void PixelPusher::onConnect( UdpSessionRef session )
 {
-    ci::app::console() << "PixelPusher Connected" << std::endl;
+    ci::app::console() << "PixelPusher Connected: " << getIp() << std::endl;
     
     mSession = session;
     mSession->connectErrorEventHandler( &PixelPusher::onError, this );
@@ -431,7 +399,7 @@ void PixelPusher::sendPacketToPusher()
                 mThreadSleepMsec = ( getUpdatePeriod() / 1000 ) + 1;
             
             else
-                mThreadSleepMsec = ( ( 1000 / DeviceRegistry::getFrameLimit() ) / ( getStripsAttached() / stripPerPacket ) );
+                mThreadSleepMsec = ( ( 1000 / PusherDiscoveryService::getFrameLimit() ) / ( getStripsAttached() / stripPerPacket ) );
             
             totalDelay = mThreadSleepMsec + mThreadExtraDelayMsec + getExtraDelay();
             
@@ -528,8 +496,8 @@ void PixelPusher::sendPacketToPusher()
         }
         else
         {
-            ci::app::console() << "Session is not open!" << std::endl;
-            std::this_thread::sleep_for( std::chrono::milliseconds( totalDelay ) );
+//            ci::app::console() << "Session is not open!" << std::endl;
+            std::this_thread::sleep_for( std::chrono::milliseconds( totalDelay * 5 ) );
         }
         
     }

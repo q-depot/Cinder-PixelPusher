@@ -104,8 +104,6 @@ uint16_t hw_revision;
 uint16_t sw_revision;
 uint32_t link_speed; // in bits per second
 
-
-
  typedef struct pixel _PACKED_ {
  uint8_t red;
  uint8_t green;

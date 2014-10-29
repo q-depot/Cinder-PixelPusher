@@ -2,30 +2,26 @@
 
 #include "Strip.h"
 #include "PixelPusher.h"
-#include "DeviceRegistry.h"
+#include "PusherDiscoveryService.h"
 
 
-Strip::Strip( uint8_t stripNumber, int length, bool antiLog )
+Strip::Strip( uint8_t stripNumber, int length )
 {
     for ( int i = 0; i < length; i++ )
         mPixels.push_back( Pixel::create() );
 
-//    mPusher       = pusher;
     mStripNumber  = stripNumber;
     mTouched      = false;
     mIsRGBOW      = false;
-    mUseAntiLog   = antiLog;
     mPixelsBuffer = ci::Buffer( mPixels.size() * 3 );
 }
 
 
 void Strip::setRGBOW( bool state )
 {
-    if (state == mIsRGBOW)
+    if ( state == mIsRGBOW )
         return;
-    
-    mTouched = true;
-//    mPusher->markTouched();
+
     int length = mPixels.size();
 
     if ( mIsRGBOW )   // if we're already set to RGBOW mode
@@ -51,73 +47,28 @@ void Strip::setRGBOW( bool state )
         mPixelsBuffer.resize( mPixels.size() * 9 );
         mIsRGBOW = state;
     }
-}
-
-
-void Strip::setPixels( std::vector<Pixel> pixels )
-{
-    for( size_t k=0; k < pixels.size(); k++ )
-    {
-        if ( k >= mPixels.size() )
-            break;
-
-        mPixels[k]->setColor( pixels[k] );
-    }
     
-    markTouched();
+    mTouched = true;
 }
 
 
-void Strip::setPixelRGB( int position, uint8_t r, uint8_t g, uint8_t b )
+void Strip::setPixel( int position, uint8_t r, uint8_t g, uint8_t b, uint8_t o, uint8_t w )
 {
     if (position >= mPixels.size() )
         return;
     
-    mPixels[position]->setColorRGB( r, g, b, mUseAntiLog );
+    mPixels[position]->setColor( r, g, b, o, w, PusherDiscoveryService::getAntiLog() );
     
-    markTouched();
-}
-
-
-void Strip::setPixelRGBOW( int position, uint8_t r, uint8_t g, uint8_t b, uint8_t o, uint8_t w )
-{
-    if (position >= mPixels.size() )
-        return;
-    
-    mPixels[position]->setColorRGBOW( r, g, b, o, w, mUseAntiLog );
-    
-    markTouched();
-}
-
-
-void Strip::setPixel( Pixel pixel, int position )
-{
-    if ( position >= mPixels.size() )
-        return;
-
-    mPixels[position]->setColor( pixel, mUseAntiLog );
-    
-    markTouched();
+    mTouched = true;
 }
 
 
 void Strip::setPixelsBlack()
 {
     for( size_t k=0; k < mPixels.size(); k++ )
-        mPixels[k]->setColorRGBOW( 0, 0, 0, 0, 0 );
-}
-
-
-void Strip::markTouched()
-{
-    mTouched    = true;
-    mPushedAt   = 0;
-}
-
-
-void Strip::markClean()
-{
-    mTouched = false;
+        mPixels[k]->setColor( 0, 0, 0, 0, 0 );
+    
+    mTouched = true;
 }
 
 
@@ -126,12 +77,11 @@ void Strip::updatePixelsBuffer()
     int         byteIdx;
     PixelRef    px;
     uint8_t     *data                   = (uint8_t*)mPixelsBuffer.getData();
-    bool        useOverallBrightness    = DeviceRegistry::getUseOverallBrightnessScale();
-    double      brightness              = DeviceRegistry::getPowerScale();
+    bool        useOverallBrightness    = PusherDiscoveryService::getUseOverallBrightnessScale();
+    double      brightness              = PusherDiscoveryService::getPowerScale();
     
     if ( useOverallBrightness )
-        brightness *= DeviceRegistry::getOverallBrightnessScale();
-    
+        brightness *= PusherDiscoveryService::getOverallBrightnessScale();
     
     if ( mIsRGBOW )
     {
@@ -166,3 +116,4 @@ void Strip::updatePixelsBuffer()
         }
     }
 }
+

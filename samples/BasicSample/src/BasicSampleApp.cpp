@@ -2,7 +2,7 @@
 #include "cinder/gl/gl.h"
 #include "cinder/gl/TextureFont.h"
 #include "Strip.h"
-#include "DeviceRegistry.h"
+#include "PusherDiscoveryService.h"
 
 
 using namespace ci;
@@ -16,7 +16,7 @@ class BasicSampleApp : public AppNative {
 	void update();
 	void draw();
     
-    DeviceRegistryRef   mDeviceRegistry;
+    PusherDiscoveryServiceRef   mPusherDiscoveryService;
     gl::TextureFontRef  mFont;
     
 };
@@ -24,15 +24,17 @@ class BasicSampleApp : public AppNative {
 
 void BasicSampleApp::setup()
 {
-    mDeviceRegistry = DeviceRegistry::create( io_service() );
+    mPusherDiscoveryService = PusherDiscoveryService::create( io_service() );
 
     mFont = gl::TextureFont::create( Font( "Arial", 12 ) );
+    
+    setWindowSize( 1200, 800 );
 }
 
 
 void BasicSampleApp::keyDown( KeyEvent event )
 {
-    std::vector<PixelPusherRef> pushers = mDeviceRegistry->getPushers();
+    std::vector<PixelPusherRef> pushers = mPusherDiscoveryService->getPushers();
     if ( pushers.empty() )
         return;
     
@@ -42,43 +44,32 @@ void BasicSampleApp::keyDown( KeyEvent event )
         pushers.front()->reset();
 }
 
+
 void BasicSampleApp::update()
 {
-    std::vector<PixelPusherRef> pushers = mDeviceRegistry->getPushers();
+    std::vector<PixelPusherRef> pushers = mPusherDiscoveryService->getPushers();
     std::vector<StripRef>       strips;
     std::vector<PixelRef>       pixels;
-    uint8_t                     val_t;
-    
-    Color col;
+    Color                       col;
     
     if ( !pushers.empty() )
     {
-        
-//        pushers.front()->setAutoThrottle( true );
-        
         strips = pushers.front()->getStrips();
         for( size_t k=0; k < strips.size(); k++ )
         {
             pixels = strips[k]->getPixels();
             for( size_t i=0; i < pixels.size(); i++ )
             {
-                //                val_t = 0.5 * ( 1.0 + sin( i + getElapsedSeconds() ) ) * 255;
-                val_t = 0.5 * ( 1.0 + sin( i + getElapsedSeconds() ) ) * 255;
+                col.r = 0.5f * ( 1.0f + sin( (float)( i + k * pixels.size() ) / 15 + 2 * getElapsedSeconds() ) );
+                col.g = 0.5f * ( 1.0f + cos( (float)( i + k * pixels.size() ) / 15 + 2 * getElapsedSeconds() ) );
+                col.b = 1.0 - 0.5f * ( 1.0f + cos( (float)( i + k * pixels.size() ) / 5 + 2 * getElapsedSeconds() ) );
                 
-                col.r = 0.5f * ( 1.0f + sin( (float)i / 15 + 2 * getElapsedSeconds() ) );
-                col.g = 0.5f * ( 1.0f + cos( (float)i / 15 + 2 * getElapsedSeconds() ) );
-                col.b = 1.0 - 0.5f * ( 1.0f + cos( (float)i / 5 + 2 * getElapsedSeconds() ) );
-                //                    val = 0.5f * ( 1.0f + sin( i + 2 * getElapsedSeconds() ) );
-                //                    col = Color( CM_HSV, Vec3f( 1.0- val, 1.0, val ) );
-                if ( k == 0 )
-                    col = Color( 0.2, 0.0, 0.0 );
-                
-                strips[k]->setPixelRGB( i, (uint8_t)( col.r * 255 ), (uint8_t)( col.g * 255 ), (uint8_t)( col.b * 255 ) );
-                
+                strips[k]->setPixel( i, (uint8_t)( col.r * 255 ), (uint8_t)( col.g * 255 ), (uint8_t)( col.b * 255 ) );
             }
         }
     }
 }
+
 
 void BasicSampleApp::draw()
 {
@@ -87,7 +78,7 @@ void BasicSampleApp::draw()
     
     Vec2i                       pos( 15, 25 );
     int                         lineH = 15;
-    std::vector<PixelPusherRef> pushers = mDeviceRegistry->getPushers();
+    std::vector<PixelPusherRef> pushers = mPusherDiscoveryService->getPushers();
     PixelPusherRef              pusher;
 
     mFont->drawString( "FPS: " + to_string(getAverageFps()), Vec2i( 450, 25 ) );
@@ -96,10 +87,7 @@ void BasicSampleApp::draw()
     {
         pusher = pushers[j];
         
-        
         // Network
-        mFont->drawString( "ID: "                   + to_string( pusher->mRndId ),                  pos );   pos.y += lineH * 2;
-        
         mFont->drawString( "IP: "                   + pusher->getIp(),                              pos );   pos.y += lineH;
         mFont->drawString( "Mac: "                  + pusher->getMacAddress(),                      pos );   pos.y += lineH;
         mFont->drawString( "Port: "                 + to_string( pusher->getPort() ),               pos );   pos.y += lineH;
@@ -114,8 +102,8 @@ void BasicSampleApp::draw()
         pos.y += lineH;
         
         // Group
-        mFont->drawString( "Group: "                + to_string( pusher->getGroupOrdinal() ),       pos );   pos.y += lineH;
-        mFont->drawString( "Controller: "           + to_string( pusher->getControllerOrdinal() ),  pos );   pos.y += lineH;
+        mFont->drawString( "Group: "                + to_string( pusher->getGroupId() ),            pos );   pos.y += lineH;
+        mFont->drawString( "Controller: "           + to_string( pusher->getControllerId() ),       pos );   pos.y += lineH;
         mFont->drawString( "Delta sequence: "       + to_string( pusher->getDeltaSequence() ),      pos );   pos.y += lineH;
         mFont->drawString( "Device type: "          + to_string( pusher->getDeviceType() ),         pos );   pos.y += lineH;
         mFont->drawString( "Extra delay: "          + to_string( pusher->getExtraDelay() ),         pos );   pos.y += lineH;

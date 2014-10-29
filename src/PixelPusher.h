@@ -24,6 +24,9 @@
 #include "UdpClient.h"
 
 
+#define PP_DISCONNECT_TIMEOUT           5
+
+
 class Strip;
 typedef std::shared_ptr<Strip> StripRef;
 
@@ -35,6 +38,8 @@ typedef std::shared_ptr<PixelPusher> PixelPusherRef;
 
 
 class PixelPusher : public std::enable_shared_from_this<PixelPusher> {
+    
+    friend class PusherDiscoveryService;
     
 private:
     
@@ -49,10 +54,7 @@ private:
     
     
 public:
-    
-    int             mRndId;
-    
-    
+
     static PixelPusherRef create( DeviceHeader header )
     {
         return PixelPusherRef( new PixelPusher( header ) );
@@ -132,10 +134,10 @@ public:
         if ( mAutoThrottle )
         {
             mExtraDelayMsec += i;
-            ci::app::console() << "Group " << mGroupOrdinal << " card " << mControllerOrdinal << " extra delay now " << mExtraDelayMsec << std::endl;
+            ci::app::console() << "Group " << mGroupId << " card " << mControllerId << " extra delay now " << mExtraDelayMsec << std::endl;
         }
         else
-            ci::app::console() << "Group " << mGroupOrdinal << " card " << mControllerOrdinal << " would increase delay, but autothrottle is disabled." << std::endl;
+            ci::app::console() << "Group " << mGroupId << " card " << mControllerId << " would increase delay, but autothrottle is disabled." << std::endl;
     }
 
     void decreaseExtraDelay( uint32_t i )
@@ -156,14 +158,12 @@ public:
     
     void setExtraDelay( uint32_t i ) { mExtraDelayMsec = i; }
     
-    uint32_t getControllerOrdinal() { return mControllerOrdinal; }
-    uint32_t getGroupOrdinal() { return mGroupOrdinal; }
+    uint32_t getControllerId() { return mControllerId; }
+    uint32_t getGroupId() { return mGroupId; }
 
     void updateVariables( PixelPusherRef device );
         
     void copyHeader( PixelPusherRef device );
-
-    void setAntiLog( bool antiLog );
 
     bool hasTouchedStrips();
   
@@ -185,13 +185,11 @@ public:
     
     bool isEqual( PixelPusherRef otherDevice );
     
-    bool isIpAddrMulticast()
-    {
-        return mDeviceHeader.isMulticast();
-    }
+    bool isIpAddrMulticast() { return mDeviceHeader.isMulticast(); }
+    
+    bool isAlive( double timeNow ) { return timeNow - mLastPingAt < PP_DISCONNECT_TIMEOUT; }
     
     // Commands
-    
     void reset()
     {
         mCommandQueue.push_back( PusherCommand::createReset() );
@@ -234,10 +232,9 @@ private:
     void onConnect( UdpSessionRef session );
     void onError( std::string err, size_t bytesTransferred );
     
+    void setLastPing( double timeNow ) { mLastPingAt = timeNow; }
     
 private:
-    
-      // private final Object stripLock = new Object();
     
     std::vector<StripRef> mStrips;
     uint32_t              mExtraDelayMsec;
@@ -245,10 +242,6 @@ private:
   
     bool                  mMulticast;
     bool                  mMulticastPrimary;
-  
-    /**
-     * Queue for commands using the new majik strip protocol.
-     */
   
     std::vector<PusherCommandRef> mCommandQueue;
   
@@ -259,15 +252,14 @@ private:
     uint32_t        mUpdatePeriod;
     uint32_t        mPowerTotal;
     uint32_t        mDeltaSequence;
-    uint32_t        mControllerOrdinal;
-    uint32_t        mGroupOrdinal;
+    uint32_t        mControllerId;
+    uint32_t        mGroupId;
     
     uint16_t        mArtnetUniverse;
     uint16_t        mArtnetChannel;
 
     uint16_t        mPort;
     
-    bool            mUseAntiLog;            // TODO: again this variable is every fucking where! DeviceRegistry should keep the global value!
     uint32_t        mPusherFlags;
     uint32_t        mSegments;
     uint32_t    	mPowerDomain;
@@ -289,6 +281,7 @@ private:
     double          mTerminateThreadAt;
     uint32_t        mPacketNumber;
     
+    double          mLastPingAt;
 };
 
 #endif

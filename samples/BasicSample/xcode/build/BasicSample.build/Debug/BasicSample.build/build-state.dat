@@ -15,7 +15,7 @@ cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Ud
 cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/TcpServer.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/TcpServer.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PusherDiscoveryService.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/UdpServer.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/UdpSession.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpSession.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/SessionInterface.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/SessionInterface.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
@@ -549,9 +549,9 @@ t1414177402
 s459637
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp
-c000000005450B9E40000000000001C39
-t1414576612
-s7225
+c000000005450D7DD0000000000001A1A
+t1414584285
+s6682
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/BasicSample_Prefix.pch
 c00000000544AA27A000000000000012D
@@ -564,29 +564,38 @@ t1414177402
 s1122
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSample.LinkFileList
-c00000000544F6D4D000000000000091E
-t1414491469
-s2334
+c000000005450D7CD0000000000000926
+t1414584269
+s2342
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o
-t1414576661
-s2836184
+t1414584477
+s2691516
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/ClientInterface.o
 t1414491475
 s192712
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o
-t1414577179
-s2904960
+c00000000000000000000000000000000
+t2
+s0
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DispatcherInterface.o
 t1414491475
 s248404
 
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Pixel.o
+t2
+s0
+
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o
-t1414577179
-s2705752
+t1414584477
+s2583388
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PusherDiscoveryService.o
+t1414584477
+s2758340
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/ServerInterface.o
 t1414491475
@@ -597,8 +606,8 @@ t1414491478
 s388996
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o
-t1414576660
-s686552
+t1414584477
+s546984
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/TcpClient.o
 t1414491476
@@ -629,7 +638,7 @@ t1414491475
 s904312
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app
-t1414576773
+t1414584426
 s102
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Info.plist
@@ -637,8 +646,8 @@ t1414491469
 s1493
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample
-t1414577180
-s4520120
+t1414584478
+s4501188
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/PkgInfo
 t1414491469
@@ -649,54 +658,69 @@ t1414491469
 s459637
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h
-c000000005450B15E00000000000015D8
-t1414574430
-s5592
+c000000005450CA8200000000000015D6
+t1414580866
+s5590
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp
-c000000005450BAC800000000000017B6
-t1414576840
-s6070
+c000000005450C1AC00000000000016A8
+t1414578604
+s5800
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.h
-c00000000544FD8150000000000000908
-t1414518805
-s2312
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp
+c000000005450D77E00000000000001ED
+t1414584190
+s493
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h
-c00000000544F5E0E0000000000000E32
-t1414487566
-s3634
+c000000005450D8600000000000000B73
+t1414584416
+s2931
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp
-c000000005450BBF60000000000004503
-t1414577142
-s17667
+c000000005450D5F4000000000000428A
+t1414583796
+s17034
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h
-c000000005450BA11000000000000218D
-t1414576657
-s8589
+c000000005450D31B00000000000020F9
+t1414583067
+s8441
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherCommand.h
 c00000000544FB8E50000000000001A1D
 t1414510821
 s6685
 
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.cpp
+c000000005450D60D0000000000001DFF
+t1414583821
+s7679
+
+N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h
+c000000005450D5DD0000000000000C1E
+t1414583773
+s3102
+
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h
-c00000000544F7B8F00000000000001F8
-t1414495119
-s504
+c000000005450CF8F0000000000000500
+t1414582159
+s1280
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp
-c00000000544F74E800000000000010CB
-t1414493416
-s4299
+c000000005450D87F0000000000000DA1
+t1414584447
+s3489
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h
-c00000000544F74910000000000001491
-t1414493329
-s5265
+c000000005450D89B0000000000000B73
+t1414584475
+s2931
 
 N/Users/Q/Code/Cinder/boost/boost/aligned_storage.hpp
 c00000000516298F100000000000010C9
@@ -6926,7 +6950,13 @@ r0
 CBuild AST from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp
 r0
 
+CBuild AST from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp
+r0
+
 CBuild AST from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp
+r0
+
+CBuild AST from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.cpp
 r0
 
 CBuild AST from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp
@@ -6934,11 +6964,11 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies5fb70c99f300ba41^e8f40c99f300ba41^---0#1#1#--18"Check dependencies36"1AF1F413-FB6C-45B5-9CE5-4C02042C4E9B-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesb5a93a1b1001ba41^b8073d1b1001ba41^---0#1#1#--18"Check dependencies36"04336E53-4F66-47BB-8E26-570015A131D9-
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s436269458.443432
-e436269461.179604
+s436277275.246158
+e436277277.693947
 r1
 xCompileC
 xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o
@@ -6954,7 +6984,7 @@ d/Users/Q/Code/Cinder/include/cinder/Text.h
 d/Users/Q/Code/Cinder/include/cinder/gl/Texture.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.h
@@ -7286,8 +7316,8 @@ d/Users/Q/Code/Cinder/boost/boost/enable_shared_from_this.hpp
 d/Users/Q/Code/Cinder/boost/boost/smart_ptr/enable_shared_from_this.hpp
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection97"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp243"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler33a97192f100ba41^1efb2d95f100ba41^---0#0#1#-19%DVTDocumentLocation2@96"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp0000000000000000^3407"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o36"6FB8E59E-7588-41AA-9689-637AFA782FD0-
-bFC02BA73-6E5A-45EC-8291-70AC525A7E1F
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection97"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp243"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler93193f1b1001ba41^7ea7b11d1001ba41^---0#0#1#-19%DVTDocumentLocation2@96"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp0000000000000000^3407"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o36"490EAA14-015E-4624-A66F-4C2BB7DB0D5B-
+b070F0CCA-6406-4700-ABD6-5A1B34139739
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/ClientInterface.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s436184272.589342
@@ -7625,9 +7655,9 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection71"Compile
 bAD906048-B24F-47D2-B89B-5B5827A10FC2
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s436269977.065714
-e436269979.556193
-r1
+s436271404.093855
+e436271405.489768
+r0
 xCompileC
 xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o
 x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp
@@ -7635,344 +7665,12 @@ xnormal
 xi386
 xc++
 xcom.apple.compilers.llvm.clang.1_0.compiler
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp
-d/Users/Q/Code/Cinder/include/cinder/app/AppNative.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.h
-d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.h
-d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.h
-d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.h
-d/Users/Q/Code/Cinder/boost/boost/asio.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/async_result.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/config.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/handler_type.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/push_options.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/pop_options.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_datagram_socket.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_io_object.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/io_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/noncopyable.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/wrapped_handler.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/bind_handler.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_alloc_helpers.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/addressof.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/handler_alloc_hook.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/handler_alloc_hook.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/call_stack.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/tss_ptr.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_tss_ptr.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_tss_ptr.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/throw_error.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/throw_error.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/throw_exception.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/error.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/error.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/task_io_service_thread_info.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/event.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_event.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/assert.hpp
-d/Users/Q/Code/Cinder/boost/boost/assert.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_event.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/op_queue.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/thread_info_base.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_cont_helpers.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/handler_continuation_hook.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_invoke_helpers.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/handler_invoke_hook.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/io_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_type_requirements.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/service_registry.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/mutex.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_mutex.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/scoped_lock.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_mutex.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/service_registry.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/service_registry.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/task_io_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/atomic_count.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactor_fwd.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/task_io_service_operation.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_tracking.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/handler_tracking.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/task_io_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/completion_handler.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/fenced_block.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/macos_fenced_block.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/operation.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/task_io_service.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/limits.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactor.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/kqueue_reactor.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/object_pool.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactor_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/select_interrupter.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/pipe_select_interrupter.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/pipe_select_interrupter.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_types.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue_base.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue_set.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/timer_queue_set.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/wait_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/kqueue_reactor.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/kqueue_reactor.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/io_service.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/scoped_ptr.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/type_traits.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/socket_base.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/io_control.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_option.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/datagram_socket_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/buffer.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/array_fwd.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/buffer_sequence_adapter.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/buffer_sequence_adapter.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_null_buffers_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_accept_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_holder.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_ops.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/shared_ptr.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/weak_ptr.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/socket_ops.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_connect_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_recvfrom_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_sendto_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_service_base.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_recv_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_recvmsg_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_send_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/reactive_socket_service_base.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_deadline_timer.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/deadline_timer_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/deadline_timer_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/cstdint.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/date_time_fwd.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_scheduler.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_scheduler_fwd.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/wait_handler.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/time_traits.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_types.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/time_clock.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/c_time.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/compiler_config.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/locale_config.hpp
-d/Users/Q/Code/Cinder/boost/boost/cstdint.hpp
-d/Users/Q/Code/Cinder/boost/boost/config/auto_link.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/microsec_time_clock.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/filetime_functions.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/ptime.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_system.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_config.hpp
-d/Users/Q/Code/Cinder/boost/boost/config/no_tr1/cmath.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/time_duration.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/time_defs.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/special_defs.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/time_resolution_traits.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/int_adapter.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/gregorian_types.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/date.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/year_month_day.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/period.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_calendar.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_weekday.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/constrained_value.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/date_defs.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_day_of_year.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian_calendar.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian_calendar.ipp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_ymd.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_day.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_year.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_month.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_duration.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/date_duration.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/date_duration_types.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_duration_types.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_date.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/adjust_functors.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/wrapping_int.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/date_generators.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/date_clock_device.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/date_iterator.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/time_system_split.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/time_system_counted.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/time.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/date_duration_operators.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_duration.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/time_period.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/time_iterator.hpp
-d/Users/Q/Code/Cinder/boost/boost/date_time/dst_rules.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue_ptime.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/timer_queue_ptime.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_raw_socket.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/raw_socket_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_seq_packet_socket.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/seq_packet_socket_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_serial_port.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/serial_port_base.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/serial_port_base.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/serial_port_base.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/serial_port_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_serial_port_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/descriptor_ops.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/descriptor_ops.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_descriptor_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/descriptor_read_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/descriptor_write_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/reactive_descriptor_service.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/reactive_serial_port_service.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/win_iocp_serial_port_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_signal_set.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/signal_set_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_set_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_handler.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/signal_set_service.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_blocker.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_signal_blocker.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/static_mutex.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_static_mutex.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket_acceptor.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/socket_acceptor_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket_iostream.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket_streambuf.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/array.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/stream_socket_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/deadline_timer.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_stream_socket.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_streambuf.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_streambuf_fwd.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/basic_waitable_timer.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/wait_traits.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/waitable_timer_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/chrono_time_traits.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/buffered_read_stream_fwd.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/buffered_read_stream.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/buffer_resize_guard.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/buffered_stream_storage.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/buffered_read_stream.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/buffered_stream_fwd.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/buffered_stream.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/buffered_write_stream.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/buffered_write_stream_fwd.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/completion_condition.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/write.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/write.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/base_from_completion_cond.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/consuming_buffers.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/dependent_type.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/buffered_write_stream.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/buffers_iterator.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/connect.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/connect.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/coroutine.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/generic/basic_endpoint.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/generic/detail/endpoint.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/generic/detail/impl/endpoint.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/generic/datagram_protocol.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/generic/raw_protocol.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/generic/seq_packet_protocol.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/generic/stream_protocol.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/address.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/address_v4.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/winsock_init.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v4.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v4.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/address_v6.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v6.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v6.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_endpoint.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/detail/endpoint.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/detail/impl/endpoint.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/basic_endpoint.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver_iterator.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver_entry.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver_query.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/resolver_query_base.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/resolver_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolver_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolve_endpoint_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolve_op.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolver_service_base.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/thread.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_thread.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_thread.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/resolver_service_base.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/host_name.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/host_name.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/icmp.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/multicast.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/detail/socket_option.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/tcp.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/udp.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/unicast.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/ip/v6_only.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/is_read_buffered.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/is_write_buffered.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/local/basic_endpoint.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/local/detail/endpoint.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/local/detail/impl/endpoint.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/local/connect_pair.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/local/datagram_protocol.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/local/stream_protocol.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/placeholders.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/posix/basic_descriptor.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/posix/descriptor_base.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/posix/basic_stream_descriptor.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/posix/stream_descriptor_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/posix/stream_descriptor.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/read.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/read.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/read_at.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/read_at.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/read_until.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/regex_fwd.hpp
-d/Users/Q/Code/Cinder/boost/boost/regex_fwd.hpp
-d/Users/Q/Code/Cinder/boost/boost/regex/config.hpp
-d/Users/Q/Code/Cinder/boost/boost/regex/user.hpp
-d/Users/Q/Code/Cinder/boost/boost/regex/config/cwchar.hpp
-d/Users/Q/Code/Cinder/boost/boost/regex/v4/regex_fwd.hpp
-d/Users/Q/Code/Cinder/boost/boost/regex/v4/match_flags.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/read_until.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/serial_port.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/signal_set.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/strand.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/strand_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/strand_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/strand_service.ipp
-d/Users/Q/Code/Cinder/boost/boost/asio/streambuf.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/version.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_handle.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_object_handle.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_random_access_handle.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_stream_handle.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/windows/object_handle.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/windows/object_handle_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/windows/overlapped_ptr.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/windows/random_access_handle.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/windows/random_access_handle_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/windows/stream_handle.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/windows/stream_handle_service.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/write_at.hpp
-d/Users/Q/Code/Cinder/boost/boost/asio/impl/write_at.hpp
-d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpSession.h
-d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/SessionInterface.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherCommand.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h
-d/Users/Q/Code/Cinder/boost/boost/enable_shared_from_this.hpp
-d/Users/Q/Code/Cinder/boost/boost/smart_ptr/enable_shared_from_this.hpp
-d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.h
-d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection77"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp223"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler98e01099f300ba41^0f638e9bf300ba41^---0#0#1#-19%DVTDocumentLocation2@76"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp0000000000000000^3367"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o36"B221D231-7D0C-4967-9A08-F0457F9670D1-
-b081EF3E7-C895-47FD-8DD9-F97AF8A7E28A
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp:3:10: fatal error: 'PusherDiscoveryService.h' file not found
+o#include "PusherDiscoveryService.h"
+o         ^
+o1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection77"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp223"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compilera71f182cf900ba41^f25b802df900ba41^-197"/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp:3:10: fatal error: 'PusherDiscoveryService.h' file not found#include "PusherDiscoveryService.h"         ^1 error generated.1(36%IDEClangDiagnosticActivityLogMessage2@41"'PusherDiscoveryService.h' file not found-436271405#18446744073709551615#0#-2#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@76"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp0000000000000000^2#9#2#9#44#0#29"Lexical or Preprocessor Issue--0#0#1#-19%DVTDocumentLocation4@76"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp0000000000000000^3367"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o36"492F2AB2-D97E-4942-94C5-5ACD7D50C2E8-
+b2A12A569-240A-4A02-B2D9-DC11A4F8F416
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DispatcherInterface.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s436184272.590962
@@ -8308,9 +8006,369 @@ d/Users/Q/Code/Cinder/boost/boost/asio/impl/write_at.hpp
 lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection75"Compile /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.cpp226"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DispatcherInterface.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler0d7297d0a4ffb941^3ae826d3a4ffb941^---0#0#1#-19%DVTDocumentLocation2@74"file:///Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.cpp0000000000000000^3383"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DispatcherInterface.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DispatcherInterface.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DispatcherInterface.dia -c /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DispatcherInterface.o36"89BE4F08-918B-43BD-8BB3-A230C4AD771C-
 bAD906048-B24F-47D2-B89B-5B5827A10FC2
 
+CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Pixel.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s436276990.648435
+e436276992.046011
+r0
+xCompileC
+xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Pixel.o
+x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.h
+d/Users/Q/Code/Cinder/boost/boost/asio.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/async_result.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/config.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/handler_type.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/push_options.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/pop_options.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_datagram_socket.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_io_object.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/io_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/noncopyable.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/wrapped_handler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/bind_handler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_alloc_helpers.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/addressof.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/handler_alloc_hook.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/handler_alloc_hook.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/call_stack.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/tss_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_tss_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_tss_ptr.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/throw_error.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/throw_error.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/throw_exception.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/error.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/error.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/task_io_service_thread_info.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/event.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_event.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/assert.hpp
+d/Users/Q/Code/Cinder/boost/boost/assert.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_event.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/op_queue.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/thread_info_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_cont_helpers.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/handler_continuation_hook.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_invoke_helpers.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/handler_invoke_hook.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/io_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_type_requirements.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/service_registry.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/mutex.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_mutex.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/scoped_lock.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_mutex.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/service_registry.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/service_registry.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/task_io_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/atomic_count.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactor_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/task_io_service_operation.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_tracking.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/handler_tracking.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/task_io_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/completion_handler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/fenced_block.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/macos_fenced_block.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/operation.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/task_io_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/limits.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/kqueue_reactor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/object_pool.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactor_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/select_interrupter.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/pipe_select_interrupter.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/pipe_select_interrupter.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_types.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue_set.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/timer_queue_set.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/wait_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/kqueue_reactor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/kqueue_reactor.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/io_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/scoped_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/type_traits.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/socket_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/io_control.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_option.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/datagram_socket_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffer.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/array_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/buffer_sequence_adapter.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/buffer_sequence_adapter.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_null_buffers_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_accept_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_holder.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_ops.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/shared_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/weak_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/socket_ops.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_connect_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_recvfrom_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_sendto_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_service_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_recv_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_recvmsg_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_send_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/reactive_socket_service_base.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_deadline_timer.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/deadline_timer_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/deadline_timer_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/cstdint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/date_time_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_scheduler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_scheduler_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/wait_handler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/time_traits.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_types.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_clock.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/c_time.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/compiler_config.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/locale_config.hpp
+d/Users/Q/Code/Cinder/boost/boost/cstdint.hpp
+d/Users/Q/Code/Cinder/boost/boost/config/auto_link.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/microsec_time_clock.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/filetime_functions.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/ptime.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_system.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_config.hpp
+d/Users/Q/Code/Cinder/boost/boost/config/no_tr1/cmath.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_duration.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_defs.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/special_defs.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_resolution_traits.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/int_adapter.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/gregorian_types.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/year_month_day.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/period.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_calendar.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_weekday.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/constrained_value.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_defs.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_day_of_year.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian_calendar.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian_calendar.ipp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_ymd.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_day.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_year.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_month.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_duration.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_duration.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_duration_types.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_duration_types.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_date.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/adjust_functors.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/wrapping_int.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_generators.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_clock_device.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_iterator.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_system_split.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_system_counted.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/date_duration_operators.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_duration.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/time_period.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_iterator.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/dst_rules.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue_ptime.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/timer_queue_ptime.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_raw_socket.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/raw_socket_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_seq_packet_socket.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/seq_packet_socket_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_serial_port.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/serial_port_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/serial_port_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/serial_port_base.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/serial_port_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_serial_port_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/descriptor_ops.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/descriptor_ops.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_descriptor_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/descriptor_read_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/descriptor_write_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/reactive_descriptor_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/reactive_serial_port_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/win_iocp_serial_port_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_signal_set.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/signal_set_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_set_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_handler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/signal_set_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_blocker.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_signal_blocker.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/static_mutex.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_static_mutex.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket_acceptor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/socket_acceptor_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket_iostream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket_streambuf.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/array.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/stream_socket_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/deadline_timer.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_stream_socket.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_streambuf.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_streambuf_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_waitable_timer.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/wait_traits.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/waitable_timer_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/chrono_time_traits.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_read_stream_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_read_stream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/buffer_resize_guard.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/buffered_stream_storage.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/buffered_read_stream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_stream_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_stream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_write_stream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_write_stream_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/completion_condition.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/write.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/write.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/base_from_completion_cond.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/consuming_buffers.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/dependent_type.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/buffered_write_stream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffers_iterator.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/connect.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/connect.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/coroutine.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/basic_endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/detail/endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/detail/impl/endpoint.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/datagram_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/raw_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/seq_packet_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/stream_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/address.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/address_v4.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/winsock_init.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v4.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v4.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/address_v6.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v6.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v6.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/detail/endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/detail/impl/endpoint.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/basic_endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver_iterator.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver_entry.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver_query.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/resolver_query_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/resolver_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolver_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolve_endpoint_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolve_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolver_service_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/thread.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_thread.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_thread.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/resolver_service_base.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/host_name.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/host_name.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/icmp.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/multicast.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/detail/socket_option.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/tcp.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/udp.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/unicast.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/v6_only.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/is_read_buffered.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/is_write_buffered.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/basic_endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/detail/endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/detail/impl/endpoint.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/connect_pair.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/datagram_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/stream_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/placeholders.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/posix/basic_descriptor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/posix/descriptor_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/posix/basic_stream_descriptor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/posix/stream_descriptor_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/posix/stream_descriptor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/read.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/read.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/read_at.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/read_at.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/read_until.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/regex_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex/config.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex/user.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex/config/cwchar.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex/v4/regex_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex/v4/match_flags.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/read_until.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/serial_port.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/signal_set.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/strand.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/strand_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/strand_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/strand_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/streambuf.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/version.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_object_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_random_access_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_stream_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/object_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/object_handle_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/overlapped_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/random_access_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/random_access_handle_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/stream_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/stream_handle_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/write_at.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/write_at.hpp
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpSession.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/SessionInterface.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherCommand.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h
+d/Users/Q/Code/Cinder/boost/boost/enable_shared_from_this.hpp
+d/Users/Q/Code/Cinder/boost/boost/smart_ptr/enable_shared_from_this.hpp
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp:2:
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h:5:
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h:8:
+oIn file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h:8:
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:44:17: error: use of undeclared identifier 'PixelRef'
+o    std::vector<PixelRef>   getPixels() { return mPixels; }
+o                ^
+o/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:59:17: error: use of undeclared identifier 'PixelRef'
+o    std::vector<PixelRef>   mPixels;
+o                ^
+o2 errors generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection68"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp205"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Pixel.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler8811a6fe0e01ba41^d7c30b000f01ba41^-740"In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp:2:In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h:5:In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h:8:In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h:8:/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:44:17: error: use of undeclared identifier 'PixelRef'    std::vector<PixelRef>   getPixels() { return mPixels; }                ^/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h:59:17: error: use of undeclared identifier 'PixelRef'    std::vector<PixelRef>   mPixels;                ^2 errors generated.2(36%IDEClangDiagnosticActivityLogMessage2@39"Use of undeclared identifier 'PixelRef'-436276992#18446744073709551615#0#4(2@85"In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp:2:-436276992#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@67"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp0000000000000000^1#9#1#9#10#0#21"Apple LLVM 5.0 Notice--2@83"In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h:5:-436276992#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@65"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h0000000000000000^4#9#4#9#65#0#21"Apple LLVM 5.0 Notice--2@100"In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h:8:-436276992#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@82"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h0000000000000000^7#9#7#9#122#0#21"Apple LLVM 5.0 Notice--2@89"In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h:8:-436276992#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@71"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h0000000000000000^7#9#7#9#84#0#21"Apple LLVM 5.0 Notice--2#27"com.apple.dt.IDE.diagnostic3@65"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h0000000000000000^43#16#43#16#932#0#14"Semantic Issue--2@39"Use of undeclared identifier 'PixelRef'-436276992#18446744073709551615#0#4(2@85"In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp:2:-436276992#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@67"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp0000000000000000^1#9#1#9#10#0#21"Apple LLVM 5.0 Notice--2@83"In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h:5:-436276992#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@65"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h0000000000000000^4#9#4#9#65#0#21"Apple LLVM 5.0 Notice--2@100"In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h:8:-436276992#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@82"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h0000000000000000^7#9#7#9#122#0#21"Apple LLVM 5.0 Notice--2@89"In file included from /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h:8:-436276992#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@71"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h0000000000000000^7#9#7#9#84#0#21"Apple LLVM 5.0 Notice--2#27"com.apple.dt.IDE.diagnostic3@65"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h0000000000000000^58#16#58#16#1360#0#14"Semantic Issue--0#0#1#-19%DVTDocumentLocation4@67"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp0000000000000000^3313"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Pixel.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Pixel.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Pixel.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Pixel.o36"9FACD89C-D04C-4198-835B-66A50B4D5041-
+b45D3A3D1-31B1-44CC-ACF7-075A1CA67675
+
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s436269977.065585
-e436269979.620407
+s436277275.246458
+e436277277.993984
 r1
 xCompileC
 xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o
@@ -8777,12 +8835,362 @@ d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpSession.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/SessionInterface.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp217"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler49db1099f300ba41^63d39e9bf300ba41^---0#0#1#-19%DVTDocumentLocation2@73"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp0000000000000000^3349"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o36"F9E4BD98-8E21-4B43-80E9-09799B1DFEB3-
-b081EF3E7-C895-47FD-8DD9-F97AF8A7E28A
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp217"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compilerb1353f1b1001ba41^3276fe1d1001ba41^---0#0#1#-19%DVTDocumentLocation2@73"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp0000000000000000^3349"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o36"762B05BF-07D4-44D7-9235-89120AAA74C3-
+b070F0CCA-6406-4700-ABD6-5A1B34139739
+
+CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PusherDiscoveryService.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s436277275.246764
+e436277277.831838
+r1
+xCompileC
+xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PusherDiscoveryService.o
+x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.cpp
+d/Users/Q/Code/Cinder/include/cinder/app/AppNative.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.h
+d/Users/Q/Code/Cinder/boost/boost/asio.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/async_result.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/config.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/handler_type.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/push_options.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/pop_options.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_datagram_socket.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_io_object.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/io_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/noncopyable.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/wrapped_handler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/bind_handler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_alloc_helpers.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/addressof.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/handler_alloc_hook.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/handler_alloc_hook.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/call_stack.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/tss_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_tss_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_tss_ptr.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/throw_error.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/throw_error.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/throw_exception.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/error.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/error.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/task_io_service_thread_info.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/event.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_event.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/assert.hpp
+d/Users/Q/Code/Cinder/boost/boost/assert.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_event.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/op_queue.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/thread_info_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_cont_helpers.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/handler_continuation_hook.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_invoke_helpers.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/handler_invoke_hook.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/io_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_type_requirements.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/service_registry.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/mutex.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_mutex.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/scoped_lock.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_mutex.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/service_registry.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/service_registry.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/task_io_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/atomic_count.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactor_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/task_io_service_operation.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/handler_tracking.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/handler_tracking.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/task_io_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/completion_handler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/fenced_block.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/macos_fenced_block.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/operation.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/task_io_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/limits.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/kqueue_reactor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/object_pool.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactor_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/select_interrupter.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/pipe_select_interrupter.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/pipe_select_interrupter.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_types.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue_set.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/timer_queue_set.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/wait_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/kqueue_reactor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/kqueue_reactor.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/io_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/scoped_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/type_traits.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/socket_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/io_control.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_option.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/datagram_socket_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffer.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/array_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/buffer_sequence_adapter.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/buffer_sequence_adapter.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_null_buffers_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_accept_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_holder.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/socket_ops.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/shared_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/weak_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/socket_ops.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_connect_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_recvfrom_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_sendto_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_service_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_recv_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_recvmsg_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_socket_send_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/reactive_socket_service_base.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_deadline_timer.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/deadline_timer_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/deadline_timer_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/cstdint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/date_time_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_scheduler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_scheduler_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/wait_handler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/time_traits.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_types.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_clock.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/c_time.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/compiler_config.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/locale_config.hpp
+d/Users/Q/Code/Cinder/boost/boost/cstdint.hpp
+d/Users/Q/Code/Cinder/boost/boost/config/auto_link.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/microsec_time_clock.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/filetime_functions.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/ptime.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_system.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_config.hpp
+d/Users/Q/Code/Cinder/boost/boost/config/no_tr1/cmath.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_duration.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_defs.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/special_defs.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_resolution_traits.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/int_adapter.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/gregorian_types.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/year_month_day.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/period.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_calendar.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_weekday.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/constrained_value.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_defs.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_day_of_year.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian_calendar.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian_calendar.ipp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_ymd.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_day.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_year.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_month.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_duration.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_duration.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_duration_types.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_duration_types.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/gregorian/greg_date.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/adjust_functors.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/wrapping_int.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_generators.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_clock_device.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/date_iterator.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_system_split.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_system_counted.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/date_duration_operators.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/posix_time_duration.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/posix_time/time_period.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/time_iterator.hpp
+d/Users/Q/Code/Cinder/boost/boost/date_time/dst_rules.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/timer_queue_ptime.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/timer_queue_ptime.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_raw_socket.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/raw_socket_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_seq_packet_socket.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/seq_packet_socket_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_serial_port.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/serial_port_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/serial_port_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/serial_port_base.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/serial_port_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_serial_port_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/descriptor_ops.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/descriptor_ops.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/reactive_descriptor_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/descriptor_read_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/descriptor_write_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/reactive_descriptor_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/reactive_serial_port_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/win_iocp_serial_port_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_signal_set.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/signal_set_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_set_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_handler.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/signal_set_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/signal_blocker.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_signal_blocker.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/static_mutex.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_static_mutex.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket_acceptor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/socket_acceptor_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket_iostream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_socket_streambuf.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/array.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/stream_socket_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/deadline_timer.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_stream_socket.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_streambuf.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_streambuf_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/basic_waitable_timer.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/wait_traits.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/waitable_timer_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/chrono_time_traits.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_read_stream_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_read_stream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/buffer_resize_guard.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/buffered_stream_storage.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/buffered_read_stream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_stream_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_stream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_write_stream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffered_write_stream_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/completion_condition.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/write.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/write.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/base_from_completion_cond.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/consuming_buffers.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/dependent_type.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/buffered_write_stream.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/buffers_iterator.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/connect.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/connect.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/coroutine.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/basic_endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/detail/endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/detail/impl/endpoint.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/datagram_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/raw_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/seq_packet_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/generic/stream_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/address.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/address_v4.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/winsock_init.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v4.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v4.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/address_v6.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v6.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address_v6.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/address.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/detail/endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/detail/impl/endpoint.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/basic_endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver_iterator.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver_entry.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/basic_resolver_query.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/resolver_query_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/resolver_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolver_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolve_endpoint_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolve_op.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/resolver_service_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/thread.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_thread.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_thread.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/resolver_service_base.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/host_name.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/impl/host_name.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/icmp.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/multicast.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/detail/socket_option.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/tcp.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/udp.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/unicast.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/ip/v6_only.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/is_read_buffered.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/is_write_buffered.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/basic_endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/detail/endpoint.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/detail/impl/endpoint.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/connect_pair.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/datagram_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/local/stream_protocol.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/placeholders.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/posix/basic_descriptor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/posix/descriptor_base.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/posix/basic_stream_descriptor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/posix/stream_descriptor_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/posix/stream_descriptor.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/read.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/read.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/read_at.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/read_at.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/read_until.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/regex_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex/config.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex/user.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex/config/cwchar.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex/v4/regex_fwd.hpp
+d/Users/Q/Code/Cinder/boost/boost/regex/v4/match_flags.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/read_until.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/serial_port.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/signal_set.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/strand.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/strand_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/strand_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/strand_service.ipp
+d/Users/Q/Code/Cinder/boost/boost/asio/streambuf.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/version.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_object_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_random_access_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/basic_stream_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/object_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/object_handle_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/overlapped_ptr.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/random_access_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/random_access_handle_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/stream_handle.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/windows/stream_handle_service.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/write_at.hpp
+d/Users/Q/Code/Cinder/boost/boost/asio/impl/write_at.hpp
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpSession.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/SessionInterface.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherCommand.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h
+d/Users/Q/Code/Cinder/boost/boost/enable_shared_from_this.hpp
+d/Users/Q/Code/Cinder/boost/boost/smart_ptr/enable_shared_from_this.hpp
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection85"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.cpp239"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PusherDiscoveryService.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compilercc423f1b1001ba41^cbf3d41d1001ba41^---0#0#1#-19%DVTDocumentLocation2@84"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.cpp0000000000000000^3415"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PusherDiscoveryService.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PusherDiscoveryService.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PusherDiscoveryService.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PusherDiscoveryService.o36"61431D98-396B-4D47-B5F6-5DE19BD2BD58-
+b070F0CCA-6406-4700-ABD6-5A1B34139739
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/ServerInterface.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s436184272.589733
@@ -9455,8 +9863,8 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection72"Compile
 bAD906048-B24F-47D2-B89B-5B5827A10FC2
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s436269458.442509
-e436269460.359238
+s436277275.245373
+e436277277.072555
 r1
 xCompileC
 xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o
@@ -9468,14 +9876,9 @@ xcom.apple.compilers.llvm.clang.1_0.compiler
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherCommand.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h
-d/Users/Q/Code/Cinder/boost/boost/enable_shared_from_this.hpp
-d/Users/Q/Code/Cinder/boost/boost/smart_ptr/enable_shared_from_this.hpp
-d/Users/Q/Code/Cinder/boost/boost/assert.hpp
-d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.h
-d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.h
 d/Users/Q/Code/Cinder/boost/boost/asio.hpp
 d/Users/Q/Code/Cinder/boost/boost/asio/async_result.hpp
@@ -9507,6 +9910,7 @@ d/Users/Q/Code/Cinder/boost/boost/asio/detail/task_io_service_thread_info.hpp
 d/Users/Q/Code/Cinder/boost/boost/asio/detail/event.hpp
 d/Users/Q/Code/Cinder/boost/boost/asio/detail/posix_event.hpp
 d/Users/Q/Code/Cinder/boost/boost/asio/detail/assert.hpp
+d/Users/Q/Code/Cinder/boost/boost/assert.hpp
 d/Users/Q/Code/Cinder/boost/boost/asio/detail/impl/posix_event.ipp
 d/Users/Q/Code/Cinder/boost/boost/asio/detail/op_queue.hpp
 d/Users/Q/Code/Cinder/boost/boost/asio/detail/thread_info_base.hpp
@@ -9796,12 +10200,16 @@ d/Users/Q/Code/Cinder/boost/boost/asio/write_at.hpp
 d/Users/Q/Code/Cinder/boost/boost/asio/impl/write_at.hpp
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpSession.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/SessionInterface.h
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.h
-d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.h
-d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection68"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp205"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compilerfc6f7192f100ba41^f5f65b94f100ba41^---0#0#1#-19%DVTDocumentLocation2@67"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp0000000000000000^3313"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o36"041433DA-4001-4528-B084-16F955BA8238-
-bFC02BA73-6E5A-45EC-8291-70AC525A7E1F
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherCommand.h
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h
+d/Users/Q/Code/Cinder/boost/boost/enable_shared_from_this.hpp
+d/Users/Q/Code/Cinder/boost/boost/smart_ptr/enable_shared_from_this.hpp
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.h
+d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection68"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp205"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compilerdfe13e1b1001ba41^5a9b121d1001ba41^---0#0#1#-19%DVTDocumentLocation2@67"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp0000000000000000^3313"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o36"7BF0B9B0-A996-455D-A37E-933EA96C2D48-
+b070F0CCA-6406-4700-ABD6-5A1B34139739
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/TcpClient.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/TcpClient.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s436184272.589999
@@ -12554,8 +12962,8 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection66"Copy bu
 bAD906048-B24F-47D2-B89B-5B5827A10FC2
 
 CLd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample normal i386
-s436269979.623181
-e436269980.443574
+s436277277.996880
+e436277278.821241
 r1
 xLd
 x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample
@@ -12573,7 +12981,7 @@ d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/TcpServer.o
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o
-d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o
+d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PusherDiscoveryService.o
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/UdpServer.o
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/UdpSession.o
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/SessionInterface.o
@@ -12591,10 +12999,6 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libSystem.dylib
 d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.eprintf.a
 d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.osx.a
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework/AppKit
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreData.framework/CoreData
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcache.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcommonCrypto.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcompiler_rt.dylib
@@ -12624,9 +13028,13 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunc.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunwind.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libxpc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework/AppKit
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreData.framework/CoreData
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework/Foundation
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib
@@ -12653,8 +13061,8 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection132"Link /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample69"Ld build/Debug/BasicSample.app/Contents/MacOS/BasicSample normal i386d9949f9bf300ba41^b98e719cf300ba41^---0#0#1#--1346"Ld build/Debug/BasicSample.app/Contents/MacOS/BasicSample normal i386    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export MACOSX_DEPLOYMENT_TARGET=10.7    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -filelist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSample.LinkFileList -mmacosx-version-min=10.7 -dead_strip ../../../../../lib/libcinder_d.a -stdlib=libc++ -framework Cocoa -framework OpenGL -framework CoreVideo -framework QTKit -framework Accelerate -framework AudioToolbox -framework AudioUnit -framework CoreAudio -Xlinker -dependency_info -Xlinker /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSample_dependency_info.dat -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample36"5A70F4CE-8DA3-4AC8-9CBF-01F1A37055FA-
-b081EF3E7-C895-47FD-8DD9-F97AF8A7E28A
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection132"Link /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample69"Ld build/Debug/BasicSample.app/Contents/MacOS/BasicSample normal i386533fff1d1001ba41^713dd21e1001ba41^---0#0#1#--1346"Ld build/Debug/BasicSample.app/Contents/MacOS/BasicSample normal i386    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export MACOSX_DEPLOYMENT_TARGET=10.7    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -filelist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSample.LinkFileList -mmacosx-version-min=10.7 -dead_strip ../../../../../lib/libcinder_d.a -stdlib=libc++ -framework Cocoa -framework OpenGL -framework CoreVideo -framework QTKit -framework Accelerate -framework AudioToolbox -framework AudioUnit -framework CoreAudio -Xlinker -dependency_info -Xlinker /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSample_dependency_info.dat -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample36"04DA3065-C5EC-4F15-8C85-48CB3641B567-
+b070F0CCA-6406-4700-ABD6-5A1B34139739
 
 CProcessInfoPlistFile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Info.plist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/Info.plist
 s436184269.067019
@@ -13485,11 +13893,11 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection33"Precomp
 bAD906048-B24F-47D2-B89B-5B5827A10FC2
 
 CTouch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app
-s436269980.444399
-e436269980.447257
+s436277278.822005
+e436277278.824997
 r1
 xTouch
 x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection106"Touch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app33"Touch build/Debug/BasicSample.appa7cc719cf300ba41^a27f729cf300ba41^---0#0#1#--237"Touch build/Debug/BasicSample.app    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    /usr/bin/touch -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app36"70EEEA91-7DD9-4268-AC80-0A049E162787-
-b081EF3E7-C895-47FD-8DD9-F97AF8A7E28A
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection106"Touch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app33"Touch build/Debug/BasicSample.app0c77d21e1001ba41^8733d31e1001ba41^---0#0#1#--237"Touch build/Debug/BasicSample.app    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    /usr/bin/touch -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app36"819330BE-2F9D-4994-ACA3-8F7893FFE83E-
+b070F0CCA-6406-4700-ABD6-5A1B34139739
 

@@ -6,7 +6,7 @@ dependencies: \
   ../../../../../include/cinder/gl/Texture.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../src/Strip.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../src/Pixel.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../src/DeviceRegistry.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../src/PusherDiscoveryService.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/UdpServer.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/ServerInterface.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/DispatcherInterface.h \

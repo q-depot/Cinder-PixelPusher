@@ -2,8 +2,11 @@
 #ifndef PIXEL_PUSHER_PIXEL
 #define PIXEL_PUSHER_PIXEL
 
+#include "PusherDiscoveryService.h"
+
 class Pixel;
 typedef std::shared_ptr<Pixel> PixelRef;
+
 
 class Pixel {
     
@@ -28,59 +31,31 @@ public:
     
     ~Pixel() {}
     
-    void setColor( Pixel pixel, bool useAntiLog = false )
+    void setColor( Pixel pixel, bool antiLog = false )
     {
-        if (useAntiLog)
-        {
-            mRed    = sLinearExp[pixel.mRed];
-            mBlue   = sLinearExp[pixel.mBlue];
-            mGreen  = sLinearExp[pixel.mGreen];
-            mOrange = sLinearExp[pixel.mOrange];
-            mWhite  = sLinearExp[pixel.mWhite];
-        }
-        else
-        {
-            mRed    = pixel.mRed;
-            mBlue   = pixel.mBlue;
-            mGreen  = pixel.mGreen;
-            mOrange = pixel.mOrange;
-            mWhite  = pixel.mWhite;
-        }
+        setColor( pixel.mRed, pixel.mGreen, pixel.mBlue, pixel.mOrange, pixel.mWhite, antiLog );
     }
     
-    
-    void setColorRGB( uint8_t r, uint8_t g, uint8_t b, bool useAntiLog = false )
+    void setColor( uint8_t r, uint8_t g, uint8_t b, uint8_t o = 0, uint8_t w = 0, bool antiLog = false )
     {
-        if ( useAntiLog )
+        if ( antiLog )
         {
             mRed     = sLinearExp[r];
             mGreen   = sLinearExp[g];
             mBlue    = sLinearExp[b];
+            mOrange  = sLinearExp[r];
+            mWhite   = sLinearExp[g];
         }
         else
         {
             mRed     = r;
             mGreen   = g;
             mBlue    = b;
-        }
-    }
-    
-    
-    void setColorRGBOW( uint8_t r, uint8_t g, uint8_t b, uint8_t o, uint8_t w, bool useAntiLog = false )
-    {
-        if ( useAntiLog )
-        {
-            mOrange  = sLinearExp[r];
-            mWhite   = sLinearExp[g];
-        }
-        else
-        {
             mOrange  = sLinearExp[o];
             mWhite   = sLinearExp[w];
         }
-        
-        setColorRGB( r, g, b, useAntiLog );
     }
+    
     
 private:
     
@@ -92,12 +67,7 @@ private:
         mWhite   = 0;
     }
     
-    Pixel( uint8_t red, uint8_t green, uint8_t blue )
-    {
-        Pixel( red, green, blue, 0, 0 );
-    }
-    
-    Pixel( uint8_t red, uint8_t green, uint8_t blue, uint8_t orange, uint8_t white )
+    Pixel( uint8_t red, uint8_t green, uint8_t blue, uint8_t orange = 0, uint8_t white = 0 )
     {
         mRed      = red;
         mGreen    = green;

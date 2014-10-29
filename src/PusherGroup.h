@@ -1,32 +1,63 @@
 
+#ifndef PP_GROUP
+#define PP_GROUP
 
 #pragma once
 
 #include "PixelPusher.h"
 #include "Strip.h"
 
+class PusherGroup;
+typedef std::shared_ptr<PusherGroup>    PusherGroupRef;
+
 
 class PusherGroup {
 
 public:
-
-    PusherGroup( std::vector<PixelPusherRef> pushers)
+    
+    static PusherGroupRef create( uint32_t groupId )
     {
-        mPushers = pushers;
+        return PusherGroupRef( new PusherGroup(groupId) );
     }
-
-    PusherGroup() {}
-
+    
     ~PusherGroup() {}
     
+    uint32_t getId() { return mId; }
+    
     std::vector<PixelPusherRef> getPushers() { return mPushers; }
-  
+    
     size_t getNumPushers() { return mPushers.size(); }
 
+    bool hasPusher( PixelPusherRef pusher )
+    {
+        for( size_t k=0; k < mPushers.size(); k++ )
+            if ( mPushers[k] == pusher )
+                return true;
+        
+        return false;
+    }
+    
     void addPusher( PixelPusherRef pusher ) { mPushers.push_back(pusher); }
-  
+    
+    void removePusher( PixelPusherRef pusher )
+    {
+        for( size_t k=0; k < mPushers.size(); k++ )
+            if ( mPushers[k] == pusher )
+            {
+                mPushers.erase( mPushers.begin() + k );
+                return;
+            }
+    }
+    
 private:
     
-    std::vector<PixelPusherRef> mPushers;
+    PusherGroup( uint32_t groupId ) : mId(groupId) {}
+    
+private:
+    
+    std::vector<PixelPusherRef>     mPushers;
+    uint32_t                        mId;
     
 };
+
+#endif

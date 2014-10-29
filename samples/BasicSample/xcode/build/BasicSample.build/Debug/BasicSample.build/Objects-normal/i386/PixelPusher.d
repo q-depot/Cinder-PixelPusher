@@ -457,7 +457,7 @@ dependencies: \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/SessionInterface.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h \
-  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.h \
+  /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherDiscoveryService.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/UdpServer.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/../../../../Cinder-Asio/src/ServerInterface.h \
   /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h
