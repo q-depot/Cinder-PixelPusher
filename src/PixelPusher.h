@@ -137,8 +137,6 @@ public:
     
     uint32_t getExtraDelay() { return mExtraDelayMsec; }
     
-    void setExtraDelay( uint32_t i ) { mExtraDelayMsec = i; }
-    
     uint32_t getControllerId() { return mControllerId; }
     uint32_t getGroupId() { return mGroupId; }
 
