@@ -110,7 +110,6 @@ void DeviceRegistry::onRead( ci::Buffer buffer )
     {
         addNewPusher( device );
     }
-    
     else
     {
         PixelPusherRef thisDevice = mPusherMap[ macAddr ];
@@ -125,10 +124,10 @@ void DeviceRegistry::onRead( ci::Buffer buffer )
             thisDevice->updateVariables( device );
             
             // if we dropped more than occasional packets, slow down a little
-            if ( device->getDeltaSequence() > 3)
+            if ( device->getDeltaSequence() > 3 )
                 thisDevice->increaseExtraDelay(5);
             
-            if (device->getDeltaSequence() < 1)
+            if ( device->getDeltaSequence() < 1 )
                 thisDevice->decreaseExtraDelay(1);
         }
     }

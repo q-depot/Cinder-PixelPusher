@@ -50,6 +50,9 @@ private:
     
 public:
     
+    int             mRndId;
+    
+    
     static PixelPusherRef create( DeviceHeader header )
     {
         return PixelPusherRef( new PixelPusher( header ) );
@@ -137,7 +140,10 @@ public:
 
     void decreaseExtraDelay( uint32_t i )
     {
-        mExtraDelayMsec = std::max( (uint32_t)0, mExtraDelayMsec - i );
+        if (  mExtraDelayMsec >= i )
+            mExtraDelayMsec = mExtraDelayMsec - i;
+        else
+            mExtraDelayMsec = 0;
     }
     
     uint32_t getExtraDelay()
@@ -275,15 +281,12 @@ private:
     UdpClientRef	mClient;
     UdpSessionRef	mSession;
     
-    
     uint32_t        mThreadSleepMsec;
     uint32_t        mThreadExtraDelayMsec;
-    //    uint32_t        mBandwidthEstimate;
-    
     ci::Buffer      mPacketBuffer;
-    
     std::thread     mSendDataThread;
     bool            mRunThread;
+    double          mTerminateThreadAt;
     uint32_t        mPacketNumber;
     
 };

@@ -12,10 +12,11 @@ enum DeviceType {
 
 #define PP_HEADER_LENGTH 24
 
+
 class DeviceHeader {
   
   public:
-
+    
     DeviceHeader( uint8_t *packet, int packetLength )
     {
         if ( packetLength < PP_HEADER_LENGTH )

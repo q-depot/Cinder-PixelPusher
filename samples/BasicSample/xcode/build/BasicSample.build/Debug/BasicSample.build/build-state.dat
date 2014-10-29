@@ -549,9 +549,9 @@ t1414177402
 s459637
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp
-c00000000544FD8230000000000001BAF
-t1414518819
-s7087
+c000000005450B9E40000000000001C39
+t1414576612
+s7225
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/BasicSample_Prefix.pch
 c00000000544AA27A000000000000012D
@@ -569,24 +569,24 @@ t1414491469
 s2334
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o
-t1414519021
-s2834880
+t1414576661
+s2836184
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/ClientInterface.o
 t1414491475
 s192712
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o
-t1414524414
-s2906612
+t1414577179
+s2904960
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DispatcherInterface.o
 t1414491475
 s248404
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o
-t1414519552
-s2704820
+t1414577179
+s2705752
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/ServerInterface.o
 t1414491475
@@ -597,8 +597,8 @@ t1414491478
 s388996
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o
-t1414519020
-s686488
+t1414576660
+s686552
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/TcpClient.o
 t1414491476
@@ -629,7 +629,7 @@ t1414491475
 s904312
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app
-t1414524271
+t1414576773
 s102
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Info.plist
@@ -637,8 +637,8 @@ t1414491469
 s1493
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample
-t1414524415
-s4520096
+t1414577180
+s4520120
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/PkgInfo
 t1414491469
@@ -649,14 +649,14 @@ t1414491469
 s459637
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceHeader.h
-c00000000544FB5C200000000000015D3
-t1414510018
-s5587
+c000000005450B15E00000000000015D8
+t1414574430
+s5592
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp
-c00000000544FEDFC000000000000184F
-t1414524412
-s6223
+c000000005450BAC800000000000017B6
+t1414576840
+s6070
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.h
 c00000000544FD8150000000000000908
@@ -669,14 +669,14 @@ t1414487566
 s3634
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp
-c00000000544FDAF50000000000004978
-t1414519541
-s18808
+c000000005450BBF60000000000004503
+t1414577142
+s17667
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.h
-c00000000544FD434000000000000213E
-t1414517812
-s8510
+c000000005450BA11000000000000218D
+t1414576657
+s8589
 
 N/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherCommand.h
 c00000000544FB8E50000000000001A1D
@@ -6934,11 +6934,11 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies12da967c2500ba41^3561977c2500ba41^---0#1#1#--18"Check dependencies36"D0471004-9FEC-4158-826C-392630BF2D36-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies5fb70c99f300ba41^e8f40c99f300ba41^---0#1#1#--18"Check dependencies36"1AF1F413-FB6C-45B5-9CE5-4C02042C4E9B-
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s436211818.138189
-e436211821.063762
+s436269458.443432
+e436269461.179604
 r1
 xCompileC
 xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o
@@ -7286,8 +7286,8 @@ d/Users/Q/Code/Cinder/boost/boost/enable_shared_from_this.hpp
 d/Users/Q/Code/Cinder/boost/boost/smart_ptr/enable_shared_from_this.hpp
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection97"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp243"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler0877236a1000ba41^3b53106d1000ba41^---0#0#1#-19%DVTDocumentLocation2@96"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp0000000000000000^3407"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o36"46E973BF-F1F5-4333-9FD1-77A5920F73CC-
-bACED49DC-53C2-46DD-9C83-4D8F7064CE95
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection97"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp243"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler33a97192f100ba41^1efb2d95f100ba41^---0#0#1#-19%DVTDocumentLocation2@96"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp0000000000000000^3407"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/src/BasicSampleApp.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSampleApp.o36"6FB8E59E-7588-41AA-9689-637AFA782FD0-
+bFC02BA73-6E5A-45EC-8291-70AC525A7E1F
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/ClientInterface.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s436184272.589342
@@ -7625,8 +7625,8 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection71"Compile
 bAD906048-B24F-47D2-B89B-5B5827A10FC2
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s436217212.607469
-e436217215.005160
+s436269977.065714
+e436269979.556193
 r1
 xCompileC
 xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o
@@ -7971,8 +7971,8 @@ d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpClient.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ClientInterface.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Pixel.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection77"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp223"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler3a929b7c2500ba41^b551017f2500ba41^---0#0#1#-19%DVTDocumentLocation2@76"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp0000000000000000^3367"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o36"3E82DDB1-C557-46DF-9C4A-78B8569B3187-
-b3EE6E1CD-3240-40A9-A8D6-935D67BE8D02
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection77"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp223"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler98e01099f300ba41^0f638e9bf300ba41^---0#0#1#-19%DVTDocumentLocation2@76"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp0000000000000000^3367"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DeviceRegistry.o36"B221D231-7D0C-4967-9A08-F0457F9670D1-
+b081EF3E7-C895-47FD-8DD9-F97AF8A7E28A
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/DispatcherInterface.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/DispatcherInterface.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s436184272.590962
@@ -8309,8 +8309,8 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection75"Compile
 bAD906048-B24F-47D2-B89B-5B5827A10FC2
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s436212349.541075
-e436212352.092233
+s436269977.065585
+e436269979.620407
 r1
 xCompileC
 xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o
@@ -8781,8 +8781,8 @@ d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp217"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler1c968a7d1200ba41^afb117801200ba41^---0#0#1#-19%DVTDocumentLocation2@73"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp0000000000000000^3349"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o36"935DEC63-8ACE-4840-92BF-F7BA0FBE8737-
-b1320E596-BEE1-47C1-B057-F5545F10C38C
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp217"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler49db1099f300ba41^63d39e9bf300ba41^---0#0#1#-19%DVTDocumentLocation2@73"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp0000000000000000^3349"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PixelPusher.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/PixelPusher.o36"F9E4BD98-8E21-4B43-80E9-09799B1DFEB3-
+b081EF3E7-C895-47FD-8DD9-F97AF8A7E28A
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/ServerInterface.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s436184272.589733
@@ -9455,8 +9455,8 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection72"Compile
 bAD906048-B24F-47D2-B89B-5B5827A10FC2
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s436211818.137555
-e436211820.122582
+s436269458.442509
+e436269460.359238
 r1
 xCompileC
 xbuild/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o
@@ -9800,8 +9800,8 @@ d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/DeviceRegistry.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/UdpServer.h
 d/Users/Q/Code/Cinder/blocks/Cinder-Asio/src/ServerInterface.h
 d/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/PusherGroup.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection68"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp205"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler0f47236a1000ba41^aa611f6c1000ba41^---0#0#1#-19%DVTDocumentLocation2@67"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp0000000000000000^3313"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o36"BDE1D2F4-DF07-4263-9A04-3538A77BE49B-
-bACED49DC-53C2-46DD-9C83-4D8F7064CE95
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection68"Compile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp205"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compilerfc6f7192f100ba41^f5f65b94f100ba41^---0#0#1#-19%DVTDocumentLocation2@67"file:///Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp0000000000000000^3313"CompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.7 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-generated-files.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-own-target-headers.hmap -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-all-target-headers.hmap -iquote /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/BasicSample-project-headers.hmap -iquote../../../../../include -iquote../include -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/include -I../../../../../boost -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources/i386 -I/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/DerivedSources -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -include /var/folders/16/7txk9n1j5h96z28y9q8wcmhm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/BasicSample_Prefix-ftnmwcldzfhnyzakjnwrqelxveoi/BasicSample_Prefix.pch -MMD -MT dependencies -MF /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.d --serialize-diagnostics /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.dia -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/src/Strip.cpp -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/Strip.o36"041433DA-4001-4528-B084-16F955BA8238-
+bFC02BA73-6E5A-45EC-8291-70AC525A7E1F
 
 CCompileC build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/TcpClient.o /Users/Q/Code/Cinder/blocks/Cinder-Asio/src/TcpClient.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s436184272.589999
@@ -12554,8 +12554,8 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection66"Copy bu
 bAD906048-B24F-47D2-B89B-5B5827A10FC2
 
 CLd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample normal i386
-s436217215.007645
-e436217215.827606
+s436269979.623181
+e436269980.443574
 r1
 xLd
 x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample
@@ -12591,6 +12591,8 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libSystem.dylib
 d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.eprintf.a
 d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.osx.a
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework/AppKit
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreData.framework/CoreData
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcache.dylib
@@ -12622,8 +12624,6 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunc.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunwind.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libxpc.dylib
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework/AppKit
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreData.framework/CoreData
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib
@@ -12653,8 +12653,8 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection132"Link /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample69"Ld build/Debug/BasicSample.app/Contents/MacOS/BasicSample normal i3866901027f2500ba41^94ded37f2500ba41^---0#0#1#--1346"Ld build/Debug/BasicSample.app/Contents/MacOS/BasicSample normal i386    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export MACOSX_DEPLOYMENT_TARGET=10.7    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -filelist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSample.LinkFileList -mmacosx-version-min=10.7 -dead_strip ../../../../../lib/libcinder_d.a -stdlib=libc++ -framework Cocoa -framework OpenGL -framework CoreVideo -framework QTKit -framework Accelerate -framework AudioToolbox -framework AudioUnit -framework CoreAudio -Xlinker -dependency_info -Xlinker /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSample_dependency_info.dat -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample36"24AD3FB5-5C32-4ACB-A5C7-19CA3EB6F10B-
-b3EE6E1CD-3240-40A9-A8D6-935D67BE8D02
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection132"Link /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample69"Ld build/Debug/BasicSample.app/Contents/MacOS/BasicSample normal i386d9949f9bf300ba41^b98e719cf300ba41^---0#0#1#--1346"Ld build/Debug/BasicSample.app/Contents/MacOS/BasicSample normal i386    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    export MACOSX_DEPLOYMENT_TARGET=10.7    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -F/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug -filelist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSample.LinkFileList -mmacosx-version-min=10.7 -dead_strip ../../../../../lib/libcinder_d.a -stdlib=libc++ -framework Cocoa -framework OpenGL -framework CoreVideo -framework QTKit -framework Accelerate -framework AudioToolbox -framework AudioUnit -framework CoreAudio -Xlinker -dependency_info -Xlinker /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/BasicSample.build/Debug/BasicSample.build/Objects-normal/i386/BasicSample_dependency_info.dat -o /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/MacOS/BasicSample36"5A70F4CE-8DA3-4AC8-9CBF-01F1A37055FA-
+b081EF3E7-C895-47FD-8DD9-F97AF8A7E28A
 
 CProcessInfoPlistFile /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app/Contents/Info.plist /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/Info.plist
 s436184269.067019
@@ -13485,11 +13485,11 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection33"Precomp
 bAD906048-B24F-47D2-B89B-5B5827A10FC2
 
 CTouch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app
-s436217215.828414
-e436217215.831460
+s436269980.444399
+e436269980.447257
 r1
 xTouch
 x/Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection106"Touch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app33"Touch build/Debug/BasicSample.appef1ad47f2500ba41^16dbd47f2500ba41^---0#0#1#--237"Touch build/Debug/BasicSample.app    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    /usr/bin/touch -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app36"DC76736F-6E51-4A71-AD7B-12A252646A55-
-b3EE6E1CD-3240-40A9-A8D6-935D67BE8D02
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection106"Touch /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app33"Touch build/Debug/BasicSample.appa7cc719cf300ba41^a27f729cf300ba41^---0#0#1#--237"Touch build/Debug/BasicSample.app    cd /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode    /usr/bin/touch -c /Users/Q/Code/Cinder/blocks/Cinder-PixelPusher/samples/BasicSample/xcode/build/Debug/BasicSample.app36"70EEEA91-7DD9-4268-AC80-0A049E162787-
+b081EF3E7-C895-47FD-8DD9-F97AF8A7E28A
 

@@ -21,6 +21,10 @@
 
 PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
 {
+    mRndId = ci::app::getElapsedFrames();
+    
+    
+    
     mArtnetUniverse   	= 0;
     mArtnetChannel    	= 0;
     mPort               = 9798;
@@ -111,12 +115,13 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
 
 PixelPusher::~PixelPusher()
 {
-    for( size_t k=0; k < mStrips.size(); k++ )
-        mStrips[k]->setPixelsBlack();
+    if (  mSendDataThread.get_id() != std::thread::id() )
+    {
+        for( size_t k=0; k < mStrips.size(); k++ )
+            mStrips[k]->setPixelsBlack();
     
-    ci::sleep( 200 );
-    
-    destroyCardThread();
+        destroyCardThread();
+    }
 }
 
 
@@ -368,7 +373,9 @@ void PixelPusher::createCardThread( boost::asio::io_service& ioService )
 
 void PixelPusher::destroyCardThread()
 {
-    mRunThread = false;
+    // terminate in 100ms to ensure it sends out the black pixels
+    mTerminateThreadAt = ci::app::getElapsedSeconds() + 0.1;
+    
     if ( mSendDataThread.joinable() )
         mSendDataThread.join();
 }
@@ -392,20 +399,23 @@ void PixelPusher::onError( std::string err, size_t bytesTransferred )
 void PixelPusher::sendPacketToPusher()
 {
     mRunThread          = true;
+    mTerminateThreadAt  = -1.0;
     mThreadSleepMsec    = 16;
     
     StripRef                strip;
     std::vector<StripRef>   touchedStrips;
     std::vector<PixelRef>   pixels;
     int                     packetLength;
-    int                     maxStripsPerPacket;
-    int                     stripPerPacket;
     size_t                  stripDataSize;
     long                    totalDelay;
     bool                    payload;
     int                     stripIdx;
-    uint8_t                 *packetData = (uint8_t*)mPacketBuffer.getData();
+    int                     maxStripsPerPacket  = getMaxStripsPerPacket();
+    int                     stripPerPacket      = std::min( (uint8_t)maxStripsPerPacket, getStripsAttached() );
+    uint8_t                 *packetData         = (uint8_t*)mPacketBuffer.getData();
     uint8_t                 *stripData;
+    
+    setAutoThrottle(true);
     
     while( mRunThread )
     {
@@ -413,34 +423,24 @@ void PixelPusher::sendPacketToPusher()
         {
             touchedStrips = getTouchedStrips();
             
+            // adjust thread speed, getUpdatePeriod in uSec
+            if ( getUpdatePeriod() > 100000 )
+                mThreadSleepMsec = ( 16 / ( getStripsAttached() / stripPerPacket ) );       // Handle errant delay calculation in the firmware.
+            
+            else if ( getUpdatePeriod() > 1000 )
+                mThreadSleepMsec = ( getUpdatePeriod() / 1000 ) + 1;
+            
+            else
+                mThreadSleepMsec = ( ( 1000 / DeviceRegistry::getFrameLimit() ) / ( getStripsAttached() / stripPerPacket ) );
+            
+            totalDelay = mThreadSleepMsec + mThreadExtraDelayMsec + getExtraDelay();
+            
             // no commands or touched strips, nothing to do
             if ( mCommandQueue.empty() && touchedStrips.empty() )
             {
-                std::this_thread::sleep_for( std::chrono::milliseconds( mThreadSleepMsec ) );
+                std::this_thread::sleep_for( std::chrono::milliseconds( totalDelay ) );
                 continue;
             }
-                
-            maxStripsPerPacket  = getMaxStripsPerPacket();
-            stripPerPacket      = std::min( (uint8_t)maxStripsPerPacket, getStripsAttached() );
-            
-            // adjust thread speed
-            if ( false && getUpdatePeriod() > 1000 )
-                mThreadSleepMsec = ( getUpdatePeriod() / 1000 ) + 1;
-            else                                                                                    // Shoot for the framelimit.
-                mThreadSleepMsec = ( ( 1000 / DeviceRegistry::getFrameLimit() ) / ( getStripsAttached() / stripPerPacket ) );
-                                                                                                 
-            // Handle errant delay calculation in the firmware.
-            if ( getUpdatePeriod() > 100000 )
-                mThreadSleepMsec = ( 16 / ( getStripsAttached() / stripPerPacket ) );
-            
-            
-            
-            
-            // TODO: not used!!!!!!!!!!!!!! <<<<<<<<<<<<<<<<<<<<<<
-            totalDelay = mThreadSleepMsec + mThreadExtraDelayMsec + getExtraDelay();
-            
-            
-            
             
             // first check to see if we have an outstanding command.
             if ( !mCommandQueue.empty() )
@@ -468,29 +468,11 @@ void PixelPusher::sendPacketToPusher()
                     // send packet
                     mSession->write( cmdPacket );
                     mPacketNumber++;
-                    
-                    ci::app::console() << "send command " << packetLength << " " << mCommandQueue[k]->mDataSize << std::endl;
-                    
-                    ci::app::console() << "COMMAND: " << std::endl;
-                    for( int j=0; j < mCommandQueue[k]->mDataSize; j++ )
-                    {
-                        ci::app::console() << (int)mCommandQueue[k]->mData.get()[j] << " ";
-                    }
-                    
-                    ci::app::console() << std::endl << "-------------------------" << std::endl;
-                    
-                    ci::app::console() << "PACKET: " << std::endl;
-                    for( int j=0; j < packetLength; j++ )
-                    {
-                        ci::app::console() << (int)cmdPacketData[j] << " ";
-                    }
-                    
-                    ci::app::console() << std::endl << std::endl;
                 }
                 
                 mCommandQueue.clear();
                 
-                std::this_thread::sleep_for( std::chrono::milliseconds( mThreadSleepMsec ) );
+                std::this_thread::sleep_for( std::chrono::milliseconds( totalDelay ) );
                 continue;
             }
             
@@ -523,16 +505,9 @@ void PixelPusher::sendPacketToPusher()
                     stripData       = strip->getPixelsData();
                     stripDataSize   = strip->getPixelsDataSize();
                     
-                    
                     // add pixels data
                     memcpy( &packetData[packetLength], stripData, stripDataSize );
                     packetLength += stripDataSize;
-                    
-                    // Don't weed untouched strips if we are recording.
-                    //    if (!fileIsOpen) {
-                    //        if (!strip.isTouched() && ((mPusher->getPusherFlags() & mPusher->PFLAG_FIXEDSIZE) == 0))
-                    //            continue;
-                    //    }
                     
                     payload = true;
                 }
@@ -543,15 +518,18 @@ void PixelPusher::sendPacketToPusher()
                     mSession->write( mPacketBuffer );
                     mPacketNumber++;
                     payload = false;
+                    std::this_thread::sleep_for( std::chrono::milliseconds( totalDelay ) );
                 }
             }
             
-            std::this_thread::sleep_for( std::chrono::milliseconds( mThreadSleepMsec ) );
+            // Terminated the thread using a small delay to ensure it send out the latest data(black pixels)
+            if ( mTerminateThreadAt > 0 && ci::app::getElapsedSeconds() > mTerminateThreadAt )
+                mRunThread = false;
         }
         else
         {
             ci::app::console() << "Session is not open!" << std::endl;
-            std::this_thread::sleep_for( std::chrono::milliseconds( mThreadSleepMsec ) );
+            std::this_thread::sleep_for( std::chrono::milliseconds( totalDelay ) );
         }
         
     }

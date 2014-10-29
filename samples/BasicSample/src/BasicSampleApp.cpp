@@ -98,6 +98,8 @@ void BasicSampleApp::draw()
         
         
         // Network
+        mFont->drawString( "ID: "                   + to_string( pusher->mRndId ),                  pos );   pos.y += lineH * 2;
+        
         mFont->drawString( "IP: "                   + pusher->getIp(),                              pos );   pos.y += lineH;
         mFont->drawString( "Mac: "                  + pusher->getMacAddress(),                      pos );   pos.y += lineH;
         mFont->drawString( "Port: "                 + to_string( pusher->getPort() ),               pos );   pos.y += lineH;
