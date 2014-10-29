@@ -1,3 +1,13 @@
+/*
+ *  DeviceHeader.h
+ *
+ *  Created by Andrea Cuius
+ *  Nocte Studio Ltd. Copyright 2014 . All rights reserved.
+ *
+ *  www.nocte.co.uk
+ *
+ */
+
 
 #ifndef PIXEL_PUSHER_DEVICE_HEADER
 #define PIXEL_PUSHER_DEVICE_HEADER

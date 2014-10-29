@@ -1,3 +1,12 @@
+/*
+ *  Strip.h
+ *
+ *  Created by Andrea Cuius
+ *  Nocte Studio Ltd. Copyright 2014 . All rights reserved.
+ *
+ *  www.nocte.co.uk
+ *
+ */
 
 
 #ifndef PP_STRIP

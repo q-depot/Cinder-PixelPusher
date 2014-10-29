@@ -1,17 +1,12 @@
-/**
-   * uint8_t strips_attached;
-   * uint8_t max_strips_per_packet;
-   * uint16_t pixels_per_strip; // uint16_t used to make alignment work
-   * uint32_t update_period; // in microseconds
-   * uint32_t power_total; // in PWM units
-   * uint32_t delta_sequence; // difference between received and expected
-   * sequence numbers
-   * int32_t controller_ordinal;  // configured order number for controller
-   * int32_t group_ordinal;  // configured group number for this controller
-   * int16_t artnet_universe;
-   * int16_t artnet_channel;
-   * int16_t my_port;
-   */
+/*
+ *  PixelPusher.cpp
+ *
+ *  Created by Andrea Cuius
+ *  Nocte Studio Ltd. Copyright 2014 . All rights reserved.
+ *
+ *  www.nocte.co.uk
+ *
+ */
 
 #include "cinder/Utilities.h"
 #include "PixelPusher.h"
