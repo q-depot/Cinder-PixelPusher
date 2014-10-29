@@ -1,7 +1,7 @@
 #include "cinder/app/AppNative.h"
 #include "cinder/gl/gl.h"
 #include "cinder/gl/TextureFont.h"
-#include "Strip.h"
+
 #include "PusherDiscoveryService.h"
 
 
@@ -17,7 +17,7 @@ class BasicSampleApp : public AppNative {
 	void draw();
     
     PusherDiscoveryServiceRef   mPusherDiscoveryService;
-    gl::TextureFontRef  mFont;
+    gl::TextureFontRef  mFontBig, mFontSmall;
     
 };
 
@@ -25,8 +25,9 @@ class BasicSampleApp : public AppNative {
 void BasicSampleApp::setup()
 {
     mPusherDiscoveryService = PusherDiscoveryService::create( io_service() );
-
-    mFont = gl::TextureFont::create( Font( "Arial", 12 ) );
+    
+    mFontBig    = gl::TextureFont::create( Font( "Arial", 16 ) );
+    mFontSmall  = gl::TextureFont::create( Font( "Arial", 12 ) );
     
     setWindowSize( 1200, 800 );
 }
@@ -79,65 +80,78 @@ void BasicSampleApp::draw()
     Vec2i                       pos( 15, 25 );
     int                         lineH = 15;
     std::vector<PixelPusherRef> pushers = mPusherDiscoveryService->getPushers();
+    std::vector<PusherGroupRef> groups  = mPusherDiscoveryService->getGroups();
     PixelPusherRef              pusher;
-
-    mFont->drawString( "FPS: " + to_string(getAverageFps()), Vec2i( 450, 25 ) );
+    
+    mFontBig->drawString( "FPS: " + to_string(getAverageFps()), Vec2i( 450, 25 ) );
+    
+    mFontBig->drawString( "Pusher Discovery Service",                           pos );   pos.y += lineH;
+    mFontSmall->drawString( "Total Groups: "    + to_string( groups.size() ),   pos );   pos.y += lineH;
+    mFontSmall->drawString( "Total Devices: "   + to_string( pushers.size() ),  pos );   pos.y += lineH;
+    mFontSmall->drawString( "Auto throttle: "   + to_string( PusherDiscoveryService::getAutoThrottle() ),       pos );   pos.y += lineH;
+    
+    pos.y += lineH;
+    
+    for( size_t j=0; j < groups.size(); j++ )
+    {
+        
+    }
+    
     
     for( size_t j=0; j < pushers.size(); j++ )
     {
         pusher = pushers[j];
         
         // Network
-        mFont->drawString( "IP: "                   + pusher->getIp(),                              pos );   pos.y += lineH;
-        mFont->drawString( "Mac: "                  + pusher->getMacAddress(),                      pos );   pos.y += lineH;
-        mFont->drawString( "Port: "                 + to_string( pusher->getPort() ),               pos );   pos.y += lineH;
-        mFont->drawString( "Link speed: "           + to_string( pusher->getLinkSpeed() ),          pos );   pos.y += lineH;
-        mFont->drawString( "Multicast: "            + to_string( pusher->isMulticast() ),           pos );   pos.y += lineH;
-        mFont->drawString( "Multicast primary: "    + to_string( pusher->isMulticastPrimary() ),    pos );   pos.y += lineH;
+        mFontSmall->drawString( "IP: "                   + pusher->getIp(),                              pos );   pos.y += lineH;
+        mFontSmall->drawString( "Mac: "                  + pusher->getMacAddress(),                      pos );   pos.y += lineH;
+        mFontSmall->drawString( "Port: "                 + to_string( pusher->getPort() ),               pos );   pos.y += lineH;
+        mFontSmall->drawString( "Link speed: "           + to_string( pusher->getLinkSpeed() ),          pos );   pos.y += lineH;
+        mFontSmall->drawString( "Multicast: "            + to_string( pusher->isMulticast() ),           pos );   pos.y += lineH;
+        mFontSmall->drawString( "Multicast primary: "    + to_string( pusher->isMulticastPrimary() ),    pos );   pos.y += lineH;
         
         // Artnet
-        mFont->drawString( "Artnet universe: "      + to_string( pusher->getArtnetUniverse() ),     pos );   pos.y += lineH;
-        mFont->drawString( "Artnet channel: "       + to_string( pusher->getArtnetChannel() ),      pos );   pos.y += lineH;
+        mFontSmall->drawString( "Artnet universe: "      + to_string( pusher->getArtnetUniverse() ),     pos );   pos.y += lineH;
+        mFontSmall->drawString( "Artnet channel: "       + to_string( pusher->getArtnetChannel() ),      pos );   pos.y += lineH;
 
         pos.y += lineH;
         
         // Group
-        mFont->drawString( "Group: "                + to_string( pusher->getGroupId() ),            pos );   pos.y += lineH;
-        mFont->drawString( "Controller: "           + to_string( pusher->getControllerId() ),       pos );   pos.y += lineH;
-        mFont->drawString( "Delta sequence: "       + to_string( pusher->getDeltaSequence() ),      pos );   pos.y += lineH;
-        mFont->drawString( "Device type: "          + to_string( pusher->getDeviceType() ),         pos );   pos.y += lineH;
-        mFont->drawString( "Extra delay: "          + to_string( pusher->getExtraDelay() ),         pos );   pos.y += lineH;
-        mFont->drawString( "Thread sleep for: "     + to_string( pusher->getThreadSleepFor() ),     pos );   pos.y += lineH;
-        mFont->drawString( "Auto throttle: "        + to_string( pusher->getAutoThrottle() ),       pos );   pos.y += lineH;
+        mFontSmall->drawString( "Group: "                + to_string( pusher->getGroupId() ),            pos );   pos.y += lineH;
+        mFontSmall->drawString( "Controller: "           + to_string( pusher->getControllerId() ),       pos );   pos.y += lineH;
+        mFontSmall->drawString( "Delta sequence: "       + to_string( pusher->getDeltaSequence() ),      pos );   pos.y += lineH;
+        mFontSmall->drawString( "Device type: "          + to_string( pusher->getDeviceType() ),         pos );   pos.y += lineH;
+        mFontSmall->drawString( "Extra delay: "          + to_string( pusher->getExtraDelay() ),         pos );   pos.y += lineH;
+        mFontSmall->drawString( "Thread sleep for: "     + to_string( pusher->getThreadSleepFor() ),     pos );   pos.y += lineH;
         
         pos.y += lineH;
         
         // Software/hardware
-        mFont->drawString( "Software rev: "         + to_string( pusher->getSoftwareRevision() ),   pos );   pos.y += lineH;
-        mFont->drawString( "Hardware rev: "         + to_string( pusher->getHardwareRevision() ),   pos );   pos.y += lineH;
-        mFont->drawString( "Vendor id: "            + to_string( pusher->getVendorId() ),           pos );   pos.y += lineH;
-        mFont->drawString( "Product id: "           + to_string( pusher->getProductId() ),          pos );   pos.y += lineH;
-        mFont->drawString( "Protocol ver: "         + to_string( pusher->getProtocolVersion() ),    pos );   pos.y += lineH;
+        mFontSmall->drawString( "Software rev: "         + to_string( pusher->getSoftwareRevision() ),   pos );   pos.y += lineH;
+        mFontSmall->drawString( "Hardware rev: "         + to_string( pusher->getHardwareRevision() ),   pos );   pos.y += lineH;
+        mFontSmall->drawString( "Vendor id: "            + to_string( pusher->getVendorId() ),           pos );   pos.y += lineH;
+        mFontSmall->drawString( "Product id: "           + to_string( pusher->getProductId() ),          pos );   pos.y += lineH;
+        mFontSmall->drawString( "Protocol ver: "         + to_string( pusher->getProtocolVersion() ),    pos );   pos.y += lineH;
         
         pos = Vec2i( 250, 25 );
         
         // strips
-        mFont->drawString( "Strips attached: "      + to_string( pusher->getStripsAttached() ),     pos );   pos.y += lineH;
-        mFont->drawString( "Max strips/packet: "    + to_string( pusher->getMaxStripsPerPacket() ), pos );   pos.y += lineH;
-        mFont->drawString( "Num strips: "           + to_string( pusher->getNumStrips() ),          pos );   pos.y += lineH;
-        mFont->drawString( "Pixels per strip: "     + to_string( pusher->getPixelsPerStrip() ),     pos );   pos.y += lineH;
+        mFontSmall->drawString( "Strips attached: "      + to_string( pusher->getStripsAttached() ),     pos );   pos.y += lineH;
+        mFontSmall->drawString( "Max strips/packet: "    + to_string( pusher->getMaxStripsPerPacket() ), pos );   pos.y += lineH;
+        mFontSmall->drawString( "Num strips: "           + to_string( pusher->getNumStrips() ),          pos );   pos.y += lineH;
+        mFontSmall->drawString( "Pixels per strip: "     + to_string( pusher->getPixelsPerStrip() ),     pos );   pos.y += lineH;
 
         pos.y += lineH;
         
-        mFont->drawString( "Last universe: "        + to_string( pusher->getLastUniverse() ),       pos );   pos.y += lineH;
-        mFont->drawString( "Power domain: "         + to_string( pusher->getPowerDomain() ),        pos );   pos.y += lineH;
-        mFont->drawString( "Power total: "          + to_string( pusher->getPowerTotal() ),         pos );   pos.y += lineH;
-        mFont->drawString( "Pusher flags: "         + to_string( pusher->getPusherFlags() ),        pos );   pos.y += lineH;
-        mFont->drawString( "Segments: "             + to_string( pusher->getSegments() ),           pos );   pos.y += lineH;
-        mFont->drawString( "Update period: "        + to_string( pusher->getUpdatePeriod() ),       pos );   pos.y += lineH;
+        mFontSmall->drawString( "Last universe: "        + to_string( pusher->getLastUniverse() ),       pos );   pos.y += lineH;
+        mFontSmall->drawString( "Power domain: "         + to_string( pusher->getPowerDomain() ),        pos );   pos.y += lineH;
+        mFontSmall->drawString( "Power total: "          + to_string( pusher->getPowerTotal() ),         pos );   pos.y += lineH;
+        mFontSmall->drawString( "Pusher flags: "         + to_string( pusher->getPusherFlags() ),        pos );   pos.y += lineH;
+        mFontSmall->drawString( "Segments: "             + to_string( pusher->getSegments() ),           pos );   pos.y += lineH;
+        mFontSmall->drawString( "Update period: "        + to_string( pusher->getUpdatePeriod() ),       pos );   pos.y += lineH;
         
         pos.y += lineH;
-        mFont->drawString( "Packet number: "        + to_string( pusher->getPacketNumber() ),       pos );   pos.y += lineH;
+        mFontSmall->drawString( "Packet number: "        + to_string( pusher->getPacketNumber() ),       pos );   pos.y += lineH;
     }
 
 }

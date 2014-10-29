@@ -94,8 +94,6 @@ public:
         return mStrips.size();
     }
     
-    bool        getAutoThrottle() { return mAutoThrottle; }
-    
     uint32_t    getThreadSleepFor() { return mThreadSleepMsec; }
     
     uint32_t    getPacketNumber() { return mPacketNumber; }
@@ -112,8 +110,6 @@ public:
     uint16_t getArtnetChannel()    { return mArtnetChannel; }
 
     StripRef getStrip( int stripNumber );
-    
-    void setAutoThrottle( bool state ) { mAutoThrottle = state; }
 
     int getMaxStripsPerPacket() { return mMaxStripsPerPacket; }
 
@@ -129,16 +125,7 @@ public:
     
     uint8_t getStripsAttached() { return mStripsAttached; }
     
-    void increaseExtraDelay( uint32_t i )
-    {
-        if ( mAutoThrottle )
-        {
-            mExtraDelayMsec += i;
-            ci::app::console() << "Group " << mGroupId << " card " << mControllerId << " extra delay now " << mExtraDelayMsec << std::endl;
-        }
-        else
-            ci::app::console() << "Group " << mGroupId << " card " << mControllerId << " would increase delay, but autothrottle is disabled." << std::endl;
-    }
+    void increaseExtraDelay( uint32_t i );
 
     void decreaseExtraDelay( uint32_t i )
     {
@@ -148,13 +135,7 @@ public:
             mExtraDelayMsec = 0;
     }
     
-    uint32_t getExtraDelay()
-    {
-        if ( mAutoThrottle )
-            return mExtraDelayMsec;
-        else
-            return 0;
-    }
+    uint32_t getExtraDelay() { return mExtraDelayMsec; }
     
     void setExtraDelay( uint32_t i ) { mExtraDelayMsec = i; }
     
@@ -238,7 +219,6 @@ private:
     
     std::vector<StripRef> mStrips;
     uint32_t              mExtraDelayMsec;
-    bool                  mAutoThrottle;
   
     bool                  mMulticast;
     bool                  mMulticastPrimary;

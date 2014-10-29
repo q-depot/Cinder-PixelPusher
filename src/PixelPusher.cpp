@@ -26,13 +26,9 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
     mPort               = 9798;
     mStripsAttached     = 0;
     mPixelsPerStrip     = 0;
-  
     mExtraDelayMsec     = 0;
-    mAutoThrottle       = false;
-  
     mMulticast          = false;
     mMulticastPrimary   = false;
-    
     mSegments           = 0;
     mPowerDomain        = 0;
     mLastPingAt         = ci::app::getElapsedSeconds();
@@ -383,8 +379,6 @@ void PixelPusher::sendPacketToPusher()
     uint8_t                 *packetData         = (uint8_t*)mPacketBuffer.getData();
     uint8_t                 *stripData;
     
-    setAutoThrottle(true);
-    
     while( mRunThread )
     {
         if ( mSession && mSession->getSocket()->is_open() )
@@ -503,5 +497,17 @@ void PixelPusher::sendPacketToPusher()
     }
     
     ci::app::console() << "PixelPusher::sendPacketToPusher() thread exited!" << std::endl;
+}
+
+
+void PixelPusher::increaseExtraDelay( uint32_t i )
+{
+    if ( PusherDiscoveryService::getAutoThrottle() )
+    {
+        mExtraDelayMsec += i;
+        ci::app::console() << "Group " << mGroupId << " card " << mControllerId << " extra delay now " << mExtraDelayMsec << std::endl;
+    }
+    else
+        ci::app::console() << "Group " << mGroupId << " card " << mControllerId << " would increase delay, but autothrottle is disabled." << std::endl;
 }
 

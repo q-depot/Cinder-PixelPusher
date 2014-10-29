@@ -68,15 +68,6 @@ public:
         
         data.get()[PP_CMD_MAGIC_SIZE] = (uint8_t)RESET;
         
-        ci::app::console() << "createReset: " << std::endl;
-        for( int j=0; j < dataSize; j++ )
-        {
-            ci::app::console() << (int)data.get()[j] << " ";
-        }
-        
-        ci::app::console() << std::endl;
-        
-        
         return PusherCommandRef( new PusherCommand( data, dataSize ) );
     }
     

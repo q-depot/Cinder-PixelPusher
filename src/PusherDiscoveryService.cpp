@@ -9,7 +9,7 @@ bool     PusherDiscoveryService::UseOverallBrightnessScale  = false;
 uint32_t PusherDiscoveryService::TotalPower                 = 0;
 uint32_t PusherDiscoveryService::TotalPowerLimit            = -1;
 double   PusherDiscoveryService::PowerScale                 = 1.0;
-bool     PusherDiscoveryService::AutoThrottle               = false;
+bool     PusherDiscoveryService::AutoThrottle               = true;
 bool     PusherDiscoveryService::AntiLog                    = false;
 int      PusherDiscoveryService::FrameLimit                 = 60;
 

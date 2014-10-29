@@ -60,6 +60,13 @@ public:
     static bool     getAntiLog()                    { return AntiLog; }
     static int      getFrameLimit()                 { return FrameLimit; }
     
+    static void     setOverallBrightnessScale( double brightness )              { OverallBrightnessScale    = brightness; }
+    static void     setUseOverallBrightnessScale( bool useOverallBrightness )   { UseOverallBrightnessScale = useOverallBrightness; }
+    static void     setTotalPowerLimit( uint32_t powerLimit )                   { TotalPowerLimit           = powerLimit; }
+    static void     setAutoThrottle( bool isAutothrottle )                      { AutoThrottle              = isAutothrottle; }
+    static void     setAntiLog( bool isAntiLog )                                { AntiLog                   = isAntiLog; }
+    static void     setFrameLimit( int frameLimit )                             { FrameLimit                = frameLimit; }
+    
     
 private:
     
