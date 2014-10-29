@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cinder>
+<block
+	name="PixelPusher"
+	id="uk.nocte.pixelpusher"
+	author="Andrea Cuius - Nocte Studio Ltd."
+	summary="Cinder PixelPusher library"
+	git="ssh://git@bitbucket.org/q_bit/cixtract.git"
+	library="https://github.com/jamiebullock/LibXtract/"
+	>
+
+    <requires>asio.bantherewind.com</requires>
+            
+    <sourcePattern>src/*.cpp</sourcePattern>
+    <headerPattern>src/*.h</headerPattern>
+
+    <includePath>src</includePath>
+</block>
+</cinder>
