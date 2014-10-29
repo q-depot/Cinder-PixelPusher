@@ -173,30 +173,7 @@ public:
     {
         mCommandQueue.push_back( PusherCommand::createReset() );
     }
-    
-    /*
-     void setGlobalBrightness( uint16_t brightness )
-     {
-     mCommandQueue.push_back( PusherCommand::createGlobalBrightness( brightness ) );
-     }
-     
-     void setWirelessConfig( std::string ssid, std::string key, PusherCommand::PusherSecurity security )
-     {
-     mCommandQueue.push_back( PusherCommand::createWirelessConfig( ssid, key, security ) );
-     }
-     
-     void setStripsConfig(  int32_t numStrips, int32_t stripLength,
-     std::vector<PusherCommand::PusherStripType> stripType, std::vector<PusherCommand::PusherColorOrder> colorOrder,
-     uint16_t group, uint16_t controller,
-     uint16_t artnetUniverse, uint16_t artnetChannel )
-     {
-     
-     mCommandQueue.push_back( PusherCommand::createStripsConfig( numStrips, stripLength, stripType, colorOrder,
-     group = 0, controller = 0,
-     artnetUniverse = 0, artnetChannel = 0 ) );
-     }
-     */
-    
+        
 private:
     
     PixelPusher( DeviceHeader header );

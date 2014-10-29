@@ -77,11 +77,10 @@ void Strip::updatePixelsBuffer()
     int         byteIdx;
     PixelRef    px;
     uint8_t     *data                   = (uint8_t*)mPixelsBuffer.getData();
-    bool        useOverallBrightness    = PusherDiscoveryService::getUseOverallBrightnessScale();
     double      brightness              = PusherDiscoveryService::getPowerScale();
     
-    if ( useOverallBrightness )
-        brightness *= PusherDiscoveryService::getOverallBrightnessScale();
+    if ( PusherDiscoveryService::isGlobalBrightness() )
+        brightness *= PusherDiscoveryService::getGlobalBrightness();
     
     if ( mIsRGBOW )
     {

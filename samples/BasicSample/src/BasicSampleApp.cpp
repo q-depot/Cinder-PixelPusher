@@ -78,24 +78,26 @@ void BasicSampleApp::draw()
 	gl::clear( Color( 0, 0, 0 ) );
     
     Vec2i                       pos( 15, 25 );
-    int                         lineH = 15;
+    int                         lineH = 18;
     std::vector<PixelPusherRef> pushers = mPusherDiscoveryService->getPushers();
     std::vector<PusherGroupRef> groups  = mPusherDiscoveryService->getGroups();
     PixelPusherRef              pusher;
     
-    mFontBig->drawString( "FPS: " + to_string(getAverageFps()), Vec2i( 450, 25 ) );
+    mFontBig->drawString( "FPS: " + to_string( getAverageFps() ),   pos );   pos.y += lineH * 2;
+    mFontBig->drawString( "Pusher Discovery Service",               pos );   pos.y += lineH * 1.5;
     
-    mFontBig->drawString( "Pusher Discovery Service",                           pos );   pos.y += lineH;
-    mFontSmall->drawString( "Total Groups: "    + to_string( groups.size() ),   pos );   pos.y += lineH;
-    mFontSmall->drawString( "Total Devices: "   + to_string( pushers.size() ),  pos );   pos.y += lineH;
-    mFontSmall->drawString( "Auto throttle: "   + to_string( PusherDiscoveryService::getAutoThrottle() ),       pos );   pos.y += lineH;
-    
+    mFontSmall->drawString( "Use globabl brightness:\t" + to_string( PusherDiscoveryService::isGlobalBrightness() ),    pos );   pos.y += lineH;
+    mFontSmall->drawString( "Globabl brightness:\t\t"   + to_string( PusherDiscoveryService::getGlobalBrightness() ),   pos );   pos.y += lineH;
+    mFontSmall->drawString( "Total power:\t\t\t"        + to_string( PusherDiscoveryService::getTotalPower() ),         pos );   pos.y += lineH;
+    mFontSmall->drawString( "Total power limit:\t\t"    + to_string( PusherDiscoveryService::getTotalPowerLimit() ),    pos );   pos.y += lineH;
+    mFontSmall->drawString( "Power scale:\t\t\t"        + to_string( PusherDiscoveryService::getPowerScale() ),         pos );   pos.y += lineH;
+    mFontSmall->drawString( "AntiLog:\t\t\t\t"          + to_string( PusherDiscoveryService::getAntiLog() ),            pos );   pos.y += lineH;
+    mFontSmall->drawString( "Frame limit:\t\t\t"        + to_string( PusherDiscoveryService::getFrameLimit() ),         pos );   pos.y += lineH;
+    mFontSmall->drawString( "Auto throttle:\t\t\t"      + to_string( PusherDiscoveryService::getAutoThrottle() ),       pos );   pos.y += lineH;
+    mFontSmall->drawString( "Total Devices:\t\t\t"      + to_string( pushers.size() ),                                  pos );   pos.y += lineH;
+    mFontSmall->drawString( "Total groups:\t\t\t"       + to_string( groups.size() ),                                   pos );   pos.y += lineH;
+
     pos.y += lineH;
-    
-    for( size_t j=0; j < groups.size(); j++ )
-    {
-        
-    }
     
     
     for( size_t j=0; j < pushers.size(); j++ )

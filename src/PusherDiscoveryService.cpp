@@ -4,14 +4,14 @@
 #include "PixelPusher.h"
 #include "PusherGroup.h"
 
-double   PusherDiscoveryService::OverallBrightnessScale     = 1.0;
-bool     PusherDiscoveryService::UseOverallBrightnessScale  = false;
-uint32_t PusherDiscoveryService::TotalPower                 = 0;
-uint32_t PusherDiscoveryService::TotalPowerLimit            = -1;
-double   PusherDiscoveryService::PowerScale                 = 1.0;
-bool     PusherDiscoveryService::AutoThrottle               = true;
-bool     PusherDiscoveryService::AntiLog                    = false;
-int      PusherDiscoveryService::FrameLimit                 = 60;
+double  PusherDiscoveryService::GlobalBrightness       = 1.0;
+bool    PusherDiscoveryService::IsGlobalBrightness     = false;
+int     PusherDiscoveryService::TotalPower             = 0;
+int     PusherDiscoveryService::TotalPowerLimit        = -1;
+double  PusherDiscoveryService::PowerScale             = 1.0;
+bool    PusherDiscoveryService::IsAutoThrottle         = true;
+bool    PusherDiscoveryService::IsAntiLog              = false;
+int     PusherDiscoveryService::FrameLimit             = 60;
 
 
 bool sortPushers( PixelPusherRef a, PixelPusherRef b )
@@ -151,7 +151,7 @@ void PusherDiscoveryService::onRead( ci::Buffer buffer )
         for( size_t k=0; k < mPushers.size(); k++ )
             TotalPower += mPushers[k]->getPowerTotal();
 
-        PowerScale = ( TotalPower > TotalPowerLimit) ? ( TotalPowerLimit / TotalPower ) : 1.0;
+        PowerScale = ( TotalPower > TotalPowerLimit ) ? ( TotalPowerLimit / TotalPower ) : 1.0;
     }
    
     mPushersMutex.unlock();

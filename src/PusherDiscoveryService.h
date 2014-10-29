@@ -51,21 +51,21 @@ public:
     
 public:
     
-    static double   getOverallBrightnessScale()     { return OverallBrightnessScale; }
-    static bool     getUseOverallBrightnessScale()  { return UseOverallBrightnessScale; }
-    static uint32_t getTotalPower()                 { return TotalPower; }
-    static uint32_t getTotalPowerLimit()            { return TotalPowerLimit; }
-    static double   getPowerScale()                 { return PowerScale; }
-    static bool     getAutoThrottle()               { return AutoThrottle; }
-    static bool     getAntiLog()                    { return AntiLog; }
-    static int      getFrameLimit()                 { return FrameLimit; }
+    static int      getTotalPower()             { return TotalPower; }
+    static int      getTotalPowerLimit()        { return TotalPowerLimit; }
+    static int      getFrameLimit()             { return FrameLimit; }
+    static double   getGlobalBrightness()       { return GlobalBrightness; }
+    static bool     isGlobalBrightness()        { return IsGlobalBrightness; }
+    static bool     getAutoThrottle()           { return IsAutoThrottle; }
+    static bool     getAntiLog()                { return IsAntiLog; }
+    static double   getPowerScale()             { return PowerScale; }
     
-    static void     setOverallBrightnessScale( double brightness )              { OverallBrightnessScale    = brightness; }
-    static void     setUseOverallBrightnessScale( bool useOverallBrightness )   { UseOverallBrightnessScale = useOverallBrightness; }
-    static void     setTotalPowerLimit( uint32_t powerLimit )                   { TotalPowerLimit           = powerLimit; }
-    static void     setAutoThrottle( bool isAutothrottle )                      { AutoThrottle              = isAutothrottle; }
-    static void     setAntiLog( bool isAntiLog )                                { AntiLog                   = isAntiLog; }
-    static void     setFrameLimit( int frameLimit )                             { FrameLimit                = frameLimit; }
+    static void     setTotalPowerLimit( int powerLimit )        { TotalPowerLimit           = powerLimit; }
+    static void     setFrameLimit( int frameLimit )             { FrameLimit                = frameLimit; }
+    static void     setGlobalBrightness( double brightness )    { GlobalBrightness          = brightness; }
+    static void     enableGlobalBrightness( bool isEnable )     { IsGlobalBrightness        = isEnable; }
+    static void     enableAutoThrottle( bool isEnable )         { IsAutoThrottle            = isEnable; }
+    static void     enableAntiLog( bool isEnable )              { IsAntiLog                 = isEnable; }
     
     
 private:
@@ -83,15 +83,15 @@ private:
     void updateGroups();
     
 private:
-
-    static double       OverallBrightnessScale;
-    static bool         UseOverallBrightnessScale;
-    static uint32_t     TotalPower;
-    static uint32_t     TotalPowerLimit;
-    static double       PowerScale;
-    static bool         AutoThrottle;
-    static bool         AntiLog;
-    static int          FrameLimit;
+    
+    static double   PowerScale;
+    static double   GlobalBrightness;
+    static bool     IsGlobalBrightness;
+    static bool     IsAutoThrottle;
+    static bool     IsAntiLog;
+    static int      TotalPower;
+    static int      TotalPowerLimit;
+    static int      FrameLimit;
     
 private:
     
