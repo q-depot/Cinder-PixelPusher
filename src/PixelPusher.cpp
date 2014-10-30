@@ -27,6 +27,7 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
     mSegments           = 0;
     mPowerDomain        = 0;
     mLastPingAt         = ci::app::getElapsedSeconds();
+    mResetSentAt        = ci::app::getElapsedSeconds();
     
     setPusherFlags(0);
     
@@ -77,16 +78,6 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
     else
         for (int i=0; i<stripFlagSize; i++)
             mStripFlags[i] = 0;
-
-    /*
-     * We have some entries that come after the per-strip flag array.
-     * We represent these as longs so that the entire range of a uint may be preserved;
-     * why on earth Java doesn't have unsigned ints I have no idea. - jls
-     * 
-     * uint32_t pusher_flags;      // flags for the whole pusher
-     * uint32_t segments;          // number of segments in each strip
-     * uint32_t power_domain;      // power domain of this pusher
-     */
     
     if ( packetSize > 30 + stripFlagSize && swRev > 116 )
     {
@@ -98,6 +89,8 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
         memcpy( &mSegments,     &packet.get()[36+stripFlagSize], 4 );
         memcpy( &mPowerDomain,  &packet.get()[40+stripFlagSize], 4 );
     }
+    
+    createStrips();
 }
 
 
@@ -123,9 +116,6 @@ std::vector<StripRef> PixelPusher::getStrips()
     if ( mMulticast && !mMulticastPrimary )
         return std::vector<StripRef>();
 
-    if ( mStrips.empty() )      // TODO: create strips here doesn't make any fucking sense!
-        createStrips();
-
     return mStrips;
     // Ensure callers can't modify the returned list
     // return Collections.unmodifiableList(strips);
@@ -136,10 +126,6 @@ StripRef PixelPusher::getStrip( int stripNumber )
 {
     if ( stripNumber > mStripsAttached )
         return StripRef();
-    
-    
-    if ( mStrips.empty() )
-        createStrips();
 
     return mStrips[stripNumber];
 }
@@ -196,9 +182,6 @@ void PixelPusher::copyHeader( PixelPusherRef device )
 
 std::vector<StripRef> PixelPusher::getTouchedStrips()
 {
-    if ( mStrips.empty() )
-        createStrips();
-
     std::vector<StripRef> touchedStrips;
     
     for( size_t k=0; k < mStrips.size(); k++ )
@@ -250,6 +233,8 @@ void PixelPusher::createStrips()
             strip->setNotIdempotent(false);
         
         strip->setRGBOW( ( mStripFlags[k] & SFLAG_RGBOW ) == 1 );
+        
+        strip->setPixelsBlack();
         
         mStrips.push_back( strip );
     }
@@ -322,6 +307,8 @@ void PixelPusher::createCardThread( boost::asio::io_service& ioService )
     int maxPacketSize       = 4 +  ( ( 1 + 3 * getPixelsPerStrip() ) * getMaxStripsPerPacket() );
     mPacketBuffer           = ci::Buffer( maxPacketSize );
     mPacketNumber           = 0;
+
+    reset();
     
     mClient = UdpClient::create( ioService );
     mClient->connectConnectEventHandler( &PixelPusher::onConnect, this );
@@ -395,43 +382,49 @@ void PixelPusher::sendPacketToPusher()
             totalDelay = mThreadSleepMsec + mThreadExtraDelayMsec + getExtraDelay();
             
             // no commands or touched strips, nothing to do
-            if ( mCommandQueue.empty() && touchedStrips.empty() )
+            if ( !mSendReset && touchedStrips.empty() )
             {
                 std::this_thread::sleep_for( std::chrono::milliseconds( totalDelay ) );
                 continue;
             }
             
-            // first check to see if we have an outstanding command.
-            if ( !mCommandQueue.empty() )
+            if ( mSendReset )
             {
-                for( size_t k=0; k < mCommandQueue.size(); k++ )
-                {
-                    // cmd + packen_number(4) or 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * stripPerPacket )
-                    int packetLength;
-                    
-                    // We need fixed size datagrams for the Photon, because the cc3000 sucks.
-                    if ( ( getPusherFlags() & PFLAG_FIXEDSIZE ) != 0 )
-                        packetLength = 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * stripPerPacket );
-                    else
-                        packetLength = mCommandQueue[k]->mDataSize + 4;
-                    
-                    ci::Buffer  cmdPacket(packetLength);
-                    uint8_t     *cmdPacketData = (uint8_t*)cmdPacket.getData();
-                    
-                    // Packet number
-                    memcpy( &cmdPacketData[0], &mPacketNumber, 4 );
-                    
-                    // cmd data
-                    memcpy( &cmdPacketData[4], &mCommandQueue[k]->mData.get()[0], mCommandQueue[k]->mDataSize );
-                    
-                    // send packet
-                    mSession->write( cmdPacket );
-                    mPacketNumber++;
-                }
+                int                         dataSize    = PP_CMD_MAGIC_SIZE + 1;
+                std::shared_ptr<uint8_t>    data        = std::shared_ptr<uint8_t>( new uint8_t[dataSize] );
                 
-                mCommandQueue.clear();
+                std::memcpy( &data.get()[0], &PP_CMD_MAGIC[0], PP_CMD_MAGIC_SIZE );
                 
-                std::this_thread::sleep_for( std::chrono::milliseconds( totalDelay ) );
+                data.get()[PP_CMD_MAGIC_SIZE] = (uint8_t)PP_RESET_CMD;
+                
+                // cmd + packen_number(4) or 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * stripPerPacket )
+                int packetLength;
+                
+                // We need fixed size datagrams for the Photon, because the cc3000 sucks.
+                if ( ( getPusherFlags() & PFLAG_FIXEDSIZE ) != 0 )
+                    packetLength = 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * stripPerPacket );
+                else
+                    packetLength = dataSize + 4;
+                
+                ci::Buffer  cmdPacket(packetLength);
+                uint8_t     *cmdPacketData = (uint8_t*)cmdPacket.getData();
+                
+                // Packet number
+                memcpy( &cmdPacketData[0], &mPacketNumber, 4 );
+                
+                // cmd data
+                memcpy( &cmdPacketData[4], &data.get()[0], dataSize );
+                
+                // send packet
+                mSession->write( cmdPacket );
+                mPacketNumber++;
+                
+                ci::app::console() << "PixelPusher reset device: " << getIp() << std::endl;
+                
+                mSendReset = false;
+                
+                std::this_thread::sleep_for( std::chrono::milliseconds( PP_RESET_DELAY * 1000 ) );
+                
                 continue;
             }
             
@@ -469,10 +462,6 @@ void PixelPusher::sendPacketToPusher()
                     packetLength += stripDataSize;
                     
                     payload = true;
-                    
-                    
-//                    if ( k == 0 )
-//                        ci::app::console() << (int)stripData[0] << std::endl;
                 }
                 
                 if ( payload )
@@ -491,8 +480,7 @@ void PixelPusher::sendPacketToPusher()
         }
         
         else
-            std::this_thread::sleep_for( std::chrono::milliseconds( totalDelay * 5 ) );
-        
+            std::this_thread::sleep_for( std::chrono::milliseconds( totalDelay ) );
     }
     
     ci::app::console() << "PixelPusher::sendPacketToPusher() thread exited!" << std::endl;
@@ -503,5 +491,17 @@ void PixelPusher::increaseExtraDelay( uint32_t i )
 {
     if ( PusherDiscoveryService::getAutoThrottle() )
         mExtraDelayMsec += i;
+}
+
+
+void PixelPusher::decreaseExtraDelay( uint32_t i )
+{
+    if ( !PusherDiscoveryService::getAutoThrottle() )
+        return;
+    
+    if (  mExtraDelayMsec >= i )
+        mExtraDelayMsec = mExtraDelayMsec - i;
+    else
+        mExtraDelayMsec = 0;
 }
 

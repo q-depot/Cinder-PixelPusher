@@ -46,7 +46,6 @@
 		108F0DC319FD95380034CAA7 /* Pixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pixel.h; sourceTree = "<group>"; };
 		108F0DC419FD95380034CAA7 /* PixelPusher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelPusher.cpp; sourceTree = "<group>"; };
 		108F0DC519FD95380034CAA7 /* PixelPusher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelPusher.h; sourceTree = "<group>"; };
-		108F0DC619FD95380034CAA7 /* PusherCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PusherCommand.h; sourceTree = "<group>"; };
 		108F0DC719FD95380034CAA7 /* PusherGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PusherGroup.h; sourceTree = "<group>"; };
 		108F0DC919FD95380034CAA7 /* Strip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Strip.cpp; sourceTree = "<group>"; };
 		108F0DCA19FD95380034CAA7 /* Strip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Strip.h; sourceTree = "<group>"; };
@@ -173,7 +172,6 @@
 				108F0DC319FD95380034CAA7 /* Pixel.h */,
 				108F0DC419FD95380034CAA7 /* PixelPusher.cpp */,
 				108F0DC519FD95380034CAA7 /* PixelPusher.h */,
-				108F0DC619FD95380034CAA7 /* PusherCommand.h */,
 				108F0DC719FD95380034CAA7 /* PusherGroup.h */,
 				108F0DC919FD95380034CAA7 /* Strip.cpp */,
 				108F0DCA19FD95380034CAA7 /* Strip.h */,

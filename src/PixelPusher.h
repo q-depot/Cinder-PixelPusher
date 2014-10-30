@@ -28,13 +28,17 @@
 
 #pragma once
 
-#include "PusherCommand.h"
+//#include "PusherCommand.h"
 #include "DeviceHeader.h"
 #include <boost/enable_shared_from_this.hpp>
 #include "UdpClient.h"
 
 
-#define PP_DISCONNECT_TIMEOUT           5
+#define         PP_DISCONNECT_TIMEOUT               5
+#define         PP_RESET_DELAY                      1
+#define         PP_CMD_MAGIC_SIZE                   16
+const uint8_t   PP_CMD_MAGIC[PP_CMD_MAGIC_SIZE] =   { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09, 0xaf, 0x50 };
+#define         PP_RESET_CMD                        1
 
 
 class Strip;
@@ -42,9 +46,6 @@ typedef std::shared_ptr<Strip> StripRef;
 
 class PixelPusher;
 typedef std::shared_ptr<PixelPusher> PixelPusherRef;
-
-//class CardThread;
-//typedef std::shared_ptr<CardThread> CardThreadRef;
 
 
 class PixelPusher : public std::enable_shared_from_this<PixelPusher> {
@@ -108,12 +109,6 @@ public:
     
     uint32_t    getPacketNumber() { return mPacketNumber; }
     
-    void sendCommand( PusherCommandRef pc )
-    {
-        mCommandQueue.push_back( pc );
-    }
-  
-    
     std::vector<StripRef>   getStrips();
     
     uint16_t getArtnetUniverse()   { return mArtnetUniverse; }
@@ -137,13 +132,7 @@ public:
     
     void increaseExtraDelay( uint32_t i );
 
-    void decreaseExtraDelay( uint32_t i )
-    {
-        if (  mExtraDelayMsec >= i )
-            mExtraDelayMsec = mExtraDelayMsec - i;
-        else
-            mExtraDelayMsec = 0;
-    }
+    void decreaseExtraDelay( uint32_t i );
     
     uint32_t getExtraDelay() { return mExtraDelayMsec; }
     
@@ -176,12 +165,22 @@ public:
     
     bool isIpAddrMulticast() { return mDeviceHeader.isMulticast(); }
     
-    bool isAlive( double timeNow ) { return timeNow - mLastPingAt < PP_DISCONNECT_TIMEOUT; }
+    bool isAlive( double timeNow )
+    {
+        // is we send the reset command, we wait for the device and start counting the ping after the reset delay
+        if ( timeNow - mResetSentAt < PP_RESET_DELAY )
+        {
+            mLastPingAt = timeNow;
+            return true;
+        }
+        
+        return timeNow - mLastPingAt < PP_DISCONNECT_TIMEOUT;
+    }
     
-    // Commands
     void reset()
     {
-        mCommandQueue.push_back( PusherCommand::createReset() );
+        mSendReset      = true;
+        mResetSentAt    = ci::app::getElapsedSeconds();
     }
         
 private:
@@ -202,51 +201,51 @@ private:
     
 private:
     
-    std::vector<StripRef> mStrips;
-    uint32_t              mExtraDelayMsec;
+    std::vector<StripRef>   mStrips;
+    uint32_t                mExtraDelayMsec;
   
-    bool                  mMulticast;
-    bool                  mMulticastPrimary;
+    bool                    mMulticast;
+    bool                    mMulticastPrimary;
   
-    std::vector<PusherCommandRef> mCommandQueue;
-  
-    uint8_t       	mStripsAttached;
-    uint8_t         mMaxStripsPerPacket;
-    uint16_t        mPixelsPerStrip;
+    uint8_t                 mStripsAttached;
+    uint8_t                 mMaxStripsPerPacket;
+    uint16_t                mPixelsPerStrip;
 
-    uint32_t        mUpdatePeriod;
-    uint32_t        mPowerTotal;
-    uint32_t        mDeltaSequence;
-    uint32_t        mControllerId;
-    uint32_t        mGroupId;
+    uint32_t                mUpdatePeriod;
+    uint32_t                mPowerTotal;
+    uint32_t                mDeltaSequence;
+    uint32_t                mControllerId;
+    uint32_t                mGroupId;
     
-    uint16_t        mArtnetUniverse;
-    uint16_t        mArtnetChannel;
+    uint16_t                mArtnetUniverse;
+    uint16_t                mArtnetChannel;
 
-    uint16_t        mPort;
+    uint16_t                mPort;
     
-    uint32_t        mPusherFlags;
-    uint32_t        mSegments;
-    uint32_t    	mPowerDomain;
-    int             mLastUniverse;
+    uint32_t                mPusherFlags;
+    uint32_t                mSegments;
+    uint32_t                mPowerDomain;
+    int                     mLastUniverse;
     
-    std::vector<int8_t>    mStripFlags;
+    std::vector<int8_t>     mStripFlags;
     
-	DeviceHeader	mDeviceHeader;
+	DeviceHeader            mDeviceHeader;
 
     // update Thread
-    UdpClientRef	mClient;
-    UdpSessionRef	mSession;
+    UdpClientRef            mClient;
+    UdpSessionRef           mSession;
     
-    uint32_t        mThreadSleepMsec;
-    uint32_t        mThreadExtraDelayMsec;
-    ci::Buffer      mPacketBuffer;
-    std::thread     mSendDataThread;
-    bool            mRunThread;
-    double          mTerminateThreadAt;
-    uint32_t        mPacketNumber;
+    uint32_t                mThreadSleepMsec;
+    uint32_t                mThreadExtraDelayMsec;
+    ci::Buffer              mPacketBuffer;
+    std::thread             mSendDataThread;
+    bool                    mRunThread;
+    double                  mTerminateThreadAt;
+    uint32_t                mPacketNumber;
     
-    double          mLastPingAt;
+    double                  mLastPingAt;
+    bool                    mSendReset;
+    double                  mResetSentAt;
 };
 
 #endif

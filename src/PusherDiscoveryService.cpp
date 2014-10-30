@@ -100,7 +100,7 @@ void PusherDiscoveryService::onError( std::string err, size_t bytesTransferred )
 
 
 void PusherDiscoveryService::onRead( ci::Buffer buffer )
-{
+{   
     mPushersMutex.lock();
     
     uint8_t         *data   =(uint8_t*)buffer.getData();
