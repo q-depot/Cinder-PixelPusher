@@ -107,7 +107,9 @@ PixelPusher::~PixelPusher()
     {
         for( size_t k=0; k < mStrips.size(); k++ )
             mStrips[k]->setPixelsBlack();
-    
+        
+        reset();
+        
         destroyCardThread();
     }
 }
@@ -467,6 +469,10 @@ void PixelPusher::sendPacketToPusher()
                     packetLength += stripDataSize;
                     
                     payload = true;
+                    
+                    
+//                    if ( k == 0 )
+//                        ci::app::console() << (int)stripData[0] << std::endl;
                 }
                 
                 if ( payload )

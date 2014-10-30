@@ -14,7 +14,6 @@
 #include "PusherGroup.h"
 
 double  PusherDiscoveryService::GlobalBrightness       = 1.0;
-bool    PusherDiscoveryService::IsGlobalBrightness     = false;
 int     PusherDiscoveryService::TotalPower             = 0;
 int     PusherDiscoveryService::TotalPowerLimit        = -1;
 double  PusherDiscoveryService::PowerScale             = 1.0;

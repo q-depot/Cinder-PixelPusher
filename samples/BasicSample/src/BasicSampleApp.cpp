@@ -17,8 +17,8 @@ class BasicSampleApp : public AppNative {
 	void draw();
     
     PusherDiscoveryServiceRef   mPusherDiscoveryService;
-    gl::TextureFontRef  mFontBig, mFontSmall;
-    
+    gl::TextureFontRef          mFontBig, mFontSmall;
+    Surface8u                   mOutputSurf;
 };
 
 
@@ -28,6 +28,8 @@ void BasicSampleApp::setup()
     
     mFontBig    = gl::TextureFont::create( Font( "Arial", 16 ) );
     mFontSmall  = gl::TextureFont::create( Font( "Arial", 12 ) );
+    
+    mOutputSurf = Surface8u( 480, 500, false );
     
     setWindowSize( 1200, 800 );
 }
@@ -43,6 +45,21 @@ void BasicSampleApp::keyDown( KeyEvent event )
     
     if ( code == KeyEvent::KEY_r )
         pushers.front()->reset();
+    
+//    else if ( code == KeyEvent::KEY_UP )
+//    {
+//        std::vector<PixelPusherRef> pushers = mPusherDiscoveryService->getPushers();
+//        for( size_t k=0; k < pushers.size(); k++ )
+//            pushers[k]->increaseExtraDelay( 1 );
+//    }
+//    
+//    else if ( code == KeyEvent::KEY_DOWN )
+//    {
+//        std::vector<PixelPusherRef> pushers = mPusherDiscoveryService->getPushers();
+//        for( size_t k=0; k < pushers.size(); k++ )
+//            pushers[k]->decreaseExtraDelay( 1 );
+//    }
+
 }
 
 
@@ -51,11 +68,12 @@ void BasicSampleApp::update()
     std::vector<PixelPusherRef> pushers = mPusherDiscoveryService->getPushers();
     std::vector<StripRef>       strips;
     std::vector<PixelRef>       pixels;
-    Color                       col;
+    ColorA                      col;
+ 
     
-    if ( !pushers.empty() )
+    for( size_t j=0; j < pushers.size(); j++ )
     {
-        strips = pushers.front()->getStrips();
+        strips = pushers[j]->getStrips();
         for( size_t k=0; k < strips.size(); k++ )
         {
             pixels = strips[k]->getPixels();
@@ -66,6 +84,8 @@ void BasicSampleApp::update()
                 col.b = 1.0 - 0.5f * ( 1.0f + cos( (float)( i + k * pixels.size() ) / 5 + 2 * getElapsedSeconds() ) );
                 
                 strips[k]->setPixel( i, (uint8_t)( col.r * 255 ), (uint8_t)( col.g * 255 ), (uint8_t)( col.b * 255 ) );
+                
+                mOutputSurf.setPixel( Vec2i( i, j * 8 + k ), col );
             }
         }
     }
@@ -77,6 +97,8 @@ void BasicSampleApp::draw()
     gl::enableAlphaBlending();
 	gl::clear( Color( 0, 0, 0 ) );
     
+    gl::draw( mOutputSurf, Vec2f( getWindowWidth() - mOutputSurf.getWidth(), 0 ) );
+    
     Vec2i                       pos( 15, 25 );
     int                         lineH = 18;
     std::vector<PixelPusherRef> pushers = mPusherDiscoveryService->getPushers();
@@ -86,7 +108,6 @@ void BasicSampleApp::draw()
     mFontBig->drawString( "FPS: " + to_string( getAverageFps() ),   pos );   pos.y += lineH * 2;
     mFontBig->drawString( "Pusher Discovery Service",               pos );   pos.y += lineH * 1.5;
     
-    mFontSmall->drawString( "Use globabl brightness:\t" + to_string( PusherDiscoveryService::isGlobalBrightness() ),    pos );   pos.y += lineH;
     mFontSmall->drawString( "Globabl brightness:\t\t"   + to_string( PusherDiscoveryService::getGlobalBrightness() ),   pos );   pos.y += lineH;
     mFontSmall->drawString( "Total power:\t\t\t"        + to_string( PusherDiscoveryService::getTotalPower() ),         pos );   pos.y += lineH;
     mFontSmall->drawString( "Total power limit:\t\t"    + to_string( PusherDiscoveryService::getTotalPowerLimit() ),    pos );   pos.y += lineH;
@@ -98,7 +119,6 @@ void BasicSampleApp::draw()
     mFontSmall->drawString( "Total groups:\t\t\t"       + to_string( groups.size() ),                                   pos );   pos.y += lineH;
 
     pos.y += lineH;
-    
     
     for( size_t j=0; j < pushers.size(); j++ )
     {

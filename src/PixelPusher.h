@@ -64,7 +64,7 @@ private:
     
     
 public:
-
+    
     static PixelPusherRef create( DeviceHeader header )
     {
         return PixelPusherRef( new PixelPusher( header ) );
