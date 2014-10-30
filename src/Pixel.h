@@ -41,14 +41,14 @@ public:
     
     ~Pixel() {}
     
-    void setColor( Pixel pixel, bool antiLog = false )
+    void setColor( Pixel pixel, bool colorCorrection = false )
     {
-        setColor( pixel.mRed, pixel.mGreen, pixel.mBlue, pixel.mOrange, pixel.mWhite, antiLog );
+        setColor( pixel.mRed, pixel.mGreen, pixel.mBlue, pixel.mOrange, pixel.mWhite, colorCorrection );
     }
     
-    void setColor( uint8_t r, uint8_t g, uint8_t b, uint8_t o = 0, uint8_t w = 0, bool antiLog = false )
+    void setColor( uint8_t r, uint8_t g, uint8_t b, uint8_t o = 0, uint8_t w = 0, bool colorCorrection = false )
     {
-        if ( antiLog )
+        if ( colorCorrection )
         {
             mRed     = sLinearExp[r];
             mGreen   = sLinearExp[g];

@@ -18,7 +18,7 @@ int     PusherDiscoveryService::TotalPower             = 0;
 int     PusherDiscoveryService::TotalPowerLimit        = -1;
 double  PusherDiscoveryService::PowerScale             = 1.0;
 bool    PusherDiscoveryService::IsAutoThrottle         = true;
-bool    PusherDiscoveryService::IsAntiLog              = false;
+bool    PusherDiscoveryService::IsColorCorrection      = false;
 int     PusherDiscoveryService::FrameLimit             = 60;
 
 using namespace ci;

@@ -2,9 +2,11 @@
 
 Cinder library to control the [Heroic Robotics](http://www.heroicrobotics.com/) PixelPusher device.
 
-This is the first implementation of the library which is not fully tested, I only have one device at the moment, if you have multiple devices please let me know whether it works.
+##Status
+This is the first implementation of the library which is not fully tested.  
+At the moment I have one PixelPusher device and I only tested it with the [apa102(aka BetterPixel)](http://www.illumn.com/pixelpusher-and-led-strips/pixelpusher-strip-betterpixel-72-ip67.html) chip led strips.
 
-If there is any problem please report it on the Github issues. 
+If you have multiple devices or a different led strip please let me know whether it works and report any problem on the Github issues page. 
 
 
 ##Requirements
@@ -17,20 +19,18 @@ If there is any problem please report it on the Github issues.
 
 The main entry point is the `PusherDiscoveryService`.  
 
-`PusherDiscoveryService` open a UDP socket on port `PP_DISCOVERY_SERVICE_PORT` listening for boadcast message sent by the PixelPusher devices.
+`PusherDiscoveryService` open a UDP socket on port `PP_DISCOVERY_SERVICE_PORT` listening for broadcast messages sent by the PixelPusher devices.
 
 #####Discovery
 `PusherDiscoveryService` manages all the devices connected to the network, it automatically discover, create, group and destroy the available PixelPusher devices.
 
-Each PixelPusher device broadcast a UDP packet every second to send some informations about the device itself, the `PusherDiscoveryService::onRead()` method is used to discover new devices and update existing ones.
+Each PixelPusher device broadcast a UDP packet every second to send some informations about the device itself, the `PusherDiscoveryService::onRead()` method is used to discover new devices and update the existing ones.
 
 #####Timeout
 If a device doesn't broadcast for more than `PP_DISCONNECT_TIMEOUT` seconds, `PusherDiscoveryService` will automatically destroy it also removing any empty groups.
 
-#####Framerate
-The framerate should change automatically depending on your network, PixelPusher and so Cinder-PixelPusher always aim to send data as fast as possible and in theory it should be about 60fps which is the target frame rate set by `PusherDiscoveryService::FrameLimit`.  
-By default `PusherDiscoveryService` is set with AutoThrottle which adjust the speed by increasing and decresing an extra delay, to change this behavior you can use the static method `PusherDiscoveryService::enableAutoThrottle( bool isEnable )`
-
+#####Color correction
+There is a basic feature to apply color correction, if the colors look a bit washed out you can enable it with `PusherDiscoveryService::enableColorCorrection( bool isEnable )`.
 
 #####PixelPusher Groups and Controllers
 The PixelPusher network is organised in Groups and Controllers. Each controller is always associated to a group, this is a property of the device itself and among other properties, it can only be changed by updating the PixelPusher configuration. To configure the device you can use the [PixelPusher-utilities](https://github.com/jasstrong/PixelPusher-utilities) configtool, please refer to the [PixelPusher Documentation](https://sites.google.com/a/heroicrobot.com/pixelpusher/home).
@@ -108,3 +108,10 @@ void BasicSampleApp::update()
 
 }
 ```
+
+##TODO
+
+* Implement multicast
+* Test multiple devices
+* Test strips: MBI6030, LPD8806, SD600A, WS2801, P9813, TLC59711
+

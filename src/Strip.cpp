@@ -66,7 +66,7 @@ void Strip::setPixel( int position, uint8_t r, uint8_t g, uint8_t b, uint8_t o, 
     if (position >= mPixels.size() )
         return;
     
-    mPixels[position]->setColor( r, g, b, o, w, PusherDiscoveryService::getAntiLog() );
+    mPixels[position]->setColor( r, g, b, o, w, PusherDiscoveryService::getColorCorrection() );
     
     markTouched();
 }
