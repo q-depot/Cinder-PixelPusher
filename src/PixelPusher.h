@@ -22,7 +22,6 @@
  *
  */
 
-
 #ifndef PIXEL_PUSHER_DEVICE
 #define PIXEL_PUSHER_DEVICE
 
@@ -33,12 +32,10 @@
 #include <boost/enable_shared_from_this.hpp>
 #include "UdpClient.h"
 
-
 #define         PP_DISCONNECT_TIMEOUT               5
 #define         PP_RESET_DELAY                      8
-#define         PP_CMD_MAGIC_SIZE                   16
-const uint8_t   PP_CMD_MAGIC[PP_CMD_MAGIC_SIZE] =   { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09, 0xaf, 0x50 };
-#define         PP_RESET_CMD                        1
+#define         PP_CMD_RESET_SIZE                   17             // command magic first 16 bytes, last byte is the reset command(0x01)
+const uint8_t   PP_CMD_RESET[PP_CMD_RESET_SIZE] =   { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09, 0xaf, 0x50, 0x01 };
 
 
 class Strip;
@@ -237,7 +234,6 @@ private:
     
     uint32_t                mThreadSleepMsec;
     uint32_t                mThreadExtraDelayMsec;
-    ci::Buffer              mPacketBuffer;
     std::thread             mSendDataThread;
     bool                    mRunThread;
     double                  mTerminateThreadAt;

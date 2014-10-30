@@ -308,8 +308,6 @@ bool PixelPusher::hasTouchedStrips()
 void PixelPusher::createCardThread( boost::asio::io_service& ioService )
 {
     mThreadExtraDelayMsec   = 0;
-    int maxPacketSize       = 4 +  ( ( 1 + 3 * getPixelsPerStrip() ) * getMaxStripsPerPacket() );
-    mPacketBuffer           = Buffer( maxPacketSize );
     mPacketNumber           = 0;
     
     mClient = UdpClient::create( ioService );
@@ -368,19 +366,28 @@ void PixelPusher::sendPacketToPusher()
     mTerminateThreadAt  = -1.0;
     mThreadSleepMsec    = 16;
     
-    StripRef                strip;
-    vector<StripRef>   touchedStrips;
-    vector<PixelRef>   pixels;
-    int                     packetLength;
-    size_t                  stripDataSize;
-    long                    totalDelay;
-    bool                    payload;
-    int                     stripIdx;
-    int                     maxStripsPerPacket  = getMaxStripsPerPacket();
-    int                     stripPerPacket      = min( (uint8_t)maxStripsPerPacket, getStripsAttached() );
-    uint8_t                 *packetData         = (uint8_t*)mPacketBuffer.getData();
-    uint8_t                 *stripData;
+    StripRef            strip;
+    vector<StripRef>    touchedStrips;
+    vector<PixelRef>    pixels;
+    int                 packetLength;
+    size_t              stripDataSize;
+    long                totalDelay;
+    bool                payload;
+    int                 stripIdx;
+    int                 maxStripsPerPacket  = getMaxStripsPerPacket();
+    int                 stripPerPacket      = min( (uint8_t)maxStripsPerPacket, getStripsAttached() );
+    uint8_t             *stripData;
     
+    // packet buffer
+    ci::Buffer          packetBuffer        = Buffer( 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * getMaxStripsPerPacket() ) );
+    uint8_t             *packetData         = (uint8_t*)packetBuffer.getData();
+
+    // reset command packet buffer
+    int                 cmdPacketLength     = ( ( getPusherFlags() & PFLAG_FIXEDSIZE ) != 0 ) ? 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * stripPerPacket ) :  PP_CMD_RESET_SIZE + 4;
+    ci::Buffer          resetCmdBuffer      = Buffer(cmdPacketLength);
+    uint8_t             *resetCmdData       = (uint8_t*)resetCmdBuffer.getData();
+    memcpy( &resetCmdData[4], &PP_CMD_RESET[0], PP_CMD_RESET_SIZE );
+   
     while( mRunThread )
     {
         // Terminated the thread using a delay to ensure it send out the latest data(black pixels)
@@ -417,38 +424,16 @@ void PixelPusher::sendPacketToPusher()
             
             if ( mSendReset )
             {
-                int                 dataSize    = PP_CMD_MAGIC_SIZE + 1;
-                shared_ptr<uint8_t> data        = shared_ptr<uint8_t>( new uint8_t[dataSize] );
-                
-                memcpy( &data.get()[0], &PP_CMD_MAGIC[0], PP_CMD_MAGIC_SIZE );
-                
-                data.get()[PP_CMD_MAGIC_SIZE] = (uint8_t)PP_RESET_CMD;
-                
-                // cmd + packen_number(4) or 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * stripPerPacket )
-                int packetLength;
-                
-                // We need fixed size datagrams for the Photon, because the cc3000 sucks.
-                if ( ( getPusherFlags() & PFLAG_FIXEDSIZE ) != 0 )
-                    packetLength = 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * stripPerPacket );
-                else
-                    packetLength = dataSize + 4;
-                
-                Buffer  cmdPacket(packetLength);
-                uint8_t     *cmdPacketData = (uint8_t*)cmdPacket.getData();
-                
-                // Packet number
-                memcpy( &cmdPacketData[0], &mPacketNumber, 4 );
-                
-                // cmd data
-                memcpy( &cmdPacketData[4], &data.get()[0], dataSize );
+                // update Packet number
+                memcpy( &resetCmdData[0], &mPacketNumber, 4 );
                 
                 // send packet
-                mSession->write( cmdPacket );
+                mSession->write( resetCmdBuffer );
                 mPacketNumber++;
                 
-                console() << getElapsedSeconds() << " PixelPusher reset device: " << getIp() << endl;
-                
                 mSendReset = false;
+                
+                console() << getElapsedSeconds() << " PixelPusher reset device: " << getIp() << endl;
   
                 this_thread::sleep_for( chrono::milliseconds( totalDelay ) );
 
@@ -496,7 +481,7 @@ void PixelPusher::sendPacketToPusher()
                 if ( payload )
                 {
                     // send packet
-                    mSession->write( mPacketBuffer );
+                    mSession->write( packetBuffer );
                     mPacketNumber++;
                     payload = false;
                     this_thread::sleep_for( chrono::milliseconds( totalDelay ) );
