@@ -35,7 +35,7 @@ class Strip {
 
     int getLength() { return mPixels.size(); }
 
-    bool isTouched() { return mTouched; }
+    bool isTouched() { return mIsTouched; }
 
     uint8_t getStripNumber() { return mStripNumber; }
 
@@ -57,17 +57,17 @@ class Strip {
     uint8_t *getPixelsData() { return (uint8_t*)mPixelsBuffer.getData(); }
     size_t  getPixelsDataSize() { return mPixelsBuffer.getDataSize(); }
     
+    void markTouched( bool isTouch = true ) { mIsTouched = isTouch; }
+    
 private:
     
     Strip( uint8_t stripNumber, int length );
-    
-    void markTouched();
     
   private:
 
     std::vector<PixelRef>   mPixels;
     uint8_t                 mStripNumber;
-    bool                    mTouched;
+    bool                    mIsTouched;
     bool                    mIsRGBOW;
     bool                    mIsMotion;
     bool                    mIsNotIdempotent;

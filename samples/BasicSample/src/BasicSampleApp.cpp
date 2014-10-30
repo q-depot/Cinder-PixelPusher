@@ -19,6 +19,8 @@ class BasicSampleApp : public AppNative {
     PusherDiscoveryServiceRef   mPusherDiscoveryService;
     gl::TextureFontRef          mFontBig, mFontSmall;
     Surface8u                   mOutputSurf;
+    
+    bool                        mSendData;
 };
 
 
@@ -30,6 +32,8 @@ void BasicSampleApp::setup()
     mFontSmall  = gl::TextureFont::create( Font( "Arial", 12 ) );
     
     mOutputSurf = Surface8u( 480, 500, false );
+    
+    mSendData   = true;
     
     setWindowSize( 1200, 800 );
 }
@@ -45,6 +49,9 @@ void BasicSampleApp::keyDown( KeyEvent event )
     
     if ( code == KeyEvent::KEY_r )
         pushers.front()->reset();
+    
+    else if ( code == KeyEvent::KEY_SPACE )
+        mSendData = !mSendData;
     
 //    else if ( code == KeyEvent::KEY_UP )
 //    {
@@ -65,6 +72,9 @@ void BasicSampleApp::keyDown( KeyEvent event )
 
 void BasicSampleApp::update()
 {
+    if ( !mSendData )
+        return;
+    
     std::vector<PixelPusherRef> pushers = mPusherDiscoveryService->getPushers();
     std::vector<StripRef>       strips;
     std::vector<PixelRef>       pixels;

@@ -19,10 +19,10 @@ Strip::Strip( uint8_t stripNumber, int length )
     for ( int i = 0; i < length; i++ )
         mPixels.push_back( Pixel::create() );
 
-    mStripNumber  = stripNumber;
-    mTouched      = false;
-    mIsRGBOW      = false;
-    mPixelsBuffer = ci::Buffer( mPixels.size() * 3 );
+    mStripNumber    = stripNumber;
+    mIsTouched      = false;
+    mIsRGBOW        = false;
+    mPixelsBuffer   = ci::Buffer( mPixels.size() * 3 );
 }
 
 
@@ -57,7 +57,7 @@ void Strip::setRGBOW( bool state )
         mIsRGBOW = state;
     }
     
-    mTouched = true;
+    markTouched();
 }
 
 
@@ -68,7 +68,7 @@ void Strip::setPixel( int position, uint8_t r, uint8_t g, uint8_t b, uint8_t o, 
     
     mPixels[position]->setColor( r, g, b, o, w, PusherDiscoveryService::getAntiLog() );
     
-    mTouched = true;
+    markTouched();
 }
 
 
@@ -77,7 +77,7 @@ void Strip::setPixelsBlack()
     for( size_t k=0; k < mPixels.size(); k++ )
         mPixels[k]->setColor( 0, 0, 0, 0, 0 );
     
-    mTouched = true;
+    markTouched();
 }
 
 

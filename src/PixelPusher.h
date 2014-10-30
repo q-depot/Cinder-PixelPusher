@@ -35,7 +35,7 @@
 
 
 #define         PP_DISCONNECT_TIMEOUT               5
-#define         PP_RESET_DELAY                      1
+#define         PP_RESET_DELAY                      8
 #define         PP_CMD_MAGIC_SIZE                   16
 const uint8_t   PP_CMD_MAGIC[PP_CMD_MAGIC_SIZE] =   { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09, 0xaf, 0x50 };
 #define         PP_RESET_CMD                        1
@@ -168,11 +168,11 @@ public:
     bool isAlive( double timeNow )
     {
         // is we send the reset command, we wait for the device and start counting the ping after the reset delay
-        if ( timeNow - mResetSentAt < PP_RESET_DELAY )
-        {
-            mLastPingAt = timeNow;
-            return true;
-        }
+//        if ( timeNow - mResetSentAt < PP_RESET_DELAY )
+//        {
+//            mLastPingAt = timeNow;
+//            return true;
+//        }
         
         return timeNow - mLastPingAt < PP_DISCONNECT_TIMEOUT;
     }

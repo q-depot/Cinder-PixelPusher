@@ -21,6 +21,10 @@ bool    PusherDiscoveryService::IsAutoThrottle         = true;
 bool    PusherDiscoveryService::IsAntiLog              = false;
 int     PusherDiscoveryService::FrameLimit             = 60;
 
+using namespace ci;
+using namespace ci::app;
+using namespace std;
+
 
 bool sortPushers( PixelPusherRef a, PixelPusherRef b )
 {
@@ -61,15 +65,15 @@ PusherDiscoveryService::PusherDiscoveryService( boost::asio::io_service& ioServi
     if ( mServer )
     {
         mServer->accept( (uint16_t)PP_DISCOVERY_SERVICE_PORT );
-        ci::app::console() << "PusherDiscoveryService Listening on port: " << PP_DISCOVERY_SERVICE_PORT << std::endl;
+        console() << "PusherDiscoveryService Listening on port: " << PP_DISCOVERY_SERVICE_PORT << endl;
     }
     else
     {
-        ci::app::console() << "PusherDiscoveryService failed to create a server" << std::endl;
+        console() << "PusherDiscoveryService failed to create a server" << endl;
     }
     
     // keep groups and pushers lists up to date
-    mUpdateGroupsThread = std::thread( &PusherDiscoveryService::updateGroups, this );
+    mUpdateGroupsThread = thread( &PusherDiscoveryService::updateGroups, this );
 }
 
 
@@ -93,19 +97,19 @@ void PusherDiscoveryService::onAccept( UdpSessionRef session )
 }
 
 
-void PusherDiscoveryService::onError( std::string err, size_t bytesTransferred )
+void PusherDiscoveryService::onError( string err, size_t bytesTransferred )
 {
-    ci::app::console() << "PusherDiscoveryService socket error!" << std::endl;
+    console() << "PusherDiscoveryService socket error!" << endl;
 }
 
 
-void PusherDiscoveryService::onRead( ci::Buffer buffer )
-{   
+void PusherDiscoveryService::onRead( Buffer buffer )
+{
     mPushersMutex.lock();
     
     uint8_t         *data   =(uint8_t*)buffer.getData();
     DeviceHeader    header  = DeviceHeader( data, buffer.getDataSize() );
-    std::string     macAddr = header.getMacAddressString();
+    string     macAddr = header.getMacAddressString();
     PixelPusherRef  thisDevice, incomingDevice;
     
     // ignore non-PixelPusher devices
@@ -122,7 +126,7 @@ void PusherDiscoveryService::onRead( ci::Buffer buffer )
             break;
         }
     }
-
+    
     if ( !thisDevice )
     {
         thisDevice = incomingDevice;
@@ -149,7 +153,7 @@ void PusherDiscoveryService::onRead( ci::Buffer buffer )
     }
     
     // Set the timestamp for the last time this device checked in
-    thisDevice->setLastPing( ci::app::getElapsedSeconds() );
+    thisDevice->setLastPing( getElapsedSeconds() );
     
     // update the power limit variables
     if ( TotalPowerLimit > 0 )
@@ -197,7 +201,7 @@ void PusherDiscoveryService::addNewPusher( PixelPusherRef pusher )
     {
         pusher->setMulticast(true);
         
-        std::vector<PixelPusherRef> members = getPushersByIp( pusher->getIp() );
+        vector<PixelPusherRef> members = getPushersByIp( pusher->getIp() );
         
         bool groupHasPrimary = false;
         
@@ -213,9 +217,9 @@ void PusherDiscoveryService::addNewPusher( PixelPusherRef pusher )
 }
 
 
-std::vector<PixelPusherRef> PusherDiscoveryService::getPushersByIp( std::string ip )
+vector<PixelPusherRef> PusherDiscoveryService::getPushersByIp( string ip )
 {
-    std::vector<PixelPusherRef> pushers;
+    vector<PixelPusherRef> pushers;
     
     for( size_t k=0; k < mPushers.size(); k++ )
         if ( mPushers[k]->getIp() == ip )
@@ -229,7 +233,7 @@ void PusherDiscoveryService::updateGroups()
 {
     mRunUpdateGroupsThread = true;
     
-    std::vector<PixelPusherRef> pushers;
+    vector<PixelPusherRef> pushers;
     PusherGroupRef              group;
     double                      timeNow;
     
@@ -237,14 +241,14 @@ void PusherDiscoveryService::updateGroups()
     {
         mPushersMutex.lock();
         
-        timeNow = ci::app::getElapsedSeconds();
+        timeNow = getElapsedSeconds();
         
         // remove devices
         for( size_t k=0; k < mPushers.size(); )
         {
             if ( !mPushers[k]->isAlive( timeNow ) )
             {
-                ci::app::console() << "PusherDiscoveryService remove pusher: " << mPushers[k]->mLastPingAt << " " << timeNow << std::endl;
+                console() << "PusherDiscoveryService remove pusher: " << mPushers[k]->mLastPingAt << " " << timeNow << endl;
                 
                 group = getGroupById( mPushers[k]->getGroupId() );
 
@@ -265,7 +269,7 @@ void PusherDiscoveryService::updateGroups()
             {
                 mGroups.erase( mGroups.begin() + k );
                 
-                ci::app::console() << "PusherDiscoveryService remove group" << std::endl;
+                console() << "PusherDiscoveryService remove group" << endl;
             }
             else
                 k++;
@@ -273,7 +277,7 @@ void PusherDiscoveryService::updateGroups()
         
         mPushersMutex.unlock();
         
-        std::this_thread::sleep_for( std::chrono::milliseconds( 1000 ) );
+        this_thread::sleep_for( chrono::milliseconds( 1000 ) );
     }
 }
 
