@@ -49,8 +49,9 @@ class Strip {
     bool isNotIdempotent() { return mIsNotIdempotent; }
 
     void setNotIdempotent( bool isNotIdempotent ) { mIsNotIdempotent = isNotIdempotent; }
-
+    
     std::vector<PixelRef>   getPixels() { return mPixels; }
+    size_t                  getNumPixels() { return mPixels.size(); }
     
     // use 3 methods instead returning the Buffer to avoid mem realloc
     void    updatePixelsBuffer();

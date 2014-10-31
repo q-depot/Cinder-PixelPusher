@@ -515,3 +515,53 @@ void PixelPusher::decreaseExtraDelay( uint32_t i )
         mExtraDelayMsec = 0;
 }
 
+
+void PixelPusher::setPixels( ci::Surface8u *image, StripMap stripMap, StripFlip flip )
+{
+    ColorA  col;
+    Vec2i   imgPixelPos;
+    
+    if ( stripMap == MAP_STRIP_ROW )
+    {
+        for( int y=0; y < image->getHeight(); y++ )
+        {
+            if ( y >= mStrips.size() )
+                break;
+
+            for( int x=0; x < image->getWidth(); x++ )
+            {
+                if ( x >= mStrips[y]->getNumPixels() )
+                    break;
+                
+                imgPixelPos.x   = ( flip & MAP_FLIP_X ) ? image->getWidth() - x - 1: x;
+                imgPixelPos.y   = ( flip & MAP_FLIP_Y ) ? image->getHeight() - y - 1: y;
+                col             = image->getPixel( imgPixelPos );
+                
+                mStrips[y]->setPixel( x, col.r * 255, col.g * 255, col.b * 255 );
+            }
+        }
+    }
+    
+    else if ( stripMap == MAP_STRIP_COL )
+    {
+        for( int x=0; x < image->getWidth(); x++ )
+        {
+            if ( x >= mStrips.size() )
+                break;
+            
+            for( int y=0; y < image->getHeight(); y++ )
+            {
+                if ( y >= mStrips[x]->getNumPixels() )
+                    break;
+                
+                imgPixelPos.x   = ( flip & MAP_FLIP_X ) ? image->getWidth() - x - 1: x;
+                imgPixelPos.y   = ( flip & MAP_FLIP_Y ) ? image->getHeight() - y - 1: y;
+                col             = image->getPixel( imgPixelPos );
+                
+                mStrips[x]->setPixel( y, col.r * 255, col.g * 255, col.b * 255 );
+            }
+        }
+    }
+    
+}
+

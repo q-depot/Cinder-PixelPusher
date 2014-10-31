@@ -49,6 +49,19 @@ private:
     
 public:
     
+    enum StripMap {
+        MAP_STRIP_ROW,
+        MAP_STRIP_COL
+    };
+
+    enum StripFlip {
+        MAP_FLIP_NONE,
+        MAP_FLIP_Y,
+        MAP_FLIP_X,
+        MAP_FLIP_XY
+    };
+
+    
     static PixelPusherRef create( DeviceHeader header )
     {
         return PixelPusherRef( new PixelPusher( header ) );
@@ -165,7 +178,9 @@ public:
         mSendReset      = true;
         mResetSentAt    = ci::app::getElapsedSeconds();
     }
-        
+    
+    void setPixels( ci::Surface8u *image, StripMap stripMap = MAP_STRIP_ROW, StripFlip flip = MAP_FLIP_NONE );
+    
 private:
     
     PixelPusher( DeviceHeader header );
