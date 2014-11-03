@@ -36,14 +36,10 @@ There is a basic feature to apply color correction, if the colors look a bit was
 The PixelPusher network is organised in Groups and Controllers. Each controller is always associated to a group, this is a property of the device itself and among other properties, it can only be changed by updating the PixelPusher configuration. To configure the device you can use the [PixelPusher-utilities](https://github.com/jasstrong/PixelPusher-utilities) configtool, please refer to the [PixelPusher Documentation](https://sites.google.com/a/heroicrobot.com/pixelpusher/home).
 
 #####Get the devices
-`PusherDiscoveryService` offers two methods to access the devices, you can get all the devices using `getPushers()` or get the groups with `getGroups()` and then iterate through the group's devices.
-
-For more info about PixelPusher visit:  
-* [Heroic Robotics](http://www.heroicrobotics.com)  
-* [PixelPusher Documentation](https://sites.google.com/a/heroicrobot.com/pixelpusher/home)
+`PusherDiscoveryService` offers two methods to access the devices, you can get all the devices using `getPushers()` or get the groups with `getGroups()` and then iterate through devices.
 
 #####Set pixels and PixelMap
-There are two methods to set the pixels, you can iterate through strips and pixels or you can pass a Surface8u object to the PixelPusher device, this method use a PixelMap which lets you decide how  the source image is mapped to the strip.  
+There are two methods to set the pixels, you can iterate through strips and pixels or you can pass a Surface8u object to the PixelPusher device, this method use a PixelMap which lets you decide how  the source image is mapped to the strips.  
 The PixelMap takes the offset(initial position) and the orientation( MAP_LEFT_RIGHT, MAP_RIGHT_LEFT, MAP_TOP_DOWN, MAP_BOTTOM_UP ).  
 The default PixelMap is MAP_LEFT_RIGHT and offset(0,0), to change it you can either call set `PixelPusher::setPixelMap()` or `Strip::setPixelMap()`.  
 Given an initial position, the `PixelPusher::setPixelMap()` always arrange the vertical strips from left to right and the horizontal strips from top to bottom.  
@@ -59,7 +55,9 @@ Surface8u mOutputSurf;
 pushers[k]->setPixels( &mOutputSurf );
 ```
 
-
+For more info about PixelPusher visit:  
+* [Heroic Robotics](http://www.heroicrobotics.com)  
+* [PixelPusher Documentation](https://sites.google.com/a/heroicrobot.com/pixelpusher/home)
 
 
 ##How to use it
