@@ -6,7 +6,7 @@ Cinder library to control the [Heroic Robotics](http://www.heroicrobotics.com/) 
 This is the first implementation of the library which is not fully tested.  
 At the moment I have one PixelPusher device and I only tested it with the [apa102(aka BetterPixel)](http://www.illumn.com/pixelpusher-and-led-strips/pixelpusher-strip-betterpixel-72-ip67.html) chip led strips.
 
-If you have multiple devices or a different led strip please let me know whether it works and report any problem on the Github issues page. 
+If you have multiple devices or a different led strip please let me know whether it works and report any problem on the [Github issues page](https://github.com/q-depot/Cinder-PixelPusher/issues). 
 
 
 ##Requirements
