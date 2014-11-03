@@ -12,8 +12,6 @@
 #ifndef PIXEL_PUSHER_PIXEL
 #define PIXEL_PUSHER_PIXEL
 
-#include "PusherDiscoveryService.h"
-
 class Pixel;
 typedef std::shared_ptr<Pixel> PixelRef;
 

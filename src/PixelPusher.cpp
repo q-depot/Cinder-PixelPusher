@@ -10,7 +10,6 @@
 
 #include "cinder/Utilities.h"
 #include "PixelPusher.h"
-#include "Strip.h"
 #include "PusherDiscoveryService.h"
 
 using namespace ci;
@@ -93,8 +92,6 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
         memcpy( &mSegments,     &packet.get()[36+stripFlagSize], 4 );
         memcpy( &mPowerDomain,  &packet.get()[40+stripFlagSize], 4 );
     }
-    
-    createStrips();
 }
 
 
@@ -242,6 +239,8 @@ void PixelPusher::createStrips()
         
         mStrips.push_back( strip );
     }
+    
+    setPixelMap( Vec2i::zero(), Strip::MAP_LEFT_RIGHT );
 }
 
 
@@ -307,6 +306,8 @@ bool PixelPusher::hasTouchedStrips()
 // Thread stuff
 void PixelPusher::createCardThread( boost::asio::io_service& ioService )
 {
+    createStrips();
+    
     mThreadExtraDelayMsec   = 0;
     mPacketNumber           = 0;
     
@@ -394,7 +395,6 @@ void PixelPusher::sendPacketToPusher()
         
         if ( mTerminateThreadAt > 0 && getElapsedSeconds() > mTerminateThreadAt )
         {
-            console() << "STOP fucking thread" << endl;
             mRunThread = false;
             continue;
         }
@@ -488,6 +488,7 @@ void PixelPusher::sendPacketToPusher()
                 }
             }
         }
+        
         // the socket is not ready, wait a bit
         else
             this_thread::sleep_for( chrono::milliseconds( 16 ) );
@@ -516,52 +517,54 @@ void PixelPusher::decreaseExtraDelay( uint32_t i )
 }
 
 
-void PixelPusher::setPixels( ci::Surface8u *image, StripMap stripMap, StripFlip flip )
+void PixelPusher::setPixels( ci::Surface8u *image )
 {
-    ColorA  col;
-    Vec2i   imgPixelPos;
+    Strip::PixelMap map;
+    ColorA          col;
+    StripRef        strip;
+    Vec2i           stepVec;
+    Vec2i           pixelPos;
     
-    if ( stripMap == MAP_STRIP_ROW )
+    for( size_t k=0; k < mStrips.size(); k++ )
     {
-        for( int y=0; y < image->getHeight(); y++ )
-        {
-            if ( y >= mStrips.size() )
-                break;
+        strip   = mStrips[k];
+        map     = strip->getPixelMap();
+        
+        pixelPos    = map.from;
+        stepVec     = ( map.to - map.from ) / strip->getNumPixels();
 
-            for( int x=0; x < image->getWidth(); x++ )
-            {
-                if ( x >= mStrips[y]->getNumPixels() )
-                    break;
-                
-                imgPixelPos.x   = ( flip & MAP_FLIP_X ) ? image->getWidth() - x - 1: x;
-                imgPixelPos.y   = ( flip & MAP_FLIP_Y ) ? image->getHeight() - y - 1: y;
-                col             = image->getPixel( imgPixelPos );
-                
-                mStrips[y]->setPixel( x, col.r * 255, col.g * 255, col.b * 255 );
-            }
-        }
-    }
-    
-    else if ( stripMap == MAP_STRIP_COL )
-    {
-        for( int x=0; x < image->getWidth(); x++ )
+        for( size_t j=0; j < strip->getNumPixels(); j++ )
         {
-            if ( x >= mStrips.size() )
-                break;
+            if ( pixelPos.y < 0 || pixelPos.y >= image->getHeight() || pixelPos.x < 0 || pixelPos.x >= image->getWidth() )
+                col = Color::black();
+            else
+                col = image->getPixel( pixelPos );
             
-            for( int y=0; y < image->getHeight(); y++ )
-            {
-                if ( y >= mStrips[x]->getNumPixels() )
-                    break;
-                
-                imgPixelPos.x   = ( flip & MAP_FLIP_X ) ? image->getWidth() - x - 1: x;
-                imgPixelPos.y   = ( flip & MAP_FLIP_Y ) ? image->getHeight() - y - 1: y;
-                col             = image->getPixel( imgPixelPos );
-                
-                mStrips[x]->setPixel( y, col.r * 255, col.g * 255, col.b * 255 );
-            }
+            pixelPos += stepVec;
+            strip->setPixel( j, col.r * 255, col.g * 255, col.b * 255 );
+        }
+    }
+}
+
+
+void PixelPusher::setPixelMap( ci::Vec2i offset, Strip::PixelMapOrientation orientation )
+{
+    if ( orientation == Strip::MAP_LEFT_RIGHT || orientation == Strip::MAP_RIGHT_LEFT )
+    {
+        for( size_t k=0; k < mStrips.size(); k++ )
+        {
+            mStrips[k]->setPixelMap( offset, orientation );
+            offset.y++;
         }
     }
     
+    else if ( orientation == Strip::MAP_TOP_DOWN || orientation == Strip::MAP_BOTTOM_UP )
+    {
+        for( size_t k=0; k < mStrips.size(); k++ )
+        {
+            mStrips[k]->setPixelMap( offset, orientation );
+            offset.x++;
+        }
+    }
 }
 

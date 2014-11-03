@@ -42,6 +42,25 @@ For more info about PixelPusher visit:
 * [Heroic Robotics](http://www.heroicrobotics.com)  
 * [PixelPusher Documentation](https://sites.google.com/a/heroicrobot.com/pixelpusher/home)
 
+#####Set pixels and PixelMap
+There are two methods to set the pixels, you can iterate through strips and pixels or you can pass a Surface8u object to the PixelPusher device, this method use a PixelMap which lets you decide how  the source image is mapped to the strip.  
+The PixelMap takes the offset(initial position) and the orientation( MAP_LEFT_RIGHT, MAP_RIGHT_LEFT, MAP_TOP_DOWN, MAP_BOTTOM_UP ).  
+The default PixelMap is MAP_LEFT_RIGHT and offset(0,0), to change it you can either call set `PixelPusher::setPixelMap()` or `Strip::setPixelMap()`.  
+Given an initial position, the `PixelPusher::setPixelMap()` always arrange the vertical strips from left to right and the horizontal strips from top to bottom.  
+`Strip::setPixelMap()` instead allows you to decide the arrange, for example you could have a bunch of vertical strips starting from the last column in the image and going left.
+
+```
+// given a bunch of strips, set the color for strip "k", pixel "i"
+strips[k]->setPixel( i, col.r * 255, col.g * 255, col.b * 255 );
+
+// or set all the strips and pixels for the Pusher "k" using a Surface8u
+Surface8u mOutputSurf;
+// .. draw something
+pushers[k]->setPixels( &mOutputSurf );
+```
+
+
+
 
 ##How to use it
 

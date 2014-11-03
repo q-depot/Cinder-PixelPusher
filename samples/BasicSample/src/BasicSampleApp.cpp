@@ -2,6 +2,7 @@
 #include "cinder/gl/gl.h"
 #include "cinder/gl/TextureFont.h"
 #include "cinder/params/Params.h"
+
 #include "PusherDiscoveryService.h"
 
 
@@ -22,12 +23,10 @@ class BasicSampleApp : public AppNative {
     
     params::InterfaceGl         mParams;
     
-    PixelPusher::StripMap       mStripMap;
-    PixelPusher::StripFlip      mStripFlip;
-    
     Vec2f                       mTestPos;
     Vec2f                       mTestPosOff;
     Vec2f                       mTestSpeed;
+    bool                        mTestPattern;
 };
 
 
@@ -35,26 +34,20 @@ void BasicSampleApp::setup()
 {
     mPusherDiscoveryService = PusherDiscoveryService::create( io_service() );
     
-    mFontBig    = gl::TextureFont::create( Font( "Arial", 16 ) );
-    mFontSmall  = gl::TextureFont::create( Font( "Arial", 12 ) );
+    mFontBig        = gl::TextureFont::create( Font( "Arial", 16 ) );
+    mFontSmall      = gl::TextureFont::create( Font( "Arial", 12 ) );
+    mOutputSurf     = Surface8u( 185, 185, false );
+    mTestPattern    = false;
     
-    mOutputSurf = Surface8u( 180, 180, false );
-    mStripMap   = PixelPusher::MAP_STRIP_ROW;
-    mStripFlip  = PixelPusher::MAP_FLIP_NONE;
+    mParams         = params::InterfaceGl( "params", Vec2i( 260, 150 ) );
+    mParams.addParam( "Test pattern",   &mTestPattern );
+    mParams.addParam( "Speed x",        &mTestSpeed.x );
+    mParams.addParam( "Speed y",        &mTestSpeed.y );
+    mParams.addParam( "Offset X",       &mTestPosOff.x );
+    mParams.addParam( "Offset Y",       &mTestPosOff.y );
+    mParams.setPosition( Vec2i( 300, 15 ) );
     
-    mParams = params::InterfaceGl( "params", Vec2i( 260, 300 ) );
-    vector<string> opts; opts.push_back( "Rows to strips" ); opts.push_back( "Cols to strips" );
-    mParams.addParam( "Strip map", opts, (int*)&mStripMap );
-    
-    opts.clear(); opts.push_back( "none" ); opts.push_back( "Flip Y" ); opts.push_back( "Flip X" ); opts.push_back( "Flip XY" );
-    mParams.addParam( "Strip flip", opts, (int*)&mStripFlip );
-    
-    mParams.addParam( "Speed x", &mTestSpeed.x );
-    mParams.addParam( "Speed y", &mTestSpeed.y );
-    mParams.addParam( "Offset X", &mTestPosOff.x );
-    mParams.addParam( "Offset Y", &mTestPosOff.y );
-    
-    setWindowSize( 1200, 800 );
+    setWindowSize( 800, 600 );
 }
 
 
@@ -70,7 +63,38 @@ void BasicSampleApp::keyDown( KeyEvent event )
         pushers.front()->reset();
     
     else if ( code == KeyEvent::KEY_SPACE )
-        mTestPos = Vec2i::zero();
+    {
+        mTestPos        = Vec2i::zero();
+        mTestPattern    = !mTestPattern;
+    }
+    
+    else if ( code == KeyEvent::KEY_RIGHT || code == KeyEvent::KEY_LEFT || code == KeyEvent::KEY_UP || code == KeyEvent::KEY_DOWN )
+    {
+        vector<PixelPusherRef> pushers = mPusherDiscoveryService->getPushers();
+        for( size_t k=0; k < pushers.size(); k++ )
+        {
+            if ( code == KeyEvent::KEY_RIGHT )
+            {
+                pushers[k]->setPixelMap( Vec2i::zero(), Strip::MAP_LEFT_RIGHT );
+                console() << "Set pixel map: LEFT to RIGHT" << endl;
+            }
+            else if ( code == KeyEvent::KEY_LEFT )
+            {
+                pushers[k]->setPixelMap( Vec2i( mOutputSurf.getWidth() - 1, 0 ), Strip::MAP_RIGHT_LEFT );
+                console() << "Set pixel map: RIGHT to LEFT" << endl;
+            }
+            else if ( code == KeyEvent::KEY_DOWN )
+            {
+                pushers[k]->setPixelMap( Vec2i::zero(), Strip::MAP_TOP_DOWN );
+                console() << "Set pixel map: TOP DOWN" << endl;
+            }
+            else if ( code == KeyEvent::KEY_UP )
+            {
+                pushers[k]->setPixelMap( Vec2i( 0, mOutputSurf.getHeight() - 1 ), Strip::MAP_BOTTOM_UP );
+                console() << "Set pixel map: BOTTOM UP" << endl;
+            }
+        }
+    }
 }
 
 
@@ -85,66 +109,45 @@ void BasicSampleApp::update()
     std::vector<StripRef>       strips;
     std::vector<PixelRef>       pixels;
     ColorA                      col;
-//    
-//    for( size_t j=0; j < pushers.size(); j++ )
-//    {
-//        strips = pushers[j]->getStrips();
-//        for( size_t k=0; k < strips.size(); k++ )
-//        {
-//            pixels = strips[k]->getPixels();
-//            for( size_t i=0; i < pixels.size(); i++ )
-//            {
-//                col.r = 0.5f * ( 1.0f + sin( (float)( i + k * pixels.size() ) / 15 + 2 * getElapsedSeconds() ) );
-//                col.g = 0.5f * ( 1.0f + cos( (float)( i + k * pixels.size() ) / 15 + 2 * getElapsedSeconds() ) );
-//                col.b = 1.0 - 0.5f * ( 1.0f + cos( (float)( i + k * pixels.size() ) / 5 + 2 * getElapsedSeconds() ) );
-//                
-//                strips[k]->setPixel( i, (uint8_t)( col.r * 255 ), (uint8_t)( col.g * 255 ), (uint8_t)( col.b * 255 ) );
-//                
-//                mOutputSurf.setPixel( Vec2i( i, j * 8 + k ), col );
-//            }
-//        }
-//    }
     
     Vec3f hsv;
     Vec2i pos;
+    Vec2i cursorPos;
     
     for( size_t x=0; x < mOutputSurf.getWidth(); x++ )
     {
         for( size_t y=0; y < mOutputSurf.getHeight(); y++ )
         {
-//            col.r = 0.5f * ( 1.0f + sin( (float)( x + y + 2 * getElapsedSeconds() ) ) );
-//            col.g = 0.5f * ( 1.0f + cos( (float)( x + y * 10 ) / 15 + 2 * getElapsedSeconds() ) );
-//            col.b = 1.0 - 0.5f * ( 1.0f + cos( (float)( x + y * 1000 ) / 5 + 2 * getElapsedSeconds() ) );
+            pos = Vec2i( x, y );
             
-//            col.r = 0.5f * ( 1.0f + sin( (float)( x * 0.1 + y * 0.2 + 2 * getElapsedSeconds() ) ) );
-//            col.r = (float)x / 480;
-//            col.b = (float)y / 480;
-            
-//            if ( y > mOutputSurf.getHeight() - 325 )
-//                col.g = 1.0;
-//            else
-//                col.g = 0.0;
-                pos = Vec2i( x, y );
-            if ( pos.x == (int)( mTestPos.x + mTestPosOff.x )  && pos.y == (int)(int)( mTestPos.y + mTestPosOff.y ) )
-                col.r = 1;
+            if ( mTestPattern )
+            {
+                cursorPos = mTestPos + mTestPosOff;
+                
+                if ( pos.x == cursorPos.x && pos.y == cursorPos.y)
+                    col = Color( 1.0f, 0.0f, 0.0f );
+                else if ( pos.x == cursorPos.x )
+                    col = Color( 1.0f, 1.0f, 1.0f );
+                else if ( pos.y == cursorPos.y )
+                    col = Color( 0.0f, 0.0f, 1.0f );
+                else
+                    col = Color::black();
+            }
             else
-                col.r = 0;
+            {
+                col.r = 0.5f * ( 1.0f + sin( (float)( x + y ) * 0.1f + 2 * getElapsedSeconds() ) );
+                col.g = 0.5f * ( 1.0f + cos( (float)( x + y ) * 0.1f + 2 * getElapsedSeconds() ) );
+                col.b = 1.0 - 0.5f * ( 1.0f + cos( (float)( x + y ) * 0.1f + 2 * getElapsedSeconds() ) );
+            }
             
             mOutputSurf.setPixel( pos, col );
         }
     }
+    
+    // set the pixels using the Surface8u
     for( size_t k=0; k < pushers.size(); k++ )
-    {
-        pushers[k]->setPixels( &mOutputSurf, mStripMap, mStripFlip );
-        
-//        pushers[k]->getStrip(0)->setPixel(0, 0, 0, 255 );
-    }
+        pushers[k]->setPixels( &mOutputSurf );
     
-    
-//    LEFT_RIGHT
-//      RIGHT_LEFT
-//    TOP_BOTTOM
-//    BOTTOM_UP
 }
 
 

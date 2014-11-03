@@ -13,6 +13,10 @@
 #include "PixelPusher.h"
 #include "PusherDiscoveryService.h"
 
+using namespace ci;
+using namespace ci::app;
+using namespace std;
+
 
 Strip::Strip( uint8_t stripNumber, int length )
 {
@@ -22,7 +26,7 @@ Strip::Strip( uint8_t stripNumber, int length )
     mStripNumber    = stripNumber;
     mIsTouched      = false;
     mIsRGBOW        = false;
-    mPixelsBuffer   = ci::Buffer( mPixels.size() * 3 );
+    mPixelsBuffer   = Buffer( mPixels.size() * 3 );
 }
 
 
@@ -120,5 +124,23 @@ void Strip::updatePixelsBuffer()
             data[byteIdx+2] = (uint8_t)( (double)(px->mBlue & 0xff)     * brightness );
         }
     }
+}
+
+
+void Strip::setPixelMap( Vec2i offset, PixelMapOrientation orientation )
+{
+    mPixelMap.from = offset;
+    
+    if ( orientation == MAP_LEFT_RIGHT )
+        mPixelMap.to = offset + Vec2i( getNumPixels(), 0 );
+    
+    else if ( orientation == MAP_RIGHT_LEFT )
+        mPixelMap.to = offset - Vec2i( getNumPixels(), 0 );
+    
+    else if ( orientation == MAP_TOP_DOWN )
+        mPixelMap.to = offset + Vec2i( 0, getNumPixels() );
+    
+    else if ( orientation == MAP_BOTTOM_UP )
+        mPixelMap.to = offset - Vec2i( 0, getNumPixels() );
 }
 

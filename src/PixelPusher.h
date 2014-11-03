@@ -13,8 +13,8 @@
 
 #pragma once
 
-//#include "PusherCommand.h"
 #include "DeviceHeader.h"
+#include "Strip.h"
 #include <boost/enable_shared_from_this.hpp>
 #include "UdpClient.h"
 
@@ -23,9 +23,6 @@
 #define         PP_CMD_RESET_SIZE                   17             // command magic first 16 bytes, last byte is the reset command(0x01)
 const uint8_t   PP_CMD_RESET[PP_CMD_RESET_SIZE] =   { 0x40, 0x09, 0x2d, 0xa6, 0x15, 0xa5, 0xdd, 0xe5, 0x6a, 0x9d, 0x4d, 0x5a, 0xcf, 0x09, 0xaf, 0x50, 0x01 };
 
-
-class Strip;
-typedef std::shared_ptr<Strip> StripRef;
 
 class PixelPusher;
 typedef std::shared_ptr<PixelPusher> PixelPusherRef;
@@ -48,20 +45,7 @@ private:
     
     
 public:
-    
-    enum StripMap {
-        MAP_STRIP_ROW,
-        MAP_STRIP_COL
-    };
-
-    enum StripFlip {
-        MAP_FLIP_NONE,
-        MAP_FLIP_Y,
-        MAP_FLIP_X,
-        MAP_FLIP_XY
-    };
-
-    
+        
     static PixelPusherRef create( DeviceHeader header )
     {
         return PixelPusherRef( new PixelPusher( header ) );
@@ -163,13 +147,6 @@ public:
     
     bool isAlive( double timeNow )
     {
-        // is we send the reset command, we wait for the device and start counting the ping after the reset delay
-//        if ( timeNow - mResetSentAt < PP_RESET_DELAY )
-//        {
-//            mLastPingAt = timeNow;
-//            return true;
-//        }
-        
         return timeNow - mLastPingAt < PP_DISCONNECT_TIMEOUT;
     }
     
@@ -179,7 +156,9 @@ public:
         mResetSentAt    = ci::app::getElapsedSeconds();
     }
     
-    void setPixels( ci::Surface8u *image, StripMap stripMap = MAP_STRIP_ROW, StripFlip flip = MAP_FLIP_NONE );
+    void setPixels( ci::Surface8u *image );
+    
+    void setPixelMap( ci::Vec2i offset, Strip::PixelMapOrientation orientation );
     
 private:
     
@@ -243,6 +222,7 @@ private:
     double                  mLastPingAt;
     bool                    mSendReset;
     double                  mResetSentAt;
+  
 };
 
 #endif

@@ -13,6 +13,7 @@
 #define PP_STRIP
 
 #pragma once
+
 #include "Pixel.h"
 
 class Strip;
@@ -22,6 +23,19 @@ typedef std::shared_ptr<Strip> StripRef;
 class Strip {
 
   public:
+    
+    struct PixelMap {
+        ci::Vec2i   from;
+        ci::Vec2i   to;
+    };
+    
+    enum PixelMapOrientation {
+        MAP_LEFT_RIGHT,
+        MAP_RIGHT_LEFT,
+        MAP_TOP_DOWN,
+        MAP_BOTTOM_UP
+    };
+    
     
     static StripRef create( uint8_t stripNumber, int length )
     {
@@ -60,6 +74,10 @@ class Strip {
     
     void markTouched( bool isTouch = true ) { mIsTouched = isTouch; }
     
+    void setPixelMap( ci::Vec2i offset, PixelMapOrientation orientation );
+    
+    PixelMap getPixelMap() { return mPixelMap; }
+    
 private:
     
     Strip( uint8_t stripNumber, int length );
@@ -73,6 +91,8 @@ private:
     bool                    mIsMotion;
     bool                    mIsNotIdempotent;
     ci::Buffer              mPixelsBuffer;
+    PixelMap                mPixelMap;
+    
     
   // TODO: check this shit! already defined somewhere else? WTF is wrong with source code/developer?
     const uint8_t sLinearExp[256] = {  0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4,
