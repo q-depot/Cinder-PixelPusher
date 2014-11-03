@@ -131,4 +131,5 @@ void BasicSampleApp::update()
 * Implement multicast
 * Test multiple devices
 * Test strips: MBI6030, LPD8806, SD600A, WS2801, P9813, TLC59711
+* proper color correction
 
