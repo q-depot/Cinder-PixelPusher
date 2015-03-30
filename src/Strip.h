@@ -14,6 +14,7 @@
 
 #pragma once
 
+#include "cinder/app/App.h"
 #include "Pixel.h"
 
 class Strip;
@@ -93,8 +94,9 @@ private:
     ci::Buffer              mPixelsBuffer;
     PixelMap                mPixelMap;
     
-    
-  // TODO: check this shit! already defined somewhere else? WTF is wrong with source code/developer?
+  // TODO: check this! already defined somewhere else?
+    static uint8_t sLinearExp[256];
+    /*
     const uint8_t sLinearExp[256] = {  0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4,
         4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 10, 10, 10,
         10, 11, 11, 11, 12, 12, 12, 13, 13, 13, 14, 14, 14, 15, 15, 15, 16, 16, 17, 17, 17, 18,
@@ -107,6 +109,7 @@ private:
         128, 129, 131, 132, 134, 136, 137, 139, 141, 142, 144, 146, 148, 150, 151, 153, 155, 157, 159, 161,
         163, 165, 167, 169, 171, 173, 175, 177, 179, 181, 183, 186, 188, 190, 192, 195, 197, 199, 202, 204,
         206, 209, 211, 214, 216, 219, 221, 224, 227, 229, 232, 235, 237, 240, 243, 246, 249, 252 };
+    */
 
 };
 

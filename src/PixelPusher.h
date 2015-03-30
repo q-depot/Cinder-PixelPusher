@@ -13,6 +13,8 @@
 
 #pragma once
 
+#include "cinder/app/App.h"
+#include "cinder/Thread.h"
 #include "DeviceHeader.h"
 #include "Strip.h"
 #include <boost/enable_shared_from_this.hpp>

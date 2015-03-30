@@ -12,8 +12,11 @@
 #ifndef PIXEL_PUSHER_PIXEL
 #define PIXEL_PUSHER_PIXEL
 
-class Pixel;
-typedef std::shared_ptr<Pixel> PixelRef;
+#include <stdint.h>
+#include <memory>
+#include <array>
+
+typedef std::shared_ptr<class Pixel> PixelRef;
 
 
 class Pixel {
@@ -39,6 +42,15 @@ public:
     
     ~Pixel() {}
     
+    ci::Color getColorRgb()
+    {
+        return ci::Color( (float)mRed / 255.0f, (float)mGreen / 255.0f, (float)mBlue / 255.0f );
+    }
+
+    
+    
+private:
+    
     void setColor( Pixel pixel, bool colorCorrection = false )
     {
         setColor( pixel.mRed, pixel.mGreen, pixel.mBlue, pixel.mOrange, pixel.mWhite, colorCorrection );
@@ -63,10 +75,7 @@ public:
             mWhite   = sLinearExp[w];
         }
     }
-    
-    
-private:
-    
+
     Pixel() {
         mRed     = 0;
         mGreen   = 0;
@@ -93,6 +102,9 @@ private:
     uint8_t mOrange;
     uint8_t mWhite;
 
+    static uint8_t sLinearExp[256];
+
+    /*
     const uint8_t sLinearExp[256] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
       1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4,
       5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12,
@@ -102,7 +114,7 @@ private:
       119, 121, 124, 127, 129, 132, 135, 138, 141, 144, 148, 151, 154, 158,
       161, 165, 168, 172, 176, 180, 184, 188, 192, 196, 201, 205,
       209, 214, 219, 224, 229, 234, 239, 244, 249, 255 };
-
+    */
 };
 
 #endif

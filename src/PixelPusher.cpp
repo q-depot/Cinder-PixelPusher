@@ -8,6 +8,7 @@
  *
  */
 
+#include "cinder/app/App.h"
 #include "cinder/Utilities.h"
 #include "PixelPusher.h"
 #include "PusherDiscoveryService.h"
@@ -15,6 +16,29 @@
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+
+uint8_t Pixel::sLinearExp[256] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+      5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12,
+      13, 13, 13, 14, 14, 14, 14, 15, 15, 16, 16, 16, 17, 17, 17, 18, 18, 19, 19, 20, 20, 20, 21, 21, 22, 22, 23, 23, 24, 25, 25, 26, 26, 27,
+      27, 28, 29, 29, 30, 31, 31, 32, 33, 34, 34, 35, 36, 37, 38, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 54, 55, 56, 57,
+      59, 60, 61, 63, 64, 65, 67, 68, 70, 72, 73, 75, 76, 78, 80, 82, 83, 85, 87, 89, 91, 93, 95, 97, 99, 102, 104, 106, 109, 111, 114, 116,
+      119, 121, 124, 127, 129, 132, 135, 138, 141, 144, 148, 151, 154, 158,
+      161, 165, 168, 172, 176, 180, 184, 188, 192, 196, 201, 205,
+      209, 214, 219, 224, 229, 234, 239, 244, 249, 255 };
+
+uint8_t Strip::sLinearExp[256] = {  0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4,
+        4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 10, 10, 10,
+        10, 11, 11, 11, 12, 12, 12, 13, 13, 13, 14, 14, 14, 15, 15, 15, 16, 16, 17, 17, 17, 18,
+        18, 18, 19, 19, 20, 20, 20, 21, 21, 22, 22, 22, 23, 23, 24, 24, 25, 25, 26, 26, 27, 27,
+        28, 28, 29, 29, 30, 30, 31, 31, 32, 32, 33, 33, 34, 34, 35, 36, 36, 37, 37, 38, 38, 39,
+        40, 40, 41, 42, 42, 43, 44, 44, 45, 46, 46, 47, 48, 48, 49, 50, 51, 51, 52, 53, 54, 54,
+        55, 56, 57, 57, 58, 59, 60, 61, 62, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74,
+        75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 89, 90, 91, 92, 93, 94, 96, 97, 98,
+        99, 101, 102, 103, 105, 106, 107, 109, 110, 111, 113, 114, 116, 117, 119, 120, 121, 123, 125, 126,
+        128, 129, 131, 132, 134, 136, 137, 139, 141, 142, 144, 146, 148, 150, 151, 153, 155, 157, 159, 161,
+        163, 165, 167, 169, 171, 173, 175, 177, 179, 181, 183, 186, 188, 190, 192, 195, 197, 199, 202, 204,
+        206, 209, 211, 214, 216, 219, 221, 224, 227, 229, 232, 235, 237, 240, 243, 246, 249, 252 };
 
 
 PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
@@ -36,7 +60,7 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
     
     uint32_t swRev      = header.getSoftwareRevision();
     
-    if ( swRev < ACCEPTABLE_LOWEST_SW_REV )
+    if ( swRev < (uint32_t)ACCEPTABLE_LOWEST_SW_REV )
     {
         console() << "WARNING!  This PixelPusher Library requires firmware revision " + to_string( ACCEPTABLE_LOWEST_SW_REV / 100.0 ) << endl;
         console() << "WARNING!  This PixelPusher is using " << to_string( swRev / 100.0 ) << endl;
@@ -443,7 +467,7 @@ void PixelPusher::sendPacketToPusher()
             // send strip data
             stripIdx = 0;
             
-            while( stripIdx < touchedStrips.size() )
+            while( (size_t)stripIdx < touchedStrips.size() )
             {
                 packetLength    = 0;
                 payload         = false;
@@ -541,7 +565,7 @@ void PixelPusher::setPixels( ci::Surface8u *image )
                 col = image->getPixel( pixelPos );
             
             pixelPos += stepVec;
-            strip->setPixel( j, col.r * 255, col.g * 255, col.b * 255 );
+            strip->setPixel( j, (uint8_t)(col.r * 255), (uint8_t)(col.g * 255), (uint8_t)(col.b * 255) );
         }
     }
 }

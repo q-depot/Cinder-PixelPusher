@@ -8,13 +8,12 @@
  *
  */
 
-
 #include "Strip.h"
 #include "PixelPusher.h"
 #include "PusherDiscoveryService.h"
 
 using namespace ci;
-using namespace ci::app;
+//using namespace ci::app;
 using namespace std;
 
 

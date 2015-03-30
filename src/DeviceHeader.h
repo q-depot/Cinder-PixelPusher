@@ -19,6 +19,7 @@ enum DeviceType {
 };
 
 #include <stdexcept>
+#include <string>
 
 #define PP_HEADER_LENGTH 24
 

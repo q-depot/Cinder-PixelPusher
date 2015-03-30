@@ -15,6 +15,7 @@
 
 #include "UdpServer.h"
 #include "PusherGroup.h"
+#include "cinder/Thread.h"
 
 #define PP_DISCOVERY_SERVICE_PORT       7331
 
