@@ -2,12 +2,12 @@
  *  Pixel.h
  *
  *  Created by Andrea Cuius
- *  Nocte Studio Ltd. Copyright 2014 . All rights reserved.
+ *  The MIT License (MIT)
+ *  Copyright (c) 2015 Nocte Studio Ltd.
  *
  *  www.nocte.co.uk
  *
  */
-
 
 #ifndef PIXEL_PUSHER_PIXEL
 #define PIXEL_PUSHER_PIXEL
