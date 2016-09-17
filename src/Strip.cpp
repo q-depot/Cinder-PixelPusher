@@ -127,20 +127,20 @@ void Strip::updatePixelsBuffer()
 }
 
 
-void Strip::setPixelMap( Vec2i offset, PixelMapOrientation orientation )
+void Strip::setPixelMap( vec2 offset, PixelMapOrientation orientation )
 {
     mPixelMap.from = offset;
     
     if ( orientation == MAP_LEFT_RIGHT )
-        mPixelMap.to = offset + Vec2i( getNumPixels(), 0 );
+        mPixelMap.to = offset + vec2( getNumPixels(), 0 );
     
     else if ( orientation == MAP_RIGHT_LEFT )
-        mPixelMap.to = offset - Vec2i( getNumPixels(), 0 );
+        mPixelMap.to = offset - vec2( getNumPixels(), 0 );
     
     else if ( orientation == MAP_TOP_DOWN )
-        mPixelMap.to = offset + Vec2i( 0, getNumPixels() );
+        mPixelMap.to = offset + vec2( 0, getNumPixels() );
     
     else if ( orientation == MAP_BOTTOM_UP )
-        mPixelMap.to = offset - Vec2i( 0, getNumPixels() );
+        mPixelMap.to = offset - vec2( 0, getNumPixels() );
 }
 

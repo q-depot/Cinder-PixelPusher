@@ -9,7 +9,7 @@
  *
  */
 
-#include "cinder/app/AppNative.h"
+//#include "cinder/app/AppNative.h"
 #include "PusherDiscoveryService.h"
 #include "PixelPusher.h"
 #include "PusherGroup.h"
@@ -55,7 +55,7 @@ bool sortPushers( PixelPusherRef a, PixelPusherRef b )
 }
 
 
-PusherDiscoveryService::PusherDiscoveryService( boost::asio::io_service& ioService ) : mIoService(ioService)
+PusherDiscoveryService::PusherDiscoveryService( asio::io_service& ioService ) : mIoService(ioService)
 {
  	mServer = UdpServer::create( mIoService );
     
@@ -104,12 +104,12 @@ void PusherDiscoveryService::onError( string err, size_t bytesTransferred )
 }
 
 
-void PusherDiscoveryService::onRead( Buffer buffer )
+void PusherDiscoveryService::onRead( BufferRef buffer )
 {
     mPushersMutex.lock();
     
-    uint8_t         *data   =(uint8_t*)buffer.getData();
-    DeviceHeader    header  = DeviceHeader( data, buffer.getDataSize() );
+    uint8_t         *data   =(uint8_t*)buffer->getData();
+    DeviceHeader    header  = DeviceHeader( data, buffer->getSize() );
     string     macAddr = header.getMacAddressString();
     PixelPusherRef  thisDevice, incomingDevice;
     

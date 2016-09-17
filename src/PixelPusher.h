@@ -56,7 +56,7 @@ public:
     
     ~PixelPusher();
     
-    void createCardThread( boost::asio::io_service& ioService );
+    void createCardThread( asio::io_service& ioService );
     void destroyCardThread();
     
     uint16_t getPort()
@@ -161,7 +161,7 @@ public:
     
     void setPixels( ci::Surface8u *image );
     
-    void setPixelMap( ci::Vec2i offset, Strip::PixelMapOrientation orientation );
+    void setPixelMap( ci::vec2 offset, Strip::PixelMapOrientation orientation );
     
 private:
     

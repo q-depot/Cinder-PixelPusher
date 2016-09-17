@@ -265,7 +265,7 @@ void PixelPusher::createStrips()
         mStrips.push_back( strip );
     }
     
-    setPixelMap( Vec2i::zero(), Strip::MAP_LEFT_RIGHT );
+    setPixelMap( ci::vec2(0,0), Strip::MAP_LEFT_RIGHT );
 }
 
 
@@ -329,7 +329,7 @@ bool PixelPusher::hasTouchedStrips()
 
 
 // Thread stuff
-void PixelPusher::createCardThread( boost::asio::io_service& ioService )
+void PixelPusher::createCardThread( asio::io_service& ioService )
 {
     createStrips();
     
@@ -405,13 +405,13 @@ void PixelPusher::sendPacketToPusher()
     uint8_t             *stripData;
     
     // packet buffer
-    ci::Buffer          packetBuffer        = Buffer( 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * getMaxStripsPerPacket() ) );
-    uint8_t             *packetData         = (uint8_t*)packetBuffer.getData();
+    ci::BufferRef       packetBuffer        = Buffer::create( 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * getMaxStripsPerPacket() ) );
+    uint8_t             *packetData         = (uint8_t*)packetBuffer->getData();
 
     // reset command packet buffer
     int                 cmdPacketLength     = ( ( getPusherFlags() & PFLAG_FIXEDSIZE ) != 0 ) ? 4 + ( ( 1 + 3 * getPixelsPerStrip() ) * stripPerPacket ) :  PP_CMD_RESET_SIZE + 4;
-    ci::Buffer          resetCmdBuffer      = Buffer(cmdPacketLength);
-    uint8_t             *resetCmdData       = (uint8_t*)resetCmdBuffer.getData();
+    ci::BufferRef       resetCmdBuffer      = Buffer::create(cmdPacketLength);
+    uint8_t             *resetCmdData       = (uint8_t*)resetCmdBuffer->getData();
     memcpy( &resetCmdData[4], &PP_CMD_RESET[0], PP_CMD_RESET_SIZE );
    
     while( mRunThread )
@@ -547,8 +547,8 @@ void PixelPusher::setPixels( ci::Surface8u *image )
     Strip::PixelMap map;
     ColorA          col;
     StripRef        strip;
-    Vec2i           stepVec;
-    Vec2i           pixelPos;
+    vec2            stepVec;
+    vec2            pixelPos;
     
     for( size_t k=0; k < mStrips.size(); k++ )
     {
@@ -556,7 +556,7 @@ void PixelPusher::setPixels( ci::Surface8u *image )
         map     = strip->getPixelMap();
         
         pixelPos    = map.from;
-        stepVec     = ( map.to - map.from ) / strip->getNumPixels();
+        stepVec     = ( map.to - map.from ) / (float)strip->getNumPixels();
 
         for( size_t j=0; j < strip->getNumPixels(); j++ )
         {
@@ -572,7 +572,7 @@ void PixelPusher::setPixels( ci::Surface8u *image )
 }
 
 
-void PixelPusher::setPixelMap( ci::Vec2i offset, Strip::PixelMapOrientation orientation )
+void PixelPusher::setPixelMap( ci::vec2 offset, Strip::PixelMapOrientation orientation )
 {
     if ( orientation == Strip::MAP_LEFT_RIGHT || orientation == Strip::MAP_RIGHT_LEFT )
     {

@@ -26,8 +26,8 @@ class Strip {
   public:
     
     struct PixelMap {
-        ci::Vec2i   from;
-        ci::Vec2i   to;
+        ci::vec2   from;
+        ci::vec2   to;
     };
     
     enum PixelMapOrientation {
@@ -71,11 +71,11 @@ class Strip {
     // use 3 methods instead returning the Buffer to avoid mem realloc
     void    updatePixelsBuffer();
     uint8_t *getPixelsData() { return (uint8_t*)mPixelsBuffer.getData(); }
-    size_t  getPixelsDataSize() { return mPixelsBuffer.getDataSize(); }
+    size_t  getPixelsDataSize() { return mPixelsBuffer.getSize(); }
     
     void markTouched( bool isTouch = true ) { mIsTouched = isTouch; }
     
-    void setPixelMap( ci::Vec2i offset, PixelMapOrientation orientation );
+    void setPixelMap( ci::vec2 offset, PixelMapOrientation orientation );
     
     PixelMap getPixelMap() { return mPixelMap; }
     

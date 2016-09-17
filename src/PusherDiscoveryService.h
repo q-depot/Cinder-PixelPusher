@@ -14,6 +14,7 @@
 
 #pragma once
 
+#include "CinderAsio.h"
 #include "UdpServer.h"
 #include "PusherGroup.h"
 #include "cinder/Thread.h"
@@ -32,7 +33,7 @@ class PusherDiscoveryService {
 
 public:
     
-    static PusherDiscoveryServiceRef create( boost::asio::io_service& ioService  )
+    static PusherDiscoveryServiceRef create( asio::io_service& ioService  )
     {
         return PusherDiscoveryServiceRef( new PusherDiscoveryService( ioService ) );
     }
@@ -78,11 +79,11 @@ public:
     
 private:
     
-    PusherDiscoveryService( boost::asio::io_service& ioService );
+    PusherDiscoveryService( asio::io_service& ioService );
     
     void onAccept( UdpSessionRef session );
 	void onError( std::string err, size_t bytesTransferred );
-	void onRead( ci::Buffer buffer );
+	void onRead( ci::BufferRef buffer );
     
     void addNewPusher( PixelPusherRef pusher );
     
@@ -107,7 +108,7 @@ private:
     
     std::vector<PixelPusherRef>     mPushers;
     std::vector<PusherGroupRef>     mGroups;
-    boost::asio::io_service&        mIoService;
+    asio::io_service&               mIoService;
     
     std::thread                     mUpdateGroupsThread;
     std::mutex                      mPushersMutex;
