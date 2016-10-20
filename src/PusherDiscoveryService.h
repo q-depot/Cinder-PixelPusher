@@ -19,6 +19,7 @@
 #include "PusherGroup.h"
 #include "cinder/Thread.h"
 
+
 #define PP_DISCOVERY_SERVICE_PORT       7331
 
 
@@ -60,6 +61,9 @@ public:
         
         return PixelPusherRef();
     }
+    
+    void lock() { mPushersMutex.lock(); }
+    void unlock() { mPushersMutex.unlock(); }
     
 public:
     
