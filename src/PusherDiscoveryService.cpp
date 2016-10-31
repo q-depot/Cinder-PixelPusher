@@ -80,9 +80,17 @@ PusherDiscoveryService::PusherDiscoveryService( asio::io_service& ioService ) : 
 
 PusherDiscoveryService::~PusherDiscoveryService()
 {
+    shutdown();
+}
+
+
+void PusherDiscoveryService::shutdown()
+{
     mRunUpdateGroupsThread = false;
     if ( mUpdateGroupsThread.joinable() )
         mUpdateGroupsThread.join();
+    
+    console() << "PusherDiscoveryService::shutdown()" << endl;
 }
 
 

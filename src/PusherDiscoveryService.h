@@ -65,6 +65,8 @@ public:
     void lock() { mPushersMutex.lock(); }
     void unlock() { mPushersMutex.unlock(); }
     
+    void shutdown();
+    
 public:
     
     static int      getTotalPower()             { return TotalPower; }
