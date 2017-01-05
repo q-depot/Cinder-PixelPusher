@@ -114,11 +114,11 @@ void PusherDiscoveryService::onError( string err, size_t bytesTransferred )
 
 void PusherDiscoveryService::onRead( BufferRef buffer )
 {
-    mPushersMutex.lock();
+//    mPushersMutex.lock();
     
     uint8_t         *data   =(uint8_t*)buffer->getData();
     DeviceHeader    header  = DeviceHeader( data, buffer->getSize() );
-    string     macAddr = header.getMacAddressString();
+    string          macAddr = header.getMacAddressString();
     PixelPusherRef  thisDevice, incomingDevice;
     
     // ignore non-PixelPusher devices
@@ -127,11 +127,14 @@ void PusherDiscoveryService::onRead( BufferRef buffer )
     
     incomingDevice = PixelPusher::create( header );
     
-    for( size_t k=0; k < mPushers.size(); k++ )
+    for( size_t k=0; k < mPushersInternal.size(); k++ )
     {
-        if ( mPushers[k]->getMacAddress() == incomingDevice->getMacAddress() )
+        if ( !mPushersInternal[k] )
+            continue;
+
+        if ( mPushersInternal[k]->getMacAddress() == incomingDevice->getMacAddress() )
         {
-            thisDevice = mPushers[k];
+            thisDevice = mPushersInternal[k];
             break;
         }
     }
@@ -169,13 +172,13 @@ void PusherDiscoveryService::onRead( BufferRef buffer )
     {
         TotalPower = 0;
         
-        for( size_t k=0; k < mPushers.size(); k++ )
-            TotalPower += mPushers[k]->getPowerTotal();
+        for( size_t k=0; k < mPushersInternal.size(); k++ )
+            TotalPower += mPushersInternal[k]->getPowerTotal();
 
         PowerScale = ( TotalPower > TotalPowerLimit ) ? ( TotalPowerLimit / TotalPower ) : 1.0;
     }
    
-    mPushersMutex.unlock();
+//    mPushersMutex.unlock();
     
     // continue reading
 	mSession->read();
@@ -184,7 +187,7 @@ void PusherDiscoveryService::onRead( BufferRef buffer )
     
 void PusherDiscoveryService::addNewPusher( PixelPusherRef pusher )
 {
-    mPushers.push_back( pusher );
+    mPushersInternal.push_back( pusher );
     
     PusherGroupRef group;
     
@@ -226,13 +229,29 @@ void PusherDiscoveryService::addNewPusher( PixelPusherRef pusher )
 }
 
 
+void PusherDiscoveryService::removePusher( size_t idx )
+{
+    if ( idx >= mPushersInternal.size() )
+        return;
+
+    console() << "PusherDiscoveryService remove pusher: " << mPushersInternal[idx]->mLastPingAt << " " << getElapsedSeconds() << endl;
+     
+    PusherGroupRef group = getGroupById( mPushersInternal[idx]->getGroupId() );
+
+    if ( group )
+        group->removePusher( mPushersInternal[idx] );                 // remove from group
+                
+    mPushersInternal.erase( mPushersInternal.begin() + idx );                 // remove from sorted list                
+}
+
+
 vector<PixelPusherRef> PusherDiscoveryService::getPushersByIp( string ip )
 {
     vector<PixelPusherRef> pushers;
     
-    for( size_t k=0; k < mPushers.size(); k++ )
-        if ( mPushers[k]->getIp() == ip )
-            pushers.push_back( mPushers[k] );
+    for( size_t k=0; k < mPushersPublic.size(); k++ )
+        if ( mPushersPublic[k]->getIp() == ip )
+            pushers.push_back( mPushersPublic[k] );
     
     return pushers;
 }
@@ -242,31 +261,18 @@ void PusherDiscoveryService::updateGroups()
 {
     mRunUpdateGroupsThread = true;
     
-    vector<PixelPusherRef> pushers;
-    PusherGroupRef              group;
-    double                      timeNow;
+    vector<PixelPusherRef>  pushers;
+    double                  timeNow;
     
     while( mRunUpdateGroupsThread )
-    {
-        mPushersMutex.lock();
-        
+    {        
         timeNow = getElapsedSeconds();
         
         // remove devices
-        for( size_t k=0; k < mPushers.size(); )
+        for( size_t k=0; k < mPushersInternal.size(); )
         {
-            if ( !mPushers[k]->isAlive( timeNow ) )
-            {
-                console() << "PusherDiscoveryService remove pusher: " << mPushers[k]->mLastPingAt << " " << timeNow << endl;
-                
-                group = getGroupById( mPushers[k]->getGroupId() );
-
-                if ( group )
-                    group->removePusher( mPushers[k] );                 // remove from group
-                
-                mPushers.erase( mPushers.begin() + k );                 // remove from sorted list
-                
-            }
+            if ( !mPushersInternal[k]->isAlive( timeNow ) )
+                removePusher(k);
             else
                 k++;
         }
@@ -283,9 +289,11 @@ void PusherDiscoveryService::updateGroups()
             else
                 k++;
         }
-        
-        mPushersMutex.unlock();
-        
+
+        mDataMutex.lock();
+        mPushersPublic = mPushersInternal;
+        mDataMutex.unlock();
+
         this_thread::sleep_for( chrono::milliseconds( 1000 ) );
     }
 }

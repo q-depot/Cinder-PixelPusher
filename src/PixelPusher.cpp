@@ -122,7 +122,7 @@ PixelPusher::PixelPusher( DeviceHeader header ) : mDeviceHeader(header)
 
 PixelPusher::~PixelPusher()
 {
-    if (  mSendDataThread.get_id() != thread::id() )
+    if (  mSendDataThread.joinable() )
     {
         for( size_t k=0; k < mStrips.size(); k++ )
             mStrips[k]->setPixelsBlack();
@@ -347,11 +347,13 @@ void PixelPusher::createCardThread( asio::io_service& ioService )
 
 void PixelPusher::destroyCardThread()
 {
-    // terminate in 100ms to ensure it sends out the black pixels
-    mTerminateThreadAt = getElapsedSeconds() + 0.2;
-    
     if ( mSendDataThread.joinable() )
+    {
+        // terminate in 200ms to ensure it sends out the black pixels
+        mTerminateThreadAt = getElapsedSeconds() + 0.2;
+
         mSendDataThread.join();
+    }
 }
 
 
@@ -420,6 +422,8 @@ void PixelPusher::sendPacketToPusher()
         
         if ( mTerminateThreadAt > 0 && getElapsedSeconds() > mTerminateThreadAt )
         {
+            console() << "PixelPusher::sendPacketToPusher() Thread is set to expire." << endl;
+
             mRunThread = false;
             continue;
         }

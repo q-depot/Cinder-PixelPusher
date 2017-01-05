@@ -48,7 +48,7 @@ private:
     
     
 public:
-        
+ 
     static PixelPusherRef create( DeviceHeader header )
     {
         return PixelPusherRef( new PixelPusher( header ) );
@@ -211,7 +211,6 @@ private:
     
 	DeviceHeader            mDeviceHeader;
 
-    // update Thread
     UdpClientRef            mClient;
     UdpSessionRef           mSession;
     
@@ -225,7 +224,7 @@ private:
     double                  mLastPingAt;
     bool                    mSendReset;
     double                  mResetSentAt;
-  
+    
 };
 
 #endif

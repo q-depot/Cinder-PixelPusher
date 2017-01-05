@@ -41,32 +41,59 @@ public:
     
     ~PusherDiscoveryService();
     
-    std::vector<PixelPusherRef>     getPushers() { return mPushers; }
+    std::vector<PixelPusherRef>     getPushers() 
+    {
+        return mPushersPublic;
+    }
+
     std::vector<PusherGroupRef>     getGroups() { return mGroups; }
     
     PusherGroupRef  getGroupById( uint32_t groupId )
     {
         for( size_t k=0; k < mGroups.size(); k++ )
+        {
+            if ( !mGroups[k] )
+                continue;
+
             if ( mGroups[k]->getId() == groupId )
                 return mGroups[k];
-        
+        }
+
         return PusherGroupRef();
     }
     
     PixelPusherRef  getPusherById( uint32_t pusherId )
     {
-        for( size_t k=0; k < mPushers.size(); k++ )
-            if ( mPushers[k]->getControllerId() == pusherId )
-                return mPushers[k];
-        
+        for( size_t k=0; k < mPushersPublic.size(); k++ )
+        {
+            if ( !mPushersPublic[k] )
+                continue;
+
+            if ( mPushersPublic[k]->getControllerId() == pusherId )
+                return mPushersPublic[k];
+        }
+
+        return PixelPusherRef();
+    }
+
+    PixelPusherRef  getPusherById( uint32_t pusherId, uint32_t groupId )
+    {
+        for( size_t k=0; k < mPushersPublic.size(); k++ )
+        {
+            if ( !mPushersPublic[k] )
+                continue;
+
+            if ( mPushersPublic[k]->getControllerId() == pusherId && mPushersPublic[k]->getGroupId() == groupId )
+                return mPushersPublic[k];
+        }
         return PixelPusherRef();
     }
     
-    void lock() { mPushersMutex.lock(); }
-    void unlock() { mPushersMutex.unlock(); }
-    
     void shutdown();
     
+    void lock()     { mDataMutex.lock(); }
+    void unlock()   { mDataMutex.unlock(); }
+
 public:
     
     static int      getTotalPower()             { return TotalPower; }
@@ -92,6 +119,7 @@ private:
 	void onRead( ci::BufferRef buffer );
     
     void addNewPusher( PixelPusherRef pusher );
+    void removePusher( size_t idx );
     
     std::vector<PixelPusherRef>     getPushersByIp( std::string ipAddr );
     
@@ -112,12 +140,12 @@ private:
 	UdpServerRef                    mServer;
 	UdpSessionRef                   mSession;
     
-    std::vector<PixelPusherRef>     mPushers;
+    std::vector<PixelPusherRef>     mPushersInternal, mPushersPublic;    // lock internals to expose the pushers
     std::vector<PusherGroupRef>     mGroups;
     asio::io_service&               mIoService;
     
     std::thread                     mUpdateGroupsThread;
-    std::mutex                      mPushersMutex;
+    std::mutex                      mDataMutex;
     bool                            mRunUpdateGroupsThread;
   
 };
